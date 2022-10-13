@@ -12,11 +12,28 @@
 	--white: #f4f4f4;
 	--grey: #aaaaaa;
 	--lightGrey: #d7ddda;
+
+	// specific use cases
+	--textColor: #0d1726;
+	--bgColor: #d7ddda;
+
+	// fluid type
+	// @link https://utopia.fyi/type/calculator?c=320,16,1.2,1302,18,1.25,7,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l
+	--step-0: clamp(1rem, calc(0.96rem + 0.2vw), 1.13rem);
+	--step-1: clamp(1.2rem, calc(1.13rem + 0.34vw), 1.41rem);
+	--step-2: clamp(1.44rem, calc(1.34rem + 0.52vw), 1.76rem);
+	--step-3: clamp(1.73rem, calc(1.58rem + 0.76vw), 2.2rem);
+	--step-4: clamp(2.07rem, calc(1.85rem + 1.1vw), 2.75rem);
+	--step-5: clamp(2.49rem, calc(2.18rem + 1.54vw), 3.43rem);
+	--step-6: clamp(2.99rem, calc(2.56rem + 2.13vw), 4.29rem);
+	--step-7: clamp(3.58rem, calc(3rem + 2.9vw), 5.36rem);
 }
+
 html {
 }
 body {
 	font-family: 'Newsreader', serif;
+	font-size: var(--step-0);
 }
 h1,
 h2,
@@ -25,4 +42,22 @@ h4,
 h5,
 h6 {
 	font-family: 'Poppins', sans-serif;
+}
+h1 {
+	font-size: var(--step-6);
+}
+h2 {
+	font-size: var(--step-5);
+}
+h3 {
+	font-size: var(--step-4);
+}
+h4 {
+	font-size: var(--step-3);
+}
+h5 {
+	font-size: var(--step-2);
+}
+h6 {
+	font-size: var(--step-1);
 }
