@@ -12,6 +12,7 @@
 	&:focus {
 		background-color: var(--purple);
 		color: white;
+		cursor: pointer;
 	}
 	&--green {
 		background-color: var(--green);
