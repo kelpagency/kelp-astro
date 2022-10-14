@@ -6,7 +6,9 @@ import Card from "../components/Card.astro";
 <Layout title="Welcome to Astro.">
 	<main>
 		<div class="wrapper">
-			<h1>We make digital things happen.</h1>
+			<div class="top">
+				<h1>We make digital things happen.</h1>
+			</div>
 			<div class="left">
 				<p>
 					We’re a team of designers, developers, and marketers who love to create attractive & functional solutions that
@@ -159,10 +161,17 @@ import Card from "../components/Card.astro";
 		display: flex;
 		flex-wrap: wrap;
 		gap: 1rem;
-		align-items: flex-end;
+		position: relative;
+		.top {
+			flex: 1 1 100%;
+		}
 		.left,
 		.right {
 			flex: 1 1 300px;
+		}
+		.right {
+			margin-top: auto;
+			margin-bottom: -5rem;
 		}
 	}
 	strong {
