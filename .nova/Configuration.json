@@ -1,0 +1,6 @@
+{
+  "workspace.preview_root" : ".\/src",
+  "workspace.preview_server_port" : 3000,
+  "workspace.preview_type" : "custom",
+  "workspace.preview_url" : "http:\/\/127.0.0.1:3000\/"
+}
