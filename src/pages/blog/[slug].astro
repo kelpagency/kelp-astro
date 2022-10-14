@@ -1,0 +1,25 @@
+---
+// Fetch your about page content from the WordPress API
+
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+	const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/posts?per_page=100`);
+	const posts = await response.json();
+	return posts.map((post) => {
+		return {
+			params: { slug: post.slug },
+			props: { title: post.title.rendered, content: post.content.rendered }
+		};
+	});
+}
+
+const { title, content } = Astro.props;
+---
+
+<Layout title={title}>
+	<article class='wrapper'>
+		<h1>{title}</h1>
+		<div set:html={content}></div>
+	</article>
+</Layout>

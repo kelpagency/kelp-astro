@@ -1,0 +1,23 @@
+---
+// Fetch your about page content from the WordPress API
+
+import Layout from "../../layouts/Layout.astro";
+
+const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/posts?per_page=100`);
+const posts = await response.json();
+---
+
+<Layout title='Kelp Current'>
+	<article class='wrapper'>
+		<h1>Kelp Current</h1>
+		<ul>
+			{
+				posts.map((post) => (
+					<li>
+						<a href=`/blog/${post.slug}`>{post.title.rendered}</a>
+					</li>
+				))
+			}
+		</ul>
+	</article>
+</Layout>
