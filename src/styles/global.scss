@@ -1,122 +1,20 @@
-:root {
-	// brand colors
-	--purple: #5544f8;
-	--lightPurple: #aaa2f9;
-	--green: #42c634;
-	--lightGreen: #a1e39a;
-	--teal: #8aeaed;
-	--lightTeal: #c5f5f6;
-	--red: #f4513b;
-	--lightRed: #f9a79c;
-	--black: #0d1726;
-	--white: #f4f4f4;
-	--grey: #aaaaaa;
-	--lightGrey: #d7ddda;
+// Only put stuff here that absolutely needs to be on every page of the entire website
+// otherwise put your styles in the page or component
 
-	// specific use cases
-	// where we might want to change them
-	// dark mode for example
-	--textColor: #0d1726;
-	--bgColor: #d7ddda;
+// third party
+@use '../../node_modules/locomotive-scroll/dist/locomotive-scroll.css';
 
-	// fonts
-	--serif: "Newsreader", serif;
-	--sans-serif: "Poppins", sans-serif;
-
-	// fluid type
-	// @link https://utopia.fyi/type/calculator?c=320,16,1.2,1302,18,1.25,7,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l
-	--step-0: clamp(1rem, calc(0.96rem + 0.2vw), 1.13rem);
-	--step-1: clamp(1.2rem, calc(1.13rem + 0.34vw), 1.41rem);
-	--step-2: clamp(1.44rem, calc(1.34rem + 0.52vw), 1.76rem);
-	--step-3: clamp(1.73rem, calc(1.58rem + 0.76vw), 2.2rem);
-	--step-4: clamp(2.07rem, calc(1.85rem + 1.1vw), 2.75rem);
-	--step-5: clamp(2.49rem, calc(2.18rem + 1.54vw), 3.43rem);
-	--step-6: clamp(2.99rem, calc(2.56rem + 2.13vw), 4.29rem);
-	--step-7: clamp(3.58rem, calc(3rem + 2.9vw), 5.36rem);
-}
-
-html {
-	height: 100%;
-}
-body {
-	font-family: "Newsreader", serif;
-	font-size: var(--step-0);
-	line-height: 2;
-	margin: 0;
-	display: flex;
-	flex-direction: column;
-	min-height: 100%;
-	footer {
-		margin-top: auto;
-	}
-}
-
-h1,
-.h1,
-h2,
-.h2,
-h3,
-.h3,
-h4,
-.h4,
-h5,
-.h5,
-h6,
-.h6 {
-	font-family: "Poppins", sans-serif;
-	font-weight: 500;
-	line-height: 1.3;
-	max-width: 18ch;
-	margin: 1rem 0;
-}
-h1,
-.h1 {
-	font-size: var(--step-6);
-}
-h2,
-.h2 {
-	font-size: var(--step-5);
-}
-h3,
-.h3 {
-	font-size: var(--step-4);
-}
-h4,
-.h4 {
-	font-size: var(--step-3);
-}
-h5,
-.h5 {
-	font-size: var(--step-2);
-}
-h6,
-.h6 {
-	font-size: var(--step-1);
-}
-p {
-	max-width: 62ch;
-}
-.wrapper {
-	width: 90%;
-	margin: auto;
-}
-
-.button {
-	display: inline-block;
-	padding: 1rem 1.5rem 0.75rem 1.5rem;
-	background: var(--black);
-	color: white;
-	line-height: 1.2;
-	font-family: "Newsreader", serif;
-	font-weight: 600;
-	text-decoration: none;
-	&--green {
-		background-color: var(--green);
-		color: var(--black);
-	}
-}
-
-img {
-	max-width: 100%;
-	height: auto;
-}
+// css variables used throughout
+@use 'variables';
+// random utilities and such that don't fit any category 🤷
+@use 'base';
+// fonts n' things
+@use 'typography';
+// forms and inputs
+@use 'forms';
+// buttons (form buttons and link buttons!)
+@use 'buttons';
+// the global header styles
+@use 'header';
+// the global footer styles
+@use 'footer';
