@@ -1,0 +1,22 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 4" width="20" height="8">
+	<path fill="none" stroke="#42c634" stroke-width="2" d="M0,3.5 c 5,0, 5, -3, 10, -3 s 5,3, 10, 3 c 5,0, 5, -3, 10, -3 s 5,3, 10, 3"/>
+	<style type="text/css">
+		path {
+			animation: squig 300ms linear infinite;
+		}
+		@keyframes squig {
+			from {
+				transform: translateX(0);
+			}
+			to {
+				transform: translateX(-20px);
+			}
+		}
+		@media (prefers-reduced-motion: reduce) {
+			path {
+				animation: none;
+			}
+		}
+	</style>
+</svg>

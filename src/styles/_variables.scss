@@ -20,8 +20,8 @@
 	--bg-color: #d7ddda;
 
 	// fonts
-	--serif: 'Newsreader', serif;
-	--sans-serif: 'Poppins', sans-serif;
+	--serif: "Newsreader", serif;
+	--sans-serif: "Poppins", sans-serif;
 
 	// fluid type
 	// @link https://utopia.fyi/type/calculator?c=320,16,1.2,1302,18,1.25,7,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l
@@ -33,4 +33,23 @@
 	--step-5: clamp(2.49rem, calc(2.18rem + 1.54vw), 3.43rem);
 	--step-6: clamp(2.99rem, calc(2.56rem + 2.13vw), 4.29rem);
 	--step-7: clamp(3.58rem, calc(3rem + 2.9vw), 5.36rem);
+}
+
+// HD colors where supported
+@supports (color: color(display-p3 1 1 1)) {
+	:root {
+		// brand colors
+		--purple: color(display-p3 0.312 0.252 1);
+		--light-purple: color(display-p3 0.672 0.644 1);
+		--green: color(display-p3 0.198 0.786 0);
+		--light-green: color(display-p3 0.687 0.883 0.631);
+		--teal: color(display-p3 0 0.85 0.897);
+		--light-teal: color(display-p3 0.81 0.955 0.962);
+		--red: color(display-p3 1 0.367 0.257);
+		--light-red: color(display-p3 1 0.68 0.625);
+		--black: color(display-p3 0.059 0.089 0.144);
+		--white: color(display-p3 0.957 0.957 0.957);
+		--grey: color(display-p3 0.667 0.667 0.667);
+		--light-grey: color(display-p3 0.847 0.866 0.856);
+	}
 }
