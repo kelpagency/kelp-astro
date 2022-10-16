@@ -1,11 +1,14 @@
 body {
 	font-family: "Newsreader", serif;
 	font-size: var(--step-0);
+	font-weight: 500;
 	line-height: 2;
 	margin: 0;
 	display: flex;
 	flex-direction: column;
 	min-height: 100%;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 	footer {
 		margin-top: auto;
 	}
@@ -54,11 +57,6 @@ h6,
 	font-size: var(--step-1);
 }
 
-small {
-	font-size: 0.75em;
-	opacity: 0.9;
-}
-
 p {
 	max-width: 62ch;
 }
@@ -71,6 +69,12 @@ a {
 		color: var(--purple);
 	}
 }
+
+small {
+	font-size: 0.75em;
+	opacity: 0.9;
+}
+
 .squiggle {
 	text-decoration: underline;
 	text-decoration-thickness: 2px;

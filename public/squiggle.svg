@@ -5,6 +5,11 @@
 		path {
 			animation: squig 300ms linear infinite;
 		}
+		@supports (color: color(display-p3 1 1 1)) {
+			path {
+				stroke: color(display-p3 0.198 0.786 0);
+			}
+		}
 		@keyframes squig {
 			from {
 				transform: translateX(0);
