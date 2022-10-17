@@ -85,10 +85,12 @@ small {
 	text-underline-offset: 8px;
 	padding-bottom: 7px;
 	font-family: var(--sans-serif);
+	line-height: 1.2;
+	background-position: bottom center;
 	&:hover,
 	&:focus {
 		text-decoration: none;
-		background: url("./squiggle.svg") repeat-x bottom center / 20px 8px;
+		background: url("/squiggle.svg") repeat-x bottom center / 20px 8px;
 	}
 }
 // for making buttons look like links
@@ -108,7 +110,7 @@ blockquote {
 
 hr {
 	border: 0 none;
-	background: url("./squiggle.svg") repeat-x bottom center / 20px 8px;
+	background: url("/squiggle.svg") repeat-x bottom center / 20px 8px;
 	display: block;
 	height: 8px;
 	margin: 1rem 0;
