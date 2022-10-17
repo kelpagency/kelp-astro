@@ -88,7 +88,7 @@ small {
 	&:hover,
 	&:focus {
 		text-decoration: none;
-		background: url("./squiggle.svg") repeat-x bottom center / 20px 8px;
+		background: url("/squiggle.svg") repeat-x bottom center / 20px 8px;
 	}
 }
 // for making buttons look like links
@@ -102,7 +102,7 @@ small {
 
 hr {
 	border: 0 none;
-	background: url("./squiggle.svg") repeat-x bottom center / 20px 8px;
+	background: url("/squiggle.svg") repeat-x bottom center / 20px 8px;
 	display: block;
 	height: 8px;
 	margin: 1rem 0;
