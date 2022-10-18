@@ -22,7 +22,7 @@
 			height='165.7'
 			class='scroll'
 			data-lg-parallax
-			data-lg-parallax-amplitude='1.5'
+			data-lg-parallax-amplitude='.125'
 		>
 			<g class='scroll-arrow' fill='none' stroke='#0f1722' stroke-width='5'>
 				<path d='M83 50v61.6'></path>
@@ -152,8 +152,37 @@
 			</g>
 		</svg>
 	</div>
-	<div class='right' data-lg-parallax data-lg-parallax-amplitude='0.1'>
-		<img src='/hero.png' width='654' height='654' alt='' loading='eager' />
+	<div class='right'>
+		<img
+			class='hero-image hero-image--front'
+			src='/hero-front@2x.png'
+			width='673'
+			height='776'
+			alt=''
+			loading='eager'
+			data-lg-parallax
+			data-lg-parallax-amplitude='.3'
+		/>
+		<img
+			class='hero-image'
+			src='/hero-middle@2x.png'
+			width='835'
+			height='874'
+			alt='Stefen and Joe'
+			loading='eager'
+			data-lg-parallax
+			data-lg-parallax-amplitude='0.2'
+		/>
+		<img
+			class='hero-image hero-image--back'
+			src='/hero-back@2x.png'
+			width='871'
+			height='837'
+			alt=''
+			loading='eager'
+			data-lg-parallax
+			data-lg-parallax-amplitude='0.1'
+		/>
 	</div>
 </section>
 
@@ -181,8 +210,9 @@
 		}
 		.right {
 			margin-top: auto;
-			margin-bottom: -5rem;
+			margin-bottom: -1rem;
 			flex-basis: 400px;
+			position: relative;
 		}
 		strong {
 			font-family: var(--sans-serif);
@@ -198,6 +228,30 @@
 		h1 {
 			margin-bottom: 0;
 			max-width: 18ch;
+		}
+		&-image {
+			position: relative;
+			z-index: 1;
+			width: 80%;
+			left: 10%;
+			height: auto;
+			@media (max-width: 767px) {
+				margin-top: 5rem;
+				width: 90%;
+				left: 0;
+			}
+			&--front {
+				position: absolute;
+				left: 10%;
+				z-index: 2;
+				top: -3rem;
+			}
+			&--back {
+				position: absolute;
+				left: 10%;
+				z-index: 0;
+				top: -2rem;
+			}
 		}
 		.scroll {
 			margin: 2rem 0;
