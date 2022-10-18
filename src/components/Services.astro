@@ -60,19 +60,19 @@
 			<p>
 				You can’t build a house without a foundation. You can’t build a great brand without great content.
 			</p>
-			<ul>
-				<li>Photography</li>
-				<li>Video</li>
-				<li>Copywriting</li>
-				<li>Print Design</li>
-				<li>Social Media Content</li>
-				<li>Ebooks</li>
-				<li>Branding</li>
-				<li>Apparel Design</li>
-				<li>Digital Design</li>
-				<li>Applications</li>
-				<li>Motion Graphics</li>
-				<li>Web Design and Development</li>
+			<ul data-lg-reveal data-lg-reveal-stagger='0.1'>
+				<li data-lg-reveal='layer-to-right'>Photography</li>
+				<li data-lg-reveal='layer-to-right'>Video</li>
+				<li data-lg-reveal='layer-to-right'>Copywriting</li>
+				<li data-lg-reveal='layer-to-right'>Print Design</li>
+				<li data-lg-reveal='layer-to-right'>Social Media Content</li>
+				<li data-lg-reveal='layer-to-right'>Ebooks</li>
+				<li data-lg-reveal='layer-to-right'>Branding</li>
+				<li data-lg-reveal='layer-to-right'>Apparel Design</li>
+				<li data-lg-reveal='layer-to-right'>Digital Design</li>
+				<li data-lg-reveal='layer-to-right'>Applications</li>
+				<li data-lg-reveal='layer-to-right'>Motion Graphics</li>
+				<li data-lg-reveal='layer-to-right'>Web Design and Development</li>
 			</ul>
 		</div>
 	</div>
@@ -177,11 +177,11 @@
 				You can’t just open the doors and expect people to come. You have to promote yourself and make sure
 				you’re on the radar of people who might be interested in what you have to offer.
 			</p>
-			<ul>
-				<li>Audience Targeting</li>
-				<li>Campaign Management</li>
-				<li>Paid Social</li>
-				<li>Reporting</li>
+			<ul data-lg-reveal data-lg-reveal-stagger='0.1'>
+				<li data-lg-reveal='layer-to-right'>Audience Targeting</li>
+				<li data-lg-reveal='layer-to-right'>Campaign Management</li>
+				<li data-lg-reveal='layer-to-right'>Paid Social</li>
+				<li data-lg-reveal='layer-to-right'>Reporting</li>
 			</ul>
 		</div>
 	</div>
@@ -214,11 +214,11 @@
 				The journey has not ended… it is just beginning! Keep your website and assets in shipshape with a
 				helping hand.
 			</p>
-			<ul>
-				<li>Ongoing Retainers</li>
-				<li>Web Hosting</li>
-				<li>Website Maintenance</li>
-				<li>Website Support</li>
+			<ul data-lg-reveal data-lg-reveal-stagger='0.1'>
+				<li data-lg-reveal='layer-to-right'>Ongoing Retainers</li>
+				<li data-lg-reveal='layer-to-right'>Web Hosting</li>
+				<li data-lg-reveal='layer-to-right'>Website Maintenance</li>
+				<li data-lg-reveal='layer-to-right'>Website Support</li>
 			</ul>
 		</div>
 	</div>
@@ -270,6 +270,19 @@
 			}
 			&-right {
 				flex: 1 1 400px;
+				.lg-reveal--layer-to-right:after {
+					background-color: var(--light-teal);
+				}
+				.service--marketing & {
+					.lg-reveal--layer-to-right:after {
+						background-color: var(--light-green);
+					}
+				}
+				.service--ongoing & {
+					.lg-reveal--layer-to-right:after {
+						background-color: var(--light-red);
+					}
+				}
 				ul {
 					column-count: 2;
 					list-style: none;
