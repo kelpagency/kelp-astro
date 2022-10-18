@@ -1,8 +1,8 @@
 {
 	"name": "Kelp Creative Agency",
-	"short_name": "Kelp Agency",
-	"start_url": "https://stefenphelps.com/",
-	"description": "Stefen's Personal website where he writes about web development and sometimes other things.",
+	"short_name": "Kelp",
+	"start_url": "https://kelpagency.netlify.app/",
+	"description": "Specializing in creating amazing websites, web apps, company branding, style guides, and design systems. Our goal is to make creative solutions simple for you.",
 	"display": "standalone",
 	"theme_color": "#c5f5f6",
 	"background_color": "#c5f5f6",
