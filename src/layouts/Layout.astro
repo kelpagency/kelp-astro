@@ -58,13 +58,22 @@ const {
 		<meta property='twitter:image' content={new URL(image, Astro.url)} />
 	</head>
 	<body>
+		<Header />
 		<div data-lg-smooth>
-			<Header />
 			<main>
 				<slot />
 			</main>
 			<Footer />
 		</div>
-		<script src='../scripts/global.js'></script>
+		<script>
+			import luge from "@waaark/luge";
+			import Headroom from "headroom.js";
+			// grab an element
+			var myElement = document.querySelector("header");
+			// construct an instance of Headroom, passing the element
+			var headroom = new Headroom(myElement);
+			// initialise
+			headroom.init();
+		</script>
 	</body>
 </html>
