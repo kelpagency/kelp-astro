@@ -1,5 +1,31 @@
 .footer {
 	background: var(--black);
-	padding: 4rem 0;
+	padding: 8rem 0;
 	color: white;
+	.top {
+		display: flex;
+		align-items: flex-start;
+		gap: 2rem;
+		&-left {
+			flex: 1 1 400px;
+		}
+		&-right {
+			.box {
+				width: 392px;
+				height: 392px;
+				margin: auto;
+				background: var(--purple);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				padding: 6rem;
+				position: relative;
+				svg {
+					position: absolute;
+					bottom: -4rem;
+					left: -4rem;
+				}
+			}
+		}
+	}
 }
