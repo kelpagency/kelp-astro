@@ -3,18 +3,19 @@
 
 // third party
 // @use '../../node_modules/locomotive-scroll/dist/locomotive-scroll.css';
+@use "../../node_modules/@waaark/luge/dist/css/luge.css";
 
 // css variables used throughout
-@use 'variables';
+@use "variables";
 // random utilities and such that don't fit any category 🤷
-@use 'base';
+@use "base";
 // fonts n' things
-@use 'typography';
+@use "typography";
 // forms and inputs
-@use 'forms';
+@use "forms";
 // buttons (form buttons and link buttons!)
-@use 'buttons';
+@use "buttons";
 // the global header styles
-@use 'header';
+@use "header";
 // the global footer styles
-@use 'footer';
+@use "footer";
