@@ -58,11 +58,13 @@ const {
 		<meta property='twitter:image' content={new URL(image, Astro.url)} />
 	</head>
 	<body>
-		<Header />
-		<main>
-			<slot />
-		</main>
-		<Footer />
+		<div data-lg-smooth>
+			<Header />
+			<main>
+				<slot />
+			</main>
+			<Footer />
+		</div>
 		<script src='../scripts/global.js'></script>
 	</body>
 </html>

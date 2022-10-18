@@ -3,7 +3,7 @@
 	<path fill="none" stroke="#42c634" stroke-width="2" d="M0,3.5 c 5,0, 5, -3, 10, -3 s 5,3, 10, 3 c 5,0, 5, -3, 10, -3 s 5,3, 10, 3"/>
 	<style type="text/css">
 		path {
-			animation: squig 300ms linear infinite;
+			animation: squig 600ms linear infinite;
 		}
 		@supports (color: color(display-p3 1 1 1)) {
 			path {
