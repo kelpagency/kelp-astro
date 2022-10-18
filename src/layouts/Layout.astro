@@ -68,11 +68,15 @@ const {
 		<script>
 			import luge from "@waaark/luge";
 			import Headroom from "headroom.js";
-			// grab an element
-			var myElement = document.querySelector("header");
-			// construct an instance of Headroom, passing the element
-			var headroom = new Headroom(myElement);
-			// initialise
+
+			luge.settings({
+				credits: {
+					show: false
+				}
+			});
+
+			const header = document.querySelector("header");
+			const headroom = new Headroom(header);
 			headroom.init();
 		</script>
 	</body>

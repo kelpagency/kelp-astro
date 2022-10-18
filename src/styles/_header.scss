@@ -77,6 +77,11 @@
 				font-family: var(--serif);
 				background-color: var(--text-color);
 				color: var(--bg-color);
+				&:hover,
+				&:focus {
+					background-color: var(--purple);
+					color: white;
+				}
 			}
 		}
 		// mobile styles
