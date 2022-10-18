@@ -1,6 +1,13 @@
 {
 	"name": "Kelp Creative Agency",
 	"short_name": "Kelp Agency",
+	"start_url": "https://stefenphelps.com/",
+	"description": "Stefen's Personal website where he writes about web development and sometimes other things.",
+	"display": "standalone",
+	"theme_color": "#c5f5f6",
+	"background_color": "#c5f5f6",
+	"lang": "en",
+	"scope": "/",
 	"icons": [
 		{
 			"src": "/pwa-192x192.png",
@@ -14,8 +21,5 @@
 			"type": "image/png",
 			"purpose": "maskable"
 		}
-	],
-	"theme_color": "#c5f5f6",
-	"background_color": "#c5f5f6",
-	"display": "standalone"
+	]
 }
