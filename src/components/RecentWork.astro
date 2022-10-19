@@ -1,42 +1,43 @@
 ---
+import { Picture } from "astro-imagetools/components";
 ---
 
-<section class='recent-work'>
-	<div class='wrapper'>
-		<div class='top'>
-			<h2 class='h3'>Our Work <span>In the real-world</span></h2>
+<section class="recent-work">
+	<div class="wrapper">
+		<div class="top">
+			<h2 class="h3">Our Work <span>In the real-world</span></h2>
 			<p>
-				The proof is in the pudding as they say here in the south. Weird sayings aside, it’s one thing to have
-				a good strategy, but it takes special talent to create excellent content
+				The proof is in the pudding as they say here in the south. Weird sayings aside, it’s one thing to have a good
+				strategy, but it takes special talent to create excellent content
 				<small>(and good pudding)</small>. Take a look at some recent work below.
 			</p>
 		</div>
-		<div class='slider'>
-			<div class='slider-media'>
-				<img
-					src='https://www.kelp.agency/wp-content/uploads/2022/01/HSR-Company-logo.jpg'
-					loading='lazy'
-					alt='HS&R'
-					width='828'
-					height='460'
+		<div class="slider">
+			<div class="slider-media">
+				<Picture
+					src="https://www.kelp.agency/wp-content/uploads/2021/06/Beerstream-M48-16oz-Can-Design_M48-Beerstream-RGB.jpg"
+					loading="lazy"
+					alt="HS&R"
+					width="1239"
+					height="750"
 				/>
 			</div>
-			<div class='slider-text'>
-				<h3 class='h6'>Client Name</h3>
+			<div class="slider-text">
+				<h3 class="h6">Marker 48</h3>
 				<div>
-					<p class='h5'>Expedited to their new digital future.</p>
-					<p><a href='/' class='squiggle'>Read More</a></p>
+					<p class="h5">Created a design framework for existing and future beer labels.</p>
+					<p><a href="/" class="squiggle">Read More</a></p>
 				</div>
 				<nav>
-					<button class='link'>Prev</button>
-					<button class='link'>Next</button>
+					<button class="link">Prev</button>
+					<button class="link">Next</button>
 				</nav>
 			</div>
 		</div>
 	</div>
 </section>
 
-<style lang='scss'>
+<style lang="scss">
 	.recent-work {
 		background: var(--black);
 		padding: 12rem 0;
