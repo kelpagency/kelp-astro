@@ -1,13 +1,15 @@
 .button {
+	font-size: inherit;
 	display: inline-block;
 	padding: 1rem 1.5rem 0.75rem 1.5rem;
 	background: var(--black);
 	color: white;
 	line-height: 1.2;
-	font-family: 'Newsreader', serif;
+	font-family: "Newsreader", serif;
 	font-weight: 600;
 	text-decoration: none;
 	transition: 300ms ease;
+	border: 2px solid transparent;
 	&:hover,
 	&:focus {
 		background-color: var(--purple);
