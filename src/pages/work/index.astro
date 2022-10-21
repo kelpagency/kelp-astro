@@ -1,9 +1,21 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+
+const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/work?per_page=100`);
+const posts = await response.json();
 ---
 
-<Layout title='Kelp Work'>
-	<div class='wrapper'>
+<Layout title='Our Work'>
+	<article class='wrapper'>
 		<h1>Our Work</h1>
-	</div>
+		<ul>
+			{
+				posts.map((post) => (
+					<li>
+						<a href=`/work/${post.slug}` set:html={post.title.rendered}/>
+					</li>
+				))
+			}
+		</ul>
+	</article>
 </Layout>

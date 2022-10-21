@@ -2,96 +2,37 @@
 import { Picture } from "astro-imagetools/components";
 ---
 
-<section class='recent-work'>
-	<div class='wrapper'>
-		<div class='top'>
-			<h2 class='h3'>Our Work <span>In the real-world</span></h2>
+<section class="recent-work">
+	<div class="wrapper">
+		<div class="top">
+			<h2 class="h3">Our Work <span>In the real-world</span></h2>
 			<p>
-				The proof is in the pudding as they say here in the south. Weird sayings aside, it’s one thing to have
-				a good strategy, but it takes special talent to create excellent content
+				The proof is in the pudding as they say here in the south. Weird sayings aside, it’s one thing to have a good
+				strategy, but it takes special talent to create excellent content
 				<small>(and good pudding)</small>. Take a look at some recent work below.
 			</p>
 		</div>
-		<div class='slider'>
-			<div class='slider-media'>
+		<div class="slider">
+			<div class="slider-media">
 				<Picture
-					src='https://www.kelp.agency/wp-content/uploads/2021/06/Beerstream-M48-16oz-Can-Design_M48-Beerstream-RGB.jpg'
-					loading='lazy'
-					alt='HS&R'
-					width='1239'
-					height='750'
+					src="https://www.kelp.agency/wp-content/uploads/2021/06/Beerstream-M48-16oz-Can-Design_M48-Beerstream-RGB.jpg"
+					loading="lazy"
+					alt="HS&R"
+					width="1239"
+					height="750"
 				/>
 			</div>
-			<div class='slider-text'>
-				<h3 class='h6'>Marker 48</h3>
+			<div class="slider-text">
+				<h3 class="h6">Marker 48</h3>
 				<div>
-					<p class='h5'>Created a design framework for existing and future beer labels.</p>
-					<p><a href='/' class='squiggle'>Read More</a></p>
+					<p class="h5">Created a design framework for existing and future beer labels.</p>
+					<p><a href="/" class="squiggle">Read More</a></p>
 				</div>
 				<nav>
-					<button class='link'>Prev</button>
-					<button class='link'>Next</button>
+					<button class="link">Prev</button>
+					<button class="link">Next</button>
 				</nav>
 			</div>
 		</div>
 	</div>
 </section>
-
-<style lang='scss'>
-	.recent-work {
-		background: var(--black);
-		padding: 12rem 0;
-		color: white;
-		.top {
-			max-width: 1180px;
-			width: 100%;
-			margin: auto;
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			gap: 4rem;
-			@media (max-width: 850px) {
-				display: block;
-			}
-			h2 {
-				margin: 0;
-				@media (min-width: 768px) {
-					white-space: nowrap;
-				}
-				span {
-					@media (min-width: 851px) {
-						display: block;
-						margin-left: 40px;
-					}
-				}
-			}
-		}
-		.slider {
-			max-width: 980px;
-			margin: 4rem auto;
-			img {
-				width: 100%;
-			}
-			&-text {
-				display: flex;
-				align-items: flex-start;
-				margin: 2rem 0;
-				gap: 4rem;
-				h3,
-				.h5 {
-					margin: 0;
-				}
-				a {
-					color: white;
-					margin: 1rem 0;
-				}
-				nav {
-					margin-left: auto;
-					@media (max-width: 767px) {
-						display: none;
-					}
-				}
-			}
-		}
-	}
-</style>

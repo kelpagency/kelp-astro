@@ -4,7 +4,7 @@
 import Layout from "../../layouts/Layout.astro";
 
 export async function getStaticPaths() {
-	const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/posts?per_page=100`);
+	const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/work?per_page=100`);
 	const posts = await response.json();
 	return posts.map((post) => {
 		return {

@@ -1,0 +1,366 @@
+// we put all component styles here instead of in each component so page transitions will work
+.hero {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+	position: relative;
+	.lg-reveal--layer:after,
+	.lg-reveal--layer-to-top:after,
+	.lg-reveal--layer-to-right:after,
+	.lg-reveal--layer-to-bottom:after,
+	.lg-reveal--layer-to-left:after {
+		background: var(--light-teal);
+	}
+	.top,
+	.left,
+	.right {
+		@media (min-width: 960px) {
+			padding-left: 70px;
+		}
+	}
+	.top {
+		flex: 1 1 100%;
+		padding-top: 2rem;
+	}
+	.left,
+	.right {
+		flex: 1 1 300px;
+	}
+	.right {
+		margin-top: auto;
+		margin-bottom: -1rem;
+		flex-basis: 400px;
+		position: relative;
+	}
+	strong {
+		font-family: var(--sans-serif);
+		font-weight: 600;
+		font-size: var(--step-1);
+	}
+	ul {
+		font-family: var(--sans-serif);
+		font-weight: 500;
+		list-style: none;
+		padding: 0;
+	}
+	h1 {
+		margin-bottom: 0;
+		max-width: 18ch;
+	}
+	&-image {
+		position: relative;
+		z-index: 1;
+		width: 80%;
+		left: 10%;
+		height: auto;
+		@media (max-width: 767px) {
+			margin-top: 5rem;
+			width: 90%;
+			left: 0;
+		}
+		&.lg-reveal--layer:after,
+		&.lg-reveal--layer-to-top:after,
+		&.lg-reveal--layer-to-right:after,
+		&.lg-reveal--layer-to-bottom:after,
+		&.lg-reveal--layer-to-left:after {
+			background: var(--purple);
+		}
+		&--front {
+			position: absolute;
+			left: 10%;
+			z-index: 2;
+			top: -3rem;
+			&.lg-reveal--layer:after,
+			&.lg-reveal--layer-to-top:after,
+			&.lg-reveal--layer-to-right:after,
+			&.lg-reveal--layer-to-bottom:after,
+			&.lg-reveal--layer-to-left:after {
+				background: var(--light-red);
+			}
+		}
+		&--back {
+			position: absolute;
+			left: 10%;
+			z-index: 0;
+			top: -2rem;
+			&.lg-reveal--layer:after,
+			&.lg-reveal--layer-to-top:after,
+			&.lg-reveal--layer-to-right:after,
+			&.lg-reveal--layer-to-bottom:after,
+			&.lg-reveal--layer-to-left:after {
+				background: var(--black);
+			}
+		}
+	}
+	.scroll {
+		margin: 2rem 0;
+		&-text {
+			animation: 9s rotate infinite linear;
+			transform-origin: center;
+		}
+	}
+	@keyframes rotate {
+		from {
+			transform: rotate(0deg);
+		}
+		to {
+			transform: rotate(-360deg);
+		}
+	}
+}
+
+.how-we-work {
+	padding: 6rem 0;
+	background: var(--black);
+	color: white;
+	.lg-reveal--layer:after,
+	.lg-reveal--layer-to-top:after,
+	.lg-reveal--layer-to-right:after,
+	.lg-reveal--layer-to-bottom:after,
+	.lg-reveal--layer-to-left:after {
+		background-color: var(--purple) !important;
+	}
+	a {
+		color: white;
+	}
+	.wrapper {
+		display: grid;
+		gap: 2rem 3rem;
+		@media (min-width: 768px) {
+			grid-template-columns: 1fr 1fr;
+			grid-auto-flow: dense;
+		}
+	}
+	svg {
+		@media (min-width: 768px) {
+			grid-column: 2;
+		}
+		margin-top: -8rem;
+		max-width: 100%;
+		height: auto;
+	}
+	.intro {
+		@media (min-width: 768px) {
+			grid-column: 1;
+			grid-row: 1;
+		}
+	}
+	.phase {
+		grid-column: 1;
+		a {
+			margin-top: 2rem;
+			display: inline-block;
+		}
+		&:nth-last-child(2) {
+			@media (min-width: 768px) {
+				grid-column: 2;
+				margin-top: auto;
+			}
+		}
+		&:last-child {
+			@media (min-width: 768px) {
+				grid-column: 2;
+				grid-row: span 2;
+				margin-bottom: auto;
+			}
+		}
+	}
+}
+
+.recent-work {
+	background: var(--black);
+	padding: 12rem 0;
+	color: white;
+	.top {
+		max-width: 1180px;
+		width: 100%;
+		margin: auto;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 4rem;
+		@media (max-width: 850px) {
+			display: block;
+		}
+		h2 {
+			margin: 0;
+			@media (min-width: 768px) {
+				white-space: nowrap;
+			}
+			span {
+				@media (min-width: 851px) {
+					display: block;
+					margin-left: 40px;
+				}
+			}
+		}
+	}
+	.slider {
+		max-width: 980px;
+		margin: 4rem auto;
+		img {
+			width: 100%;
+		}
+		&-text {
+			display: flex;
+			align-items: flex-start;
+			margin: 2rem 0;
+			gap: 4rem;
+			h3,
+			.h5 {
+				margin: 0;
+			}
+			a {
+				color: white;
+				margin: 1rem 0;
+			}
+			nav {
+				margin-left: auto;
+				@media (max-width: 767px) {
+					display: none;
+				}
+			}
+		}
+	}
+}
+
+.services {
+	padding: 6rem 0;
+}
+.service {
+	margin: 10rem auto 8rem;
+	display: flex;
+	gap: 1rem 5rem;
+	flex-wrap: wrap;
+	max-width: 1000px;
+	@media (min-width: 768px) {
+		padding-left: 70px;
+		padding-right: 70px;
+	}
+	&-left {
+		flex: 0 1 260px;
+		position: relative;
+		text-align: right;
+		margin-top: -5rem;
+		h3 {
+			text-align: left;
+			margin: 0;
+		}
+		.service-square {
+			content: "";
+			width: 108px;
+			height: 108px;
+			display: block;
+			position: absolute;
+			right: 0;
+			z-index: -1;
+			top: 2rem;
+			background: var(--light-teal);
+			.service--marketing & {
+				background: var(--light-green);
+				right: 1rem;
+			}
+			.service--ongoing & {
+				background: var(--light-red);
+			}
+		}
+		svg {
+			margin-right: 1rem;
+		}
+	}
+	&-right {
+		flex: 1 1 400px;
+		.lg-reveal--layer-to-right:after {
+			background-color: var(--light-teal);
+		}
+		.service--marketing & {
+			.lg-reveal--layer-to-right:after {
+				background-color: var(--light-green);
+			}
+		}
+		.service--ongoing & {
+			.lg-reveal--layer-to-right:after {
+				background-color: var(--light-red);
+			}
+		}
+		ul {
+			column-count: 2;
+			list-style: none;
+			padding: 0;
+			margin-top: 2rem;
+			li {
+				line-height: 1.2;
+				font-weight: bold;
+				text-decoration: underline;
+				+ li {
+					margin-top: 1rem;
+				}
+			}
+		}
+	}
+}
+
+.testimonials {
+	padding: 8rem 0;
+	text-align: center;
+	background: #f4f4f4;
+	.lg-reveal--layer:after,
+	.lg-reveal--layer-to-top:after,
+	.lg-reveal--layer-to-right:after,
+	.lg-reveal--layer-to-bottom:after,
+	.lg-reveal--layer-to-left:after {
+		background-color: var(--light-green);
+	}
+	h2 {
+		max-width: 900px;
+		margin: auto;
+	}
+	blockquote {
+		margin: 3rem auto;
+		.content {
+			flex: 1 1 400px;
+			display: flex;
+			gap: 2rem;
+			justify-content: space-between;
+			p {
+				font-size: var(--step-1);
+				font-weight: 300;
+				line-height: 1.5;
+			}
+			svg {
+				&:last-child {
+					margin-top: auto;
+					margin-bottom: 2rem;
+				}
+			}
+		}
+		.meta {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin-top: 2rem;
+			img {
+				flex: 0 1 150px;
+			}
+			cite {
+				flex: 0 1 auto;
+				border-left: 2px solid;
+				margin-left: 1.5rem;
+				padding-left: 1.5rem;
+				font-style: normal;
+				line-height: 1.2;
+				text-align: left;
+				strong {
+					font-size: 1.2rem;
+					display: block;
+					font-family: var(--sans-serif);
+					font-weight: 500;
+				}
+				span {
+					display: block;
+					margin-top: 0.25rem;
+				}
+			}
+		}
+	}
+}

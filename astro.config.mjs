@@ -1,6 +1,6 @@
 // https://astro.build/config
 import { defineConfig } from "astro/config";
-import prefetch from "@astrojs/prefetch";
+// import prefetch from "@astrojs/prefetch";
 import sitemap from "@astrojs/sitemap";
 import compress from "astro-compress";
 import { astroImageTools } from "astro-imagetools";
@@ -9,7 +9,7 @@ import { astroImageTools } from "astro-imagetools";
 export default defineConfig({
 	site: "https://kelpagency.netlify.app/",
 	integrations: [
-		prefetch(),
+		// prefetch(),
 		sitemap(),
 		astroImageTools,
 		compress({

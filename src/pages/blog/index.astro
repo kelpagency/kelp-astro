@@ -14,7 +14,7 @@ const posts = await response.json();
 			{
 				posts.map((post) => (
 					<li>
-						<a href=`/blog/${post.slug}`>{post.title.rendered}</a>
+						<a href=`/blog/${post.slug}` set:html={post.title.rendered} />
 					</li>
 				))
 			}
