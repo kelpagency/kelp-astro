@@ -68,11 +68,14 @@ const {
 		<div data-lg-cursor data-lg-cursor-inertia=".15">
 			<div data-lg-cursor-pointer></div>
 		</div>
-		<div data-lg-loader="slide-to-top"></div>
+		<div data-lg-loader="slide-to-bottom">
+			<div id="kelp"></div>
+		</div>
 		<script>
 			import luge from "@waaark/luge";
 			import Headroom from "headroom.js";
 			import imagesLoaded from "imagesloaded";
+			import lottie from "lottie-web";
 
 			// wait till images load before starting animation library
 			luge.lifecycle.add(

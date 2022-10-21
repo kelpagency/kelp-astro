@@ -41,3 +41,14 @@ video {
 		}
 	}
 }
+
+.lg-loader {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--light-teal);
+	#kelp {
+		width: 200px;
+		height: 200px;
+	}
+}
