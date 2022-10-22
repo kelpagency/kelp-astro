@@ -28,16 +28,21 @@ video {
 }
 
 .lg-cursor {
-	&-pointer:before {
-		width: 2rem;
-		height: 2rem;
-		margin: -1rem 0 0 -1rem;
-		border: 2px solid var(--light-teal);
-		background: none;
+	.lg-cursor-pointer {
+		&:nth-child(1):before {
+			margin: -15px 0 0 -15px;
+			width: 30px;
+			height: 30px;
+			background: var(--teal);
+		}
+		&:nth-child(2):before {
+			background-color: white;
+		}
 	}
-	&--hover {
-		.lg-cursor-pointer:before {
-			border-color: var(--green);
+
+	.lg-cursor-trail {
+		path {
+			stroke-width: 8px;
 		}
 	}
 }
