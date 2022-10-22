@@ -37,6 +37,9 @@ picture {
 			display: flex;
 			flex-wrap: wrap;
 			align-items: center;
+			@media (max-width: 900px) {
+				display: block;
+			}
 			gap: 6rem;
 			margin-bottom: 16rem;
 			.media {
