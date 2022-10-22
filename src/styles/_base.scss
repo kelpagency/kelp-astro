@@ -33,13 +33,13 @@ video {
 			margin: -15px 0 0 -15px;
 			width: 30px;
 			height: 30px;
-			background: var(--teal);
+			background: rgba(#8aeaed, 0.2);
 		}
 		&:nth-child(2):before {
 			background-color: white;
+			border: 1px solid var(--black);
 		}
 	}
-
 	.lg-cursor-trail {
 		path {
 			stroke-width: 8px;
