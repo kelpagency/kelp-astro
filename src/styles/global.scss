@@ -5,6 +5,8 @@
 // @use '../../node_modules/locomotive-scroll/dist/locomotive-scroll.css';
 @use "../../node_modules/@waaark/luge/dist/css/luge.css";
 
+// the default wordpress block styles for work and blog posts
+@use "wp-block-styles";
 // css variables used throughout
 @use "variables";
 // random utilities and such that don't fit any category 🤷
