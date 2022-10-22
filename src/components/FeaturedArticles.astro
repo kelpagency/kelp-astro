@@ -1,0 +1,22 @@
+---
+const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/posts?per_page=3&category_name=featured&_embed=`);
+const posts = await response.json();
+---
+
+<section class="featured-articles">
+	<div class="wrapper">
+		<h3>Featured Articles</h3>
+		<div class="grid">
+			{posts.map((post) => (
+					<article>
+						<img src={post.jetpack_featured_media_url} loading="lazy" />
+						<h4 class="h5"><a href=`/blog/${post.slug}` set:html={post.title.rendered} /></h4>
+						<p>
+						{post._embedded['wp:term'][0].map((category) => (
+							<span> {category.name}</span>
+						))}</p>
+					</article>
+				))}
+		</div>
+	</div>
+</section>
