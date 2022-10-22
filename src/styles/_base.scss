@@ -11,6 +11,12 @@ html {
 .wrapper {
 	width: 90%;
 	margin: auto;
+	&--narrow {
+		@media (min-width: 768px) {
+			padding-left: 70px;
+			padding-right: 70px;
+		}
+	}
 }
 
 main {
@@ -18,42 +24,58 @@ main {
 }
 
 img,
-video {
+video,
+picture {
 	max-width: 100%;
 	height: auto;
 }
 
-[data-lg-parallax] {
-	will-change: transform;
-}
-
-.lg-cursor {
-	.lg-cursor-pointer {
-		&:nth-child(1):before {
-			margin: -15px 0 0 -15px;
-			width: 30px;
-			height: 30px;
-			background: rgba(#8aeaed, 0.2);
+.our-work {
+	&-list {
+		margin-top: 10rem;
+		article {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			gap: 6rem;
+			margin-bottom: 16rem;
+			.media {
+				flex: 1 1 calc(60% - 3rem);
+				text-align: center;
+				picture {
+					height: 100%;
+					width: 100%;
+					object-fit: cover;
+				}
+			}
+			.text {
+				flex: 1 1 calc(40% - 3rem);
+			}
+			&:nth-child(even) {
+				.media {
+					order: 1;
+				}
+			}
+			&:nth-child(4n + 1) {
+				.lg-reveal--layer-to-right:after {
+					background-color: var(--light-purple);
+				}
+			}
+			&:nth-child(4n + 2) {
+				.lg-reveal--layer-to-right:after {
+					background-color: var(--green);
+				}
+			}
+			&:nth-child(4n + 3) {
+				.lg-reveal--layer-to-right:after {
+					background-color: var(--purple);
+				}
+			}
+			&:nth-child(4n + 4) {
+				.lg-reveal--layer-to-right:after {
+					background-color: var(--red);
+				}
+			}
 		}
-		&:nth-child(2):before {
-			background-color: white;
-			border: 1px solid var(--black);
-		}
-	}
-	.lg-cursor-trail {
-		path {
-			stroke-width: 8px;
-		}
-	}
-}
-
-.lg-loader {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-color: var(--light-teal);
-	#kelp {
-		width: 200px;
-		height: 200px;
 	}
 }

@@ -1,0 +1,40 @@
+[data-lg-parallax] {
+	will-change: transform;
+}
+.lg-cursor {
+	.lg-cursor-pointer {
+		&:nth-child(1):before {
+			margin: -15px 0 0 -15px;
+			width: 30px;
+			height: 30px;
+			background: rgba(#8aeaed, 0.2);
+		}
+		&:nth-child(2):before {
+			background-color: white;
+			border: 1px solid var(--black);
+		}
+	}
+	.lg-cursor-trail {
+		path {
+			stroke-width: 8px;
+		}
+	}
+}
+.lg-loader {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--light-teal);
+	#kelp {
+		width: 200px;
+		height: 200px;
+	}
+}
+
+.lg-reveal--layer:after,
+.lg-reveal--layer-to-top:after,
+.lg-reveal--layer-to-right:after,
+.lg-reveal--layer-to-bottom:after,
+.lg-reveal--layer-to-left:after {
+	background: var(--light-teal);
+}

@@ -4,13 +4,6 @@
 	flex-wrap: wrap;
 	gap: 1rem;
 	position: relative;
-	.lg-reveal--layer:after,
-	.lg-reveal--layer-to-top:after,
-	.lg-reveal--layer-to-right:after,
-	.lg-reveal--layer-to-bottom:after,
-	.lg-reveal--layer-to-left:after {
-		background: var(--light-teal);
-	}
 	.top,
 	.left,
 	.right {
@@ -118,7 +111,7 @@
 	.lg-reveal--layer-to-right:after,
 	.lg-reveal--layer-to-bottom:after,
 	.lg-reveal--layer-to-left:after {
-		background-color: var(--purple) !important;
+		background-color: var(--purple);
 	}
 	a {
 		color: white;
