@@ -30,6 +30,10 @@ picture {
 	height: auto;
 }
 
+::selection {
+	background: var(--green);
+}
+
 .our-work {
 	&-list {
 		margin-top: 10rem;
