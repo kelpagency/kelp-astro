@@ -11,10 +11,10 @@
 		"astro": "astro"
 	},
 	"dependencies": {
-		"@astrojs/prefetch": "^0.0.8",
+		"@astrojs/prefetch": "^0.1.0",
 		"@astrojs/sitemap": "^1.0.0",
-		"@waaark/luge": "^0.6.10-beta",
-		"astro": "^1.5.1",
+		"@waaark/luge": "^0.6.11-beta",
+		"astro": "^1.5.3",
 		"astro-compress": "^1.0.12",
 		"astro-imagetools": "^0.6.11",
 		"autoprefixer": "^10.4.12",
