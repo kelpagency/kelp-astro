@@ -1,9 +1,16 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import SimpleHero from "../../components/SimpleHero.astro";
+import Services from "../../components/Services.astro";
 ---
 
-<Layout title='Kelps Services'>
-	<div class='wrapper'>
-		<h1>Services</h1>
-	</div>
+<Layout title="Kelps Services" darkHeader="true">
+	<article>
+		<SimpleHero
+			title="What <br><span style='margin-left: 1em;'>We Do</span>"
+			description="The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps. Bawds jog, flick quartz, vex nymphs. Waltz, bad nymph, for quick jigs vex! Fox nymphs grab"
+			dark="true"
+		/>
+		<Services />
+	</article>
 </Layout>

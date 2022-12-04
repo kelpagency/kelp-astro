@@ -94,6 +94,28 @@
 	}
 }
 
+.simple-hero {
+	padding: 6rem 0;
+	&--dark {
+		background: var(--black);
+		color: white;
+	}
+	.wrapper {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 4rem;
+	}
+	h1 {
+		flex: 1 1 200px;
+	}
+	p {
+		flex: 1 1 500px;
+		margin: 0;
+		max-width: none;
+	}
+}
+
 .how-we-work {
 	padding: 6rem 0;
 	background: var(--black);
@@ -154,7 +176,7 @@
 
 .recent-work {
 	background: var(--black);
-	padding: 12rem 0;
+	padding: 12rem 0 7rem;
 	color: white;
 	.top {
 		max-width: 1180px;
@@ -209,10 +231,10 @@
 	}
 }
 
-.services {
-	padding: 6rem 0;
-}
 .service {
+	&s {
+		padding: 6rem 0;
+	}
 	margin: 10rem auto 8rem;
 	display: flex;
 	gap: 1rem 5rem;

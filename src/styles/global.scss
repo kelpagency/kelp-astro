@@ -1,9 +1,11 @@
 // Only put stuff here that absolutely needs to be on every page of the entire website
 // otherwise put your styles in the page or component
 
-// third party
-// @use '../../node_modules/locomotive-scroll/dist/locomotive-scroll.css';
-@use "../../node_modules/@waaark/luge/dist/css/luge.css";
+// third party styles
+@use "@waaark/luge/dist/css/luge.css";
+@use "sanitize.css";
+@use "sanitize.css/forms.css";
+@use "sanitize.css/assets.css";
 
 // the default wordpress block styles for work and blog posts
 @use "wp-block-styles";
@@ -14,7 +16,7 @@
 // fonts n' things
 @use "typography";
 // forms and inputs
-@use "forms";
+@use "inputs";
 // buttons (form buttons and link buttons!)
 @use "buttons";
 // the global header styles

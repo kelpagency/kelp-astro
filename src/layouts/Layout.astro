@@ -8,14 +8,21 @@ export interface Props {
 	description: string;
 	image: string;
 	permalink: string;
+	darkHeader: boolean;
 }
 
 const {
 	title = "Kelp Creative Agency",
 	description = "Specializing in creating amazing websites, web apps, company branding, style guides, and design systems. Our goal is to make creative solutions simple for you.",
 	image = "https://www.kelp.agency/wp-content/uploads/2019/01/youtube-cover.jpg",
-	permalink = Astro.request.url
+	permalink = Astro.request.url,
+	darkHeader = false
 } = Astro.props;
+
+let bodyClasses = "";
+if (darkHeader) {
+	bodyClasses = bodyClasses + " has-dark-header";
+}
 ---
 
 <!DOCTYPE html>
@@ -57,7 +64,7 @@ const {
 		<meta property="twitter:description" content={description} />
 		<meta property="twitter:image" content={new URL(image, Astro.url)} />
 	</head>
-	<body>
+	<body class={bodyClasses}>
 		<Header />
 		<div data-lg-smooth data-lg-page="page-animation">
 			<main>
@@ -115,6 +122,10 @@ const {
 			luge.settings({
 				credits: {
 					show: false
+				},
+				smooth: {
+					disabled: ["tablet", "mobile", { safari: "<=12" }],
+					inertia: 0.15
 				}
 			});
 

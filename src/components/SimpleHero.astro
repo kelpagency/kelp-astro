@@ -1,0 +1,21 @@
+---
+export interface Props {
+	title: string;
+	description: string;
+	dark: boolean;
+}
+
+const { title = "H1 Heading", description = "", dark = false } = Astro.props;
+
+let cssClasses = "simple-hero";
+if (dark) {
+	cssClasses = cssClasses + " simple-hero--dark";
+}
+---
+
+<section class={cssClasses}>
+	<div class="wrapper wrapper--narrow">
+		<h1 set:html={title} />
+		{description && <p>{description}</p>}
+	</div>
+</section>

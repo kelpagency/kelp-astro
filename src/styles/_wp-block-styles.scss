@@ -207,6 +207,9 @@
   * All Columns Alignment
   */
 }
+:where(.wp-block-columns.is-layout-flex) {
+	gap: 2em;
+}
 @media (min-width: 782px) {
 	.wp-block-columns {
 		flex-wrap: nowrap !important;
@@ -3357,11 +3360,14 @@ pre.wp-block-verse {
 
 .has-text-align-center {
 	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .has-text-align-left {
 	/*rtl:ignore*/
 	text-align: left;
+	margin-left: auto;
 }
 
 .has-text-align-right {

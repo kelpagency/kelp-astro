@@ -36,6 +36,11 @@
 			--text-color: white;
 			--bg-color: var(--black);
 		}
+		.has-dark-header & {
+			background: var(--black);
+			--text-color: white;
+			--bg-color: var(--black);
+		}
 	}
 	.wrapper {
 		display: flex;
