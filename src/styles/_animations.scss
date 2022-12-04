@@ -2,21 +2,18 @@
 	will-change: transform;
 }
 .lg-cursor {
-	.lg-cursor-pointer {
-		&:nth-child(1):before {
-			margin: -15px 0 0 -15px;
-			width: 30px;
-			height: 30px;
-			background: rgba(#8aeaed, 0.2);
-		}
-		&:nth-child(2):before {
-			background-color: white;
-			border: 1px solid var(--black);
-		}
+	&-pointer:before {
+		width: 4rem;
+		height: 4rem;
+		margin: -1rem 0 0 -1rem;
+		border: 1px solid var(--light-teal);
+		background: none;
+		opacity: 0;
 	}
-	.lg-cursor-trail {
-		path {
-			stroke-width: 8px;
+	&--hover {
+		.lg-cursor-pointer:before {
+			border-color: var(--green);
+			opacity: 1;
 		}
 	}
 }

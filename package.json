@@ -11,21 +11,22 @@
 		"astro": "astro"
 	},
 	"dependencies": {
-		"@astrojs/prefetch": "^0.1.0",
+		"@astrojs/prefetch": "^0.1.1",
 		"@astrojs/sitemap": "^1.0.0",
 		"@waaark/luge": "^0.6.11-beta",
-		"astro": "^1.5.3",
-		"astro-compress": "^1.0.12",
-		"astro-imagetools": "^0.6.11",
-		"autoprefixer": "^10.4.12",
+		"astro": "^1.6.12",
+		"astro-compress": "^1.1.17",
+		"astro-imagetools": "^0.6.16",
+		"autoprefixer": "^10.4.13",
+		"gsap": "^3.11.3",
 		"headroom.js": "^0.12.0",
 		"imagesloaded": "^5.0.0",
-		"lottie-web": "^5.9.6",
+		"lottie-web": "^5.10.0",
 		"netlify-plugin-cache": "^1.0.3"
 	},
 	"devDependencies": {
-		"prettier": "^2.7.1",
-		"prettier-plugin-astro": "^0.6.0",
-		"sass": "^1.55.0"
+		"prettier": "^2.8.0",
+		"prettier-plugin-astro": "^0.7.0",
+		"sass": "^1.56.1"
 	}
 }

@@ -65,19 +65,41 @@ const {
 			</main>
 			<Footer />
 		</div>
-		<div data-lg-cursor data-lg-cursor-hide>
-			<div data-lg-cursor-pointer data-lg-cursor-inertia="0.1"></div>
+		<div data-lg-cursor data-lg-cursor-inertia=".15">
 			<div data-lg-cursor-pointer></div>
-			<div data-lg-cursor-trail data-lg-cursor-inertia="0.1"></div>
 		</div>
 		<div data-lg-loader="slide-to-bottom">
 			<div id="kelp"></div>
 		</div>
+		<!-- <div data-lg-preloader="fade">
+			<div
+				data-lg-lottie="/animations/kelp-logo.json"
+				data-lg-lottie-autoplay
+				data-lg-lottie-loop
+				data-lg-lottie-subframe="false"
+				data-lg-lottie-loop-frame="34"
+			>
+			</div>
+		</div> -->
 		<script>
+			import gsap from "gsap";
 			import luge from "@waaark/luge";
 			import Headroom from "headroom.js";
 			import imagesLoaded from "imagesloaded";
 			import lottie from "lottie-web";
+
+			// the preload animation
+			// luge.preloader.add((done, remove) => {
+			// 	const preloaderLogo = document.querySelector(".lg-preloader .lg-lottie");
+			// 	setTimeout(() => {
+			// 		preloaderLogo.play();
+			// 	}, 1000);
+			// 	setTimeout(() => {
+			// 		done();
+			// 		lottie.destroy();
+			// 		remove();
+			// 	}, 4500);
+			// });
 
 			// wait till images load before starting animation library
 			luge.lifecycle.add(
