@@ -88,16 +88,8 @@
 	.scroll {
 		margin: 2rem 0;
 		&-text {
-			animation: 9s rotate infinite linear;
 			transform-origin: center;
-		}
-	}
-	@keyframes rotate {
-		from {
-			transform: rotate(0deg);
-		}
-		to {
-			transform: rotate(-360deg);
+			transform: rotate(calc(var(--progress) * 100deg));
 		}
 	}
 }
