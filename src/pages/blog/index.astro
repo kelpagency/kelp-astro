@@ -6,13 +6,13 @@ const posts = await response.json();
 ---
 
 <Layout title='Kelp Current'>
-	<article class="our-work">
+	<article class="archive">
 		<div class='wrapper wrapper--narrow' data-lg-reveal="layer-to-right" data-lg-reveal-stagger="0.4">
 			<h1 style="margin-top: 8rem;">The Kelp Current</h1>
 			<p style="margin-left: auto; font-size: var(--step-1)">
 				Here you'll find expert tips and tricks from the best of Kelp. Design tips, development tricks, and maybe even some tasty strategy treats.</p>
 		</div>
-		<div class="wrapper our-work-list">
+		<div class="wrapper archive-list">
 				{
 					posts.map((post) => (
 						<article data-lg-reveal="layer-to-right" data-lg-reveal-stagger="0.2">
