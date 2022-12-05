@@ -1,7 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { Picture } from "astro-imagetools/components";
-const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/posts?per_page=100&_embed`);
+const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/posts?per_page=100`);
 const posts = await response.json();
 ---
 
@@ -17,7 +17,7 @@ const posts = await response.json();
 					posts.map((post) => (
 						<article data-lg-reveal="layer-to-right" data-lg-reveal-stagger="0.2">
 							<div class="media">
-								<Picture src={post._embedded['wp:featuredmedia'][0].source_url} alt={post.title.rendered} loading="lazy" />
+								<Picture src={post.fimg_url} alt={post.title.rendered} loading="lazy" />
 							</div>
 							<div class="text">
 								<h2 class="h4"><a href=`/blog/${post.slug}` set:html={post.title.rendered}/></h2>
