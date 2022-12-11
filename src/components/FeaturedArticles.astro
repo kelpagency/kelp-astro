@@ -1,6 +1,6 @@
 ---
 import { Picture } from "astro-imagetools/components";
-const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/posts?per_page=3&category_name=featured`);
+const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/posts?per_page=3&category_name=featured&_embed`);
 const posts = await response.json();
 ---
 

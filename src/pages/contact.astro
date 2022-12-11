@@ -1,9 +1,38 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from "../Base.astro";
+import SimpleHero from "../components/SimpleHero.astro";
+import Testimonials from "../components/Testimonials.astro";
 ---
 
-<Layout title="Contact Kelp">
-	<div class="wrapper">
-		<h1>Contact Us</h1>
-	</div>
+<Layout title="Contact Kelp" darkHeader="true">
+	<article>
+		<section class="contact-section">
+			<div class="wrapper">
+				<div class="contact-section-column">
+					<h1>Well hello there.</h1>
+					<hr />
+					<h2>Ways to reach us.</h2>
+					<h3 class="h6">Office</h3>
+					<address>
+						924 Hale <br />
+						Brooksville
+					</address>
+					<p><a href="tel:+1-352-325-7688">352-325-7688</a></p>
+				</div>
+				<div class="contact-section-column">
+					<p>
+						Interested in our services? Fill out our contact form or setup a chat with Matt. He’d love to talk with and
+						see how Kelp can be of help.
+					</p>
+					<!-- Start of Meetings Embed Script -->
+					<div class="meetings-iframe-container" data-src="https://meetings.hubspot.com/matthew-prouty?embed=true">
+					</div>
+					<script type="text/javascript" src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"
+					></script>
+					<!-- End of Meetings Embed Script -->
+				</div>
+			</div>
+		</section>
+		<Testimonials />
+	</article>
 </Layout>

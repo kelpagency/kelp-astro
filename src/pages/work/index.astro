@@ -1,5 +1,5 @@
 ---
-import Layout from "../../layouts/Layout.astro";
+import Layout from "../../Base.astro";
 import { Picture } from "astro-imagetools/components";
 const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/work?per_page=10`);
 const posts = await response.json();
