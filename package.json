@@ -14,7 +14,7 @@
 		"@astrojs/prefetch": "^0.1.1",
 		"@astrojs/sitemap": "^1.0.0",
 		"@waaark/luge": "^0.6.11-beta",
-		"astro": "^1.7.0",
+		"astro": "1.6.0",
 		"astro-compress": "^1.1.22",
 		"astro-imagetools": "^0.6.17",
 		"autoprefixer": "^10.4.13",
