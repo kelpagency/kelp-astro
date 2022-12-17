@@ -24,12 +24,11 @@ import Testimonials from "../components/Testimonials.astro";
 						Interested in our services? Fill out our contact form or setup a chat with Matt. He’d love to talk with and
 						see how Kelp can be of help.
 					</p>
-					<!-- Start of Meetings Embed Script -->
-					<div class="meetings-iframe-container" data-src="https://meetings.hubspot.com/matthew-prouty?embed=true">
+					<!-- Embed script is in global js file -->
+					<div id="meetings-embed">
+						<div class="meetings-iframe-container" data-src="https://meetings.hubspot.com/matthew-prouty?embed=true">
+						</div>
 					</div>
-					<script type="text/javascript" src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"
-					></script>
-					<!-- End of Meetings Embed Script -->
 				</div>
 			</div>
 		</section>

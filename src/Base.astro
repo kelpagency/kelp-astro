@@ -95,6 +95,7 @@ if (darkHeader) {
 			import imagesLoaded from "imagesloaded";
 			import lottie from "lottie-web";
 			import Splitting from "splitting";
+			import { annotate } from "rough-notation";
 
 			Splitting();
 
@@ -111,17 +112,6 @@ if (darkHeader) {
 			// 	}, 4500);
 			// });
 
-			// wait till images load before starting animation library
-			luge.lifecycle.add(
-				"pageInit",
-				(done) => {
-					imagesLoaded(document.querySelector("body"), function (instance) {
-						done();
-					});
-				},
-				10,
-				"load"
-			);
 			luge.settings({
 				credits: {
 					show: false
@@ -130,6 +120,46 @@ if (darkHeader) {
 					disabled: ["tablet", "mobile", { safari: "<=12" }],
 					inertia: 0.15
 				}
+			});
+
+			// wait till images load before starting animation library
+			luge.lifecycle.add("pageInit", function (done) {
+				// contact page
+				const meetingsDiv = document.querySelector("#meetings-embed");
+				const meetingsScript = document.createElement("script");
+				meetingsScript.setAttribute("src", "https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js");
+				if (meetingsDiv) {
+					meetingsDiv.appendChild(meetingsScript);
+					luge.emitter.emit("update");
+				}
+
+				// update luge after image load
+				imagesLoaded(document.querySelector("body"), function (instance) {
+					luge.emitter.emit("update");
+				});
+
+				// *********************
+				// Underline all em tags
+				// when they come into view
+				const emphasisElements = document.querySelectorAll("main em");
+				function handleIntersection(entries) {
+					entries.map((entry) => {
+						if (entry.isIntersecting) {
+							const annotation = annotate(entry.target, {
+								type: "underline",
+								multiline: true,
+								padding: 0,
+								animationDuration: 300
+							});
+							annotation.show();
+							observer.unobserve(entry.target);
+						}
+					});
+				}
+				const observer = new IntersectionObserver(handleIntersection);
+				emphasisElements.forEach((item) => observer.observe(item));
+
+				done();
 			});
 
 			// Sticky header

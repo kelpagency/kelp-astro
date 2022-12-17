@@ -1,13 +1,3 @@
-*,
-*:after,
-*:before {
-	box-sizing: border-box;
-}
-
-html {
-	height: 100%;
-}
-
 .wrapper {
 	width: 90%;
 	margin: auto;
@@ -103,6 +93,70 @@ main {
 		}
 		&:first-child {
 			flex-basis: 250px;
+		}
+	}
+}
+
+.service-intro {
+	background: var(--lighter-teal);
+	padding: 8rem 0;
+	.wrapper {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 2rem 3rem;
+	}
+	.h4 {
+		flex: 1 1 100%;
+		color: var(--purple);
+		max-width: 52ch;
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
+		margin-bottom: 5rem;
+	}
+	&-media {
+		flex: 1 1 400px;
+	}
+	&-text {
+		flex: 1 1 400px;
+		margin-top: auto;
+		p {
+			max-width: none;
+		}
+	}
+}
+.service-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4rem;
+	max-width: 1000px;
+	margin-bottom: 8rem;
+	h2 {
+		flex: 1 1 100%;
+		text-align: center;
+		max-width: none;
+		margin-top: 8rem;
+		margin-bottom: 3rem;
+	}
+	&-item {
+		flex: 1 1 400px;
+		position: relative;
+		p {
+			max-width: 50ch;
+		}
+		&-square {
+			width: 103px;
+			height: 103px;
+			left: 0;
+			z-index: -1;
+			top: 0;
+			background: var(--light-teal);
+		}
+		svg {
+			display: block;
+			position: absolute;
+			top: 0.5rem;
+			left: 1.5rem;
 		}
 	}
 }

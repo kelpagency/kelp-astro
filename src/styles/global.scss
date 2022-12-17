@@ -2,10 +2,10 @@
 // otherwise put your styles in the page or component
 
 // third party styles
-@use "@waaark/luge/dist/css/luge.css";
 @use "sanitize.css";
 @use "sanitize.css/forms.css";
 @use "sanitize.css/assets.css";
+@use "@waaark/luge/dist/css/luge.css";
 
 // the default wordpress block styles for work and blog posts
 @use "wp-block-styles";
