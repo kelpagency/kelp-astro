@@ -9,6 +9,7 @@ export interface Props {
 	image: string;
 	permalink: string;
 	darkHeader: boolean;
+	bodyClass: string;
 }
 
 const {
@@ -16,10 +17,11 @@ const {
 	description = "Specializing in creating amazing websites, web apps, company branding, style guides, and design systems. Our goal is to make creative solutions simple for you.",
 	image = "https://www.kelp.agency/wp-content/uploads/2019/01/youtube-cover.jpg",
 	permalink = Astro.request.url,
-	darkHeader = false
+	darkHeader = false,
+	bodyClass = ""
 } = Astro.props;
 
-let bodyClasses = "";
+let bodyClasses = bodyClass;
 if (darkHeader) {
 	bodyClasses = bodyClasses + " has-dark-header";
 }

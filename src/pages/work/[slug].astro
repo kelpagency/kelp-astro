@@ -9,17 +9,25 @@ export async function getStaticPaths() {
 	return posts.map((post) => {
 		return {
 			params: { slug: post.slug },
-			props: { title: post.title.rendered, content: post.content.rendered }
+			props: { title: post.title.rendered, content: post.content.rendered, tagIds: post.tags }
 		};
 	});
 }
 
-const { title, content } = Astro.props;
+const { title, content, tagIds } = Astro.props;
+
+let tags = [];
+for (const tag of tagIds) {
+	const tagResponse = await fetch(`${import.meta.env.PUBLIC_WP_URL}/tags/${tag}`);
+	const tag_object = await tagResponse.json();
+	tags.push(tag_object.name);
+}
 ---
 
-<Layout title={title}>
+<Layout title={title} bodyClass="work-post">
 	<article class="wrapper">
-		<h1 set:html={title} />
-		<div set:html={content} />
+		<h1 data-splitting data-lg-reveal="fade" data-lg-reveal-stagger="0.1" set:html={title} />
+		<p data-lg-reveal="layer-to-left" data-lg-reveal-delay="0.2" class="tags">{tags.join(", ")}</p>
+		<div data-lg-reveal="fade" data-lg-reveal-stagger="0.3" set:html={content} />
 	</article>
 </Layout>

@@ -17,6 +17,7 @@ main {
 	background: var(--green);
 }
 
+// blog and work archive pages
 .archive {
 	&-list {
 		margin-top: 10rem;
@@ -70,6 +71,21 @@ main {
 	}
 }
 
+// work single
+.work-post {
+	h1 {
+		margin: 8rem 0 12rem;
+	}
+	.tags {
+		opacity: 0.5;
+		margin: -11rem auto 10rem auto;
+		&:empty {
+			display: none;
+		}
+	}
+}
+
+// contact page
 .contact-section {
 	background: var(--black);
 	color: white;
@@ -97,6 +113,7 @@ main {
 	}
 }
 
+// services pages
 .service-intro {
 	background: var(--lighter-teal);
 	padding: 8rem 0;
