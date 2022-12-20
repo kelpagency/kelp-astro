@@ -18,8 +18,16 @@ const { title, content } = Astro.props;
 ---
 
 <Layout title={title}>
-	<article class="wrapper">
-		<h1 set:html={title} />
-		<div set:html={content} />
+	<article>
+		<div class="wrapper">
+			<h1 data-splitting data-lg-reveal="fade" data-lg-reveal-stagger="0.1" style="margin: 8rem 0;" set:html={title} />
+		</div>
+		<div
+			data-lg-reveal="fade"
+			data-lg-reveal-stagger="0.1"
+			style="margin-bottom: 8rem;"
+			class="wrapper wrapper--narrow"
+			set:html={content}
+		/>
 	</article>
 </Layout>
