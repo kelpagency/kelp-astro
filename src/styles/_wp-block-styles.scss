@@ -768,6 +768,9 @@ section.wp-block-cover-image > h2,
 }
 .wp-block-embed iframe {
 	max-width: 100%;
+	aspect-ratio: 16/9;
+	width: 100%;
+	margin-bottom: 2rem;
 }
 
 .wp-block-embed__wrapper {
@@ -1203,6 +1206,9 @@ h6.has-background {
 
 .wp-block-image {
 	margin: 0 0 1em 0;
+	&.size-large img {
+		width: 100%;
+	}
 }
 .wp-block-image img {
 	height: auto;
