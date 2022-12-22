@@ -1,38 +1,46 @@
 ---
-import { Picture } from "astro-imagetools/components";
+import { Img } from "astro-imagetools/components";
+const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/work?per_page=3`);
+const posts = await response.json();
 ---
 
-<section class="recent-work">
-	<div class="wrapper">
-		<div class="top">
-			<h2 class="h3">Our Work <span>In the real-world</span></h2>
+<section class='recent-work'>
+	<div class='wrapper'>
+		<div class='top'>
+			<h2 class='h3'>Our Work <span>In the real-world</span></h2>
 			<p>
-				The proof is in the pudding as they say here in the south. Weird sayings aside, it’s one thing to have a good
-				strategy, but it takes special talent to create excellent content
+				The proof is in the pudding as they say here in the south. Weird sayings aside, it’s one thing to have
+				a good strategy, but it takes special talent to create excellent content
 				<small>(and good pudding)</small>. Take a look at some recent work below.
 			</p>
 		</div>
-		<div class="slider">
-			<div class="slider-media">
-				<Picture
-					src="https://www.kelp.agency/wp-content/uploads/2021/06/Beerstream-M48-16oz-Can-Design_M48-Beerstream-RGB.jpg"
-					loading="lazy"
-					alt="Marker 48"
-					width="1239"
-					height="750"
-				/>
-			</div>
-			<div class="slider-text">
-				<h3 class="h6">Marker 48</h3>
-				<div>
-					<p class="h5">Created a design framework for existing and future beer labels.</p>
-					<p><a href="/work/marker-48" class="squiggle">Read More</a></p>
-				</div>
-				<nav>
-					<button class="link">Prev</button>
-					<button class="link">Next</button>
-				</nav>
-			</div>
+		<div class='slider'>
+			{
+				posts.map((post) => (
+					<>
+						<div class='slider-item'>
+							<div class='slider-item-media'>
+								<Img src={post.fimg_url} alt={post.title.rendered} aspect={1.75}' />
+							</div>
+							<div class='slider-item-text'>
+								<h3 class='slider-item-text-heading h6' set:html={post.title.rendered} />
+								<div class="slider-item-text-body">
+									<div set:html={post.excerpt.rendered} />
+									<p>
+										<a href=`/work/${post.slug}` class='squiggle'>
+											Read More
+										</a>
+									</p>
+								</div>
+								<nav class="slider-item-text-nav">
+									<button class="button button--link button--prev">← Prev</button>
+									<button class="button button--link button--next">Next →</button>
+								</nav>
+							</div>
+						</div>
+					</>
+				))
+			}
 		</div>
 	</div>
 </section>

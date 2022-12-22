@@ -18,6 +18,8 @@
 		"astro-compress": "^1.1.24",
 		"astro-imagetools": "^0.6.17",
 		"autoprefixer": "^10.4.13",
+		"flickity": "^3.0.0",
+		"flickity-fade": "^2.0.0",
 		"gsap": "^3.11.4",
 		"headroom.js": "^0.12.0",
 		"highlight.js": "^11.7.0",

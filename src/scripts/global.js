@@ -1,5 +1,7 @@
 import gsap from "gsap";
 import luge from "@waaark/luge";
+import Flickity from "flickity";
+import "flickity-fade";
 import Headroom from "headroom.js";
 import lottie from "lottie-web";
 import Splitting from "splitting";
@@ -39,6 +41,30 @@ luge.lifecycle.add("pageIn", function (done) {
 	const squid = document.querySelector(".hero .lg-lottie");
 	if (squid) {
 		squid.play();
+	}
+
+	// recent work slider
+	const slider = document.querySelector(".slider");
+	const next = document.querySelectorAll(".button--next");
+	const prev = document.querySelectorAll(".button--prev");
+	if (slider) {
+		const flkty = new Flickity(slider, {
+			prevNextButtons: false,
+			wrapAround: true,
+			pageDots: false,
+			fade: true
+		});
+		next.forEach(function (button) {
+			button.addEventListener("click", function () {
+				flkty.next();
+			});
+		});
+		prev.forEach(function (button) {
+			button.addEventListener("click", function () {
+				flkty.previous();
+			});
+		});
+		luge.emitter.emit("resize");
 	}
 
 	// Contact page
