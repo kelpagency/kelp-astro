@@ -5,7 +5,13 @@
 .wp-block-avatar.aligncenter {
 	text-align: center;
 }
-
+.size-large,
+.size-full {
+	width: 100%;
+	img {
+		width: 100%;
+	}
+}
 .wp-block-audio {
 	margin: 0 0 1em 0;
 }

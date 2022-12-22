@@ -9,10 +9,10 @@ import FeaturedArticles from "../components/FeaturedArticles.astro";
 ---
 
 <Layout title='Kelp Creative Agency'>
-	<Hero />
-	<RecentWork />
-	<Services />
-	<HowWeWork />
-	<Testimonials />
-	<FeaturedArticles />
+	<Hero client:visible />
+	<RecentWork client:visible />
+	<Services client:visible />
+	<HowWeWork client:visible />
+	<Testimonials client:visible />
+	<FeaturedArticles client:visible />
 </Layout>

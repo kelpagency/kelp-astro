@@ -34,7 +34,13 @@ luge.settings({
 });
 
 // wait till images load before starting animation library
-luge.lifecycle.add("pageInit", function (done) {
+luge.lifecycle.add("pageIn", function (done) {
+	// Home page
+	const squid = document.querySelector(".hero .lg-lottie");
+	if (squid) {
+		squid.play();
+	}
+
 	// Contact page
 	// meetings embed
 	const meetingsDiv = document.querySelector("#meetings-embed");
