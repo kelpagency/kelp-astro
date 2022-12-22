@@ -1,6 +1,7 @@
 .wrapper {
 	width: 90%;
 	margin: auto;
+	max-width: 1400px;
 	&--narrow {
 		@media (min-width: 768px) {
 			padding-left: 70px;
