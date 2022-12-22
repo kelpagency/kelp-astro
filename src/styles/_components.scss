@@ -1,89 +1,58 @@
 // we put all component styles here instead of in each component so page transitions will work
 .hero {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 1rem;
 	position: relative;
-	.top,
-	.left,
-	.right {
-		@media (min-width: 960px) {
-			padding-left: 70px;
-		}
+	padding-top: 2rem;
+	@media (min-width: 1400px) {
+		min-height: 1000px;
+		padding-left: 70px;
 	}
-	.top {
-		flex: 1 1 100%;
-		padding-top: 2rem;
-	}
-	.left,
-	.right {
-		flex: 1 1 300px;
-	}
-	.right {
-		margin-top: auto;
-		margin-bottom: -1rem;
-		flex-basis: 400px;
+	.wrapper {
 		position: relative;
 	}
-	strong {
-		font-family: var(--sans-serif);
-		font-weight: 600;
-		font-size: var(--step-1);
+	.squid-wrapper {
+		position: absolute;
+		right: -8rem;
+		top: -8rem;
+		z-index: -1;
+		@media (max-width: 1400px) {
+			width: 600px;
+			top: unset;
+			bottom: -3rem;
+		}
+		@media (max-width: 1100px) {
+			width: 500px;
+			bottom: -3rem;
+		}
+		@media (max-width: 600px) {
+			width: 350px;
+			right: -5rem;
+		}
 	}
-	ul {
-		font-family: var(--sans-serif);
-		font-weight: 500;
-		list-style: none;
-		padding: 0;
+	&-content {
+		max-width: 600px;
+		h1 {
+			margin-bottom: 3rem;
+			max-width: 18ch;
+		}
+		strong {
+			font-family: var(--sans-serif);
+			font-weight: 600;
+			font-size: var(--step-1);
+		}
+		ul {
+			font-family: var(--sans-serif);
+			font-weight: 500;
+			list-style: none;
+			padding: 0;
+			margin-bottom: 3rem;
+		}
 	}
-	h1 {
-		margin-bottom: 0;
-		max-width: 18ch;
-	}
-	&-image {
-		position: relative;
-		z-index: 1;
-		width: 80%;
-		left: 10%;
-		height: auto;
-		@media (max-width: 767px) {
-			margin-top: 5rem;
-			width: 90%;
-			left: 0;
-		}
-		&.lg-reveal--layer:after,
-		&.lg-reveal--layer-to-top:after,
-		&.lg-reveal--layer-to-right:after,
-		&.lg-reveal--layer-to-bottom:after,
-		&.lg-reveal--layer-to-left:after {
-			background: var(--purple);
-		}
-		&--front {
-			position: absolute;
-			left: 10%;
-			z-index: 2;
-			top: -3rem;
-			&.lg-reveal--layer:after,
-			&.lg-reveal--layer-to-top:after,
-			&.lg-reveal--layer-to-right:after,
-			&.lg-reveal--layer-to-bottom:after,
-			&.lg-reveal--layer-to-left:after {
-				background: var(--light-red);
-			}
-		}
-		&--back {
-			position: absolute;
-			left: 10%;
-			z-index: 0;
-			top: -2rem;
-			&.lg-reveal--layer:after,
-			&.lg-reveal--layer-to-top:after,
-			&.lg-reveal--layer-to-right:after,
-			&.lg-reveal--layer-to-bottom:after,
-			&.lg-reveal--layer-to-left:after {
-				background: var(--black);
-			}
-		}
+	.water {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		z-index: -2;
 	}
 	.scroll {
 		margin: 2rem 0;

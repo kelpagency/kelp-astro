@@ -17,7 +17,7 @@ luge.preloader.add((done, remove) => {
 	gsap.to(".lg-preloader .lg-lottie", { opacity: 0, scale: 0, duration: 0.5, delay: 1.5, ease: "expo" });
 	gsap.to(".lg-preloader", { opacity: 0, delay: 1.6, duration: 0.4 });
 	setTimeout(() => {
-		lottie.destroy();
+		preloaderLogo.stop();
 		done();
 		remove();
 	}, 2000);
@@ -35,7 +35,8 @@ luge.settings({
 
 // wait till images load before starting animation library
 luge.lifecycle.add("pageInit", function (done) {
-	// contact page
+	// Contact page
+	// meetings embed
 	const meetingsDiv = document.querySelector("#meetings-embed");
 	const meetingsScript = document.createElement("script");
 	meetingsScript.setAttribute("src", "https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js");
@@ -44,7 +45,6 @@ luge.lifecycle.add("pageInit", function (done) {
 		luge.emitter.emit("resize");
 	}
 
-	// *********************
 	// Underline all em tags
 	// when they come into view
 	const emphasisElements = document.querySelectorAll("main em");

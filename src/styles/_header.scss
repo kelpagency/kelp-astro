@@ -23,12 +23,12 @@
 			.mobile-menu-active & {
 				transform: translateY(0);
 			}
-			background: white;
+			background: transparent;
 			--text-color: var(--black);
 			--bg-color: white;
 		}
 		&--top {
-			background: white;
+			background: transparent;
 			--text-color: var(--black);
 			--bg-color: white;
 		}
