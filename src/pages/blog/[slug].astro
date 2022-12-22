@@ -9,12 +9,17 @@ export async function getStaticPaths() {
 	return posts.map((post) => {
 		return {
 			params: { slug: post.slug },
-			props: { title: post.title.rendered, content: post.content.rendered }
+			props: { title: post.title.rendered, content: post.content.rendered, id: post.id }
 		};
 	});
 }
 
-const { title, content } = Astro.props;
+const { title, content, id } = Astro.props;
+const comments = await fetch(`${import.meta.env.PUBLIC_WP_URL}/comments?post=${id}`);
+const jsonComments = await comments.json();
+if (jsonComments) {
+	console.log(jsonComments);
+}
 ---
 
 <Layout title={title}>
@@ -29,5 +34,32 @@ const { title, content } = Astro.props;
 			class="wrapper wrapper--narrow"
 			set:html={content}
 		/>
+		{
+			jsonComments && (
+				<section class="wrapper wrapper--narrow comments">
+					<h4>Comments</h4>
+					{jsonComments.map(
+						(comment) =>
+							comment.parent == 0 && (
+								<div class="comments-item">
+									<img class="comments-item-img" src={comment.author_avatar_urls["96"]} loading="lazy" />
+									<h4 class="comments-item-name h6">{comment.author_name} says</h4>
+									<div class="comments-item-body" set:html={comment.content.rendered} />
+									{jsonComments.map(
+										(reply) =>
+											reply.parent == comment.id && (
+												<div class="comments-item comments-item--reply">
+													<img class="comments-item-img" src={reply.author_avatar_urls["96"]} loading="lazy" />
+													<h4 class="comments-item-name h6">{reply.author_name} says</h4>
+													<div class="comments-item-body" set:html={reply.content.rendered} />
+												</div>
+											)
+									)}
+								</div>
+							)
+					)}
+				</section>
+			)
+		}
 	</article>
 </Layout>
