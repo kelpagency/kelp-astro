@@ -1,4 +1,4 @@
-[data-lg-parallax] {
+.is-safari [data-lg-parallax] {
 	will-change: transform;
 }
 .lg-cursor {
@@ -34,4 +34,16 @@
 .lg-reveal--layer-to-bottom:after,
 .lg-reveal--layer-to-left:after {
 	background: var(--light-teal);
+}
+
+.lg-preloader {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	.lg-lottie {
+		opacity: 0;
+		svg rect {
+			fill: var(--green);
+		}
+	}
 }

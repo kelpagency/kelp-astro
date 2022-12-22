@@ -28,68 +28,68 @@ if (darkHeader) {
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="msapplication-TileColor" content="#42c634" />
-		<meta name="theme-color" content="#c5f5f6" />
+		<meta charset='UTF-8' />
+		<meta name='viewport' content='width=device-width, initial-scale=1' />
+		<meta name='msapplication-TileColor' content='#42c634' />
+		<meta name='theme-color' content='#c5f5f6' />
 
 		<!-- Favicons -->
-		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-		<link rel="manifest" href="/site.webmanifest" />
-		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#42c634" />
+		<link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png' />
+		<link rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png' />
+		<link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png' />
+		<link rel='manifest' href='/site.webmanifest' />
+		<link rel='mask-icon' href='/safari-pinned-tab.svg' color='#42c634' />
 
 		<!-- Fonts -->
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link rel='preconnect' href='https://fonts.googleapis.com' />
+		<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Poppins:wght@500;600&display=swap"
-			rel="stylesheet"
+			href='https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Poppins:wght@500;600&display=swap'
+			rel='stylesheet'
 		/>
 
 		<!-- Meta -->
 		<title set:html={title} />
-		<meta name="description" content={description} />
+		<meta name='description' content={description} />
 
 		<!-- Social -->
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content={Astro.url} />
-		<meta property="og:title" content={title} />
-		<meta property="og:description" content={description} />
-		<meta property="og:image" content={new URL(image, Astro.url)} />
-		<meta property="twitter:card" content="summary_large_image" />
-		<meta property="twitter:url" content={Astro.url} />
-		<meta property="twitter:title" content={title} />
-		<meta property="twitter:description" content={description} />
-		<meta property="twitter:image" content={new URL(image, Astro.url)} />
+		<meta property='og:type' content='website' />
+		<meta property='og:url' content={Astro.url} />
+		<meta property='og:title' content={title} />
+		<meta property='og:description' content={description} />
+		<meta property='og:image' content={new URL(image, Astro.url)} />
+		<meta property='twitter:card' content='summary_large_image' />
+		<meta property='twitter:url' content={Astro.url} />
+		<meta property='twitter:title' content={title} />
+		<meta property='twitter:description' content={description} />
+		<meta property='twitter:image' content={new URL(image, Astro.url)} />
 	</head>
 	<body class={bodyClasses}>
+		<div data-lg-preloader>
+			<div
+				data-lg-lottie='/animations/kelp-logo.json'
+				data-lg-lottie-autoplay
+				data-lg-lottie-loop
+				data-lg-lottie-subframe='false'
+				data-lg-preloader-duration='2'
+			>
+			</div>
+		</div>
 		<Header />
-		<div data-lg-smooth data-lg-page="page-animation">
+		<div data-lg-smooth data-lg-page='page-animation'>
 			<main>
 				<slot />
 			</main>
 			<Footer />
 		</div>
-		<div data-lg-cursor data-lg-cursor-inertia=".15">
+		<div data-lg-cursor data-lg-cursor-inertia='.15'>
 			<div data-lg-cursor-pointer></div>
 		</div>
-		<div data-lg-loader="slide-to-bottom">
-			<div id="kelp"></div>
+		<div data-lg-loader='slide-to-bottom'>
+			<div id='kelp'></div>
 		</div>
-		<!-- <div data-lg-preloader="fade">
-			<div
-				data-lg-lottie="/animations/kelp-logo.json"
-				data-lg-lottie-autoplay
-				data-lg-lottie-loop
-				data-lg-lottie-subframe="false"
-				data-lg-lottie-loop-frame="34"
-			>
-			</div>
-		</div> -->
-		<script src="./scripts/global.js"></script>
+		<script src='./scripts/global.js'></script>
 	</body>
 </html>

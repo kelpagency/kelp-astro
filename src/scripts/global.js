@@ -8,18 +8,21 @@ import { annotate } from "rough-notation";
 
 Splitting();
 
+window.lottie = lottie;
+
 // the preload animation
-// luge.preloader.add((done, remove) => {
-// 	const preloaderLogo = document.querySelector(".lg-preloader .lg-lottie");
-// 	setTimeout(() => {
-// 		preloaderLogo.play();
-// 	}, 1000);
-// 	setTimeout(() => {
-// 		done();
-// 		lottie.destroy();
-// 		remove();
-// 	}, 4500);
-// });
+luge.preloader.add((done, remove) => {
+	const preloaderLogo = document.querySelector(".lg-preloader .lg-lottie");
+	preloaderLogo.play();
+	gsap.to(".lg-preloader .lg-lottie", { opacity: 1, delay: 0 });
+	gsap.to(".lg-preloader .lg-lottie", { opacity: 0, delay: 1.5 });
+	gsap.to(".lg-preloader", { opacity: 0, delay: 1.75 });
+	setTimeout(() => {
+		lottie.destroy();
+		done();
+		remove();
+	}, 2000);
+});
 
 luge.settings({
 	credits: {
