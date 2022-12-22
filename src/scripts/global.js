@@ -1,7 +1,6 @@
 import gsap from "gsap";
 import luge from "@waaark/luge";
 import Headroom from "headroom.js";
-import imagesLoaded from "imagesloaded";
 import lottie from "lottie-web";
 import Splitting from "splitting";
 import { annotate } from "rough-notation";
@@ -14,9 +13,9 @@ window.lottie = lottie;
 luge.preloader.add((done, remove) => {
 	const preloaderLogo = document.querySelector(".lg-preloader .lg-lottie");
 	preloaderLogo.play();
-	gsap.to(".lg-preloader .lg-lottie", { opacity: 1, delay: 0 });
-	gsap.to(".lg-preloader .lg-lottie", { opacity: 0, delay: 1.5 });
-	gsap.to(".lg-preloader", { opacity: 0, delay: 1.75 });
+	gsap.to(".lg-preloader .lg-lottie", { opacity: 1, scale: 1, delay: 0, ease: "power4" });
+	gsap.to(".lg-preloader .lg-lottie", { opacity: 0, scale: 0, duration: 0.5, delay: 1.5, ease: "expo" });
+	gsap.to(".lg-preloader", { opacity: 0, delay: 1.6, duration: 0.4 });
 	setTimeout(() => {
 		lottie.destroy();
 		done();
@@ -42,13 +41,8 @@ luge.lifecycle.add("pageInit", function (done) {
 	meetingsScript.setAttribute("src", "https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js");
 	if (meetingsDiv) {
 		meetingsDiv.appendChild(meetingsScript);
-		luge.emitter.emit("update");
+		luge.emitter.emit("resize");
 	}
-
-	// update luge after image load
-	imagesLoaded(document.querySelector("body"), function (instance) {
-		luge.emitter.emit("update");
-	});
 
 	// *********************
 	// Underline all em tags
