@@ -48,7 +48,6 @@ luge.lifecycle.add("pageIn", function (done) {
 	meetingsScript.setAttribute("src", "https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js");
 	if (meetingsDiv) {
 		meetingsDiv.appendChild(meetingsScript);
-		luge.emitter.emit("resize");
 	}
 
 	// Underline all em tags
