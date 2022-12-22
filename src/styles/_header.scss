@@ -2,7 +2,6 @@
 
 .header {
 	padding: 2rem 0;
-	z-index: 105;
 	position: relative;
 	&.headroom {
 		will-change: transform;
@@ -11,6 +10,7 @@
 		left: 0;
 		width: 100%;
 		top: 0;
+		z-index: 99;
 		transition: background 750ms ease, transform 250ms ease;
 		&--pinned {
 			transform: translateY(0%);
