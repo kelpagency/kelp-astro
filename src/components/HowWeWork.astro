@@ -1,18 +1,30 @@
 ---
-import { Img } from "astro-imagetools/components";
+import { Picture } from "astro-imagetools/components";
 ---
 
 <section class='how-we-work'>
 	<div class='wrapper'>
 		<div class='how-we-work-media'>
 			<div>
-				<Img src='/images/services/how-we-work-bg.jpg' alt='' />
+				<Picture
+					src='/images/services/how-we-work-bg.jpg'
+					alt='a laptop next to a construction worker toy'
+					placeholder='none'
+				/>
 			</div>
 			<div data-lg-parallax data-lg-parallax-amplitude='0.7'>
-				<Img src='/images/services/how-we-work-middle.png' alt='' />
+				<Picture
+					src='/images/services/how-we-work-middle.png'
+					alt='computer mouse cursor'
+					placeholder='none'
+				/>
 			</div>
 			<div data-lg-parallax data-lg-parallax-amplitude='0.2' data-lg-parallax-anchor='top'>
-				<Img src='/images/services/how-we-work-frnt.png' alt='' />
+				<Picture
+					src='/images/services/how-we-work-frnt.png'
+					alt='a computer moues hanging by a rope'
+					placeholder='none'
+				/>
 			</div>
 		</div>
 		<div class='how-we-work-intro'>

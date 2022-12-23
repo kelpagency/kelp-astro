@@ -1,5 +1,5 @@
 ---
-import { Img } from "astro-imagetools/components";
+import { Picture } from "astro-imagetools/components";
 const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/work?per_page=3`);
 const posts = await response.json();
 ---
@@ -20,7 +20,7 @@ const posts = await response.json();
 					<>
 						<div class='slider-item'>
 							<div class='slider-item-media'>
-								<Img src={post.fimg_url} alt={post.title.rendered} />
+								<Picture src={post.fimg_url} alt={post.title.rendered} />
 							</div>
 							<div class='slider-item-text'>
 								<h3 class='slider-item-text-heading h6' set:html={post.title.rendered} />
