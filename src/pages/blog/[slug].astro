@@ -63,7 +63,7 @@ const jsonComments = await comments.json();
 				</section>
 			)
 		}
-		<!-- <div class='leave-a-comment wrapper wrapper--narrow'>
+		<div class='leave-a-comment wrapper wrapper--narrow'>
 			<h4>Leave a Comment</h4>
 			<hr />
 			<form>
@@ -79,8 +79,9 @@ const jsonComments = await comments.json();
 					>Your Comment<br />
 					<textarea placeholder='whats with the squid 🦑' required></textarea>
 				</label>
+				<input type='hidden' name='post' value={id} />
 				<button class='button' type='submit'>Post Comment</button>
 			</form>
-		</div> -->
+		</div>
 	</article>
 </Layout>

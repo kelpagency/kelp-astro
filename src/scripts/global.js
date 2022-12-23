@@ -146,31 +146,30 @@ luge.lifecycle.add("pageIn", function (done) {
 		const email = commentForm.querySelector("input[type='email']").value;
 		const name = commentForm.querySelector('input[type="text"]').value;
 		const comment = commentForm.querySelector("textarea").value;
-		const postId = commentForm.querySelector('input[type="hidden"]');
+		const postId = commentForm.querySelector('input[type="hidden"]').value;
+		const button = commentForm.querySelector("button");
+		button.innerText = "... posting ...";
 		const data = {
 			post: postId,
-			email: email,
-			name: name,
-			comment: comment
+			author_name: name,
+			author_email: email,
+			content: comment
 		};
-		fetch("https://admin.kelp.agency/wp-json/wp/v2", {
+		fetch("https://admin.kelp.agency/wp-json/wp/v2/comments", {
 			method: "POST", // or 'PUT'
 			headers: {
 				"Content-Type": "application/json"
 			},
 			body: JSON.stringify(data)
 		})
-			.then((response) => {
-				if (response.ok === true) {
-					// Submitted successfully!
-				}
-				return response.json();
+			.then((response) => response.json())
+			.then((data) => {
+				console.log("Success:", data);
+				commentForm.innerHTML = "Comment submitted!";
 			})
-			.then((object) => {
-				// Comment submission failed.
-				// Output `object.message` to see the error message.
-			})
-			.catch((error) => console.error("Error:", error));
+			.catch((error) => {
+				commentForm.innerHTML = error;
+			});
 	});
 
 	done();
