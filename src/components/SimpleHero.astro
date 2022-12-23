@@ -34,7 +34,13 @@ if (mediaFront) {
 
 <section class={cssClasses}>
 	<div class={wrapper}>
-		{tagline && <p class='simple-hero-tagline'>{tagline}</p>}
+		{
+			tagline && (
+				<p class='simple-hero-tagline' data-lg-reveal='fade'>
+					{tagline}
+				</p>
+			)
+		}
 		<h1
 			data-splitting
 			data-lg-reveal='fade'

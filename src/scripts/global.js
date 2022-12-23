@@ -8,8 +8,6 @@ import Splitting from "splitting";
 import { annotate } from "rough-notation";
 import imagesLoaded from "imagesloaded";
 
-Splitting();
-
 window.lottie = lottie;
 
 // the preload animation
@@ -36,7 +34,14 @@ luge.settings({
 	}
 });
 
-// wait till images load before starting animation library
+// do stuff as soon as page is ready
+luge.lifecycle.add("pageInit", function (done) {
+	// intialize splitting for text animations
+	Splitting();
+	done();
+});
+
+// do stuff right after page in animation
 luge.lifecycle.add("pageIn", function (done) {
 	// Home page
 	const squid = document.querySelector(".hero .lg-lottie");
