@@ -110,7 +110,7 @@
 			justify-content: center;
 			visibility: hidden;
 			opacity: 0;
-			transform: translateY(-100%);
+			transform: translateX(-100%);
 			transition: 350ms ease;
 			.mobile-menu-active & {
 				opacity: 1;
