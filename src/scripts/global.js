@@ -6,6 +6,7 @@ import Headroom from "headroom.js";
 import lottie from "lottie-web";
 import Splitting from "splitting";
 import { annotate } from "rough-notation";
+import imagesLoaded from "imagesloaded";
 
 Splitting();
 
@@ -42,6 +43,10 @@ luge.lifecycle.add("pageIn", function (done) {
 	if (squid) {
 		squid.play();
 	}
+
+	imagesLoaded(document.body, function () {
+		luge.emitter.emit("resize");
+	});
 
 	// recent work slider
 	const slider = document.querySelector(".slider");
