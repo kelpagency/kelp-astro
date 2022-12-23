@@ -124,6 +124,7 @@ main {
 	.wrapper {
 		display: flex;
 		flex-wrap: wrap;
+		align-items: center;
 		gap: 2rem 3rem;
 	}
 	.h4 {
@@ -140,7 +141,6 @@ main {
 	}
 	&-text {
 		flex: 1 1 400px;
-		margin-top: auto;
 		p {
 			max-width: none;
 		}

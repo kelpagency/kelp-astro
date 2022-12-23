@@ -101,6 +101,44 @@ luge.lifecycle.add("pageIn", function (done) {
 	const observer = new IntersectionObserver(handleIntersection);
 	emphasisElements.forEach((item) => observer.observe(item));
 
+	// footer subscription newsletter submission
+	const form = document.querySelector(".footer form");
+	form.addEventListener("submit", function (event) {
+		event.preventDefault();
+		const email = form.querySelector("input").value;
+		var data = {
+			fields: [
+				{
+					objectTypeId: "0-1",
+					name: "email",
+					value: email
+				}
+			],
+			context: {
+				pageUri: document.URL,
+				pageName: document.getElementsByTagName("title")[0].innerHTML
+			}
+		};
+		fetch(
+			"https://api.hsforms.com/submissions/v3/integration/submit/4726858/482f7920-2b7c-4604-95f8-43994269d026",
+			{
+				method: "POST", // or 'PUT'
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify(data)
+			}
+		)
+			.then((response) => response.json())
+			.then((data) => {
+				console.log("Success:", data);
+				form.innerHTML = data.inlineMessage;
+			})
+			.catch((error) => {
+				form.innerHTML = error;
+			});
+	});
+
 	done();
 });
 
