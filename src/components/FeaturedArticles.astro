@@ -14,7 +14,7 @@ const posts = await response.json();
 						<h4 class="h5"><a href=`/blog/${post.slug}` set:html={post.title.rendered} /></h4>
 						<p>
 						{post._embedded['wp:term'][0].map((category) => (
-							<span> {category.name}</span>
+							<span>{category.name}</span>
 						))}</p>
 					</article>
 				))}
