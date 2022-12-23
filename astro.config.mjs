@@ -7,7 +7,7 @@ import { astroImageTools } from "astro-imagetools";
 
 // https://astro.build/config
 export default defineConfig({
-	site: "https://kelpagency.netlify.app/",
+	site: "https://www.kelp.agency/",
 	integrations: [
 		// prefetch(),
 		sitemap(),
