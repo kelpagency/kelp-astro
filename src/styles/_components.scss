@@ -348,8 +348,10 @@
 				background: var(--light-red);
 			}
 		}
-		svg {
-			margin-right: 1rem;
+		.service-icon {
+			width: 140px;
+			margin-right: -1rem;
+			margin-left: auto;
 		}
 	}
 	&-right {
