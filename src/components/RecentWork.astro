@@ -20,7 +20,7 @@ const posts = await response.json();
 					<>
 						<div class='slider-item'>
 							<div class='slider-item-media'>
-								<Img src={post.fimg_url} alt={post.title.rendered} aspect={1.75}' />
+								<Img src={post.fimg_url} alt={post.title.rendered} />
 							</div>
 							<div class='slider-item-text'>
 								<h3 class='slider-item-text-heading h6' set:html={post.title.rendered} />

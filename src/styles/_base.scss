@@ -203,6 +203,11 @@ main {
 			grid-template-columns: 1fr;
 		}
 		gap: 2rem;
+		&-item {
+			picture {
+				background: var(--light-green);
+			}
+		}
 		h3 {
 			margin: 1rem 0 0 0;
 		}
