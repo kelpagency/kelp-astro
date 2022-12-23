@@ -1,7 +1,7 @@
 {
 	"name": "Kelp Creative Agency",
 	"short_name": "Kelp",
-	"start_url": "https://kelpagency.netlify.app/",
+	"start_url": "https://www.kelp.agency/",
 	"description": "Specializing in creating amazing websites, web apps, company branding, style guides, and design systems. Our goal is to make creative solutions simple for you.",
 	"display": "standalone",
 	"theme_color": "#c5f5f6",
