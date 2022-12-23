@@ -47,6 +47,9 @@
 			list-style: none;
 			padding: 0;
 			margin-bottom: 3rem;
+			li + li {
+				margin-top: 0.5rem;
+			}
 		}
 	}
 	.water {

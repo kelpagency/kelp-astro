@@ -214,6 +214,10 @@
 	box-sizing: border-box;
 	flex-wrap: wrap !important;
 	align-items: initial !important;
+	@media (max-width: 767px) {
+		margin: 1rem auto;
+		gap: 0;
+	}
 	/**
   * All Columns Alignment
   */
