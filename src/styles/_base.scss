@@ -12,6 +12,9 @@
 
 main {
 	padding-top: 7rem;
+	@media (max-width: 767px) {
+		padding-top: 3rem;
+	}
 }
 
 ::selection {
@@ -22,6 +25,7 @@ main {
 .archive {
 	&-list {
 		margin-top: 10rem;
+
 		article {
 			display: flex;
 			flex-wrap: wrap;
@@ -31,6 +35,9 @@ main {
 			}
 			gap: 6rem;
 			margin-bottom: 16rem;
+			@media (max-width: 767px) {
+				margin-bottom: 7rem;
+			}
 			.media {
 				flex: 1 1 calc(60% - 3rem);
 				text-align: center;
@@ -157,6 +164,23 @@ main {
 			margin-left: 3rem;
 			grid-column: span 2;
 		}
+	}
+}
+.leave-a-comment {
+	margin-bottom: 4rem;
+	max-width: 600px !important;
+	form {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+	}
+	label {
+		flex: 1 1 200px;
+		margin-bottom: 0.5rem;
+		display: block;
+	}
+	button {
+		flex: 1 1 100%;
 	}
 }
 

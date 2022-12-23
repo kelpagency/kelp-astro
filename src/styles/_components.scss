@@ -70,6 +70,9 @@
 
 .simple-hero {
 	padding: 6rem 0;
+	@media (max-width: 767px) {
+		padding: 3rem 0 1rem;
+	}
 	&--dark {
 		background: var(--black);
 		color: white;
@@ -135,6 +138,9 @@
 
 .how-we-work {
 	padding: 6rem 0;
+	@media (max-width: 767px) {
+		padding: 3rem 0;
+	}
 	background: var(--black);
 	color: white;
 	.lg-reveal--layer:after,
@@ -208,6 +214,9 @@
 .recent-work {
 	background: var(--black);
 	padding: 12rem 0 7rem;
+	@media (max-width: 767px) {
+		padding: 6rem 0 0rem;
+	}
 	color: white;
 	.top {
 		max-width: 1180px;
@@ -282,6 +291,9 @@
 .service {
 	&s {
 		padding: 6rem 0;
+		@media (max-width: 767px) {
+			padding: 3rem 0 5rem;
+		}
 	}
 	margin: 10rem auto 8rem;
 	display: flex;
@@ -357,6 +369,9 @@
 
 .testimonials {
 	padding: 8rem 0;
+	@media (max-width: 767px) {
+		padding: 5rem 0 2rem;
+	}
 	text-align: center;
 	background: #f4f4f4;
 	overflow: hidden;
@@ -423,6 +438,9 @@
 
 .featured-articles {
 	margin: 8rem 0;
+	@media (max-width: 767px) {
+		margin: 5rem 0 3rem;
+	}
 	.grid {
 		margin-top: 2rem;
 		display: flex;
@@ -535,6 +553,9 @@
 	h2 {
 		max-width: none;
 		margin: 12rem 0 4rem 0;
+		@media (max-width: 767px) {
+			margin-top: 5rem;
+		}
 	}
 	.team-grid {
 		display: grid;

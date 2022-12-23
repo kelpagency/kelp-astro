@@ -139,6 +139,40 @@ luge.lifecycle.add("pageIn", function (done) {
 			});
 	});
 
+	// leave a comment
+	const commentForm = document.querySelector(".leave-a-comment form");
+	commentForm?.addEventListener("submit", function (event) {
+		event.preventDefault();
+		const email = commentForm.querySelector("input[type='email']").value;
+		const name = commentForm.querySelector('input[type="text"]').value;
+		const comment = commentForm.querySelector("textarea").value;
+		const postId = commentForm.querySelector('input[type="hidden"]');
+		const data = {
+			post: postId,
+			email: email,
+			name: name,
+			comment: comment
+		};
+		fetch("https://admin.kelp.agency/wp-json/wp/v2", {
+			method: "POST", // or 'PUT'
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify(data)
+		})
+			.then((response) => {
+				if (response.ok === true) {
+					// Submitted successfully!
+				}
+				return response.json();
+			})
+			.then((object) => {
+				// Comment submission failed.
+				// Output `object.message` to see the error message.
+			})
+			.catch((error) => console.error("Error:", error));
+	});
+
 	done();
 });
 
