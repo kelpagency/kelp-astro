@@ -13,8 +13,8 @@ export default defineConfig({
 		sitemap(),
 		astroImageTools,
 		compress({
-			css: false,
-			html: true,
+			css: true,
+			html: false,
 			js: true,
 			img: false,
 			svg: false
