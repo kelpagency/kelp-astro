@@ -28,7 +28,7 @@ const posts = await response.json();
 									<div set:html={post.excerpt.rendered} />
 									<p>
 										<a href=`/work/${post.slug}` class='squiggle'>
-											Read More
+											Read More <span class="screen-reader-text">About {post.title.rendered}</span>
 										</a>
 									</p>
 								</div>
