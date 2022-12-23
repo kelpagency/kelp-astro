@@ -38,6 +38,19 @@ luge.settings({
 luge.lifecycle.add("pageInit", function (done) {
 	// intialize splitting for text animations
 	Splitting();
+
+	// team page easter eggs
+	const skeleton = document.querySelector(".button--skeleton");
+	const team = document.querySelector(".team");
+	skeleton?.addEventListener("click", function () {
+		team.classList.toggle("skulls");
+	});
+
+	const disco = document.querySelector(".button--disco");
+	disco?.addEventListener("click", function () {
+		team.classList.toggle("dance");
+	});
+
 	done();
 });
 
