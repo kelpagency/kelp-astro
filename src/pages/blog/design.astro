@@ -1,7 +1,7 @@
 ---
 import Layout from "../../Base.astro";
 import { Picture } from "astro-imagetools/components";
-const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/posts?per_page=100`);
+const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/posts?per_page=100&categories=18`);
 const posts = await response.json();
 ---
 
@@ -10,11 +10,10 @@ const posts = await response.json();
 		<div class='wrapper wrapper--narrow'>
 			<h1 style="margin-top: 8rem;" data-splitting data-lg-reveal="fade" data-lg-reveal-stagger="0.05">The Kelp Current</h1>
 			<p style="font-size: var(--step-1); max-width: 800px;" data-lg-reveal="fade" data-lg-reveal-delay=".5">
-				Here you'll find expert tips and tricks from the best of Kelp. Design tips, development tricks, and maybe even some tasty strategy treats.
-			</p>
+				Here you'll find expert tips and tricks from the best of Kelp. Design tips, development tricks, and maybe even some tasty strategy treats.</p>
 			<p class="blog-topics" data-lg-reveal="fade" data-lg-reveal-stagger="0.05">
-				<a class="button" href="/blog/design">Design</a>
-				<a class="button button--active" href="/blog/development">Development</a>
+				<a class="button button--green" href="/blog/design">Design</a>
+				<a class="button" href="/blog/development">Development</a>
 				<a class="button" href="/blog/content">Content Creation</a>
 			</p>
 		</div>

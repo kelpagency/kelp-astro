@@ -1,7 +1,7 @@
 ---
 import Layout from "../../Base.astro";
 import { Picture } from "astro-imagetools/components";
-const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/posts?per_page=100`);
+const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/posts?per_page=100&categories=32`);
 const posts = await response.json();
 ---
 
@@ -14,8 +14,8 @@ const posts = await response.json();
 			</p>
 			<p class="blog-topics" data-lg-reveal="fade" data-lg-reveal-stagger="0.05">
 				<a class="button" href="/blog/design">Design</a>
-				<a class="button button--active" href="/blog/development">Development</a>
-				<a class="button" href="/blog/content">Content Creation</a>
+				<a class="button" href="/blog/development">Development</a>
+				<a class="button button--green" href="/blog/content">Content Creation</a>
 			</p>
 		</div>
 		<div class="wrapper archive-list">

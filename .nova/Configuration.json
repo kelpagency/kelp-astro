@@ -1,6 +1,7 @@
 {
   "prettier.default-config.printWidth" : 120,
   "prettier.default-config.singleQuote" : "Enable",
+  "prettier.format-on-save" : "Enable",
   "workspace.preview_root" : ".\/src",
   "workspace.preview_server_port" : 3000,
   "workspace.preview_type" : "custom",
