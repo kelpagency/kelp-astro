@@ -119,9 +119,11 @@
 		aspect-ratio: 1/1;
 		overflow: hidden;
 		margin-bottom: -12rem;
+		text-align: center;
 		> div {
 			position: absolute;
 			top: 0;
+			width: 100%;
 			overflow: hidden;
 			&:nth-of-type(1) {
 				z-index: 1;
@@ -133,7 +135,6 @@
 				z-index: 3;
 			}
 			img {
-				background: none !important;
 			}
 		}
 	}
@@ -461,7 +462,7 @@
 			a {
 				text-decoration: none;
 				&:after {
-					content: "";
+					content: '';
 					display: block;
 					position: absolute;
 					top: 0;
@@ -476,7 +477,7 @@
 				color: #757575;
 				span + span {
 					&:before {
-						content: ", ";
+						content: ', ';
 					}
 				}
 			}

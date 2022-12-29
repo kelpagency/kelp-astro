@@ -1,5 +1,5 @@
 ---
-import { Img } from "astro-imagetools/components";
+import { Img } from 'astro-imagetools/components';
 
 export interface Props {
 	tagline: string;
@@ -12,23 +12,23 @@ export interface Props {
 }
 
 const {
-	tagline = "",
-	title = "H1 Heading",
-	description = "",
+	tagline = '',
+	title = 'H1 Heading',
+	description = '',
 	dark = false,
-	mediaFront = "",
-	mediaMiddle = "",
-	mediaBack = ""
+	mediaFront = '',
+	mediaMiddle = '',
+	mediaBack = ''
 } = Astro.props;
 
-let cssClasses = "simple-hero";
-let wrapper = "wrapper wrapper--narrow";
+let cssClasses = 'simple-hero';
+let wrapper = 'wrapper wrapper--narrow';
 let mediaContent;
 if (dark) {
-	cssClasses = cssClasses + " simple-hero--dark";
+	cssClasses = cssClasses + ' simple-hero--dark';
 }
 if (mediaFront) {
-	cssClasses = cssClasses + " simple-hero--media";
+	cssClasses = cssClasses + ' simple-hero--media';
 }
 ---
 
@@ -36,34 +36,28 @@ if (mediaFront) {
 	<div class={wrapper}>
 		{
 			tagline && (
-				<p class='simple-hero-tagline' data-lg-reveal='fade'>
+				<p class="simple-hero-tagline" data-lg-reveal="fade">
 					{tagline}
 				</p>
 			)
 		}
-		<h1
-			data-splitting
-			data-lg-reveal='fade'
-			data-lg-reveal-stagger='0.05'
-			class='simple-hero-h1'
-			set:html={title}
-		/>
+		<h1 data-splitting data-lg-reveal="fade" data-lg-reveal-stagger="0.05" class="simple-hero-h1" set:html={title} />
 		{
 			description && (
-				<p data-lg-reveal='fade' data-lg-reveal-delay='.1' class='simple-hero-description'>
+				<p data-lg-reveal="fade" data-lg-reveal-delay=".1" class="simple-hero-description">
 					{description}
 				</p>
 			)
 		}
 		{
 			mediaFront && (
-				<div class='simple-hero-media' data-lg-reveal='fade' data-lg-reveal-stagger='.1'>
-					<Img src={mediaBack} alt='' />
-					<div data-lg-parallax data-lg-parallax-amplitude='0.3'>
-						<Img src={mediaMiddle} alt='' />
+				<div class="simple-hero-media" data-lg-reveal="fade" data-lg-reveal-stagger=".1">
+					<Img src={mediaBack} alt="" placeholder="none" />
+					<div data-lg-parallax data-lg-parallax-amplitude="0.3">
+						<Img src={mediaMiddle} alt="" placeholder="none" />
 					</div>
-					<div data-lg-parallax data-lg-parallax-amplitude='0.15' data-lg-parallax-anchor='bottom'>
-						<Img src={mediaFront} alt='' />
+					<div data-lg-parallax data-lg-parallax-amplitude="0.15" data-lg-parallax-anchor="bottom">
+						<Img src={mediaFront} alt="" placeholder="none" />
 					</div>
 				</div>
 			)

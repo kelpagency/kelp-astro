@@ -261,3 +261,14 @@ main {
 		filter: blur(0);
 	}
 }
+
+.clients {
+	margin-top: 12rem;
+	margin-bottom: 5rem;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 2rem 3rem;
+	&-group {
+		flex: 1 1 300px;
+	}
+}
