@@ -10,7 +10,8 @@ const posts = await response.json();
 		<div class="grid">
 			{posts.map((post) => (
 					<article>
-						<Picture src={post.fimg_url} loading="lazy" alt={post.title.rendered}/>
+						<Picture src={post.fimg_url} loading="lazy" alt={post.title.rendered} format={["avif", "webp"]}
+						fallbackFormat="jpg" includeSourceFormat={false} />
 						<h4 class="h5"><a href=`/blog/${post.slug}` set:html={post.title.rendered} /></h4>
 						<p>
 						{post._embedded['wp:term'][0].map((category) => (
