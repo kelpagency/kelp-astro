@@ -1,0 +1,26 @@
+---
+import Layout from '../Base.astro';
+import SimpleHero from '../components/SimpleHero.astro';
+import { Img } from 'astro-imagetools/components';
+---
+
+<Layout title='Content Creation'>
+	<SimpleHero tagline='Kelp Holidays' title='Calendar' />
+	<div class='wrapper wrapper--narrow' style='margin-bottom: 150px;'>
+		<h2 class='h4' data-lg-reveal='fade'>The days we'll be off this year.</h2>
+		<ul data-lg-reveal='fade' data-lg-reveal-stagger='.1'>
+			<li><b>New Year’s Day:</b> Monday January 2, 2023</li>
+			<li><b>Martin Luther King Jr. Day:</b> Monday, January 16, 2023</li>
+			<li><b>Presidents Day:</b> Monday, February 20, 2023</li>
+			<li><b>Good Friday:</b> April 7, 2023</li>
+			<li><b>Memorial Day:</b> Monday, May 29, 2023</li>
+			<li><b>Juneteenth:</b> Monday June 19, 2023</li>
+			<li><b>Independence Day:</b> Tuesday July 4, 2023</li>
+			<li><b>Labor Day:</b> Monday, September 4, 2023</li>
+			<li><b>Columbus Day/Indigenious People’s Day:</b> Monday October 9, 2023</li>
+			<li><b>Veterans Day:</b> Friday November 10, 2023</li>
+			<li><b>Thanksgiving:</b> November 23-24, 2023</li>
+			<li><b>Christmas Break:</b> December 25, 2023-January 1, 2024</li>
+		</ul>
+	</div>
+</Layout>
