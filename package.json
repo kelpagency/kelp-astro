@@ -16,7 +16,7 @@
 		"@waaark/luge": "0.6.11-beta",
 		"astro": "1.8.0",
 		"astro-compress": "^1.1.24",
-		"astro-imagetools": "^0.7.0",
+		"astro-imagetools": "^0.6.17",
 		"autoprefixer": "^10.4.13",
 		"flickity": "^3.0.0",
 		"flickity-fade": "^2.0.0",
