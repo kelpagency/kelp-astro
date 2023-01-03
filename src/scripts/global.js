@@ -1,4 +1,3 @@
-import gsap from 'gsap';
 import luge from '@waaark/luge';
 import Flickity from 'flickity';
 import 'flickity-fade';
@@ -12,11 +11,29 @@ window.lottie = lottie;
 
 // the preload animation
 luge.preloader.add((done, remove) => {
+	const preloader = document.querySelector('.lg-preloader');
 	const preloaderLogo = document.querySelector('.lg-preloader .lg-lottie');
 	preloaderLogo.play();
-	gsap.to('.lg-preloader .lg-lottie', { opacity: 1, scale: 1, delay: 0, ease: 'power4' });
-	gsap.to('.lg-preloader .lg-lottie', { opacity: 0, scale: 0, duration: 0.5, delay: 1.5, ease: 'expo' });
-	gsap.to('.lg-preloader', { opacity: 0, delay: 1.6, duration: 0.4 });
+	preloaderLogo.animate([{ opacity: 1, transform: 'scale(1)' }], {
+		fill: 'forwards',
+		duration: 250,
+		iterations: 1,
+		easing: 'ease'
+	});
+	preloaderLogo.animate([{ opacity: 0, transform: 'scale(0)' }], {
+		fill: 'forwards',
+		duration: 500,
+		iterations: 1,
+		delay: 1500,
+		easing: 'ease'
+	});
+	preloader.animate([{ opacity: 0, transform: 'scale(0)' }], {
+		fill: 'forwards',
+		duration: 500,
+		iterations: 1,
+		delay: 1500,
+		easing: 'ease'
+	});
 	setTimeout(() => {
 		preloaderLogo.stop();
 		done();
