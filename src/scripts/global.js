@@ -1,8 +1,8 @@
-import luge from '@waaark/luge';
+import luge from '@waaark/luge/dist/js/luge.esm';
 import Flickity from 'flickity';
 import 'flickity-fade';
 import Headroom from 'headroom.js';
-import lottie from 'lottie-web';
+import lottie from 'lottie-web/build/player/lottie_light';
 import Splitting from 'splitting';
 import { annotate } from 'rough-notation';
 import imagesLoaded from 'imagesloaded';
