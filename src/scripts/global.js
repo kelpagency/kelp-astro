@@ -1,4 +1,4 @@
-import luge from '@waaark/luge/dist/js/luge.esm';
+import luge from '@waaark/luge';
 import Flickity from 'flickity';
 import 'flickity-fade';
 import Headroom from 'headroom.js';
@@ -63,8 +63,8 @@ luge.lifecycle.add('pageInit', function (done) {
 
 	// team page easter eggs
 	const skeleton = document.querySelector('.button--skeleton');
-	const team = document.querySelector('.team');
 	skeleton?.addEventListener('click', function () {
+		const team = document.querySelector('.team');
 		team.classList.toggle('skulls');
 	});
 
@@ -95,9 +95,9 @@ luge.lifecycle.add('pageIn', function (done) {
 
 	// recent work slider
 	const slider = document.querySelector('.slider');
-	const next = document.querySelectorAll('.button--next');
-	const prev = document.querySelectorAll('.button--prev');
 	if (slider) {
+		const next = document.querySelectorAll('.button--next');
+		const prev = document.querySelectorAll('.button--prev');
 		const flkty = new Flickity(slider, {
 			prevNextButtons: false,
 			wrapAround: true,
@@ -120,9 +120,9 @@ luge.lifecycle.add('pageIn', function (done) {
 	// Contact page
 	// meetings embed
 	const meetingsDiv = document.querySelector('#meetings-embed');
-	const meetingsScript = document.createElement('script');
-	meetingsScript.setAttribute('src', 'https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js');
 	if (meetingsDiv) {
+		const meetingsScript = document.createElement('script');
+		meetingsScript.setAttribute('src', 'https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js');
 		meetingsDiv.appendChild(meetingsScript);
 	}
 
@@ -144,7 +144,7 @@ luge.lifecycle.add('pageIn', function (done) {
 		});
 	}
 	const observer = new IntersectionObserver(handleIntersection);
-	emphasisElements.forEach((item) => observer.observe(item));
+	emphasisElements?.forEach((item) => observer.observe(item));
 
 	// footer subscription newsletter submission
 	const form = document.querySelector('.footer form');
