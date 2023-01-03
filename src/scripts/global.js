@@ -13,13 +13,16 @@ window.lottie = lottie;
 luge.preloader.add((done, remove) => {
 	const preloader = document.querySelector('.lg-preloader');
 	const preloaderLogo = document.querySelector('.lg-preloader .lg-lottie');
+	// play lottie animation
 	preloaderLogo.play();
+	// fade in
 	preloaderLogo.animate([{ opacity: 1, transform: 'scale(1)' }], {
 		fill: 'forwards',
 		duration: 250,
 		iterations: 1,
 		easing: 'ease'
 	});
+	// fade out
 	preloaderLogo.animate([{ opacity: 0, transform: 'scale(0)' }], {
 		fill: 'forwards',
 		duration: 500,
@@ -27,7 +30,8 @@ luge.preloader.add((done, remove) => {
 		delay: 1500,
 		easing: 'ease'
 	});
-	preloader.animate([{ opacity: 0, transform: 'scale(0)' }], {
+	// fade out
+	preloader.animate([{ opacity: 0 }], {
 		fill: 'forwards',
 		duration: 500,
 		iterations: 1,
@@ -35,6 +39,7 @@ luge.preloader.add((done, remove) => {
 		easing: 'ease'
 	});
 	setTimeout(() => {
+		// stop lottie animation to prevent memory leak
 		preloaderLogo.stop();
 		done();
 		remove();
