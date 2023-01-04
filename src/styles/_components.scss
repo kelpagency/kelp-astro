@@ -94,6 +94,32 @@
 			grid-template-columns: 1fr 0.9fr;
 		}
 	}
+	&--lottie {
+		.wrapper {
+			max-width: 1000px;
+			align-items: start;
+			grid-template-columns: 1fr 3fr;
+		}
+		div[data-lg-lottie] {
+			grid-row: span 3;
+			position: relative;
+			&:after {
+				content: '';
+				position: absolute;
+				width: 60%;
+				height: 60%;
+				background: var(--light-teal);
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -50%);
+				z-index: -1;
+			}
+		}
+		h1,
+		p {
+			grid-column: 2;
+		}
+	}
 	&-tagline {
 		grid-column: 1;
 		margin: 0;
