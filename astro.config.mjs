@@ -1,14 +1,9 @@
 // https://astro.build/config
 import { defineConfig } from 'astro/config';
-// import prefetch from "@astrojs/prefetch";
 import sitemap from '@astrojs/sitemap';
 import compress from 'astro-compress';
 import { astroImageTools } from 'astro-imagetools';
 
-// https://astro.build/config
-import partytown from '@astrojs/partytown';
-
-// https://astro.build/config
 export default defineConfig({
 	site: 'https://www.kelp.agency/',
 	integrations: [
@@ -21,7 +16,6 @@ export default defineConfig({
 			js: true,
 			img: false,
 			svg: true
-		}),
-		partytown()
+		})
 	]
 });
