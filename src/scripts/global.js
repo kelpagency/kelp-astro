@@ -63,8 +63,9 @@ luge.lifecycle.add('pageInit', function (done) {
 
 	// team page easter eggs
 	const skeleton = document.querySelector('.button--skeleton');
+	const team = document.querySelector('.team');
+
 	skeleton?.addEventListener('click', function () {
-		const team = document.querySelector('.team');
 		team.classList.toggle('skulls');
 	});
 
