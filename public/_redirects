@@ -1,0 +1,4 @@
+# Redirects from what the browser requests to what we serve
+/why-kelp						/about
+/how-we-work				/about
+/the-team						/about
