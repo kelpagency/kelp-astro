@@ -4,19 +4,21 @@ import SimpleHero from '../../components/SimpleHero.astro';
 import { Picture } from 'astro-imagetools/components';
 import FeaturedArticles from "../../components/FeaturedArticles.astro";
 
-const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/work?per_page=3&tags=82`);
+const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/work?per_page=3&tags=81`);
 const posts = await response.json();
 ---
 
 <Layout
-	title='Website Support & Maintenance'
-	description='Updating a website regularly ensures that it is running smoothly and error-free.'
+	title='Web Hosting'
+	description='Web hosting services that are affordable, reliable and fit the need.'
 >
-	<SimpleHero tagline='Ongoing Support Services' title='Website Support' description="Updating a website regularly ensures that it is running smoothly and error-free." lottieFile='website-support.json' />
+	<SimpleHero tagline='Ongoing Support Services' title='Web Hosting' description="Updating a website regularly ensures that it is running smoothly and error-free." lottieFile='website-support.json' />
 	<div class='service-body'>
 		<div class='wrapper wrapper--narrow'>
-			<h2>Why website support matters</h2>
-			<p>Keeping your website up to date is an important part of ensuring that it's error free and running smoothly. This means making sure all the plugins / dependencies on there are current, fixing any broken links if they exist (that would make life easier for visitors), backing it up regularly, and monitoring Google's search console for any issues.</p>
+			<h2>Why web hosting matters</h2>
+			<p>Your web host is a critical component of having a successful website, as it is the foundation for your site's performance, security, and reliability. It should be able to scale automatically to higher volumes of traffic as needed without breaking the bank. And it should also include great technical support for when any issue may arise.</p>
+			<p>We partner with the best hosting companies in the business whether it's hosting a CMS based website like WordPress, Drupal, headless sites, or even web applications—we've got you covered.</p>
+			<p>Our partners include: Flywheel, WP Engine, Pantheon, Netlify, and Firebase.</p>
 			<p><a href='/contact' class='button button--green'>Let's Talk</a></p>
 		</div>
 		{ posts.length > 0 && 

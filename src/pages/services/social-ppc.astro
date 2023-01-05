@@ -4,21 +4,27 @@ import SimpleHero from '../../components/SimpleHero.astro';
 import { Picture } from 'astro-imagetools/components';
 import FeaturedArticles from "../../components/FeaturedArticles.astro";
 
-const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/work?per_page=3&tags=77`);
+const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/work?per_page=3&tags=86`);
 const posts = await response.json();
 ---
 
 <Layout
-	title='Audience Targeting'
-	description='Understanding which group of people is most likely going to convert into buyers for your products can help us provide a better user experience, as well as higher conversion rates!'
+	title='Social & PPC Campaigns'
+	description='Increase your impact through paid social campaigns and PPC that amplify your reach and put your content in front of the right people.'
 >
-	<SimpleHero tagline='Digital Marketing Services' title='Audience Targeting' description="Understanding which group of people is most likely going to convert into buyers for your products can help us provide a better user experience, as well as higher conversion rates!" lottieFile='audience-targeting.json' />
+	<SimpleHero tagline='Digital Marketing Services' title='Social & PPC' description="Increase your impact through paid social campaigns and PPC that amplify your reach and put your content in front of the right people." lottieFile='social-media-content.json' />
 	<div class='service-body'>
 		<div class='wrapper wrapper--narrow'>
-			<h2>Why audience targeting matters</h2>
-			<p>You can't market to people if you don’t know who they are, what their needs and wants in life may be. The key is understanding that not everyone has the same goals or desires so by creating different personas for each group of potential customers it will allow organizations an opportunity not only see more clearly but also make better decisions when servicing these distinct segments with tailored strategies accordingly!</p>
-			<h2>How we approach audience targeting</h2>
-			<p>We dive deep into your brand to understand what makes it unique, then use data analytics and strategic criteria like segmenting audiences based on values, interests, other various targeting techniques and personalisation strategies. This allows us to reach out more effectively with each group of people—expanding the impact of every campaign.</p>
+			<h2>Why social & PPC campaigns matter</h2>
+			<p>Grow your reach and impact through paid social campaigns that can amplify the number of people who see you content and expidite your business growth. Harness the power of pay-per click (PPC) ads to amplify your reach and product awareness.</p>
+			<h2>Platforms we work with</h2>
+			<ul>
+				<li>Facebook</li>
+				<li>Twitter</li>
+				<li>Instagram</li>
+				<li>LinkedIn</li>
+				<li>Google Ads</li>
+			</ul>
 			<p><a href='/contact' class='button button--green'>Let's Talk</a></p>
 		</div>
 		{posts.length > 0 && 
