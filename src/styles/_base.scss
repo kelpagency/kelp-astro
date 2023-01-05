@@ -297,10 +297,14 @@ main {
 		}
 		ul {
 			column-count: 2;
+			column-gap: 1.75rem;
 			margin-bottom: 2rem;
 		}
 		a {
 			color: white;
+		}
+		.button {
+			margin-top: 2rem;
 		}
 	}
 	&-related-work {
