@@ -96,6 +96,13 @@ main {
 	.tags {
 		opacity: 0.5;
 		margin: -11rem auto 10rem auto;
+		a {
+			text-decoration: none;
+			&:hover,
+			&:focus {
+				text-decoration: underline;
+			}
+		}
 		&:empty {
 			display: none;
 		}
@@ -287,6 +294,10 @@ main {
 		}
 		.wrapper--narrow {
 			max-width: 870px;
+		}
+		ul {
+			column-count: 2;
+			margin-bottom: 2rem;
 		}
 		a {
 			color: white;

@@ -1,34 +1,34 @@
 ---
-import Layout from '../../../Base.astro';
-import SimpleHero from '../../../components/SimpleHero.astro';
+import Layout from '../../Base.astro';
+import SimpleHero from '../../components/SimpleHero.astro';
 import { Picture } from 'astro-imagetools/components';
-import FeaturedArticles from "../../../components/FeaturedArticles.astro";
+import FeaturedArticles from "../../components/FeaturedArticles.astro";
 
-const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/work?per_page=3&tags=71`);
+const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/work?per_page=3&tags=68`);
 const posts = await response.json();
 ---
 
 <Layout
-	title='Print Design'
-	description='Create a custom design that captures your audience’s attention with our wide variety of print options.'
+	title='Photography'
+	description='High-quality photographs can make a strong first impression and create a positive image for a business or product.'
 >
-	<SimpleHero tagline='Content Creation Services' title='Print Design' description="Create a custom design that captures your audience’s attention with our wide variety of print options." lottieFile='print-design.json'/>
+	<SimpleHero tagline='Content Creation Services' title='Photography' description="High-quality photographs can make a strong first impression and create a positive image for a business or product." lottieFile='photography.json'/>
 	<div class='service-body'>
 		<div class='wrapper wrapper--narrow'>
-			<h2>Why print design matters</h2>
+			<h2>Why photography matters</h2>
 			<p>
-				Attention-grabbing book covers, eye-catching newspaper ads or noticeable stationery is vital to showcase your brand in a consistent way to deliver the results you want. High-end magazine designs and sophisticated brochures make your organization stand out from the crowd.
+				High-quality photographs can make a strong first impression and create a positive image for a business or product. They can also be a powerful way to communicate information and ideas, and can help to tell a story or convey a message for your brand or current marketing campaign.
 			</p>
-			<h2>Applications for print design</h2>
+			<p>At a time when keeping attention is tough this type animation can help you turn messages into memorable experiences</p>
+			<h2>Applications for photography</h2>
 			<ul>
-				<li>Magazine / newspaper Design</li>
-				<li>Book Cover Design</li>
-				<li>Brochures and Pamphlet Design</li>
-				<li>Poster Design</li>
-				<li>Event Collateral</li>
+				<li>Product photography</li>
+				<li>Events</li>
+				<li>Website</li>
+				<li>Social Media</li>
 			</ul>
-			<h2>How we approach print design</h2>
-			<p>It takes a different level of design to create posters, stands, or stationary than it does for digital design. collaboration ensures your print designs are always on brand and properly represent your brand beyond the internet.</p>
+			<h2>How we approach photography</h2>
+			<p>Typically we'll work with you to understand your goals and objectives in the discovery phase along with the intended audience the photos will be for. Once we fully understand the goals we start our planning whether it will include models and locations or our in-house studio, we'll schedule a time and day(s) that works best for you. After the shoot we'll do some post-processing to get the required look and feel that matches your brand and deliver the end results as files for you to use, as part of a larger marketing campaign, or any other specific application.</p>
 			<p><a href='/contact' class='button button--green'>Let's Talk</a></p>
 		</div>
 		{posts.length > 0 && 

@@ -4,28 +4,28 @@ import SimpleHero from '../../../components/SimpleHero.astro';
 import { Img } from 'astro-imagetools/components';
 ---
 
-<Layout title='Digital Marketing'>
+<Layout title="Digital Marketing">
 	<SimpleHero
-		tagline='Services'
-		title='Digital Marketing'
-		description='We know that every business is different, and we want to find out what works best for your brand. Whether you need help with social media management, email marketing, SEO, or something else entirely, we can help you get there.'
-		mediaFront='/images/services/digital-marketing-front.png'
-		mediaMiddle='/images/services/digital-marketing-middle.png'
-		mediaBack='/images/services/digital-marketing-back.jpg'
+		tagline="Services"
+		title="Digital Marketing"
+		description="We know that every business is different, and we want to find out what works best for your brand. Whether you need help with social media management, email marketing, SEO, or something else entirely, we can help you get there."
+		mediaFront="/images/services/digital-marketing-front.png"
+		mediaMiddle="/images/services/digital-marketing-middle.png"
+		mediaBack="/images/services/digital-marketing-back.jpg"
 	/>
-	<div class='service-intro service-intro--marketing'>
-		<div class='wrapper'>
-			<p class='h4'>
+	<div class="service-intro service-intro--marketing">
+		<div class="wrapper">
+			<p class="h4">
 				We don’t have a one-size-fits-all approach; instead of offering generic services, we work hard to <em
 					>understand your goals</em
 				> and make sure that the services we offer are <em>strategically tailored</em> specifically to your needs.
 			</p>
-			<div class='service-intro-media' data-lg-parallax='child'>
+			<div class="service-intro-media" data-lg-parallax="child">
 				<div>
-					<Img src='./images/services/digital-marketing-office-photo.jpg' alt='Kelpers reviewing marketing analytics' />
+					<Img src="./images/services/digital-marketing-office-photo.jpg" alt="Kelpers reviewing marketing analytics" />
 				</div>
 			</div>
-			<div class='service-intro-text'>
+			<div class="service-intro-text">
 				<p>
 					This approach ensures your performance is at its peak, and encourages continued improvement throughout the
 					data analysis process to <em>maximize ROI</em>.
@@ -38,296 +38,98 @@ import { Img } from 'astro-imagetools/components';
 			</div>
 		</div>
 	</div>
-	<div class='service-list services-list--marketing wrapper'>
+	<div class="service-list services-list--marketing wrapper">
 		<h2>Digital Marketing</h2>
-		<div class='service-list-item'>
-			<div data-lg-parallax data-lg-parallax-amplitude='0.2'>
+		<div class="service-list-item">
+			<div data-lg-parallax data-lg-parallax-amplitude="0.2">
 				<div
-					class='service-list-item-square'
-					style='background-color: var(--light-green)'
-					data-lg-reveal='layer-to-right'
+					class="service-list-item-square"
+					style="background-color: var(--light-green)"
+					data-lg-reveal="layer-to-right"
 				>
 				</div>
 			</div>
-			<svg
+			<div
 				data-lg-parallax
-				data-lg-parallax-amplitude='0.4'
-				xmlns='http://www.w3.org/2000/svg'
-				width='89.5'
-				height='89.6'
+				data-lg-parallax-amplitude="0.4"
+				data-lg-lottie="/animations/audience-targeting.json"
+				data-lg-lottie-autoplay="true"
+				data-lg-lottie-loop="true"
+				class="service-list-item-icon"
 			>
-				<g data-name='Group 147'>
-					<g data-name='Group 139'>
-						<path
-							fill='#42c634'
-							d='M45.3 88.5C19.3 89.3 1 70.5 1 45.3A41.8 41.8 0 0 1 44.2 1c26-.1 44.2 18.7 44.3 43.2a42.4 42.4 0 0 1-43.2 44.3Z'
-							data-name='Path 195'></path>
-						<path
-							fill='#0f1722'
-							d='M43.8 89.6a46.4 46.4 0 0 1-17.7-3.4 40.9 40.9 0 0 1-13.8-9.3 41.8 41.8 0 0 1-9-14A48 48 0 0 1 0 45.2c-.3-12.6 4-24.2 12.2-32.5a41.2 41.2 0 0 1 14-9.4 47.4 47.4 0 0 1 18-3.4h.3a48.4 48.4 0 0 1 18.1 3.4 42 42 0 0 1 23.5 23.4 46.5 46.5 0 0 1 3.4 17.4 46.3 46.3 0 0 1-3 17.5A42 42 0 0 1 77.7 76a42.5 42.5 0 0 1-14 9.7 49 49 0 0 1-18.3 3.8h-1.5ZM44.2 2A45.4 45.4 0 0 0 27 5.3a39.2 39.2 0 0 0-13.4 8.9A39.7 39.7 0 0 0 5 28 45.7 45.7 0 0 0 2 45.3a46 46 0 0 0 3.1 16.8 39.9 39.9 0 0 0 8.6 13.4 39 39 0 0 0 13.2 8.8 44.4 44.4 0 0 0 16.9 3.3h1.4a47 47 0 0 0 17.5-3.7 40.5 40.5 0 0 0 13.5-9.3A40 40 0 0 0 84.7 61a44.3 44.3 0 0 0 2.8-16.7 44.5 44.5 0 0 0-3.2-16.8A40 40 0 0 0 61.9 5.3 46.4 46.4 0 0 0 44.5 2h-.3Z'
-							data-name='Path 195 - Outline'></path>
-					</g>
-					<g data-name='Group 140'>
-						<path
-							fill='#0f1722'
-							d='M44.9 89.5h-2a45.3 45.3 0 0 1-17.1-3.8A40.1 40.1 0 0 1 12.6 76 45 45 0 0 1 1.4 43a49.6 49.6 0 0 1 3.5-17 42.2 42.2 0 0 1 8.8-13.7 39.4 39.4 0 0 1 13.2-9A43 43 0 0 1 43.5 0l3 .1a46.8 46.8 0 0 1 17.6 4.3 41.4 41.4 0 0 1 13.4 10.1A41.9 41.9 0 0 1 85.8 29a47.3 47.3 0 0 1 2.3 17.6 48.2 48.2 0 0 1-3.6 17 42.4 42.4 0 0 1-9 13.6 40.7 40.7 0 0 1-13.6 9 44.6 44.6 0 0 1-17 3.3ZM3.4 43A43 43 0 0 0 14 74.8a38.1 38.1 0 0 0 12.6 9A43.3 43.3 0 0 0 43 87.5h1.9a42.6 42.6 0 0 0 16.3-3A38.7 38.7 0 0 0 74 75.7a40.4 40.4 0 0 0 8.6-13 46.2 46.2 0 0 0 3.5-16.3 45.3 45.3 0 0 0-2.2-16.9A39.9 39.9 0 0 0 76 15.8a39.4 39.4 0 0 0-12.8-9.5A44.8 44.8 0 0 0 46.5 2l-3-.1a41 41 0 0 0-15.9 3 37.4 37.4 0 0 0-12.5 8.6 40.2 40.2 0 0 0-8.3 13A47.6 47.6 0 0 0 3.4 43Z'
-							data-name='Path 196'></path>
-					</g>
-					<g data-name='Group 141'>
-						<path
-							fill='#fff'
-							d='M46 75.3h-1.6c-16.7-1-29-13.2-28.9-28.4-.2-15 12.2-27.2 28.8-28.1H46A27.4 27.4 0 0 1 74 47a27.4 27.4 0 0 1-28 28.2Zm0-40.8h-.8c-8 .5-14 5.8-14 12.4 0 6.8 6 12.2 14 12.6h.8a12.1 12.1 0 0 0 8.8-3.4 12.4 12.4 0 0 0 3.4-9 12.6 12.6 0 0 0-3.4-9.2 12.1 12.1 0 0 0-8.8-3.4Z'
-							data-name='Path 197'></path>
-					</g>
-					<g data-name='Group 142'>
-						<path
-							fill='#0f1722'
-							d='M45.4 76.7h-1.5A34.4 34.4 0 0 1 31 73.8a28.9 28.9 0 0 1-9.7-6.9 27.6 27.6 0 0 1-5.8-9.6A30.2 30.2 0 0 1 14 45.7a30.5 30.5 0 0 1 2.5-11.2 27.7 27.7 0 0 1 6.3-9 28.3 28.3 0 0 1 9.4-6A32.7 32.7 0 0 1 44 17.4h2.3a35.7 35.7 0 0 1 12.5 3 29.9 29.9 0 0 1 9.6 6.6A28.3 28.3 0 0 1 76 48.3a29.6 29.6 0 0 1-2.6 11.3 27.9 27.9 0 0 1-6.4 9 29.2 29.2 0 0 1-9.6 6 34 34 0 0 1-12.1 2ZM44 20.4a29.7 29.7 0 0 0-10.7 1.9 25.3 25.3 0 0 0-8.4 5.3 24.7 24.7 0 0 0-5.6 8A27.5 27.5 0 0 0 17 45.8a27.2 27.2 0 0 0 1.5 10.5 24.6 24.6 0 0 0 5 8.6 25.9 25.9 0 0 0 8.8 6.2A31.4 31.4 0 0 0 44 73.7h1.4a31 31 0 0 0 11-2 26.2 26.2 0 0 0 8.7-5.3 25 25 0 0 0 5.7-8 26.7 26.7 0 0 0 2.3-10.2 26.1 26.1 0 0 0-1.5-10.5 24.7 24.7 0 0 0-5.4-8.6 26.9 26.9 0 0 0-8.6-6A32.7 32.7 0 0 0 46 20.4h-2Z'
-							data-name='Path 199'></path>
-					</g>
-					<g data-name='Group 143'>
-						<path
-							fill='#0f1722'
-							d='M45.2 61h-.7a14.8 14.8 0 0 1-10.6-4.6 14.5 14.5 0 0 1 .7-19.6A13.4 13.4 0 0 1 39 34a15.3 15.3 0 0 1 5.6-1h1A15.4 15.4 0 0 1 56 37.7a13.4 13.4 0 0 1 3.7 10 13.6 13.6 0 0 1-4.3 9.6A13.8 13.8 0 0 1 51 60a15.9 15.9 0 0 1-5.7 1Zm-.6-25a12.4 12.4 0 0 0-4.5.8 10.4 10.4 0 0 0-3.4 2.2 10.7 10.7 0 0 0-3.3 7.5 10.6 10.6 0 0 0 2.7 7.9 11.8 11.8 0 0 0 8.5 3.6h.6a13 13 0 0 0 4.6-.8 10.8 10.8 0 0 0 3.6-2.2 10.6 10.6 0 0 0 3.3-7.5 10.4 10.4 0 0 0-2.8-7.9 12.4 12.4 0 0 0-8.4-3.6h-.9Z'
-							data-name='Path 200 - Outline'></path>
-					</g>
-					<g data-name='Group 144'>
-						<path
-							fill='#0f1722'
-							d='M45.2 60.5h-.7a14.3 14.3 0 0 1-10.2-4.4 14 14 0 0 1 .6-18.9 12.9 12.9 0 0 1 4.3-2.7 14.8 14.8 0 0 1 5.4-1h1a14.9 14.9 0 0 1 10 4.4 12.9 12.9 0 0 1 3.6 9.7 13 13 0 0 1-4.1 9.2 13.3 13.3 0 0 1-4.4 2.8 15.4 15.4 0 0 1-5.5 1Zm-.6-25a12.8 12.8 0 0 0-4.7.9 10.9 10.9 0 0 0-3.6 2.2 11.2 11.2 0 0 0-3.4 8 11.1 11.1 0 0 0 2.9 8.1 12.3 12.3 0 0 0 8.8 3.8h.6a13.4 13.4 0 0 0 4.8-.8 11.3 11.3 0 0 0 3.7-2.3 11.1 11.1 0 0 0 3.5-7.8c.3-6.6-4.6-11.7-11.7-12h-.9Z'
-							data-name='Path 201'></path>
-					</g>
-					<g data-name='Group 146'>
-						<g data-name='Group 145'>
-							<path
-								fill='#0d1726'
-								d='M44.7 13.2a13.1 13.1 0 0 0-13 13.2c0 6.7 10.4 18.6 11.6 20a1.9 1.9 0 0 0 2.8 0C47.3 45 58 33 58 26.4a13.1 13.1 0 0 0-13.2-13.2Zm0 18.8a5.6 5.6 0 1 1 5.7-5.6 5.6 5.6 0 0 1-5.7 5.6Z'
-								data-name='Path 202'></path>
-							<path
-								fill='#fff'
-								d='M44.7 13.2a13.1 13.1 0 0 0-13 13.2c0 6.7 10.4 18.6 11.6 20a1.9 1.9 0 0 0 2.8 0C47.3 45 58 33 58 26.4a13.1 13.1 0 0 0-13.2-13.2m0 18.8a5.6 5.6 0 1 1 5.7-5.6 5.6 5.6 0 0 1-5.7 5.6m0-20.8A15.2 15.2 0 0 1 60 26.4 15.7 15.7 0 0 1 58 33a48.6 48.6 0 0 1-3.9 6.5 91.4 91.4 0 0 1-6.5 8.2 3.9 3.9 0 0 1-5.7 0 92.8 92.8 0 0 1-6.5-8.2 48.6 48.6 0 0 1-4-6.5 15.7 15.7 0 0 1-1.8-6.6 15.2 15.2 0 0 1 15.1-15.2Zm0 18.8a3.6 3.6 0 1 0-3.6-3.6 3.6 3.6 0 0 0 3.6 3.6Z'
-								data-name='Path 202 - Outline'></path>
-						</g>
-					</g>
-				</g>
-			</svg>
+			</div>
 			<h3>Audience Targeting</h3>
 			<p>
 				Understanding which group of people is most likely going to convert into buyers of your products can help us
 				provide the best user experience, as well as higher conversion rates.
 			</p>
 		</div>
-		<div class='service-list-item'>
-			<div data-lg-parallax data-lg-parallax-amplitude='0.2'>
+		<div class="service-list-item">
+			<div data-lg-parallax data-lg-parallax-amplitude="0.2">
 				<div
-					class='service-list-item-square'
-					style='background-color: var(--light-green)'
-					data-lg-reveal='layer-to-right'
+					class="service-list-item-square"
+					style="background-color: var(--light-green)"
+					data-lg-reveal="layer-to-right"
 				>
 				</div>
 			</div>
-			<svg
+			<div
 				data-lg-parallax
-				data-lg-parallax-amplitude='0.4'
-				xmlns='http://www.w3.org/2000/svg'
-				width='92.22'
-				height='87.36'
+				data-lg-parallax-amplitude="0.4"
+				data-lg-lottie="/animations/campaign-management.json"
+				data-lg-lottie-autoplay="true"
+				data-lg-lottie-loop="true"
+				class="service-list-item-icon"
 			>
-				<g data-name='Group 157' transform='translate(310.9 353.57)'>
-					<g data-name='Group 148'>
-						<path
-							fill='#fff'
-							d='m-308.92-284.57 3.66-65.9 19.6 10.14 23.68-10.15 19.22 15.8 21.81-10.07-6.38 67.41-25.42 8.91-14.95-14.59-23.85 10.14Z'
-							data-name='Path 203'></path>
-						<path
-							fill='#0f1722'
-							stroke='#0f1722'
-							d='m-253.1-266.78-14.9-14.55-23.7 10.07-18.7-12.58 3.83-68.93 20.97 10.85 23.86-10.22 19.2 15.78 23.26-10.74-6.7 70.81Zm-14.27-17.93 15 14.63 23.71-8.3 6.06-64.02-20.37 9.4-19.23-15.81-23.5 10.06-18.25-9.43-3.49 62.87 16.05 10.8Z'
-							data-name='Path 213'></path>
-					</g>
-					<path
-						fill='#f4f4f4'
-						d='M-301.06-287.56a64.72 64.72 0 0 1 8.38 7.07c.78 1.17 19.78-8.54 22.4-8.36a5.92 5.92 0 0 1 3.14 1.56c5.62 4.4 11.61 7.94 17.09 12.54a2.48 2.48 0 0 0 1.24.69 2.48 2.48 0 0 0 1.17-.26l12.8-5.1a3.12 3.12 0 0 0 1.13-.65 3.07 3.07 0 0 0 .65-1.57c3.5-17.18.7-35.25 4.8-52.3q-4.6 1.06-9.13 2.48c-.51.16-6.91 2.74-7.01 2.62a38.34 38.34 0 0 0-7.03-6.88c-4.15-2.9-9.68-4.55-12.92-8.14a93.89 93.89 0 0 1-19.56 9.8 4.26 4.26 0 0 1-1.64.36 4.17 4.17 0 0 1-1.66-.56c-4.6-2.33-9.14-5.02-13.95-7.01-.51 3.76 1.22 7.38.86 11.1-.42 4.47-1.46 8.94-2.02 13.4q-1.7 13.42-2.12 26.97 1.73 1.06 3.38 2.24Z'
-						data-name='Path 205'></path>
-					<path
-						d='M-245.74-298.75c-1.02 6.47-2.39 12.88-3.3 19.37-.16 1.09-.89 3.15-.67 4.2.25 1.24 1.34.58 2.52.35q4.6-.88 9.14-2.1a1.93 1.93 0 0 0 1.07-.55 1.92 1.92 0 0 0 .3-.76c3.12-13.1 3.72-26.65 4.02-40.11a56.45 56.45 0 0 1 1.05-11.75 32.75 32.75 0 0 1-9.5 2.7 6.63 6.63 0 0 0-1.99.44c-2.67 1.24-1.79 4.94-1.56 7.19a59.97 59.97 0 0 1 .28 7.1 100.82 100.82 0 0 1-1.36 13.93Z'
-						data-name='Path 206'
-						opacity='.05'></path>
-					<path
-						d='M-288.85-310.12a74.72 74.72 0 0 1-.83 6.63c-.4 2.08-.96 4.12-1.3 6.21a62.03 62.03 0 0 0-.64 6.57c-.12 2.05-.8 4.8-.3 6.8a9.73 9.73 0 0 0 5.75-1.47 45.54 45.54 0 0 1 5.3-2.86c2.6-1 5.57-1.08 7.97-2.52a3.57 3.57 0 0 0 .93-.74 4.27 4.27 0 0 0 .6-1.12c2.9-6.93 2.8-14.66 3.22-22.15.48-8.62 1.66-17.2 2.85-25.75q-7 3.23-13.88 6.75a58.6 58.6 0 0 0-6.96 3.65c-1.57 1.1-1.05 2.78-1.23 4.58l-.5 5.2Z'
-						data-name='Path 207'
-						opacity='.05'></path>
-					<g data-name='Group 154'>
-						<g data-name='Group 149'>
-							<path fill='#0d1726' d='m-294.46-298.95.43-1.62 1.34.36-.43 1.62z' data-name='Rectangle 67'></path>
-						</g>
-						<g data-name='Group 150'>
-							<path
-								fill='#0d1726'
-								d='m-248.53-288.3-.24-.09-2.43-.8.49-1.6c.83.26 1.67.54 2.5.82l-.2.55.27 1.01Zm3.03-.8-.42-1.61 2.64-.7.43 1.62Zm-8.3-.82c-.87-.22-1.75-.43-2.62-.62l.35-1.64c.9.2 1.8.41 2.7.64Zm-5.28-1.13a65.55 65.55 0 0 0-2.74-.44l.36-1.63.43.07c.75.1 1.5.22 2.24.35Zm-4.67-3.37a7.46 7.46 0 0 1 .64-2.98l1.53.66a5.78 5.78 0 0 0-.5 2.3Zm-26.18-4.03-.6-1.56a6.92 6.92 0 0 0 .68-.32l1.68-.86.77 1.48-1.69.87a8.39 8.39 0 0 1-.84.4Zm29.69-.36-1.26-1.1a11.62 11.62 0 0 1 2.21-1.94l.94 1.38a10 10 0 0 0-1.9 1.66Zm-24.73-2.15-.76-1.49 2.43-1.25.76 1.49Zm28.92-.75-.73-1.5a10.06 10.06 0 0 0 1.6-.92 4.33 4.33 0 0 0 .47-.4l1.17 1.2a6.04 6.04 0 0 1-.66.55 11.75 11.75 0 0 1-1.85 1.07Zm-24.05-1.75-.77-1.49 2.43-1.25.77 1.49Zm4.86-2.5-.76-1.49 1.55-.8a2.81 2.81 0 0 0 .63-.4l1.16 1.2a4.21 4.21 0 0 1-1.02.69Zm22.25-.39h-.84a2.5 2.5 0 0 0-.92-1.76l1.14-1.22a4.11 4.11 0 0 1 1.45 2.94Zm-3.84-3.16-2.41-1.3.79-1.48 2.37 1.28Zm-14.9-1.02-1.66-.2.1-.86a5.04 5.04 0 0 0 .05-.59.87.87 0 0 0-.1-.47.36.36 0 0 0-.04-.05l1.23-1.13a2.04 2.04 0 0 1 .21.27 2.46 2.46 0 0 1 .37 1.38 6.33 6.33 0 0 1-.06.8Zm10.07-1.57-1.64-.89a3.4 3.4 0 0 1-.93-.65l1.22-1.14a2.18 2.18 0 0 0 .5.32l1.65.88Zm-13.73-.9a13.93 13.93 0 0 1-2.88-.37l.4-1.63a12.35 12.35 0 0 0 2.53.33Zm-5.84-1.99a1.84 1.84 0 0 1-.17-.78 3.26 3.26 0 0 1 .73-1.85l.48-.66 1.33 1.01-.45.62a1.73 1.73 0 0 0-.42.89.17.17 0 0 0 .02.07Zm18.8-1.11-1.28-1.08a8.84 8.84 0 0 1 2.3-1.93l.85 1.44a7.17 7.17 0 0 0-1.87 1.57Zm4.15-2.44-.32-1.64a8.6 8.6 0 0 1 1.21-.15l.26-.01a2.77 2.77 0 0 0 .9-.12.38.38 0 0 0 .05-.03l.84 1.45a2.13 2.13 0 0 1-.24.12 4.09 4.09 0 0 1-1.49.25h-.23a6.89 6.89 0 0 0-.98.13Zm-18.87-.76-1.23-1.14c.63-.68 1.3-1.35 2-1.97l1.11 1.24a28.4 28.4 0 0 0-1.88 1.87Zm20.52-1.95a7.74 7.74 0 0 0-2.18-1.14l.56-1.57a9.31 9.31 0 0 1 2.65 1.4Zm-16.58-1.6-1-1.34c.75-.56 1.54-1.09 2.34-1.57l.86 1.43c-.75.45-1.5.95-2.2 1.48Zm11.83-.32-2.62-.76.46-1.61 2.63.76Zm-5.25-1.53-2.63-.76.47-1.6 2.62.76Z'
-								data-name='Path 208'></path>
-						</g>
-						<g data-name='Group 151'>
-							<path
-								fill='#0d1726'
-								d='m-240.15-290.5-.43-1.61.8-.21.08-.81 1.67.18-.16 1.39-.06.57Z'
-								data-name='Path 209'></path>
-						</g>
-						<g data-name='Group 152'>
-							<path
-								fill='#0d1726'
-								d='m-237.79-295.51-1.66-.13c.07-.92.12-1.74.14-2.5l1.67.05c-.02.8-.07 1.64-.15 2.58Zm-1.52-5.13a24.54 24.54 0 0 0-.22-2.45l1.65-.24a26.28 26.28 0 0 1 .24 2.63Zm-.72-4.84a15.29 15.29 0 0 0-.8-2.32l1.55-.62a19.63 19.63 0 0 1 .87 2.5Zm-1.7-4.8a9.2 9.2 0 0 1-.3-1.58 7.8 7.8 0 0 1-.04-.76l.01-.46 1.67.1v.36l.02.6a7.42 7.42 0 0 0 .26 1.28Zm1.83-4.94-1.57-.57a14.65 14.65 0 0 1 1.18-2.43l1.44.85a12.96 12.96 0 0 0-1.05 2.15Z'
-								data-name='Path 210'></path>
-						</g>
-						<g data-name='Group 153'>
-							<path
-								fill='#0d1726'
-								d='m-237.47-319.42-1.35-1 .85-1.12 1.32 1.02c-.27.36-.55.72-.82 1.1Z'
-								data-name='Path 211'></path>
-						</g>
-					</g>
-					<circle
-						cx='3.99'
-						cy='3.99'
-						r='3.99'
-						fill='#42c634'
-						data-name='Ellipse 38'
-						transform='translate(-292.05 -315.62)'></circle>
-					<circle
-						cx='3.28'
-						cy='3.28'
-						r='3.28'
-						fill='#42c634'
-						data-name='Ellipse 39'
-						transform='translate(-249.28 -300.16)'></circle>
-					<circle
-						cx='3.28'
-						cy='3.28'
-						r='3.28'
-						fill='#42c634'
-						data-name='Ellipse 40'
-						transform='translate(-260.81 -332.46)'></circle>
-					<path
-						fill='#0f1722'
-						d='m-236.48-320.5.75-4.13-3.69-2.32 1.15-1.82 2.96 1.86.49-2.65 2.12.38-.64 3.5 4.21 2.66-1.15 1.82-3.48-2.19-.6 3.28Z'
-						data-name='Union 3'></path>
-					<path
-						fill='#1f2814'
-						d='m-290.93-298.94-8.88.64a23.77 23.77 0 0 1 4.1-2.13 39.14 39.14 0 0 1-1.3-4.35 25.52 25.52 0 0 1 2.61 2.56Z'
-						data-name='Path 212'></path>
-				</g>
-			</svg>
+			</div>
 			<h3>Campaign Management</h3>
 			<p>
 				By taking a strategic approach to your campaign management, you can maximize the budget and increase
 				conversions.
 			</p>
 		</div>
-		<div class='service-list-item'>
-			<div data-lg-parallax data-lg-parallax-amplitude='0.2'>
+		<div class="service-list-item">
+			<div data-lg-parallax data-lg-parallax-amplitude="0.2">
 				<div
-					class='service-list-item-square'
-					style='background-color: var(--light-green)'
-					data-lg-reveal='layer-to-right'
+					class="service-list-item-square"
+					style="background-color: var(--light-green)"
+					data-lg-reveal="layer-to-right"
 				>
 				</div>
 			</div>
-			<svg
+			<div
 				data-lg-parallax
-				data-lg-parallax-amplitude='0.4'
-				xmlns='http://www.w3.org/2000/svg'
-				width='115.47'
-				height='89.79'
+				data-lg-parallax-amplitude="0.4"
+				data-lg-lottie="/animations/social-ppc.json"
+				data-lg-lottie-autoplay="true"
+				data-lg-lottie-loop="true"
+				class="service-list-item-icon"
 			>
-				<g data-name='Group 185'>
-					<g data-name='Group 184' transform='translate(4.5)'>
-						<g data-name='Group 182'>
-							<path
-								fill='#0d1726'
-								d='M15.36 59.49v4.85a5.6 5.6 0 0 0 5.6 5.6h41.08a5.6 5.6 0 0 0 5.6-5.6V59.5a15.66 15.66 0 0 0-14.96-15.62L47.1 66.21l-3.73-15.87 3.73-6.54H35.9l3.73 6.54-3.73 15.87-5.58-22.34A15.66 15.66 0 0 0 15.36 59.5Z'
-								data-name='Path 238'></path>
-						</g>
-						<path
-							fill='#fff'
-							d='M20.89 54.79c2.67 1.96 5.16 4.23 7.7 6.24A998.72 998.72 0 0 1 7.79 85.4c-2.67-2.07-5.24-4.1-7.8-6.23a964.51 964.51 0 0 1 20.9-24.38Z'
-							data-name='Path 241'></path>
-						<g fill='none' stroke-miterlimit='10' data-name='Path 239'>
-							<path
-								d='M58.85 16.16a27.04 27.04 0 0 1 3.65 38.08 27.04 27.04 0 0 1-35.47 5.52l-3.47 4.21L24.8 65 9.96 82.77l-7.4-6.1L17.4 58.9l1.24 1.01 3.47-4.2a27.03 27.03 0 0 1-1.32-35.88 27.04 27.04 0 0 1 38.07-3.66Z'
-							></path>
-							<path
-								fill='#3dbe3d'
-								d='M41.66 9.98A27.03 27.03 0 0 0 22.1 55.7l-3.47 4.21-1.24-1.01L2.56 76.67l7.4 6.1L24.8 65l-1.24-1.02 3.47-4.2a27.03 27.03 0 0 0 31.82-43.6 26.93 26.93 0 0 0-17.2-6.19m0-5a31.93 31.93 0 0 1 20.38 7.33l1.82 1.5v.12a31.93 31.93 0 0 1 9.69 20.04 31.93 31.93 0 0 1-7.18 23.45 31.93 31.93 0 0 1-24.71 11.64c-4.09 0-8.1-.77-11.85-2.27l-19.18 23L-4.5 77.33l19.18-23a32.06 32.06 0 0 1 2.24-37.7A31.95 31.95 0 0 1 41.66 4.99Z'
-							></path>
-						</g>
-						<circle cx='19.76' cy='19.76' r='19.76' fill='#0d1726' data-name='Ellipse 44' transform='translate(21.74)'
-						></circle>
-						<g data-name='Group 183'>
-							<path
-								fill='#d0f1cd'
-								d='M39.28 29.87c.26 0 .51 0 .77-.02a11.68 11.68 0 0 0 9.12-5.2 1.42 1.42 0 0 0 .01-1.47 1.44 1.44 0 0 0-1.32-.7L31 23.53a1.42 1.42 0 0 0-1.24.9 1.4 1.4 0 0 0 .27 1.5 12.78 12.78 0 0 0 9.25 3.94Zm-8.16-4.48Z'
-								data-name='Path 240'></path>
-						</g>
-					</g>
-					<path
-						fill='#0f1722'
-						d='M108.81 63.11a1.69 1.69 0 0 1-.7 1.79L102 69.03l6.36 3.75a2.81 2.81 0 0 1-2.86 4.84l-6.57-3.87-.9 8.09a1.69 1.69 0 0 1-1.27 1.45 1.7 1.7 0 0 1-1.84-.75l-14.43-21.4a1.69 1.69 0 0 1 1.6-2.61l25.25 3.33a1.7 1.7 0 0 1 1.47 1.25Z'
-						data-name='Path 242'></path>
-					<path
-						fill='#fff'
-						d='M72.46 63a1.5 1.5 0 0 1 2.04.6 1.5 1.5 0 0 1-.59 2.03l-4.37 2.43a1.5 1.5 0 0 1-2.04-.59 1.5 1.5 0 0 1 .58-2.04Zm21-11.63a1.5 1.5 0 0 1 1.45 2.62l-4.37 2.43a1.5 1.5 0 0 1-2.04-.59 1.5 1.5 0 0 1 .58-2.04Zm-20.3-3.62a1.5 1.5 0 0 1 .58-2.04 1.5 1.5 0 0 1 2.04.59l2.42 4.37a1.5 1.5 0 0 1-.58 2.04 1.5 1.5 0 0 1-2.04-.58ZM66.1 55.3a1.5 1.5 0 0 1 1.86-1.03l4.8 1.38a1.5 1.5 0 0 1 1.04 1.86 1.5 1.5 0 0 1-1.86 1.02l-4.81-1.37a1.5 1.5 0 0 1-1.03-1.86Zm11 19.85a1.57 1.57 0 0 1-1.05-1.9l1.38-4.82a1.5 1.5 0 0 1 1.85-1.02 1.5 1.5 0 0 1 1.03 1.85l-1.35 4.86a1.61 1.61 0 0 1-1.86 1.03Zm6.95-29.8a1.5 1.5 0 0 1 1.85-1.02 1.5 1.5 0 0 1 1.03 1.85L85.56 51a1.5 1.5 0 0 1-1.86 1.03 1.5 1.5 0 0 1-1.03-1.86Z'
-						data-name='Path 243'></path>
-				</g>
-			</svg>
+			</div>
 			<h3>Social & PPC</h3>
 			<p>
 				Increase your impact through paid social campaigns and PPC that amplify your reach and put your content in front
 				of the right people.
 			</p>
 		</div>
-		<div class='service-list-item'>
-			<div data-lg-parallax data-lg-parallax-amplitude='0.2'>
+		<div class="service-list-item">
+			<div data-lg-parallax data-lg-parallax-amplitude="0.2">
 				<div
-					class='service-list-item-square'
-					style='background-color: var(--light-green)'
-					data-lg-reveal='layer-to-right'
+					class="service-list-item-square"
+					style="background-color: var(--light-green)"
+					data-lg-reveal="layer-to-right"
 				>
 				</div>
 			</div>
-			<svg
+			<div
 				data-lg-parallax
-				data-lg-parallax-amplitude='0.4'
-				xmlns='http://www.w3.org/2000/svg'
-				width='93.75'
-				height='75'
+				data-lg-parallax-amplitude="0.4"
+				data-lg-lottie="/animations/reporting.json"
+				data-lg-lottie-autoplay="true"
+				data-lg-lottie-loop="true"
+				class="service-list-item-icon"
 			>
-				<g data-name='Group 188' transform='translate(-768.25 -2712.38)'>
-					<rect width='14' height='49' fill='#fff' data-name='Rectangle 83' rx='3' transform='translate(831 2738)'
-					></rect>
-					<rect width='14' height='16' fill='#fff' data-name='Rectangle 84' rx='3' transform='translate(795 2771)'
-					></rect>
-					<rect width='14' height='27' fill='#fff' data-name='Rectangle 85' rx='3' transform='translate(813 2760)'
-					></rect>
-					<g data-name='Group 187' transform='translate(768 2712)'>
-						<path
-							fill='#0f1722'
-							d='M51.81 9.75a9.3 9.3 0 0 0 2.52 6.39l-3.94 8.43a20.83 20.83 0 0 0-5.6-.76 21.24 21.24 0 0 0-14.7 5.96l-11.37-8.35a9.89 9.89 0 0 0 .28-2.3 9.38 9.38 0 0 0-9.38-9.37 9.38 9.38 0 0 0-9.37 9.38 9.38 9.38 0 0 0 9.38 9.37 9.33 9.33 0 0 0 4.93-1.4l11.37 8.34a20.95 20.95 0 0 0-2.24 9.47 21 21 0 0 0 1.45 7.69l-9.87 5.92a9.3 9.3 0 0 0-5.64-1.9A9.38 9.38 0 0 0 .25 66a9.38 9.38 0 0 0 9.38 9.38A9.38 9.38 0 0 0 19 66a9.38 9.38 0 0 0-.12-1.45l9.88-5.93A21.22 21.22 0 0 0 44.78 66a21.33 21.33 0 0 0 20.93-17.58h10.23a9.34 9.34 0 0 0 8.69 5.86A9.38 9.38 0 0 0 94 44.91a9.38 9.38 0 0 0-9.38-9.38 9.34 9.34 0 0 0-8.68 5.86H65.7a21.78 21.78 0 0 0-8.95-13.84l3.94-8.44c.16-.12.32.02.48.02a9.38 9.38 0 0 0 9.38-9.38A9.38 9.38 0 0 0 61.2.38a9.38 9.38 0 0 0-9.38 9.37Zm-7.03 49.22A14.07 14.07 0 0 1 30.72 44.9a13.98 13.98 0 0 1 14.06-14.07 13.9 13.9 0 0 1 14.06 14.07 13.98 13.98 0 0 1-14.06 14.06Z'
-							data-name='Path 502'></path>
-						<ellipse
-							cx='10.5'
-							cy='10'
-							fill='#3dbe3d'
-							data-name='Ellipse 45'
-							rx='10.5'
-							ry='10'
-							transform='translate(34 35)'></ellipse>
-						<circle cx='4' cy='4' r='4' fill='#3dbe3d' data-name='Ellipse 46' transform='translate(5 15)'></circle>
-						<circle cx='4' cy='4' r='4' fill='#3dbe3d' data-name='Ellipse 49' transform='translate(81 41)'></circle>
-						<circle cx='4' cy='4' r='4' fill='#fff' data-name='Ellipse 47' transform='translate(57 5)'></circle>
-						<circle cx='4' cy='4' r='4' fill='#fff' data-name='Ellipse 48' transform='translate(5 62)'></circle>
-					</g>
-				</g>
-			</svg>
+			</div>
 			<h3>Reporting</h3>
 			<p>Improve your marketing with reporting that provides the most relevant insights.</p>
 		</div>

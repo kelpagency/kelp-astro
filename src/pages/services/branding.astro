@@ -1,34 +1,27 @@
 ---
-import Layout from '../../../Base.astro';
-import SimpleHero from '../../../components/SimpleHero.astro';
+import Layout from '../../Base.astro';
+import SimpleHero from '../../components/SimpleHero.astro';
 import { Picture } from 'astro-imagetools/components';
-import FeaturedArticles from "../../../components/FeaturedArticles.astro";
+import FeaturedArticles from "../../components/FeaturedArticles.astro";
 
-const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/work?per_page=3&tags=68`);
+const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/work?per_page=3&tags=65`);
 const posts = await response.json();
 ---
 
 <Layout
-	title='Photography'
-	description='High-quality photographs can make a strong first impression and create a positive image for a business or product.'
+	title='Branding'
+	description=`Branding is more than a logo and making things look good. Your branding should bring clarity to what you do and why.`
 >
-	<SimpleHero tagline='Content Creation Services' title='Photography' description="High-quality photographs can make a strong first impression and create a positive image for a business or product." lottieFile='photography.json'/>
+	<SimpleHero tagline='Content Creation Services' title='Branding' description="Branding is more than a logo and making things look good. Your branding should bring clarity to what you do and why." lottieFile="branding.json"/>
 	<div class='service-body'>
 		<div class='wrapper wrapper--narrow'>
-			<h2>Why photography matters</h2>
+			<h2>Why branding matters</h2>
 			<p>
-				High-quality photographs can make a strong first impression and create a positive image for a business or product. They can also be a powerful way to communicate information and ideas, and can help to tell a story or convey a message for your brand or current marketing campaign.
+				We all have the opportunity to build a brand that lasts. Whether you’re starting out or looking for new ways in which your company can grow, our services will help guide and promote not only what makes YOU unique but also bring attention from consumers who want more of those qualities as well!
 			</p>
-			<p>At a time when keeping attention is tough this type animation can help you turn messages into memorable experiences</p>
-			<h2>Applications for photography</h2>
-			<ul>
-				<li>Product photography</li>
-				<li>Events</li>
-				<li>Website</li>
-				<li>Social Media</li>
-			</ul>
-			<h2>How we approach photography</h2>
-			<p>Typically we'll work with you to understand your goals and objectives in the discovery phase along with the intended audience the photos will be for. Once we fully understand the goals we start our planning whether it will include models and locations or our in-house studio, we'll schedule a time and day(s) that works best for you. After the shoot we'll do some post-processing to get the required look and feel that matches your brand and deliver the end results as files for you to use, as part of a larger marketing campaign, or any other specific application.</p>
+			<p>In many cases, Branding may reach more people than a business’s product itself. This is because branding can be applied to more than just physical products. Branding is used in every main component of customer contact. From posts on social media, to ads on the radio, to the boxes a product ships in, a brand can make an impact either positive or negative.</p>
+			<h2>How we approach branding</h2>
+			<p>We offer a strategic and creative perspective to company branding. This involves understanding the target audience and the goals of the brand, and then developing a unique and cohesive brand identity that resonates with that audience. This can include creating the name, logo, brand guidelines, messaging, and visual elements that reflect the brand's personality and positioning. Ultimately, the goal of our branding work is to build awareness, credibility, and loyalty for your business.</p>
 			<p><a href='/contact' class='button button--green'>Let's Talk</a></p>
 		</div>
 		{posts.length > 0 && 
@@ -54,8 +47,7 @@ const posts = await response.json();
 						<h3 class="h5" set:html={post.title.rendered} />
 						<p><a href=`/work/${post.slug}` class="squiggle">Read Case Study</a></p>
 					</article>
-					))
-				}
+				))}
 			</div>
 		</div>
 		}

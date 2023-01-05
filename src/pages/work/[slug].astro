@@ -20,14 +20,27 @@ let tags = [];
 for (const tag of tagIds) {
 	const tagResponse = await fetch(`${import.meta.env.PUBLIC_WP_URL}/tags/${tag}`);
 	const tag_object = await tagResponse.json();
-	tags.push(tag_object.name);
+	tags.push(tag_object);
 }
 ---
 
 <Layout title={title} bodyClass="work-post">
 	<article class="wrapper">
 		<h1 data-splitting data-lg-reveal="fade" data-lg-reveal-stagger="0.1" set:html={title} />
-		<p data-lg-reveal="layer-to-left" data-lg-reveal-delay="0.2" class="tags">{tags.join(", ")}</p>
+		<p data-lg-reveal="layer-to-left" data-lg-reveal-delay="0.2" class="tags">
+			{tags.map(
+				(tag, i) => 
+				<>
+					{tags.length-1 == i && tags.length > 2 && (
+						<>and </>
+					)}
+					<a href=`/services/${tag.slug}`>{tag.name}</a>
+					{tags.length-1 != i && (
+						<>, </>
+					)}
+				</>
+			)}
+		</p>
 		<div data-lg-reveal="fade" data-lg-reveal-stagger="0.3" set:html={content} />
 	</article>
 </Layout>

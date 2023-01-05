@@ -578,11 +578,12 @@
 			top: 0;
 			background: var(--light-teal);
 		}
-		svg {
+		&-icon {
 			display: block;
 			position: absolute;
-			top: 0.5rem;
-			left: 1.5rem;
+			top: 0;
+			max-width: 120px;
+			max-height: 120px;
 		}
 	}
 }

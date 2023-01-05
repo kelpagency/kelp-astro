@@ -1,27 +1,38 @@
 ---
-import Layout from '../../../Base.astro';
-import SimpleHero from '../../../components/SimpleHero.astro';
+import Layout from '../../Base.astro';
+import SimpleHero from '../../components/SimpleHero.astro';
 import { Picture } from 'astro-imagetools/components';
-import FeaturedArticles from "../../../components/FeaturedArticles.astro";
+import FeaturedArticles from "../../components/FeaturedArticles.astro";
 
-const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/work?per_page=3&tags=65`);
+const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/work?per_page=3&tags=76`);
 const posts = await response.json();
 ---
 
 <Layout
-	title='Branding'
-	description=`Branding is more than a logo and making things look good. Your branding should bring clarity to what you do and why.`
+	title='Motion Graphics'
+	description='Show off your story with eye-catching motion graphics that will make it pop on screen.'
 >
-	<SimpleHero tagline='Content Creation Services' title='Branding' description="Branding is more than a logo and making things look good. Your branding should bring clarity to what you do and why." lottieFile="branding.json"/>
+	<SimpleHero tagline='Content Creation Services' title='Motion Graphics' description="Show off your story with eye-catching motion graphics that will make it pop on screen." lottieFile='motion-graphics.json'/>
 	<div class='service-body'>
 		<div class='wrapper wrapper--narrow'>
-			<h2>Why branding matters</h2>
+			<h2>Why motion graphics matter</h2>
 			<p>
-				We all have the opportunity to build a brand that lasts. Whether you’re starting out or looking for new ways in which your company can grow, our services will help guide and promote not only what makes YOU unique but also bring attention from consumers who want more of those qualities as well!
+				Animated videos are scientifically proven learning tools that combine both visual and auditory stimuli to cater their content quickly. They're also an engaging passive experience which makes them perfect for delivering information with little effort on behalf of the viewer, while remembering your brand long after they've watched it!
 			</p>
-			<p>In many cases, Branding may reach more people than a business’s product itself. This is because branding can be applied to more than just physical products. Branding is used in every main component of customer contact. From posts on social media, to ads on the radio, to the boxes a product ships in, a brand can make an impact either positive or negative.</p>
-			<h2>How we approach branding</h2>
-			<p>We offer a strategic and creative perspective to company branding. This involves understanding the target audience and the goals of the brand, and then developing a unique and cohesive brand identity that resonates with that audience. This can include creating the name, logo, brand guidelines, messaging, and visual elements that reflect the brand's personality and positioning. Ultimately, the goal of our branding work is to build awareness, credibility, and loyalty for your business.</p>
+			<p>At a time when keeping attention is tough this type animation can help you turn messages into memorable experiences</p>
+			<h2>Applications for motion graphics</h2>
+			<ul>
+				<li>Case studies</li>
+				<li>Data visualizations</li>
+				<li>Product reviews</li>
+				<li>Explainer videos</li>
+				<li>Testimonials</li>
+				<li>Promotion</li>
+				<li>Sales collateral</li>
+				<li>Social media</li>
+			</ul>
+			<h2>How we approach motion graphics</h2>
+			<p>We tell stories with visuals and sound, so you can engage people on your website, social media or other platforms. A careful balance of storytelling techniques is essential to make it captivating: voiceover; music that builds interest; text animation which tells part-of the tale while building curiosity for more information—all designed by our talented team!</p>
 			<p><a href='/contact' class='button button--green'>Let's Talk</a></p>
 		</div>
 		{posts.length > 0 && 
@@ -47,7 +58,8 @@ const posts = await response.json();
 						<h3 class="h5" set:html={post.title.rendered} />
 						<p><a href=`/work/${post.slug}` class="squiggle">Read Case Study</a></p>
 					</article>
-				))}
+					))
+				}
 			</div>
 		</div>
 		}

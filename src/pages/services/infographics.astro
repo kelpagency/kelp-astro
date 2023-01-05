@@ -1,38 +1,37 @@
 ---
-import Layout from '../../../Base.astro';
-import SimpleHero from '../../../components/SimpleHero.astro';
+import Layout from '../../Base.astro';
+import SimpleHero from '../../components/SimpleHero.astro';
 import { Picture } from 'astro-imagetools/components';
-import FeaturedArticles from "../../../components/FeaturedArticles.astro";
+import FeaturedArticles from "../../components/FeaturedArticles.astro";
 
-const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/work?per_page=3&tags=72`);
+const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/work?per_page=3&tags=85`);
 const posts = await response.json();
 ---
 
 <Layout
-	title='Social Media Content'
-	description='Increase your brand’s reach with social media content that people will want to share and engage with.'
+	title='Infographics'
+	description='Infographics are a great way to make your brand story come alive. They’re captivating and engaging because they combine text with images in creative ways that hook readers of all ages.'
 >
-	<SimpleHero tagline='Content Creation Services' title='Social Media Content' description="Increase your brand’s reach with social media content that people will want to share and engage with." lottieFile='social-media-content.json' />
+	<SimpleHero tagline='Content Creation Services' title='Infographics' description="Infographics are a great way to make your brand story come alive. They’re captivating and engaging because they combine text with images in creative ways that hook readers of all ages." lottieFile='infographics.json'/>
 	<div class='service-body'>
 		<div class='wrapper wrapper--narrow'>
-			<h2>Why social media content matters</h2>
-			<p>If you want to deliver targeted messages through social media, channel-first social content is a great way to do it. This type of content is shareable and tailored for each platform, making it easy to engage with your audience. Plus, optimizing your content for each platform can help increase your brand’s reach.</p>
-			<p>Creating quality social content can be time-consuming, especially if you don’t have the right production infrastructure in place. To tell your story consistently, you need to create on-brand content that’s custom-tailored for each platform.</p>
-			<h2>Applications for social media content</h2>
-			<p>There's no doubt that social media is a powerful communications tool. And, as more platforms emphasize visual content, it's important to consider how this format can be used to achieve your brand goals.</p>
-			<p>When it comes to social media, photos and videos can be particularly effective in drawing attention and engagement. If you're looking to reach a wide audience, or if you want to create content that is easily shareable, then visual content is definitely worth considering.</p>
-			<p>Of course, not all brands will benefit from using visuals on social media. It really depends on your goals and your audience. If you're not sure whether visual content is right for you, consider these potential applications:</p>
+			<h2>Why infographics matter</h2>
+			<p>
+				Infographics are a great way to communicate complex data and information in an easy-to understand, eye catching format. They stimulate our brain's visual processing center which forges powerful connections at first glance by presenting stimulating visuals that increase appeal while making it easier on the human memory system as well because of how streamlined displays allow users near instant comprehension allowing them greater accessibility later down line when trying recall certain pieces or even entire studies!
+			</p>
+			<h2>Applications for infographics</h2>
 			<ul>
-				<li>Infographics</li>
-				<li>Data visualizations</li>
+				<li>Informational design</li>
+				<li>Process visualization</li>
+				<li>Explainers</li>
+				<li>Flowcharts</li>
+				<li>Tutorials</li>
 				<li>Microcontent</li>
-				<li>Motion graphics</li>
-				<li>Photography</li>
-				<li>Video</li>
+				<li>Social </li>
 			</ul>
-			<p>Oftentimes, a healthy mix of content is the key to success on social media.</p>
-			<h2>How we approach social media content</h2>
-			<p>We take an effective and strategic approach to help you identify the best social media platforms so that your presence can be effortlessly maintained, engagement improved across all channels while reaching more audiences.</p>
+			<p>Infographics are a fantastic way to share data with the world. They're perfect for those who have too much information and need an easier medium than just text, or if you want people's attention drawn quickly towards what matters most in your story; they also work well when there is some sort of element which needs explanation (such as animation).</p>
+			<h2>How we approach infographics</h2>
+			<p>Our designers will brainstorm with you and research on what resonates most about the brand goals, then gather all of our findings together in one place. From there we’ll create copy that is engaging but also informative—a perfect balance between aesthetics and substance.</p>
 			<p><a href='/contact' class='button button--green'>Let's Talk</a></p>
 		</div>
 		{posts.length > 0 && 
@@ -62,7 +61,7 @@ const posts = await response.json();
 				}
 			</div>
 		</div>
-	}
+		}
 	</div>
 	<FeaturedArticles />
 </Layout>

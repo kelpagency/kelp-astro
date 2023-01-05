@@ -1,8 +1,8 @@
 ---
-import Layout from '../../../Base.astro';
-import SimpleHero from '../../../components/SimpleHero.astro';
+import Layout from '../../Base.astro';
+import SimpleHero from '../../components/SimpleHero.astro';
 import { Picture } from 'astro-imagetools/components';
-import FeaturedArticles from "../../../components/FeaturedArticles.astro";
+import FeaturedArticles from "../../components/FeaturedArticles.astro";
 
 const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/work?per_page=3&tags=69`);
 const posts = await response.json();

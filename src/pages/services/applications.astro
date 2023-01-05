@@ -1,38 +1,50 @@
 ---
-import Layout from '../../../Base.astro';
-import SimpleHero from '../../../components/SimpleHero.astro';
+import Layout from '../../Base.astro';
+import SimpleHero from '../../components/SimpleHero.astro';
 import { Picture } from 'astro-imagetools/components';
-import FeaturedArticles from "../../../components/FeaturedArticles.astro";
+import FeaturedArticles from "../../components/FeaturedArticles.astro";
 
-const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/work?per_page=3&tags=76`);
+const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/work?per_page=3&tags=75`);
 const posts = await response.json();
 ---
 
 <Layout
-	title='Motion Graphics'
-	description='Show off your story with eye-catching motion graphics that will make it pop on screen.'
+	title='Custom Applications'
+	description=`We’ll use the latest technologies, from PHP to Node.js, and we’ll help you choose the best option for your business needs. We’ll work with you to develop a system that is easy to use and maintain—and that works on any device.`
 >
-	<SimpleHero tagline='Content Creation Services' title='Motion Graphics' description="Show off your story with eye-catching motion graphics that will make it pop on screen." lottieFile='motion-graphics.json'/>
+	<SimpleHero tagline='Content Creation Services' title='Applications' description="We’ll use the latest technologies, from PHP to Node.js, and we’ll help you choose the best option for your business needs. We’ll work with you to develop a system that is easy to use and maintain—and that works on any device" lottieFile="content-creation.json"/>
 	<div class='service-body'>
 		<div class='wrapper wrapper--narrow'>
-			<h2>Why motion graphics matter</h2>
+			<h2>Why custom applications matter</h2>
 			<p>
-				Animated videos are scientifically proven learning tools that combine both visual and auditory stimuli to cater their content quickly. They're also an engaging passive experience which makes them perfect for delivering information with little effort on behalf of the viewer, while remembering your brand long after they've watched it!
+				Custom applications can be tailered to meet extremely specific needs and requirements that you require. Common
+				use-cases for custom applications include building intuitive user experiences designed specifically for a niche audience,
+				integrations with other business systems, or unique performance requirements such as the ability to work
+				offline.
 			</p>
-			<p>At a time when keeping attention is tough this type animation can help you turn messages into memorable experiences</p>
-			<h2>Applications for motion graphics</h2>
-			<ul>
-				<li>Case studies</li>
-				<li>Data visualizations</li>
-				<li>Product reviews</li>
-				<li>Explainer videos</li>
-				<li>Testimonials</li>
-				<li>Promotion</li>
-				<li>Sales collateral</li>
-				<li>Social media</li>
-			</ul>
-			<h2>How we approach motion graphics</h2>
-			<p>We tell stories with visuals and sound, so you can engage people on your website, social media or other platforms. A careful balance of storytelling techniques is essential to make it captivating: voiceover; music that builds interest; text animation which tells part-of the tale while building curiosity for more information—all designed by our talented team!</p>
+			<h2>How we approach custom applications</h2>
+			<ol>
+				<li>
+					<strong>Discovery:</strong> first we work with the you to understand your business needs, goals, and target audience
+					for the application.
+				</li>
+				<li>
+					<strong>Design:</strong> next, we'll create wireframes and prototypes of the application to visualize the user
+					flow and layout of the application.
+				</li>
+				<li>
+					<strong>Development:</strong> we'll build the application according to the design specifications. This involves
+					writing code, integrating with APIs and other systems, and testing the application.
+				</li>
+				<li>
+					<strong>Deployment:</strong> launch the application and make it available to users. This may involve hosting the
+					application on a server and/or making it available via app stores.
+				</li>
+				<li>
+					<strong>Maintenance:</strong> ongoing support and maintenance for the application, including bug fixes, security
+					updates, and new feature development as needed.
+				</li>
+			</ol>
 			<p><a href='/contact' class='button button--green'>Let's Talk</a></p>
 		</div>
 		{posts.length > 0 && 
@@ -58,8 +70,7 @@ const posts = await response.json();
 						<h3 class="h5" set:html={post.title.rendered} />
 						<p><a href=`/work/${post.slug}` class="squiggle">Read Case Study</a></p>
 					</article>
-					))
-				}
+				))}
 			</div>
 		</div>
 		}
