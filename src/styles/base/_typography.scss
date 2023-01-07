@@ -73,22 +73,6 @@ small {
 	opacity: 0.9;
 }
 
-.squiggle {
-	text-decoration: underline;
-	text-decoration-thickness: 2px;
-	text-decoration-color: var(--green);
-	text-underline-offset: 8px;
-	padding-bottom: 7px;
-	font-family: var(--sans-serif);
-	line-height: 1.5;
-	background-position: bottom center;
-	&:hover,
-	&:focus {
-		text-decoration: none;
-		background: url('/images/squiggle.svg') repeat-x bottom center / 20px 12px;
-	}
-}
-
 address {
 	font-style: normal;
 }

@@ -1,0 +1,30 @@
+// contact page
+.contact-section {
+	background: var(--black);
+	color: white;
+	padding-top: 4rem;
+	a {
+		color: var(--green);
+	}
+	.wrapper {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 3rem;
+	}
+	&-column {
+		flex: 1 1 500px;
+		h1 {
+			margin-bottom: 2rem;
+		}
+		h2 {
+			margin-top: 4rem;
+			margin-bottom: 2rem;
+		}
+		&:first-child {
+			flex-basis: 250px;
+		}
+	}
+	#meetings-embed {
+		height: 756px;
+	}
+}
