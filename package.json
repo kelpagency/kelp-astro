@@ -14,9 +14,9 @@
 		"@astrojs/prefetch": "^0.1.1",
 		"@astrojs/sitemap": "^1.0.0",
 		"@waaark/luge": "0.6.11-beta",
-		"astro": "1.8.0",
-		"astro-compress": "^1.1.24",
-		"astro-imagetools": "^0.6.17",
+		"astro": "1.9.1",
+		"astro-compress": "^1.1.25",
+		"astro-imagetools": "^0.6.0",
 		"autoprefixer": "^10.4.13",
 		"flickity": "^3.0.0",
 		"flickity-fade": "^2.0.0",
@@ -31,8 +31,8 @@
 		"splitting": "^1.0.6"
 	},
 	"devDependencies": {
-		"prettier": "^2.8.1",
-		"prettier-plugin-astro": "^0.7.1",
+		"prettier": "^2.8.2",
+		"prettier-plugin-astro": "^0.7.2",
 		"sass": "^1.57.1"
 	}
 }
