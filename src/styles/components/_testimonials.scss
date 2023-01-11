@@ -23,14 +23,22 @@
 	&-content {
 		flex: 1 1 400px;
 		display: flex;
-		gap: 2rem;
 		justify-content: space-between;
+		gap: 2rem;
+		@media (max-width: 767px) {
+			gap: 1rem;
+		}
 		p {
 			font-size: var(--step-1);
 			font-weight: 300;
 			line-height: 1.5;
 		}
 		svg {
+			flex: 1 0 40px;
+			@media (max-width: 400px) {
+				flex-basis: 20px;
+				height: 20px;
+			}
 			&:last-child {
 				margin-top: auto;
 				margin-bottom: 2rem;
