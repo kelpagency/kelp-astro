@@ -59,7 +59,7 @@ luge.settings({
 // do stuff as soon as page is ready
 luge.lifecycle.add('pageInit', function (done) {
 	// intialize splitting for text animations
-	Splitting();
+	Splitting({ by: 'words' });
 
 	// team page easter eggs
 	const skeleton = document.querySelector('.button--skeleton');

@@ -24,3 +24,12 @@ main {
 ::selection {
 	background: var(--green);
 }
+
+iframe[src^="https://codepen.io"]
+{
+	min-height: 500px;
+}
+iframe[src^="https://docs.google.com"]
+{
+	aspect-ratio: 5 / 3;
+}
