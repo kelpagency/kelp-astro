@@ -13,9 +13,9 @@
 	"dependencies": {
 		"@astrojs/prefetch": "^0.1.1",
 		"@astrojs/sitemap": "^1.0.0",
-		"@waaark/luge": "0.6.11-beta",
+		"@waaark/luge": "0.6.15-beta",
 		"astro": "1.9.2",
-		"astro-compress": "^1.1.25",
+		"astro-compress": "^1.1.27",
 		"astro-imagetools": "^0.6.0",
 		"autoprefixer": "^10.4.13",
 		"flickity": "^3.0.0",
@@ -31,7 +31,7 @@
 		"splitting": "^1.0.6"
 	},
 	"devDependencies": {
-		"prettier": "^2.8.2",
+		"prettier": "^2.8.3",
 		"prettier-plugin-astro": "^0.7.2",
 		"sass": "^1.57.1"
 	}
