@@ -94,6 +94,9 @@
 			column-count: 2;
 			column-gap: 1.75rem;
 			margin-bottom: 2rem;
+			ul {
+				column-count: 1;
+			}
 		}
 		a {
 			color: white;
