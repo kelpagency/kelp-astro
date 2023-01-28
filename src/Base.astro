@@ -25,6 +25,27 @@ let bodyClasses = bodyClass;
 if (darkHeader) {
 	bodyClasses = bodyClasses + ' has-dark-header';
 }
+
+const schema = JSON.stringify({
+	'@context': 'https://schema.org',
+	'@type': 'Organization',
+	name: 'Kelp Creative Agency',
+	legalName: 'Kelp Agency',
+	email: 'info@kelp.agency',
+	url: 'https://www.kelp.agency',
+	logo: 'https://www.kelp.agency/images/kelp-logo.png',
+	sameAs: [
+		'https://www.facebook.com/kelpagency',
+		'https://www.instagram.com/kelpagency/',
+		'https://twitter.com/kelpagency',
+		'https://www.linkedin.com/company/kelpagency/'
+	],
+	address: {
+		addressLocality: 'Brooksville',
+		postalCode: '34601',
+		streetAddress: '924 Hale Ave'
+	}
+});
 ---
 
 <!DOCTYPE html>
@@ -36,6 +57,9 @@ if (darkHeader) {
 		<!-- Meta -->
 		<title set:html={title} />
 		<meta name="description" content={description} />
+
+		<!-- Structured Data -->
+		<script type="application/ld+json" set:html={schema}></script>;
 
 		<!-- Social -->
 		<meta property="og:type" content="website" />
