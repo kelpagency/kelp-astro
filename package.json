@@ -11,11 +11,11 @@
 		"astro": "astro"
 	},
 	"dependencies": {
-		"@astrojs/prefetch": "^0.1.1",
-		"@astrojs/sitemap": "^1.0.0",
+		"@astrojs/prefetch": "^0.1.2",
+		"@astrojs/sitemap": "^1.0.1",
 		"@waaark/luge": "0.6.16-beta",
-		"astro": "2.0.0",
-		"astro-compress": "^1.1.28",
+		"astro": "2.0.6",
+		"astro-compress": "^1.1.29",
 		"astro-imagetools": "^0.7.6",
 		"autoprefixer": "^10.4.13",
 		"countrycitystatejson": "^22.10.2102",
@@ -34,7 +34,7 @@
 	},
 	"devDependencies": {
 		"prettier": "^2.8.3",
-		"prettier-plugin-astro": "^0.7.2",
-		"sass": "^1.57.1"
+		"prettier-plugin-astro": "^0.8.0",
+		"sass": "^1.58.0"
 	}
 }
