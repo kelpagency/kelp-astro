@@ -7,7 +7,7 @@
 	"theme_color": "#c5f5f6",
 	"background_color": "#c5f5f6",
 	"lang": "en",
-	"scope": "/",
+	"scope": "https://www.kelp.agency/",
 	"icons": [
 		{
 			"src": "/pwa-192x192.png",
