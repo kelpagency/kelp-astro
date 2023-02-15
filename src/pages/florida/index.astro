@@ -1,0 +1,41 @@
+---
+import Layout from '../../Base.astro';
+import countries from 'countrycitystatejson';
+
+const usa = countries.getCountryByShort('US');
+const florida = usa.states['Florida'];
+
+// 		const data = {
+// 	model: 'text-davinci-003',
+// 	prompt: 'explain why a local to florida web design agency is important in first person',
+// 	max_tokens: 700,
+// 	temperature: 0
+// };
+// const request = await fetch('https://api.openai.com/v1/completions', {
+// 	headers: {
+// 		Authorization: `Bearer ${import.meta.env.OPENAI_KEY}`,
+// 		'Content-Type': 'application/json'
+// 	},
+// 	method: 'POST',
+// 	body: JSON.stringify(data)
+// });
+// const response = await request.json();
+// const text = response.choices[0].text;
+// console.log(text);
+---
+
+<Layout title="Florida's Web Design Agency">
+	<div class="wrapper wrapper--narrow" style="margin-bottom: 150px;">
+		<h1>Florida's Web Design Agency 👋</h1>
+		<h2 class="h4" style="margin: 3rem 0;" data-lg-reveal="fade">Cities we do web design work in <small>(hint: it's all of them 🤓)</small></h2>
+		<ul class="columns" style="margin-top: 2rem;">
+			{
+				florida.map((city) => (
+					<li>
+						<a href=`/florida/${city.name.replace(/\s+/g, '-').toLowerCase()}`>{city.name}</a>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+</Layout>

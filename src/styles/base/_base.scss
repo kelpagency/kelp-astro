@@ -33,3 +33,12 @@ iframe[src^="https://docs.google.com"]
 {
 	aspect-ratio: 5 / 3;
 }
+.columns {
+	column-count: 3;
+	@media (max-width: 960px) {
+		column-count: 2;
+	}
+	@media (max-width: 700px) {
+		column-count: 1;
+	}
+}

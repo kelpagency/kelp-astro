@@ -84,12 +84,6 @@ luge.lifecycle.add('pageInit', function (done) {
 
 // do stuff right after page in animation
 luge.lifecycle.add('pageIn', function (done) {
-	// Home page
-	const squid = document.querySelector('.hero .lg-lottie');
-	if (squid) {
-		squid.play();
-	}
-
 	imagesLoaded(document.body, function () {
 		luge.emitter.emit('resize');
 	});
