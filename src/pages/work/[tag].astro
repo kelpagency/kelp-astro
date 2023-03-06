@@ -6,9 +6,10 @@ export async function getStaticPaths() {
 	const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/tags?per_page=100`);
 	const tags = await response.json();
 	return tags.map((tag) => {
+		console.log(tag);
 		return {
 			params: { tag: tag.slug },
-			props: { id: tag.id, title: tag.name, slug: tag.slug }
+			props: { title: tag.name, slug: tag.slug, id: tag.id }
 		};
 	});
 }
@@ -21,7 +22,7 @@ const tagsResponse = await fetch(`${import.meta.env.PUBLIC_WP_URL}/tags?per_page
 const tags = await tagsResponse.json();
 ---
 
-<Layout title=`Our ${title} Work`>
+<Layout title={title}>
 	<article class="archive">
 		<div class='wrapper wrapper--narrow'>
 			<h1 style="margin-top: 8rem; line-height: 1.3;" data-splitting data-lg-reveal="fade" data-lg-reveal-stagger="0.05">Our <em>{title}</em> Work in the Real-world</h1>
