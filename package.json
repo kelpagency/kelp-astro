@@ -17,6 +17,7 @@
 		"@waaark/luge": "0.6.16-beta",
 		"astro": "2.0.18",
 		"astro-compress": "^1.1.35",
+		"astro-critters": "^1.1.31",
 		"astro-imagetools": "^0.8.1",
 		"autoprefixer": "^10.4.13",
 		"countrycitystatejson": "^22.10.2102",
