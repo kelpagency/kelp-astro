@@ -2,6 +2,9 @@
 .lg-reveal {
 	opacity: 0.01;
 }
+[data-lg-reveal-stagger] {
+	opacity: 1;
+}
 .is-safari [data-lg-parallax] {
 	will-change: transform;
 }

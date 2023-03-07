@@ -8,7 +8,6 @@ import { astroImageTools } from 'astro-imagetools';
 export default defineConfig({
 	site: 'https://www.kelp.agency/',
 	integrations: [
-		// prefetch(),
 		sitemap(),
 		astroImageTools,
 		compress({
