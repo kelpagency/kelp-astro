@@ -48,82 +48,82 @@ if (darkHeader) {
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta charset='UTF-8' />
+		<meta name='viewport' content='width=device-width, initial-scale=1' />
 
 		<!-- Meta -->
 		<title set:html={title} />
-		<meta name="description" content={description} />
-		<link rel="alternate" type="application/rss+xml" href="https://www.kelp.agency/rss.xml" />
+		<meta name='description' content={description} />
+		<link rel='alternate' type='application/rss+xml' href='https://www.kelp.agency/rss.xml' />
 
 		<!-- Structured Data -->
-		<script type="application/ld+json" set:html={schema}></script>
+		<script type='application/ld+json' set:html={schema}></script>
 
 		<!-- Social -->
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content={Astro.url} />
-		<meta property="og:title" content={title} />
-		<meta property="og:description" content={description} />
-		<meta property="og:image" content={new URL(image, Astro.url)} />
-		<meta property="twitter:card" content="summary_large_image" />
-		<meta property="twitter:url" content={Astro.url} />
-		<meta property="twitter:title" content={title} />
-		<meta property="twitter:description" content={description} />
-		<meta property="twitter:image" content={new URL(image, Astro.url)} />
+		<meta property='og:type' content='website' />
+		<meta property='og:url' content={Astro.url} />
+		<meta property='og:title' content={title} />
+		<meta property='og:description' content={description} />
+		<meta property='og:image' content={new URL(image, Astro.url)} />
+		<meta property='twitter:card' content='summary_large_image' />
+		<meta property='twitter:url' content={Astro.url} />
+		<meta property='twitter:title' content={title} />
+		<meta property='twitter:description' content={description} />
+		<meta property='twitter:image' content={new URL(image, Astro.url)} />
 
 		<!-- Favicons -->
-		<meta name="msapplication-TileColor" content="#42c634" />
-		<meta name="theme-color" content="#c5f5f6" />
-		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-		<link rel="manifest" href="/site.webmanifest" />
-		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#42c634" />
+		<meta name='msapplication-TileColor' content='#42c634' />
+		<meta name='theme-color' content='#c5f5f6' />
+		<link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png' />
+		<link rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png' />
+		<link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png' />
+		<link rel='manifest' href='/site.webmanifest' />
+		<link rel='mask-icon' href='/safari-pinned-tab.svg' color='#42c634' />
 
 		<!-- Fonts -->
 		<link
-			rel="preload"
-			href="/fonts/newsreader-v19-latin-regular.woff2"
-			as="font"
-			type="font/woff2"
-			crossorigin="crossorigin"
+			rel='preload'
+			href='/fonts/newsreader-v19-latin-regular.woff2'
+			as='font'
+			type='font/woff2'
+			crossorigin='crossorigin'
 		/>
 		<link
-			rel="preload"
-			href="/fonts/newsreader-v19-latin-600.woff2"
-			as="font"
-			type="font/woff2"
-			crossorigin="crossorigin"
+			rel='preload'
+			href='/fonts/newsreader-v19-latin-600.woff2'
+			as='font'
+			type='font/woff2'
+			crossorigin='crossorigin'
 		/>
 		<link
-			rel="preload"
-			href="/fonts/newsreader-v19-latin-700.woff2"
-			as="font"
-			type="font/woff2"
-			crossorigin="crossorigin"
+			rel='preload'
+			href='/fonts/newsreader-v19-latin-700.woff2'
+			as='font'
+			type='font/woff2'
+			crossorigin='crossorigin'
 		/>
 		<link
-			rel="preload"
-			href="/fonts/newsreader-v19-latin-italic.woff2"
-			as="font"
-			type="font/woff2"
-			crossorigin="crossorigin"
+			rel='preload'
+			href='/fonts/newsreader-v19-latin-italic.woff2'
+			as='font'
+			type='font/woff2'
+			crossorigin='crossorigin'
 		/>
 		<link
-			rel="preload"
-			href="/fonts/poppins-v20-latin-500.woff2"
-			as="font"
-			type="font/woff2"
-			crossorigin="crossorigin"
+			rel='preload'
+			href='/fonts/poppins-v20-latin-500.woff2'
+			as='font'
+			type='font/woff2'
+			crossorigin='crossorigin'
 		/>
 		<link
-			rel="preload"
-			href="/fonts/poppins-v20-latin-600.woff2"
-			as="font"
-			type="font/woff2"
-			crossorigin="crossorigin"
+			rel='preload'
+			href='/fonts/poppins-v20-latin-600.woff2'
+			as='font'
+			type='font/woff2'
+			crossorigin='crossorigin'
 		/>
 		<style is:inline>
 			/* newsreader-regular - latin */
@@ -186,31 +186,31 @@ if (darkHeader) {
 		</style>
 	</head>
 	<body class={bodyClasses}>
-		<div data-lg-preloader>
+		<!-- <div data-lg-preloader>
 			<div data-lg-lottie="/animations/kelp-logo.json" data-lg-lottie-autoplay="true" data-lg-lottie-loop="true"></div>
-		</div>
+		</div> -->
 
 		<Header />
 
-		<div data-lg-smooth data-lg-page="page-animation">
+		<div data-lg-smooth data-lg-page='page-animation'>
 			<main>
 				<slot />
 			</main>
 			<Footer />
 		</div>
 
-		<div data-lg-cursor data-lg-cursor-inertia=".15">
+		<div data-lg-cursor data-lg-cursor-inertia='.15'>
 			<div data-lg-cursor-pointer></div>
 		</div>
 
-		<div data-lg-loader="slide-to-bottom">
-			<div id="kelp"></div>
+		<div data-lg-loader='slide-to-bottom'>
+			<div id='kelp'></div>
 		</div>
 
-		<script src="./scripts/global.js"></script>
+		<script src='./scripts/global.js'></script>
 
 		<!-- Start of HubSpot Embed Code -->
-		<script id="hs-script-loader" async defer src="https://js.hs-scripts.com/4726858.js"></script>
+		<script id='hs-script-loader' async defer src='https://js.hs-scripts.com/4726858.js'></script>
 		<!-- End of HubSpot Embed Code -->
 	</body>
 </html>
