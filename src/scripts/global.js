@@ -5,7 +5,6 @@ import Headroom from 'headroom.js';
 import lottie from 'lottie-web/build/player/lottie_light';
 import Splitting from 'splitting';
 import { annotate } from 'rough-notation';
-import imagesLoaded from 'imagesloaded';
 
 window.lottie = lottie;
 
@@ -84,10 +83,6 @@ luge.lifecycle.add('pageInit', function (done) {
 
 // do stuff right after page in animation
 luge.lifecycle.add('pageIn', function (done) {
-	imagesLoaded(document.body, function () {
-		luge.emitter.emit('resize');
-	});
-
 	// recent work slider
 	const slider = document.querySelector('.slider');
 	if (slider) {
