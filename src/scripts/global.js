@@ -17,24 +17,24 @@ luge.preloader.add((done, remove) => {
 	// fade in
 	preloaderLogo.animate([{ opacity: 1, transform: 'scale(1)' }], {
 		fill: 'forwards',
-		duration: 250,
+		duration: 200,
 		iterations: 1,
 		easing: 'ease'
 	});
 	// fade out
 	preloaderLogo.animate([{ opacity: 0, transform: 'scale(0)' }], {
 		fill: 'forwards',
-		duration: 500,
+		duration: 300,
 		iterations: 1,
-		delay: 1500,
+		delay: 1000,
 		easing: 'ease'
 	});
 	// fade out
 	preloader.animate([{ opacity: 0 }], {
 		fill: 'forwards',
-		duration: 500,
+		duration: 300,
 		iterations: 1,
-		delay: 1500,
+		delay: 1000,
 		easing: 'ease'
 	});
 	setTimeout(() => {
@@ -42,7 +42,7 @@ luge.preloader.add((done, remove) => {
 		preloaderLogo.stop();
 		done();
 		remove();
-	}, 2000);
+	}, 1400);
 });
 
 luge.settings({
