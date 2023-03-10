@@ -20,24 +20,41 @@ export async function getStaticPaths() {
 }
 
 const { title } = Astro.props;
+
+// const data = {
+// 	model: 'text-davinci-003',
+// 	prompt: `explain why a creative agency would be useful to the ${title} Florida area`,
+// 	max_tokens: 700,
+// 	temperature: 0
+// };
+// const request = await fetch('https://api.openai.com/v1/completions', {
+// 	headers: {
+// 		Authorization: `Bearer ${import.meta.env.OPENAI_KEY}`,
+// 		'Content-Type': 'application/json'
+// 	},
+// 	method: 'POST',
+// 	body: JSON.stringify(data)
+// });
+// const response = await request.json();
+// const text = response.choices[0].text;
 ---
 
-<Layout title={title} description="testing">
+<Layout title={title} description='testing'>
 	<SimpleHero
-		tagline="Web Design Agency serving:"
+		tagline='Web Design Agency serving:'
 		title={title}
-		description="We’re a team of designers, developers, and marketers who love to take your ideas and bring them to life based in the heart of Florida."
+		description='We’re a team of designers, developers, and marketers who love to take your ideas and bring them to life based in the heart of Florida.'
 	/>
-	<div class="wrapper wrapper--narrow dark" style="margin-bottom: 150px;">
-		<h2 class="h3">Why a local agency is important</h2>
+	<div class='wrapper wrapper--narrow dark' style='margin-bottom: 150px;'>
+		<h2 class='h3'>Why a local agency is important</h2>
 		<p>
 			As a local web design agency in Florida, we understand the unique needs of businesses in the area. We are familiar
-			with the local market, the competition, and the trends that are impacting businesses in the area. We also have a
-			deep understanding of the local culture and how to best reach the target audience. We are able to provide a
-			personalized approach to web design that is tailored to the specific needs of the business. We are also able to
-			provide a more cost-effective solution than larger, out-of-state agencies. By working with a local web design
-			agency, businesses in Florida can benefit from our expertise and experience in the local market.
+			with the market, the competition, and the trends that are impacting businesses in the area. We also have a deep
+			understanding of the local culture and how to best reach the target audience. We provide a personalized approach
+			to web design that is tailored to the specific needs of your business. We are also able to provide a more
+			cost-effective solution than larger, out-of-state agencies. But don't just take our word for it...
 		</p>
+		<!-- <p>{text}</p> -->
 	</div>
 	<RecentWork />
 	<Testimonials />
