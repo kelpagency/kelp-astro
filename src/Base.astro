@@ -7,7 +7,6 @@ export interface Props {
 	title: string;
 	description: string;
 	image: string;
-	permalink: string;
 	darkHeader: boolean;
 	bodyClass: string;
 }
@@ -16,7 +15,6 @@ const {
 	title = 'Kelp Creative Agency',
 	description = 'Specializing in creating amazing websites, web apps, company branding, style guides, and design systems. Our goal is to make creative solutions simple for you.',
 	image = '/images/og.png',
-	permalink = Astro.request.url,
 	darkHeader = false,
 	bodyClass = '',
 	schema = JSON.stringify({

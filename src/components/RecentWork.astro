@@ -17,7 +17,6 @@ const posts = await response.json();
 		<div class='slider'>
 			{
 				posts.map((post) => (
-					<>
 						<div class='slider-item'>
 							<div class='slider-item-media'>
 								<Picture src={post.fimg_url} alt={post.title.rendered} />
@@ -38,7 +37,6 @@ const posts = await response.json();
 								</nav>
 							</div>
 						</div>
-					</>
 				))
 			}
 		</div>
