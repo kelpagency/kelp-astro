@@ -1,5 +1,5 @@
 ---
-import Layout from '../../Base.astro';
+import Base from '../../Base.astro';
 import SimpleHero from '../../components/SimpleHero.astro';
 import { Picture } from 'astro-imagetools/components';
 import FeaturedArticles from "../../components/FeaturedArticles.astro";
@@ -8,7 +8,7 @@ const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/work?per_page=3&t
 const posts = await response.json();
 ---
 
-<Layout
+<Base
 	title='Videography'
 	description='Videos are more engaging than text or still images, and can capture the attention of viewers more effectively!'
 >
@@ -32,7 +32,51 @@ const posts = await response.json();
 			</ul>
 			<p><a href='/contact' class='button button--green'>Let's Talk</a></p>
 		</div>
-		{ posts.length > 0 && 
+	</div>
+	<div class="wrapper video-showcase">
+		<h2 data-lg-reveal="fade">
+			We make videos like...
+		</h2>
+		<figure class="small" data-lg-reveal="layer-to-bottom">
+			<video width="540" height="960" playsinline muted loop autoplay>
+				<source src="/videos/brand-video.webm" type="video/webm">
+				<source src="/videos/brand-video.mp4" type="video/mp4">
+			</video>
+			<figcaption>Brand Videos</figcaption>
+		</figure>
+		<figure class="small" data-lg-reveal="layer-to-bottom">
+			<video width="540" height="960" playsinline muted loop autoplay>
+				<source src="/videos/social-media-videos.webm" type="video/webm">
+				<source src="/videos/social-media-videos.mp4" type="video/mp4">
+			</video>
+			<figcaption>Social Media Videos</figcaption>
+		</figure>
+		<figure class="small" data-lg-reveal="layer-to-bottom">
+			<video width="540" height="960" playsinline muted loop autoplay>
+				<source src="/videos/product-highlight-video.webm" type="video/webm">
+				<source src="/videos/product-highlight-video.mp4" type="video/mp4">
+			</video>
+			<figcaption>Product Spotlight Videos</figcaption>
+		</figure>
+		<figure class="wide" data-lg-reveal="layer-to-right">
+			<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/doDGeaHVBjQ?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+			<figcaption>Educational videos</figcaption>
+		</figure>
+		<figure class="wide" data-lg-reveal="layer-to-right">
+			<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/wxMcYyKivEs?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+			<figcaption>Product Feature videos</figcaption>
+		</figure>
+		<figure class="wide" data-lg-reveal="layer-to-right">
+			<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/E8XteV68rcA?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+			<figcaption>Commercials</figcaption>
+		</figure>
+		<figure class="wide" data-lg-reveal="layer-to-right">
+			<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/uvIOYv2X7HE?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+			<figcaption>Animated Explainers</figcaption>
+		</figure>
+	</div>
+	{ posts.length > 0 && 
+	<div class="service-body">
 			<div class="service-related-work wrapper">
 				<div class="service-related-work-left">
 					<h2 data-lg-sticky="top">Check Out <br/>Our Work</h2>
@@ -59,7 +103,7 @@ const posts = await response.json();
 					}
 				</div>
 			</div>
-		}
 	</div>
+	}
 	<FeaturedArticles />
 </Layout>

@@ -11,19 +11,20 @@
 		"astro": "astro"
 	},
 	"dependencies": {
-		"@astrojs/rss": "^2.2.0",
-		"@astrojs/sitemap": "^1.2.0",
+		"@astrojs/rss": "^2.3.1",
+		"@astrojs/sitemap": "^1.2.1",
 		"@waaark/luge": "0.6.16-beta",
-		"astro": "2.1.2",
+		"astro": "2.1.6",
 		"astro-compress": "^1.1.35",
 		"astro-imagetools": "^0.8.1",
 		"autoprefixer": "^10.4.14",
 		"countrycitystatejson": "^22.10.2102",
 		"flickity": "^3.0.0",
 		"flickity-fade": "^2.0.0",
-		"gsap": "^3.11.4",
+		"gsap": "^3.11.5",
 		"headroom.js": "^0.12.0",
 		"highlight.js": "^11.7.0",
+		"lite-youtube-embed": "^0.2.0",
 		"lottie-web": "^5.10.2",
 		"netlify-plugin-cache": "^1.0.3",
 		"rough-notation": "^0.5.1",
@@ -32,8 +33,8 @@
 		"splitting": "^1.0.6"
 	},
 	"devDependencies": {
-		"prettier": "^2.8.4",
+		"prettier": "^2.8.7",
 		"prettier-plugin-astro": "^0.8.0",
-		"sass": "^1.58.3"
+		"sass": "^1.60.0"
 	}
 }
