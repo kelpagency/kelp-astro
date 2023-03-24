@@ -78,6 +78,11 @@ luge.lifecycle.add('pageInit', function (done) {
 		window.location.href = event.target.value;
 	});
 
+	const videos = document.querySelectorAll('.video-showcase video');
+	videos?.forEach(function (video) {
+		video.play();
+	});
+
 	done();
 });
 
