@@ -14,7 +14,7 @@ export async function getStaticPaths() {
 		const slug = slugify(city.name, { lower: true, strict: true });
 		return {
 			params: { city: slug },
-			props: { title: city.name.replace("''", "'") }
+			props: { title: city.name.replace("''", "'") + ', FL Web Design Agency' }
 		};
 	});
 }
