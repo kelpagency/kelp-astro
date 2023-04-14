@@ -19,6 +19,10 @@
 	}
 	blockquote {
 		margin: 3rem auto;
+		&::before,
+		&::after {
+			display: none;
+		}
 	}
 	&-content {
 		flex: 1 1 400px;

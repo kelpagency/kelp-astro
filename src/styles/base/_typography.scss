@@ -89,6 +89,37 @@ address {
 blockquote {
 	margin: 1rem 0;
 	padding: 0;
+	text-align: center;
+	font-size: var(--step-2);
+	&::before {
+		content: '“';
+		float: left;
+		font-size: var(--step-7);
+		line-height: 0.75;
+		color: var(--light-green);
+	}
+	&::after {
+		content: '”';
+		float: right;
+		font-size: var(--step-7);
+		line-height: 0.1;
+		color: var(--light-green);
+	}
+	cite {
+		font-size: 1.2rem;
+		display: block;
+		font-family: var(--sans-serif);
+		font-weight: 500;
+		font-style: normal;
+		&::before {
+			content: '';
+			display: block;
+			height: 2px;
+			width: 100px;
+			background: var(--black);
+			margin: 0 auto 1.5rem auto;
+		}
+	}
 }
 
 hr {
