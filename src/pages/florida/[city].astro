@@ -11,10 +11,10 @@ export async function getStaticPaths() {
 	const florida = usa.states['Florida'];
 
 	return florida.map((city) => {
-		const slug = slugify(city.name).toLowerCase();
+		const slug = slugify(city.name, { lower: true, strict: true });
 		return {
 			params: { city: slug },
-			props: { title: city.name }
+			props: { title: city.name.replace("''", "'") }
 		};
 	});
 }

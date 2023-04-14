@@ -1,6 +1,7 @@
 ---
 import Layout from '../../Base.astro';
 import countries from 'countrycitystatejson';
+import slugify from 'slugify';
 
 const usa = countries.getCountryByShort('US');
 const florida = usa.states['Florida'];
@@ -14,7 +15,7 @@ const florida = usa.states['Florida'];
 			{
 				florida.map((city) => (
 					<li>
-						<a href=`/florida/${city.name.replace(/\s+/g, '-').toLowerCase()}`>{city.name}</a>
+						<a href=`/florida/${slugify(city.name, { lower: true, strict: true })}`>{city.name.replace("''","'")}</a>
 					</li>
 				))
 			}
