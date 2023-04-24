@@ -65,6 +65,9 @@
 			font-style: normal;
 			line-height: 1.2;
 			text-align: left;
+			&::before {
+				display: none;
+			}
 			strong {
 				font-size: 1.2rem;
 				display: block;
