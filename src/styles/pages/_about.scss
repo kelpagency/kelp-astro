@@ -28,10 +28,10 @@
 		gap: 2rem;
 		align-items: center;
 		margin-top: 12rem;
-		picture {
+		&-media {
 			flex: 1 1 400px;
 		}
-		p {
+		&-text {
 			flex: 1 1 400px;
 			text-align: left;
 		}
