@@ -22,7 +22,21 @@
 			margin-top: 5rem;
 		}
 	}
-	.team-grid {
+	&-badge {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 2rem;
+		align-items: center;
+		margin-top: 12rem;
+		picture {
+			flex: 1 1 400px;
+		}
+		p {
+			flex: 1 1 400px;
+			text-align: left;
+		}
+	}
+	&-grid {
 		display: grid;
 		grid-template-columns: 1fr 1fr 1fr;
 		@media (max-width: 800px) {
