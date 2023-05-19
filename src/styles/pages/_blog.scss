@@ -16,7 +16,7 @@
 				margin-bottom: 7rem;
 			}
 			.media {
-				flex: 1 1 calc(60% - 3rem);
+				flex: 1 1 400px;
 				text-align: center;
 				picture {
 					height: 100%;
@@ -25,7 +25,7 @@
 				}
 			}
 			.text {
-				flex: 1 1 calc(40% - 3rem);
+				flex: 1 1 400px;
 			}
 			&:nth-child(even) {
 				.media {
