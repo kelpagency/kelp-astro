@@ -11,6 +11,8 @@ export async function getStaticPaths() {
 			params: { slug: post.slug },
 			props: {
 				title: post.title.rendered,
+				description: post.excerpt.rendered.replace(/(<([^>]+)>)/gi, ''),
+				image: [post.fimg_url],
 				content: post.content.rendered,
 				id: post.id,
 				author: post._embedded.author,
@@ -18,7 +20,7 @@ export async function getStaticPaths() {
 					'@context': 'https://schema.org',
 					'@type': 'Article',
 					headline: post.title.rendered,
-					description: post.excerpt.rendered,
+					description: post.excerpt.rendered.replace(/(<([^>]+)>)/gi, ''),
 					datePublished: post.date,
 					dateModified: post.modified,
 					image: [post.fimg_url],
@@ -39,28 +41,28 @@ export async function getStaticPaths() {
 	});
 }
 
-const { title, content, id, author, schema } = Astro.props;
+const { title, content, id, author, schema, image, description } = Astro.props;
 const comments = await fetch(`${import.meta.env.PUBLIC_WP_URL}/comments?post=${id}`);
 const jsonComments = await comments.json();
 ---
 
-<Layout title={title} bodyClass="blog-post" schema={schema}>
+<Layout title={title} description={description} image={image} bodyClass='blog-post' schema={schema}>
 	<article>
-		<div class="wrapper">
-			<h1 data-splitting data-lg-reveal="fade" data-lg-reveal-stagger="0.1" set:html={title} />
+		<div class='wrapper'>
+			<h1 data-splitting data-lg-reveal='fade' data-lg-reveal-stagger='0.1' set:html={title} />
 		</div>
 		<div
-			data-lg-reveal="fade"
-			data-lg-reveal-stagger="0.1"
-			data-lg-reveal-delay="0.3"
-			class="wrapper wrapper--narrow"
+			data-lg-reveal='fade'
+			data-lg-reveal-stagger='0.1'
+			data-lg-reveal-delay='0.3'
+			class='wrapper wrapper--narrow'
 			set:html={content}
 		/>
-		<div class="author-box wrapper wrapper--narrow">
+		<div class='author-box wrapper wrapper--narrow'>
 			--
-			<img src={author[0].avatar_urls['96']} width="64" height="64" loading="lazy" />
+			<img src={author[0].avatar_urls['96']} width='64' height='64' loading='lazy' />
 			<div>
-				<h5 class="h6">
+				<h5 class='h6'>
 					{author[0].name}
 				</h5>
 				<p>{author[0].description}</p>
@@ -68,22 +70,22 @@ const jsonComments = await comments.json();
 		</div>
 		{
 			jsonComments.length > 0 && (
-				<section class="wrapper wrapper--narrow comments">
+				<section class='wrapper wrapper--narrow comments'>
 					<h4>Comments</h4>
 					{jsonComments.map(
 						(comment) =>
 							comment.parent == 0 && (
-								<div class="comments-item">
-									<img class="comments-item-img" src={comment.author_avatar_urls['96']} loading="lazy" />
-									<h4 class="comments-item-name h6">{comment.author_name} says</h4>
-									<div class="comments-item-body" set:html={comment.content.rendered} />
+								<div class='comments-item'>
+									<img class='comments-item-img' src={comment.author_avatar_urls['96']} loading='lazy' />
+									<h4 class='comments-item-name h6'>{comment.author_name} says</h4>
+									<div class='comments-item-body' set:html={comment.content.rendered} />
 									{jsonComments.map(
 										(reply) =>
 											reply.parent == comment.id && (
-												<div class="comments-item comments-item--reply">
-													<img class="comments-item-img" src={reply.author_avatar_urls['96']} loading="lazy" />
-													<h4 class="comments-item-name h6">{reply.author_name} says</h4>
-													<div class="comments-item-body" set:html={reply.content.rendered} />
+												<div class='comments-item comments-item--reply'>
+													<img class='comments-item-img' src={reply.author_avatar_urls['96']} loading='lazy' />
+													<h4 class='comments-item-name h6'>{reply.author_name} says</h4>
+													<div class='comments-item-body' set:html={reply.content.rendered} />
 												</div>
 											)
 									)}
@@ -93,24 +95,24 @@ const jsonComments = await comments.json();
 				</section>
 			)
 		}
-		<div class="leave-a-comment wrapper wrapper--narrow">
+		<div class='leave-a-comment wrapper wrapper--narrow'>
 			<h4>Leave a Comment</h4>
 			<hr />
 			<form>
 				<label
 					>Your Name<br />
-					<input type="text" placeholder="Johnny Boy" required />
+					<input type='text' placeholder='Johnny Boy' required />
 				</label>
 				<label
 					>Your Email<br />
-					<input type="email" placeholder="name@example.com" required />
+					<input type='email' placeholder='name@example.com' required />
 				</label>
 				<label
 					>Your Comment<br />
-					<textarea placeholder="whats with the squid 🦑" required></textarea>
+					<textarea placeholder='whats with the squid 🦑' required></textarea>
 				</label>
-				<input type="hidden" name="post" value={id} />
-				<button class="button" type="submit">Post Comment</button>
+				<input type='hidden' name='post' value={id} />
+				<button class='button' type='submit'>Post Comment</button>
 			</form>
 		</div>
 	</article>
