@@ -4,17 +4,23 @@
 import Layout from "../../Base.astro";
 
 export async function getStaticPaths() {
-	const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/work?per_page=100`);
+	const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/work?per_page=100&_embed`);
 	const posts = await response.json();
 	return posts.map((post) => {
 		return {
 			params: { slug: post.slug },
-			props: { title: post.title.rendered, content: post.content.rendered, tagIds: post.tags }
+			props: {
+				title: post.title.rendered,
+				description: post.excerpt.rendered.replace(/(<([^>]+)>)/gi, ''),
+				image: [post.fimg_url],
+				content: post.content.rendered,
+				tagIds: post.tags
+			}
 		};
 	});
 }
 
-const { title, content, tagIds } = Astro.props;
+const { title, content, description, image, tagIds } = Astro.props;
 
 let tags = [];
 for (const tag of tagIds) {
@@ -24,7 +30,7 @@ for (const tag of tagIds) {
 }
 ---
 
-<Layout title={title} bodyClass="work-post">
+<Layout title={title} description={description} image={image} bodyClass="work-post" >
 	<article class="wrapper">
 		<h1 data-splitting data-lg-reveal="fade" data-lg-reveal-stagger="0.1" set:html={title} />
 		<p data-lg-reveal="layer-to-left" data-lg-reveal-delay="0.2" class="tags">
