@@ -153,7 +153,8 @@
 					&:last-child {
 						margin-left: 1rem;
 					}
-					&:hover {
+					&:hover,
+					&:focus-within {
 						> ul {
 							visibility: visible;
 							opacity: 1;
@@ -184,7 +185,7 @@
 						padding: 0.75rem 1.25rem;
 						opacity: 0;
 						visibility: hidden;
-						transition: 200ms ease;
+						transition: 280ms all 120ms ease-out;
 						transform: translate(-10px);
 						a {
 							color: var(--black);
