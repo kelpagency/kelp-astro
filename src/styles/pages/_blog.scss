@@ -28,6 +28,20 @@
 		ul {
 			position: sticky;
 			top: 2rem;
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			a {
+				text-decoration: none;
+				text-decoration-thickness: 3px;
+				&.active {
+					color: var(--purple);
+				}
+				&:hover,
+				&:focus {
+					text-decoration: underline;
+				}
+			}
 		}
 	}
 	&-tease {
@@ -35,6 +49,7 @@
 		.media {
 			aspect-ratio: 4 / 2.2;
 			overflow: hidden;
+			display: block;
 			picture,
 			img {
 				height: 100% !important;

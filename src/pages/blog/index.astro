@@ -24,10 +24,10 @@ const categories = await requestCategories.json();
 			<p><strong>Ready to fuel up on fresh ideas?<br> Let’s dive in!</strong></p>
 			<h3>Topics</h3>
 			<ul>
-				<li><a href="/blog">All Articles</a></li>
+				<li><a class=`h6 ${ Astro.url.pathname === '/blog' && 'active' }` href="/blog">All Articles</a></li>
 				{ 
 					categories.map((cat) => (
-						<li><a href=`/blog/${cat.slug}`>{cat.name}</a></li>
+						<li><a class="h6" href=`/blog/${cat.slug}`>{cat.name}</a></li>
 					))
 				}
 			</ul>
@@ -35,9 +35,9 @@ const categories = await requestCategories.json();
 		{
 			posts.map((post) => (
 				<article class="archive-tease" data-lg-reveal="layer-to-right" data-lg-reveal-stagger="0.15">
-					<div class="media">
+					<a href=`/blog/${post.slug}` class="media">
 						<Picture src={post.fimg_url} alt={post.title.rendered} loading="lazy" />
-					</div>
+					</a>
 					<div class="text">
 						<p class="text-meta">
 							<span>{ new Date(post.date).toLocaleDateString('en-us', { year:"numeric", month:"short", day:"numeric" }) }</span>

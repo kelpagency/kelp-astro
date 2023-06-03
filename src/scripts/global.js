@@ -233,3 +233,18 @@ burger?.addEventListener('click', function (event) {
 	burger.classList.toggle('active');
 	document.body.classList.toggle('mobile-menu-active');
 });
+
+// fix for anchor links
+luge.lifecycle.add('pageIn', navigateToTarget);
+
+function navigateToTarget(done) {
+	const hash = window.location.hash;
+	if (hash) {
+		const target = document.querySelector(hash);
+		if (target) {
+			window.scrollTo(0, target.getBoundingClientRect().top + window.unifiedScrollTop);
+		}
+	}
+
+	done();
+}
