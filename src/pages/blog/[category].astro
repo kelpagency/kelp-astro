@@ -3,11 +3,28 @@ import Layout from "../../Base.astro";
 import { Picture } from "astro-imagetools/components";
 import readingTime from "reading-time";
 
-const requestPosts = await fetch(`${import.meta.env.PUBLIC_WP_URL}/posts?per_page=100`);
-const posts = await requestPosts.json();
+export async function getStaticPaths() {
+	const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/categories?per_page=100`);
+	const posts = await response.json();
+	return posts.map((category) => {
+		return {
+			params: { category: category.slug },
+			props: {
+				title: category.name,
+				slug: category.slug,
+				id: category.id
+			}
+		};
+	});
+}
+
+const { title, slug, id } = Astro.props;
 
 const requestCategories = await fetch(`${import.meta.env.PUBLIC_WP_URL}/categories?per_page=100`);
 const categories = await requestCategories.json();
+
+const requestPosts = await fetch(`${import.meta.env.PUBLIC_WP_URL}/posts?per_page=100&categories=${id}`);
+const posts = await requestPosts.json();
 ---
 
 <Layout title='Kelp Current'>
