@@ -10,7 +10,7 @@ const requestCategories = await fetch(`${import.meta.env.PUBLIC_WP_URL}/categori
 const categories = await requestCategories.json();
 ---
 
-<Layout title='Kelp Current'>
+<Layout title='Kelp Current' darkHeader={true}>
 	<article class="wrapper archive">
 		<aside class="archive-sidebar">
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 355.9 74.1" width="355.9" height="74.1">
