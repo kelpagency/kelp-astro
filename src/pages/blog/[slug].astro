@@ -70,6 +70,7 @@ const jsonComments = await comments.json();
 										<img
 											class='single-article-comments-item-img'
 											src={comment.author_avatar_urls['96']}
+											width='48'
 											loading='lazy'
 										/>
 										<h4 class='single-article-comments-item-name h6'>{comment.author_name} says</h4>
@@ -77,10 +78,11 @@ const jsonComments = await comments.json();
 										{jsonComments.map(
 											(reply) =>
 												reply.parent == comment.id && (
-													<div class='single-article-comments-item comments-item--reply'>
+													<div class='single-article-comments-item single-article-comments-item--reply'>
 														<img
 															class='single-article-comments-item-img'
 															src={reply.author_avatar_urls['96']}
+															width='48'
 															loading='lazy'
 														/>
 														<h4 class='single-article-comments-item-name h6'>{reply.author_name} says</h4>
