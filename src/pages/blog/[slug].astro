@@ -2,6 +2,7 @@
 // Fetch your about page content from the WordPress API
 import FeaturedArticles from '../../components/FeaturedArticles.astro';
 import Layout from '../../Base.astro';
+import BlogSingleSidebar from '../../components/BlogSingleSidebar.astro';
 import { Picture } from 'astro-imagetools/components';
 
 export async function getStaticPaths() {
@@ -51,6 +52,11 @@ export async function getStaticPaths() {
 const { title, content, id, author, schema, image, description, categories, allCategories } = Astro.props;
 const comments = await fetch(`${import.meta.env.PUBLIC_WP_URL}/comments?post=${id}`);
 const jsonComments = await comments.json();
+const category = {
+	slug: allCategories.find((cat) => cat.id === categories[0]).slug,
+	name: allCategories.find((cat) => cat.id === categories[0]).name,
+	id: allCategories.find((cat) => cat.id === categories[0]).id
+};
 ---
 
 <Layout title={title} description={description} image={image} bodyClass='blog-post' schema={schema} darkHeader={true}>
@@ -117,21 +123,7 @@ const jsonComments = await comments.json();
 				</form>
 			</section>
 		</div>
-		<aside class='single-sidebar'>
-			<div class='sticky'>
-				<div class='single-sidebar-author'>
-					<img src={author[0].avatar_urls['96']} width='64' height='64' loading='lazy' />
-					<h5 class='h6'>{author[0].name}</h5>
-					<p>{author[0].description}</p>
-				</div>
-				<div class='single-sidebar-category'>
-					<h6>Category</h6>
-					<a href=`/blog/${allCategories.find(cat => cat.id === categories[0]).slug}`>
-						{allCategories.find((cat) => cat.id === categories[0]).name}
-					</a>
-				</div>
-			</div>
-		</aside>
+		<BlogSingleSidebar author={author[0]} category={category} />
 	</article>
 	<FeaturedArticles />
 </Layout>

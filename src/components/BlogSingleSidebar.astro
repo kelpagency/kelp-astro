@@ -1,0 +1,33 @@
+---
+export interface Props {
+	author: object;
+	category: object;
+}
+
+const { author = {}, category = {} } = Astro.props;
+
+const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/posts?categories=${category.id}&per_page=4`);
+const posts = await response.json();
+---
+
+<aside class='single-sidebar'>
+	<div class='single-sidebar-author'>
+		<img src={author.avatar_urls['96']} width='64' height='64' loading='lazy' />
+		<h5 class='h6'>{author.name}</h5>
+		<p>{author.description}</p>
+	</div>
+	<div class='single-sidebar-category'>
+		<h6>Category</h6>
+		<a href=`/blog/${category.slug}`>{category.name}</a>
+	</div>
+	<div class="single-sidebar-related">
+		<h6>Related Posts</h6>
+		<ul>
+			{ 
+				posts.map((post) => (
+					<li><a href=`/blog/${post.slug}` set:html={post.title.rendered}></a></li>
+				))
+			}
+		</ul>
+	</div>
+</aside>
