@@ -14,8 +14,8 @@ const categories = await requestCategories.json();
 	<h2 class="h4">Helpful resources. <br>Creative Insight.</h2>
 	<p>Join us on a journey where creativity meets problem-solving and success. Be inspired, educated, and harness the power of creativity to reach your goals.</p>
 	<p><strong>Ready to fuel up on fresh ideas?<br> Let’s dive in!</strong></p>
-	<h3>Topics</h3>
-	<ul>
+	<h3 data-lg-reveal='fade'>Topics</h3>
+	<ul data-lg-reveal='fade' data-lg-reveal-stagger='0.15'>
 		<li><a class=`h6 ${ Astro.url.pathname === '/blog' && 'active' }` href="/blog">All Articles</a></li>
 		{ 
 			categories.map((cat) => (
