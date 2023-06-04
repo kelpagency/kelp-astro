@@ -2,11 +2,12 @@
 export interface Props {
 	author: object;
 	category: object;
+	postId: number;
 }
 
-const { author = {}, category = {} } = Astro.props;
+const { author = {}, category = {}, postId = 0 } = Astro.props;
 
-const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/posts?categories=${category.id}&per_page=4`);
+const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/posts?categories=${category.id}&per_page=4&exclude=${postId}`);
 const posts = await response.json();
 ---
 
