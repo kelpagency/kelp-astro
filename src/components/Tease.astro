@@ -1,0 +1,27 @@
+---
+import { Picture } from 'astro-imagetools/components';
+import readingTime from 'reading-time';
+
+export interface Props {
+	post: object;
+}
+const { post = {} } = Astro.props;
+const requestCategories = await fetch(`${import.meta.env.PUBLIC_WP_URL}/categories?per_page=100`);
+const categories = await requestCategories.json();
+---
+
+<article class='archive-tease' data-lg-reveal='layer-to-right' data-lg-reveal-stagger='0.15'>
+	<a href=`/blog/${post.slug}` class='media'>
+		<Picture src={post.fimg_url} alt={post.title.rendered} loading='lazy' />
+	</a>
+	<div class='text'>
+		<p class='text-meta'>
+			<span>{new Date(post.date).toLocaleDateString('en-us', { year: 'numeric', month: 'short', day: 'numeric' })}</span
+			>
+			<span>{readingTime(post.content.rendered).text}</span>
+			<span>{categories.find((cat) => cat.id === post.categories[0]).name}</span>
+		</p>
+		<h2 class='h5'><a href=`/blog/${post.slug}` set:html={post.title.rendered} /></h2>
+		<div set:html={post.excerpt.rendered} />
+	</div>
+</article>
