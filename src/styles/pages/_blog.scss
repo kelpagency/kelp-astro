@@ -117,7 +117,7 @@
 .single {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 3rem;
+	gap: 3rem 4rem;
 	margin-top: 3rem;
 	&-sidebar {
 		flex: 1 1 250px;
@@ -160,6 +160,23 @@
 			a {
 				font-size: var(--step-0);
 				line-height: 1;
+			}
+		}
+		&-share {
+			display: flex;
+			gap: 1rem;
+			justify-content: space-between;
+			align-items: center;
+			border-bottom: 1px solid;
+			padding-bottom: 1rem;
+			h6 {
+				font-size: var(--step-0);
+				margin: 0;
+			}
+			p {
+				margin: 0;
+				display: flex;
+				gap: 1rem;
 			}
 		}
 		&-related {
