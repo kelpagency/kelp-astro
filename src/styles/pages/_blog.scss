@@ -216,7 +216,7 @@
 			&-item {
 				margin: 3rem 0;
 				display: grid;
-				grid-template-columns: 100px auto;
+				grid-template-columns: 48px auto;
 				gap: 0 2rem;
 				@media (max-width: 767px) {
 					grid-template-columns: 40px auto;
@@ -236,6 +236,7 @@
 				}
 				&--reply {
 					margin-left: 3rem;
+					margin-top: 2rem;
 					grid-column: span 2;
 				}
 			}
