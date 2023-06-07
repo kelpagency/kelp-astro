@@ -21,7 +21,7 @@ const tagsResponse = await fetch(`${import.meta.env.PUBLIC_WP_URL}/tags?per_page
 const tags = await tagsResponse.json();
 ---
 
-<Layout title={title}>
+<Layout title={title} bodyClass="work-archive">
 	<article class="archive">
 		<div class='wrapper wrapper--narrow'>
 			<h1 style="margin-top: 8rem; line-height: 1.3;" data-splitting data-lg-reveal="fade" data-lg-reveal-stagger="0.05">Our <em>{title}</em> Work in the Real-world</h1>
@@ -46,7 +46,7 @@ const tags = await tagsResponse.json();
 			</label>
 				{
 					posts.map((post) => (
-						<article data-tags={post.tags.join(',')} data-lg-reveal="layer-to-right" data-lg-reveal-stagger="0.2">
+						<article class="tease" data-tags={post.tags.join(',')} data-lg-reveal="layer-to-right" data-lg-reveal-stagger="0.2">
 							<div class="media">
 								<Picture src={post.fimg_url} alt={post.title.rendered} loading="lazy" />
 							</div>

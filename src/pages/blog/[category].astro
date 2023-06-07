@@ -24,7 +24,7 @@ const requestPosts = await fetch(`${import.meta.env.PUBLIC_WP_URL}/posts?per_pag
 const posts = await requestPosts.json();
 ---
 
-<Layout title='Kelp Current' darkHeader={true}>
+<Layout title='Kelp Current' darkHeader={true} bodyClass='blog-archive'>
 	<article class='wrapper archive'>
 		<BlogArchiveSidebar />
 		{posts.map((post) => <Tease post={post} />)}
