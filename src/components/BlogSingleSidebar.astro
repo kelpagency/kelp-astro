@@ -43,7 +43,7 @@ const posts = await response.json();
 		<ul>
 			{ 
 				posts.map((post) => (
-					<li><a href=`/blog/${post.slug}` set:html={post.title.rendered}></a></li>
+					<li><a href=`/blog/${post.slug}/` set:html={post.title.rendered}></a></li>
 				))
 			}
 		</ul>
