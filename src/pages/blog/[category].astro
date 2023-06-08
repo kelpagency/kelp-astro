@@ -20,11 +20,12 @@ export async function getStaticPaths() {
 
 const { title, slug, id } = Astro.props;
 
+const title2 = `The Kelp Blog: ${title}`;
 const requestPosts = await fetch(`${import.meta.env.PUBLIC_WP_URL}/posts?per_page=100&categories=${id}`);
 const posts = await requestPosts.json();
 ---
 
-<Layout title='Kelp Current' darkHeader={true} bodyClass='blog-archive'>
+<Layout title={title2} darkHeader={true} bodyClass='blog-archive'>
 	<article class='wrapper archive'>
 		<BlogArchiveSidebar />
 		{posts.map((post) => <Tease post={post} />)}
