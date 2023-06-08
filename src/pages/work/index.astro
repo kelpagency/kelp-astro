@@ -24,7 +24,7 @@ const tags = await tagsResponse.json();
 					{tags.map(
 						(tag) => 
 							tag.count > 0 && (
-								<option value=`/work/${tag.slug}`>{tag.name}</option>
+								<option value=`/work/${tag.slug}/`>{tag.name}</option>
 							)
 						)
 					}
@@ -37,7 +37,7 @@ const tags = await tagsResponse.json();
 								<Picture src={post.fimg_url} alt={post.title.rendered} loading="lazy" />
 							</div>
 							<div class="text">
-								<h2 class="h4"><a href=`/work/${post.slug}` set:html={post.title.rendered}/></h2>
+								<h2 class="h4"><a href=`/work/${post.slug}/` set:html={post.title.rendered}/></h2>
 								<div set:html={post.excerpt.rendered} />
 							</div>
 						</article>

@@ -21,7 +21,7 @@ const posts = await response.json();
 			<p>At the beginning of each month, Kelp is assigned a set number of production hours to accomplish the agreed upon tasks. This retainer requires a bit more planning up front but is oftentimes an easier relationship to manage for clients that aren’t working with immediate deadlines. A Monthly Retainer works great for businesses who have their goals and strategies outlined and planned.</p>
 			<h3 class="h6">Weekly Retainer</h3>
 			<p>These retainers are treated as weekly sprints where each week has a set number of production hours, the tasks are assigned at the beginning of each week, along with the time allotted per task. In a weekly retainer, the Kelp team meets with you more regularly to discuss task priority and align our team with yours. This retainer is ideal for workloads that need constant attention and have very tight deadlines</p>
-			<p><a href='/contact' class='button button--green'>Let's Talk</a></p>
+			<p><a href='/contact/' class='button button--green'>Let's Talk</a></p>
 		</div>
 		{ posts.length > 0 && 
 			<div class="service-related-work wrapper">
@@ -44,7 +44,7 @@ const posts = await response.json();
 							<Picture src={post.fimg_url} loading="lazy" alt={post.title.rendered} format={["avif", "webp"]}
 							fallbackFormat="jpg" includeSourceFormat={false} />
 							<h3 class="h5" set:html={post.title.rendered} />
-							<p><a href=`/work/${post.slug}` class="squiggle">Read Case Study</a></p>
+							<p><a href=`/work/${post.slug}/` class="squiggle">Read Case Study</a></p>
 						</article>
 						))
 					}

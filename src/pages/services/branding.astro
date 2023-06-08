@@ -22,7 +22,7 @@ const posts = await response.json();
 			<p>In many cases, Branding may reach more people than a business’s product itself. This is because branding can be applied to more than just physical products. Branding is used in every main component of customer contact. From posts on social media, to ads on the radio, to the boxes a product ships in, a brand can make an impact either positive or negative.</p>
 			<h2>How we approach branding</h2>
 			<p>We offer a strategic and creative perspective to company branding. This involves understanding the target audience and the goals of the brand, and then developing a unique and cohesive brand identity that resonates with that audience. This can include creating the name, logo, brand guidelines, messaging, and visual elements that reflect the brand's personality and positioning. Ultimately, the goal of our branding work is to build awareness, credibility, and loyalty for your business.</p>
-			<p><a href='/contact' class='button button--green'>Let's Talk</a></p>
+			<p><a href='/contact/' class='button button--green'>Let's Talk</a></p>
 		</div>
 		{posts.length > 0 && 
 		<div class="service-related-work wrapper">
@@ -45,7 +45,7 @@ const posts = await response.json();
 						<Picture src={post.fimg_url} loading="lazy" alt={post.title.rendered} format={["avif", "webp"]}
 						fallbackFormat="jpg" includeSourceFormat={false} />
 						<h3 class="h5" set:html={post.title.rendered} />
-						<p><a href=`/work/${post.slug}` class="squiggle">Read Case Study</a></p>
+						<p><a href=`/work/${post.slug}/` class="squiggle">Read Case Study</a></p>
 					</article>
 				))}
 			</div>

@@ -33,7 +33,7 @@ const posts = await response.json();
 			</ul>
 			<h2>How we approach motion graphics</h2>
 			<p>We tell stories with visuals and sound, so you can engage people on your website, social media or other platforms. A careful balance of storytelling techniques is essential to make it captivating: voiceover; music that builds interest; text animation which tells part-of the tale while building curiosity for more information—all designed by our talented team!</p>
-			<p><a href='/contact' class='button button--green'>Let's Talk</a></p>
+			<p><a href='/contact/' class='button button--green'>Let's Talk</a></p>
 		</div>
 		{posts.length > 0 && 
 		<div class="service-related-work wrapper">
@@ -56,7 +56,7 @@ const posts = await response.json();
 						<Picture src={post.fimg_url} loading="lazy" alt={post.title.rendered} format={["avif", "webp"]}
 						fallbackFormat="jpg" includeSourceFormat={false} />
 						<h3 class="h5" set:html={post.title.rendered} />
-						<p><a href=`/work/${post.slug}` class="squiggle">Read Case Study</a></p>
+						<p><a href=`/work/${post.slug}/` class="squiggle">Read Case Study</a></p>
 					</article>
 					))
 				}

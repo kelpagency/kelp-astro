@@ -11,7 +11,7 @@ const categories = await requestCategories.json();
 ---
 
 <article class='archive-tease' data-lg-reveal='layer-to-right' data-lg-reveal-stagger='0.15'>
-	<a href=`/blog/${post.slug}` class='media'>
+	<a href=`/blog/${post.slug}/` class='media'>
 		<Picture src={post.fimg_url} alt={post.title.rendered} loading='lazy' />
 	</a>
 	<div class='text'>
@@ -21,7 +21,7 @@ const categories = await requestCategories.json();
 			<span>{readingTime(post.content.rendered).text}</span>
 			<span>{categories.find((cat) => cat.id === post.categories[0]).name}</span>
 		</p>
-		<h2 class='h5'><a href=`/blog/${post.slug}` set:html={post.title.rendered} /></h2>
+		<h2 class='h5'><a href=`/blog/${post.slug}/` set:html={post.title.rendered} /></h2>
 		<div set:html={post.excerpt.rendered} />
 	</div>
 </article>

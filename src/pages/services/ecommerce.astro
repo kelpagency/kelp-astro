@@ -36,7 +36,7 @@ const posts = await response.json();
 					<strong>Deployment:</strong> and finally we'll launch the site and make it available to users. This involves setting up the host, migrating any existing data from the old website, and making DNS changes.
 				</li>
 			</ol>
-			<p><a href='/contact' class='button button--green'>Let's Talk</a></p>
+			<p><a href='/contact/' class='button button--green'>Let's Talk</a></p>
 		</div>
 		{posts.length > 0 && 
 			<div class="service-related-work wrapper">
@@ -59,7 +59,7 @@ const posts = await response.json();
 							<Picture src={post.fimg_url} loading="lazy" alt={post.title.rendered} format={["avif", "webp"]}
 							fallbackFormat="jpg" includeSourceFormat={false} />
 							<h3 class="h5" set:html={post.title.rendered} />
-							<p><a href=`/work/${post.slug}` class="squiggle">Read Case Study</a></p>
+							<p><a href=`/work/${post.slug}/` class="squiggle">Read Case Study</a></p>
 						</article>
 					))}
 				</div>

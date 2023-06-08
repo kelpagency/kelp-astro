@@ -32,7 +32,7 @@ const posts = await response.json();
 			<p>Infographics are a fantastic way to share data with the world. They're perfect for those who have too much information and need an easier medium than just text, or if you want people's attention drawn quickly towards what matters most in your story; they also work well when there is some sort of element which needs explanation (such as animation).</p>
 			<h2>How we approach infographics</h2>
 			<p>Our designers will brainstorm with you and research on what resonates most about the brand goals, then gather all of our findings together in one place. From there we’ll create copy that is engaging but also informative—a perfect balance between aesthetics and substance.</p>
-			<p><a href='/contact' class='button button--green'>Let's Talk</a></p>
+			<p><a href='/contact/' class='button button--green'>Let's Talk</a></p>
 		</div>
 		{posts.length > 0 && 
 		<div class="service-related-work wrapper">
@@ -55,7 +55,7 @@ const posts = await response.json();
 						<Picture src={post.fimg_url} loading="lazy" alt={post.title.rendered} format={["avif", "webp"]}
 						fallbackFormat="jpg" includeSourceFormat={false} />
 						<h3 class="h5" set:html={post.title.rendered} />
-						<p><a href=`/work/${post.slug}` class="squiggle">Read Case Study</a></p>
+						<p><a href=`/work/${post.slug}/` class="squiggle">Read Case Study</a></p>
 					</article>
 					))
 				}

@@ -17,7 +17,7 @@ const posts = await response.json();
 		<div class='wrapper wrapper--narrow'>
 			<h2>Why website support matters</h2>
 			<p>Keeping your website up to date is an important part of ensuring that it's error free and running smoothly. This means making sure all the plugins / dependencies on there are current, fixing any broken links if they exist (that would make life easier for visitors), backing it up regularly, and monitoring Google's search console for any issues.</p>
-			<p><a href='/contact' class='button button--green'>Let's Talk</a></p>
+			<p><a href='/contact/' class='button button--green'>Let's Talk</a></p>
 		</div>
 		{ posts.length > 0 && 
 			<div class="service-related-work wrapper">
@@ -40,7 +40,7 @@ const posts = await response.json();
 							<Picture src={post.fimg_url} loading="lazy" alt={post.title.rendered} format={["avif", "webp"]}
 							fallbackFormat="jpg" includeSourceFormat={false} />
 							<h3 class="h5" set:html={post.title.rendered} />
-							<p><a href=`/work/${post.slug}` class="squiggle">Read Case Study</a></p>
+							<p><a href=`/work/${post.slug}/` class="squiggle">Read Case Study</a></p>
 						</article>
 						))
 					}

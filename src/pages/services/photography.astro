@@ -29,7 +29,7 @@ const posts = await response.json();
 			</ul>
 			<h2>How we approach photography</h2>
 			<p>Typically we'll work with you to understand your goals and objectives in the discovery phase along with the intended audience the photos will be for. Once we fully understand the goals we start our planning whether it will include models and locations or our in-house studio, we'll schedule a time and day(s) that works best for you. After the shoot we'll do some post-processing to get the required look and feel that matches your brand and deliver the end results as files for you to use, as part of a larger marketing campaign, or any other specific application.</p>
-			<p><a href='/contact' class='button button--green'>Let's Talk</a></p>
+			<p><a href='/contact/' class='button button--green'>Let's Talk</a></p>
 		</div>
 		{posts.length > 0 && 
 		<div class="service-related-work wrapper">
@@ -52,7 +52,7 @@ const posts = await response.json();
 						<Picture src={post.fimg_url} loading="lazy" alt={post.title.rendered} format={["avif", "webp"]}
 						fallbackFormat="jpg" includeSourceFormat={false} />
 						<h3 class="h5" set:html={post.title.rendered} />
-						<p><a href=`/work/${post.slug}` class="squiggle">Read Case Study</a></p>
+						<p><a href=`/work/${post.slug}/` class="squiggle">Read Case Study</a></p>
 					</article>
 					))
 				}

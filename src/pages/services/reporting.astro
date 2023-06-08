@@ -20,7 +20,7 @@ const posts = await response.json();
 			<h2>How we approach reporting</h2>
 			<p>With our reports, you can make data-driven decisions to improve marketing efforts. We will provide regular updates and recommendations that help identify success benchmarks for your campaigns as well as determine the right course of action based on current results.</p>
 			<p>Our services give businesses access not only to their own performance but also those from competitors in order to track progress over time so they know what works best when it comes down to deciding how much budget should go towards certain activities or implementing new ones altogether.</p>
-			<p><a href='/contact' class='button button--green'>Let's Talk</a></p>
+			<p><a href='/contact/' class='button button--green'>Let's Talk</a></p>
 		</div>
 		{ posts.length > 0 && 
 			<div class="service-related-work wrapper">
@@ -43,7 +43,7 @@ const posts = await response.json();
 							<Picture src={post.fimg_url} loading="lazy" alt={post.title.rendered} format={["avif", "webp"]}
 							fallbackFormat="jpg" includeSourceFormat={false} />
 							<h3 class="h5" set:html={post.title.rendered} />
-							<p><a href=`/work/${post.slug}` class="squiggle">Read Case Study</a></p>
+							<p><a href=`/work/${post.slug}/` class="squiggle">Read Case Study</a></p>
 						</article>
 						))
 					}

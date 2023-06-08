@@ -15,7 +15,7 @@ const florida = usa.states['Florida'];
 			{
 				florida.map((city) => (
 					<li>
-						<a href=`/florida/${slugify(city.name, { lower: true, strict: true })}`>{city.name.replace("''","'")}</a>
+						<a href=`/florida/${slugify(city.name, { lower: true, strict: true })}/`>{city.name.replace("''","'")}</a>
 					</li>
 				))
 			}

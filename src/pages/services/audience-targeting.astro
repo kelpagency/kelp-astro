@@ -19,7 +19,7 @@ const posts = await response.json();
 			<p>You can't market to people if you don’t know who they are, what their needs and wants in life may be. The key is understanding that not everyone has the same goals or desires so by creating different personas for each group of potential customers it will allow organizations an opportunity not only see more clearly but also make better decisions when servicing these distinct segments with tailored strategies accordingly!</p>
 			<h2>How we approach audience targeting</h2>
 			<p>We dive deep into your brand to understand what makes it unique, then use data analytics and strategic criteria like segmenting audiences based on values, interests, other various targeting techniques and personalisation strategies. This allows us to reach out more effectively with each group of people—expanding the impact of every campaign.</p>
-			<p><a href='/contact' class='button button--green'>Let's Talk</a></p>
+			<p><a href='/contact/' class='button button--green'>Let's Talk</a></p>
 		</div>
 		{posts.length > 0 && 
 		<div class="service-related-work wrapper">
@@ -42,7 +42,7 @@ const posts = await response.json();
 						<Picture src={post.fimg_url} loading="lazy" alt={post.title.rendered} format={["avif", "webp"]}
 						fallbackFormat="jpg" includeSourceFormat={false} />
 						<h3 class="h5" set:html={post.title.rendered} />
-						<p><a href=`/work/${post.slug}` class="squiggle">Read Case Study</a></p>
+						<p><a href=`/work/${post.slug}/` class="squiggle">Read Case Study</a></p>
 					</article>
 					))
 				}

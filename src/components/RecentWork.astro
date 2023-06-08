@@ -26,7 +26,7 @@ const posts = await response.json();
 								<div class="slider-item-text-body">
 									<div set:html={post.excerpt.rendered} />
 									<p>
-										<a href=`/work/${post.slug}` class='squiggle'>
+										<a href=`/work/${post.slug}/` class='squiggle'>
 											Read More <span class="screen-reader-text">About {post.title.rendered}</span>
 										</a>
 									</p>

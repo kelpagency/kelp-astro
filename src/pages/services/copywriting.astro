@@ -56,7 +56,7 @@ const posts = await response.json();
 			<h2>How we approach copywriting</h2>
 			<p>Our team approaches copywriting by first understanding the application in which it is needed. This is typically established in the discovery phase. Once the application is determined, we will create a content strategy to list and understand the goals of the copy.</p>
 			<p>For website projects, we begin with a sitemap. The sitemap visually lays out every page and section that will be implemented on the website. Not only does this determine page flow and navigation, it also represents where copywriting is needed on each page. In addition to the sitemap, we will often include a content interview where we curate questions for the topic authority of an industry to best understand the product or service we’re writing content for.</p>
-			<p><a href='/contact' class='button button--green'>Let's Talk</a></p>
+			<p><a href='/contact/' class='button button--green'>Let's Talk</a></p>
 		</div>
 		{posts.length > 0 && 
 		<div class="service-related-work wrapper">
@@ -79,7 +79,7 @@ const posts = await response.json();
 						<Picture src={post.fimg_url} loading="lazy" alt={post.title.rendered} format={["avif", "webp"]}
 						fallbackFormat="jpg" includeSourceFormat={false} />
 						<h3 class="h5" set:html={post.title.rendered} />
-						<p><a href=`/work/${post.slug}` class="squiggle">Read Case Study</a></p>
+						<p><a href=`/work/${post.slug}/` class="squiggle">Read Case Study</a></p>
 					</article>
 					))
 				}
