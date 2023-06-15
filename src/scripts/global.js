@@ -9,41 +9,41 @@ import { annotate } from 'rough-notation';
 window.lottie = lottie;
 
 // the preload animation
-luge.preloader.add((done, remove) => {
-  const preloader = document.querySelector('.lg-preloader');
-  const preloaderLogo = document.querySelector('.lg-preloader .lg-lottie');
-  // play lottie animation
-  preloaderLogo.play();
-  // fade in
-  preloaderLogo.animate([{ opacity: 1, transform: 'scale(1)' }], {
-    fill: 'forwards',
-    duration: 200,
-    iterations: 1,
-    easing: 'ease',
-  });
-  // fade out
-  preloaderLogo.animate([{ opacity: 0, transform: 'scale(0)' }], {
-    fill: 'forwards',
-    duration: 300,
-    iterations: 1,
-    delay: 1000,
-    easing: 'ease',
-  });
-  // fade out
-  preloader.animate([{ opacity: 0 }], {
-    fill: 'forwards',
-    duration: 300,
-    iterations: 1,
-    delay: 1000,
-    easing: 'ease',
-  });
-  setTimeout(() => {
-    // stop lottie animation to prevent memory leak
-    preloaderLogo.stop();
-    done();
-    remove();
-  }, 1400);
-});
+// luge.preloader.add((done, remove) => {
+//   const preloader = document.querySelector('.lg-preloader');
+//   const preloaderLogo = document.querySelector('.lg-preloader .lg-lottie');
+//   // play lottie animation
+//   preloaderLogo.play();
+//   // fade in
+//   preloaderLogo.animate([{ opacity: 1, transform: 'scale(1)' }], {
+//     fill: 'forwards',
+//     duration: 200,
+//     iterations: 1,
+//     easing: 'ease',
+//   });
+//   // fade out
+//   preloaderLogo.animate([{ opacity: 0, transform: 'scale(0)' }], {
+//     fill: 'forwards',
+//     duration: 300,
+//     iterations: 1,
+//     delay: 1000,
+//     easing: 'ease',
+//   });
+//   // fade out
+//   preloader.animate([{ opacity: 0 }], {
+//     fill: 'forwards',
+//     duration: 300,
+//     iterations: 1,
+//     delay: 1000,
+//     easing: 'ease',
+//   });
+//   setTimeout(() => {
+//     // stop lottie animation to prevent memory leak
+//     preloaderLogo.stop();
+//     done();
+//     remove();
+//   }, 1400);
+// });
 
 luge.settings({
   credits: {
