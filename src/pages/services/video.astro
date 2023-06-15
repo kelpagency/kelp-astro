@@ -163,3 +163,9 @@ const posts = await response.json();
 		border-radius: 0.75rem;
 	}
 </style>
+<script>
+	const videos = document.querySelectorAll('.video-showcase video');
+	videos?.forEach(function (video) {
+		video.play();
+	});
+</script>

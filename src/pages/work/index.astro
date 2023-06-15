@@ -79,3 +79,9 @@ const tags = await tagsResponse.json();
 		}
 	}
 </style>
+<script>
+	const workPostFilter = document.querySelector('.work-post-filter');
+	workPostFilter?.addEventListener('change', function (event) {
+		window.location.href = event.target.value;
+	});
+</script>

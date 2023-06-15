@@ -175,14 +175,4 @@ import Team from '../components/OurTeam.astro';
 	disco?.addEventListener('click', function () {
 		team.classList.toggle('dance');
 	});
-
-	const workPostFilter = document.querySelector('.work-post-filter');
-	workPostFilter?.addEventListener('change', function (event) {
-		window.location.href = event.target.value;
-	});
-
-	const videos = document.querySelectorAll('.video-showcase video');
-	videos?.forEach(function (video) {
-		video.play();
-	});
 </script>
