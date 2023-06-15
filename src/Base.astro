@@ -4,192 +4,195 @@ import Header from './components/Header.astro';
 import Footer from './components/Footer.astro';
 
 export interface Props {
-  title: string;
-  description: string;
-  image: string;
-  darkHeader: boolean;
-  bodyClass: string;
+	title: string;
+	description: string;
+	image: string;
+	darkHeader: boolean;
+	bodyClass: string;
 }
 
 const {
-  title = 'Kelp Creative Agency',
-  description = 'Specializing in creating amazing websites, web apps, company branding, style guides, and design systems. Our goal is to make creative solutions simple for you.',
-  image = '/images/og.png',
-  darkHeader = false,
-  bodyClass = '',
-  schema = JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: 'Kelp Creative Agency',
-    legalName: 'Kelp Agency',
-    email: 'info@kelp.agency',
-    url: 'https://www.kelp.agency',
-    logo: 'https://www.kelp.agency/images/kelp-logo.png',
-    sameAs: [
-      'https://www.facebook.com/kelpagency',
-      'https://www.instagram.com/kelpagency/',
-      'https://twitter.com/kelpagency',
-      'https://www.linkedin.com/company/kelpagency/',
-    ],
-    address: {
-      addressLocality: 'Brooksville',
-      postalCode: '34601',
-      streetAddress: '924 Hale Ave',
-    },
-  }),
+	title = 'Kelp Creative Agency',
+	description = 'Specializing in creating amazing websites, web apps, company branding, style guides, and design systems. Our goal is to make creative solutions simple for you.',
+	image = '/images/og.png',
+	darkHeader = false,
+	bodyClass = '',
+	schema = JSON.stringify({
+		'@context': 'https://schema.org',
+		'@type': 'Organization',
+		name: 'Kelp Creative Agency',
+		legalName: 'Kelp Agency',
+		email: 'info@kelp.agency',
+		url: 'https://www.kelp.agency',
+		logo: 'https://www.kelp.agency/images/kelp-logo.png',
+		sameAs: [
+			'https://www.facebook.com/kelpagency',
+			'https://www.instagram.com/kelpagency/',
+			'https://twitter.com/kelpagency',
+			'https://www.linkedin.com/company/kelpagency/'
+		],
+		address: {
+			addressLocality: 'Brooksville',
+			postalCode: '34601',
+			streetAddress: '924 Hale Ave'
+		}
+	})
 } = Astro.props;
 
 let bodyClasses = bodyClass;
 if (darkHeader) {
-  bodyClasses = bodyClasses + ' has-dark-header';
+	bodyClasses = bodyClasses + ' has-dark-header';
 }
 ---
 
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<html lang='en'>
+	<head>
+		<meta charset='UTF-8' />
+		<meta name='viewport' content='width=device-width, initial-scale=1' />
 
-    <!-- Meta -->
-    <title set:html={title} />
-    <meta name="description" content={description} />
-    <link rel="alternate" type="application/rss+xml" href="https://www.kelp.agency/rss.xml" />
+		<!-- Meta -->
+		<title set:html={title} />
+		<meta name='description' content={description} />
+		<link rel='alternate' type='application/rss+xml' href='https://www.kelp.agency/rss.xml' />
 
-    <!-- Structured Data -->
-    <script type="application/ld+json" set:html={schema} />
+		<!-- Structured Data -->
+		<script type='application/ld+json' set:html={schema} />
 
-    <!-- Social -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={Astro.url} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL(image, Astro.url)} />
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={Astro.url} />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={new URL(image, Astro.url)} />
+		<!-- Social -->
+		<meta property='og:type' content='website' />
+		<meta property='og:url' content={Astro.url} />
+		<meta property='og:title' content={title} />
+		<meta property='og:description' content={description} />
+		<meta property='og:image' content={new URL(image, Astro.url)} />
+		<meta property='twitter:card' content='summary_large_image' />
+		<meta property='twitter:url' content={Astro.url} />
+		<meta property='twitter:title' content={title} />
+		<meta property='twitter:description' content={description} />
+		<meta property='twitter:image' content={new URL(image, Astro.url)} />
 
-    <!-- Favicons -->
-    <meta name="msapplication-TileColor" content="#42c634" />
-    <meta name="theme-color" content="#c5f5f6" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#42c634" />
+		<!-- Favicons -->
+		<meta name='msapplication-TileColor' content='#42c634' />
+		<meta name='theme-color' content='#c5f5f6' />
+		<link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png' />
+		<link rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png' />
+		<link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png' />
+		<link rel='manifest' href='/site.webmanifest' />
+		<link rel='mask-icon' href='/safari-pinned-tab.svg' color='#42c634' />
 
-    <!-- Fonts -->
-    <link
-      rel="preload"
-      href="/fonts/newsreader-v19-latin-regular.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin="crossorigin"
-    />
-    <link
-      rel="preload"
-      href="/fonts/newsreader-v19-latin-600.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin="crossorigin"
-    />
-    <link
-      rel="preload"
-      href="/fonts/newsreader-v19-latin-700.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin="crossorigin"
-    />
-    <link
-      rel="preload"
-      href="/fonts/newsreader-v19-latin-italic.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin="crossorigin"
-    />
-    <link
-      rel="preload"
-      href="/fonts/poppins-v20-latin-500.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin="crossorigin"
-    />
-    <link
-      rel="preload"
-      href="/fonts/poppins-v20-latin-600.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin="crossorigin"
-    />
+		<!-- Fonts -->
+		<link
+			rel='preload'
+			href='/fonts/newsreader-v19-latin-regular.woff2'
+			as='font'
+			type='font/woff2'
+			crossorigin='crossorigin'
+		/>
+		<link
+			rel='preload'
+			href='/fonts/newsreader-v19-latin-600.woff2'
+			as='font'
+			type='font/woff2'
+			crossorigin='crossorigin'
+		/>
+		<link
+			rel='preload'
+			href='/fonts/newsreader-v19-latin-700.woff2'
+			as='font'
+			type='font/woff2'
+			crossorigin='crossorigin'
+		/>
+		<link
+			rel='preload'
+			href='/fonts/newsreader-v19-latin-italic.woff2'
+			as='font'
+			type='font/woff2'
+			crossorigin='crossorigin'
+		/>
+		<link
+			rel='preload'
+			href='/fonts/poppins-v20-latin-500.woff2'
+			as='font'
+			type='font/woff2'
+			crossorigin='crossorigin'
+		/>
+		<link
+			rel='preload'
+			href='/fonts/poppins-v20-latin-600.woff2'
+			as='font'
+			type='font/woff2'
+			crossorigin='crossorigin'
+		/>
 
-    <style is:inline>
-      /* newsreader-regular - latin */
-      @font-face {
-        font-family: 'Newsreader';
-        font-style: normal;
-        font-weight: 400;
-        src: local(''), url('/fonts/newsreader-v19-latin-regular.woff2') format('woff2');
-        font-display: swap;
-      }
-      /* newsreader-600 - latin */
-      @font-face {
-        font-family: 'Newsreader';
-        font-style: normal;
-        font-weight: 600;
-        src: local(''), url('/fonts/newsreader-v19-latin-600.woff2') format('woff2');
-        font-display: swap;
-      }
-      /* newsreader-700 - latin */
-      @font-face {
-        font-family: 'Newsreader';
-        font-style: normal;
-        font-weight: 700;
-        src: local(''), url('/fonts/newsreader-v19-latin-700.woff2') format('woff2');
-        font-display: swap;
-      }
-      /* newsreader-italic - latin */
-      @font-face {
-        font-family: 'Newsreader';
-        font-style: italic;
-        font-weight: 400;
-        src: local(''), url('/fonts/newsreader-v19-latin-italic.woff2') format('woff2');
-        font-display: swap;
-      }
-      /* poppins-500 - latin */
-      @font-face {
-        font-family: 'Poppins';
-        font-style: normal;
-        font-weight: 500;
-        src: local(''), url('/fonts/poppins-v20-latin-500.woff2') format('woff2');
-        font-display: swap;
-      }
-      /* poppins-600 - latin */
-      @font-face {
-        font-family: 'Poppins';
-        font-style: normal;
-        font-weight: 600;
-        src: local(''), url('/fonts/poppins-v20-latin-600.woff2') format('woff2');
-        font-display: swap;
-      }
-    </style>
-  </head>
-  <body class={bodyClasses}>
-    <a href="#main" class="screen-reader-text">Skip to content</a>
-    <Header />
-    <div data-lg-smooth>
-      <main id="main">
-        <slot />
-      </main>
-      <Footer />
-    </div>
-    <div data-lg-cursor data-lg-cursor-inertia=".15">
-      <div data-lg-cursor-pointer></div>
-    </div>
-    <div data-lg-loader="slide-to-bottom">
-      <div id="kelp"></div>
-    </div>
-    <script src="./scripts/global.js"></script>
-  </body>
+		<style is:inline>
+			/* newsreader-regular - latin */
+			@font-face {
+				font-family: 'Newsreader';
+				font-style: normal;
+				font-weight: 400;
+				src: local(''), url('/fonts/newsreader-v19-latin-regular.woff2') format('woff2');
+				font-display: swap;
+			}
+			/* newsreader-600 - latin */
+			@font-face {
+				font-family: 'Newsreader';
+				font-style: normal;
+				font-weight: 600;
+				src: local(''), url('/fonts/newsreader-v19-latin-600.woff2') format('woff2');
+				font-display: swap;
+			}
+			/* newsreader-700 - latin */
+			@font-face {
+				font-family: 'Newsreader';
+				font-style: normal;
+				font-weight: 700;
+				src: local(''), url('/fonts/newsreader-v19-latin-700.woff2') format('woff2');
+				font-display: swap;
+			}
+			/* newsreader-italic - latin */
+			@font-face {
+				font-family: 'Newsreader';
+				font-style: italic;
+				font-weight: 400;
+				src: local(''), url('/fonts/newsreader-v19-latin-italic.woff2') format('woff2');
+				font-display: swap;
+			}
+			/* poppins-500 - latin */
+			@font-face {
+				font-family: 'Poppins';
+				font-style: normal;
+				font-weight: 500;
+				src: local(''), url('/fonts/poppins-v20-latin-500.woff2') format('woff2');
+				font-display: swap;
+			}
+			/* poppins-600 - latin */
+			@font-face {
+				font-family: 'Poppins';
+				font-style: normal;
+				font-weight: 600;
+				src: local(''), url('/fonts/poppins-v20-latin-600.woff2') format('woff2');
+				font-display: swap;
+			}
+			.header-logo-text {
+				fill: #0d1726;
+			}
+		</style>
+	</head>
+	<body class={bodyClasses}>
+		<a href='#main' class='screen-reader-text'>Skip to content</a>
+		<Header />
+		<div data-lg-smooth>
+			<main id='main'>
+				<slot />
+			</main>
+			<Footer />
+		</div>
+		<div data-lg-cursor data-lg-cursor-inertia='.15'>
+			<div data-lg-cursor-pointer></div>
+		</div>
+		<div data-lg-loader='slide-to-bottom'>
+			<div id='kelp'></div>
+		</div>
+		<script src='./scripts/global.js'></script>
+	</body>
 </html>
