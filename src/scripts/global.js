@@ -192,7 +192,7 @@ luge.lifecycle.add('pageIn', function (done) {
       author_email: email,
       content: comment,
     };
-    fetch('https://live-kelp.pantheonsite.io/wp-json/wp/v2/comments', {
+    fetch(`${import.meta.env.PUBLIC_WP_URL}/comments`, {
       method: 'POST', // or 'PUT'
       headers: {
         'Content-Type': 'application/json',

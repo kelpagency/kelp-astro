@@ -173,39 +173,22 @@ if (darkHeader) {
         src: local(''), url('/fonts/poppins-v20-latin-600.woff2') format('woff2');
         font-display: swap;
       }
-      div[data-lg-preloader] {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: white;
-        z-index: 999;
-      }
     </style>
   </head>
   <body class={bodyClasses}>
-    <!-- <div data-lg-preloader>
-			<div data-lg-lottie='/animations/kelp-logo.json' data-lg-lottie-autoplay='true' data-lg-lottie-loop='true'></div>
-		</div> -->
-
     <Header />
-
-    <div data-lg-smooth data-lg-page="page-animation">
+    <div data-lg-smooth>
       <main>
         <slot />
       </main>
       <Footer />
     </div>
-
     <div data-lg-cursor data-lg-cursor-inertia=".15">
       <div data-lg-cursor-pointer></div>
     </div>
-
     <div data-lg-loader="slide-to-bottom">
       <div id="kelp"></div>
     </div>
-
     <script src="./scripts/global.js"></script>
   </body>
 </html>

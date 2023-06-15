@@ -1,38 +1,25 @@
 [data-lg-reveal],
 .lg-reveal {
-	opacity: 0.01;
-}
-[data-lg-reveal-stagger] {
-	opacity: 1;
+  opacity: 0.001;
 }
 .is-safari [data-lg-parallax] {
-	will-change: transform;
+  will-change: transform;
 }
 .lg-cursor {
-	&-pointer:before {
-		width: 4rem;
-		height: 4rem;
-		margin: -1rem 0 0 -1rem;
-		border: 1px solid var(--light-teal);
-		background: none;
-		opacity: 0;
-	}
-	&--hover {
-		.lg-cursor-pointer:before {
-			border-color: var(--green);
-			opacity: 1;
-		}
-	}
-}
-.lg-loader {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-color: var(--light-teal);
-	#kelp {
-		width: 200px;
-		height: 200px;
-	}
+  &-pointer:before {
+    width: 4rem;
+    height: 4rem;
+    margin: -1rem 0 0 -1rem;
+    border: 1px solid var(--light-teal);
+    background: none;
+    opacity: 0;
+  }
+  &--hover {
+    .lg-cursor-pointer:before {
+      border-color: var(--green);
+      opacity: 1;
+    }
+  }
 }
 
 .lg-reveal--layer:after,
@@ -40,37 +27,21 @@
 .lg-reveal--layer-to-right:after,
 .lg-reveal--layer-to-bottom:after,
 .lg-reveal--layer-to-left:after {
-	background: var(--light-teal);
-}
-
-.lg-preloader {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	z-index: 110;
-	.lg-lottie {
-		opacity: 0;
-		transform: scale(0);
-		width: 300px;
-		height: 300px;
-		svg rect {
-			fill: var(--green);
-		}
-	}
+  background: var(--light-teal);
 }
 
 .squiggle {
-	text-decoration: underline;
-	text-decoration-thickness: 2px;
-	text-decoration-color: var(--green);
-	text-underline-offset: 8px;
-	padding-bottom: 7px;
-	font-family: var(--sans-serif);
-	line-height: 1.5;
-	background-position: bottom center;
-	&:hover,
-	&:focus {
-		text-decoration: none;
-		background: url('/images/squiggle.svg') repeat-x bottom center / 20px 12px;
-	}
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--green);
+  text-underline-offset: 8px;
+  padding-bottom: 7px;
+  font-family: var(--sans-serif);
+  line-height: 1.5;
+  background-position: bottom center;
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    background: url('/images/squiggle.svg') repeat-x bottom center / 20px 12px;
+  }
 }
