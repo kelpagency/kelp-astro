@@ -289,3 +289,27 @@
 		}
 	}
 </style>
+<script>
+	import Headroom from 'headroom.js';
+	// Sticky header
+	const header = document.querySelector('header');
+	const headroom = new Headroom(header, {
+		offset: {
+			up: 50,
+			down: 50
+		},
+		// scroll tolerance in px before state changes
+		tolerance: {
+			up: 5,
+			down: 0
+		}
+	});
+	headroom.init();
+
+	// mobile nav
+	const burger = document.querySelector('.hamburger');
+	burger?.addEventListener('click', function (event) {
+		burger.classList.toggle('active');
+		document.body.classList.toggle('mobile-menu-active');
+	});
+</script>

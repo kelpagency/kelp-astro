@@ -4,67 +4,78 @@ import SimpleHero from '../components/SimpleHero.astro';
 import Testimonials from '../components/Testimonials.astro';
 ---
 
-<Layout title="Contact Kelp" darkHeader={true}>
-  <article>
-    <section class="contact-section">
-      <div class="wrapper">
-        <div class="contact-section-column" data-lg-reveal="fade" data-lg-reveal-stagger=".2">
-          <h1>Well hello there.</h1>
-          <hr />
-          <h2>Ways to reach us.</h2>
-          <h3 class="h6">Office</h3>
-          <address>
-            924 Hale <br />
-            Brooksville
-          </address>
-          <p><a href="tel:+1-352-325-7688">352-325-7688</a></p>
-        </div>
-        <div class="contact-section-column">
-          <p data-lg-reveal="fade" data-lg-reveal-delay=".25">
-            Interested in our services? Setup a chat with Matt. He’d love to talk with you and see how Kelp can be of
-            help.
-          </p>
-          <!-- Embed script is in global js file -->
-          <div id="meetings-embed" data-lg-reveal="layer-to-right" data-lg-reveal-delay=".5">
-            <div class="meetings-iframe-container" data-src="https://meetings.hubspot.com/matthew-prouty?embed=true">
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <Testimonials />
-  </article>
+<Layout title='Contact Kelp' darkHeader={true}>
+	<article>
+		<section class='contact-section'>
+			<div class='wrapper'>
+				<div class='contact-section-column' data-lg-reveal='fade' data-lg-reveal-stagger='.2'>
+					<h1>Well hello there.</h1>
+					<hr />
+					<h2>Ways to reach us.</h2>
+					<h3 class='h6'>Office</h3>
+					<address>
+						924 Hale <br />
+						Brooksville
+					</address>
+					<p><a href='tel:+1-352-325-7688'>352-325-7688</a></p>
+				</div>
+				<div class='contact-section-column'>
+					<p data-lg-reveal='fade' data-lg-reveal-delay='.25'>
+						Interested in our services? Setup a chat with Matt. He’d love to talk with you and see how Kelp can be of
+						help.
+					</p>
+					<!-- Embed script is in global js file -->
+					<div id='meetings-embed' data-lg-reveal='layer-to-right' data-lg-reveal-delay='.5'>
+						<div class='meetings-iframe-container' data-src='https://meetings.hubspot.com/matthew-prouty?embed=true'>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<Testimonials />
+	</article>
 </Layout>
 
-<style lang="scss">
-  // contact page
-  .contact-section {
-    background: var(--black);
-    color: white;
-    padding-top: 4rem;
-    a {
-      color: var(--green);
-    }
-    .wrapper {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 3rem;
-    }
-    &-column {
-      flex: 1 1 500px;
-      h1 {
-        margin-bottom: 2rem;
-      }
-      h2 {
-        margin-top: 4rem;
-        margin-bottom: 2rem;
-      }
-      &:first-child {
-        flex-basis: 250px;
-      }
-    }
-    #meetings-embed {
-      height: 756px;
-    }
-  }
+<style lang='scss'>
+	// contact page
+	.contact-section {
+		background: var(--black);
+		color: white;
+		padding-top: 4rem;
+		a {
+			color: var(--green);
+		}
+		.wrapper {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 3rem;
+		}
+		&-column {
+			flex: 1 1 500px;
+			h1 {
+				margin-bottom: 2rem;
+			}
+			h2 {
+				margin-top: 4rem;
+				margin-bottom: 2rem;
+			}
+			&:first-child {
+				flex-basis: 250px;
+			}
+		}
+		#meetings-embed {
+			height: 756px;
+		}
+	}
 </style>
+
+<script>
+	// Contact page
+	// meetings embed
+	const meetingsDiv = document.querySelector('#meetings-embed');
+	if (meetingsDiv) {
+		const meetingsScript = document.createElement('script');
+		meetingsScript.setAttribute('src', 'https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js');
+		meetingsDiv.appendChild(meetingsScript);
+	}
+</script>

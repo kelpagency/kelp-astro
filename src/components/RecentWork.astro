@@ -1,5 +1,8 @@
 ---
 import { Picture } from "astro-imagetools/components";
+import 'flickity/css/flickity.css';
+import 'flickity-fade/flickity-fade.css';
+
 const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/work?per_page=3`);
 const posts = await response.json();
 ---
@@ -122,3 +125,31 @@ const posts = await response.json();
 		}
 	}
 </style>
+
+<script>
+	import Flickity from 'flickity';
+	import 'flickity-fade';
+	// recent work slider
+	const slider = document.querySelector('.slider');
+	if (slider) {
+		const next = document.querySelectorAll('.button--next');
+		const prev = document.querySelectorAll('.button--prev');
+		const flkty = new Flickity(slider, {
+			prevNextButtons: false,
+			wrapAround: true,
+			pageDots: false,
+			fade: true
+		});
+		next.forEach(function (button) {
+			button.addEventListener('click', function () {
+				flkty.next();
+			});
+		});
+		prev.forEach(function (button) {
+			button.addEventListener('click', function () {
+				flkty.previous();
+			});
+		});
+		luge.emitter.emit('resize');
+	}
+</script>
