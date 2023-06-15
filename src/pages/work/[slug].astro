@@ -50,3 +50,29 @@ for (const tag of tagIds) {
 		<div data-lg-reveal="fade" data-lg-reveal-stagger="0.3" set:html={content} />
 	</article>
 </Layout>
+
+<style lang="scss">
+// work single
+.work-post {
+	h1 {
+		margin: 8rem 0 12rem;
+	}
+	.tags {
+		opacity: 0.5;
+		margin: -11rem auto 10rem auto;
+		a {
+			text-decoration: none;
+			&:hover,
+			&:focus {
+				text-decoration: underline;
+			}
+		}
+		&:empty {
+			display: none;
+		}
+	}
+	.footer {
+		margin-top: 10rem;
+	}
+}
+</style>

@@ -4,138 +4,215 @@ import SimpleHero from '../../../components/SimpleHero.astro';
 import { Img } from 'astro-imagetools/components';
 ---
 
-<Layout title='Digital Marketing'>
-	<SimpleHero
-		tagline='Services'
-		title='Digital Marketing'
-		description='We know that every business is different, and we want to find out what works best for your brand. Whether you need help with social media management, email marketing, SEO, or something else entirely, we can help you get there.'
-		mediaFront='/images/services/digital-marketing-front.png'
-		mediaMiddle='/images/services/digital-marketing-middle.png'
-		mediaBack='/images/services/digital-marketing-back.jpg'
-	/>
-	<div class='service-intro service-intro--marketing'>
-		<div class='wrapper'>
-			<p class='h4'>
-				We don’t have a one-size-fits-all approach; instead of offering generic services, we work hard to <em
-					>understand your goals</em
-				> and make sure that the services we offer are <em>strategically tailored</em> specifically to your needs.
-			</p>
-			<div class='service-intro-media' data-lg-parallax='child'>
-				<div>
-					<Img src='./images/services/digital-marketing-office-photo.jpg' alt='Kelpers reviewing marketing analytics' />
-				</div>
-			</div>
-			<div class='service-intro-text'>
-				<p>
-					This approach ensures your performance is at its peak, and encourages continued improvement throughout the
-					data analysis process to <em>maximize ROI</em>.
-				</p>
-				<p>
-					Developing and executing a successful digital marketing campaign can be time-consuming and resource-intensive.
-					We can <em>help you</em> and your current team or we can handle the <em>entire campaign</em>
-					for you.
-				</p>
-			</div>
-		</div>
-	</div>
-	<div class='service-list services-list--marketing wrapper'>
-		<h2><a href='/services/digital-marketing/'>Digital Marketing</a></h2>
-		<div class='service-list-item'>
-			<div data-lg-parallax data-lg-parallax-amplitude='0.2'>
-				<div
-					class='service-list-item-square'
-					style='background-color: var(--light-green)'
-					data-lg-reveal='layer-to-right'
-				>
-				</div>
-			</div>
-			<div
-				data-lg-parallax
-				data-lg-parallax-amplitude='0.4'
-				data-lg-lottie='/animations/audience-targeting.json'
-				data-lg-lottie-autoplay='true'
-				data-lg-lottie-loop='true'
-				data-lg-lottie-lazy='true'
-				class='service-list-item-icon'
-			>
-			</div>
-			<h3><a href='/services/audience-targeting/'>Audience Targeting</a></h3>
-			<p>
-				Understanding which group of people is most likely going to convert into buyers of your products can help us
-				provide the best user experience, as well as higher conversion rates.
-			</p>
-		</div>
-		<div class='service-list-item'>
-			<div data-lg-parallax data-lg-parallax-amplitude='0.2'>
-				<div
-					class='service-list-item-square'
-					style='background-color: var(--light-green)'
-					data-lg-reveal='layer-to-right'
-				>
-				</div>
-			</div>
-			<div
-				data-lg-parallax
-				data-lg-parallax-amplitude='0.4'
-				data-lg-lottie='/animations/campaign-management.json'
-				data-lg-lottie-autoplay='true'
-				data-lg-lottie-loop='true'
-				data-lg-lottie-lazy='true'
-				class='service-list-item-icon'
-			>
-			</div>
-			<h3><a href='/services/campaign-management/'>Campaign Management</a></h3>
-			<p>
-				By taking a strategic approach to your campaign management, you can maximize the budget and increase
-				conversions.
-			</p>
-		</div>
-		<div class='service-list-item'>
-			<div data-lg-parallax data-lg-parallax-amplitude='0.2'>
-				<div
-					class='service-list-item-square'
-					style='background-color: var(--light-green)'
-					data-lg-reveal='layer-to-right'
-				>
-				</div>
-			</div>
-			<div
-				data-lg-parallax
-				data-lg-parallax-amplitude='0.4'
-				data-lg-lottie='/animations/social-ppc.json'
-				data-lg-lottie-autoplay='true'
-				data-lg-lottie-loop='true'
-				data-lg-lottie-lazy='true'
-				class='service-list-item-icon'
-			>
-			</div>
-			<h3><a href='/services/social-ppc/'>Social & PPC</a></h3>
-			<p>
-				Increase your impact through paid social campaigns and PPC that amplify your reach and put your content in front
-				of the right people.
-			</p>
-		</div>
-		<div class='service-list-item'>
-			<div data-lg-parallax data-lg-parallax-amplitude='0.2'>
-				<div
-					class='service-list-item-square'
-					style='background-color: var(--light-green)'
-					data-lg-reveal='layer-to-right'
-				>
-				</div>
-			</div>
-			<div
-				data-lg-parallax
-				data-lg-parallax-amplitude='0.4'
-				data-lg-lottie='/animations/reporting.json'
-				data-lg-lottie-autoplay='true'
-				data-lg-lottie-loop='true'
-				data-lg-lottie-lazy='true'
-				class='service-list-item-icon'
-			>
-			</div>
-			<h3><a href='/services/reporting/'>Reporting</a></h3>
-			<p>Improve your marketing with reporting that provides the most relevant insights.</p>
-		</div>
-	</div>
+<Layout title="Digital Marketing">
+  <SimpleHero
+    tagline="Services"
+    title="Digital Marketing"
+    description="We know that every business is different, and we want to find out what works best for your brand. Whether you need help with social media management, email marketing, SEO, or something else entirely, we can help you get there."
+    mediaFront="/images/services/digital-marketing-front.png"
+    mediaMiddle="/images/services/digital-marketing-middle.png"
+    mediaBack="/images/services/digital-marketing-back.jpg"
+  />
+  <div class="service-intro service-intro--marketing">
+    <div class="wrapper">
+      <p class="h4">
+        We don’t have a one-size-fits-all approach; instead of offering generic services, we work hard to <em
+          >understand your goals</em
+        > and make sure that the services we offer are <em>strategically tailored</em> specifically to your needs.
+      </p>
+      <div class="service-intro-media" data-lg-parallax="child">
+        <div>
+          <Img src="./images/services/digital-marketing-office-photo.jpg" alt="Kelpers reviewing marketing analytics" />
+        </div>
+      </div>
+      <div class="service-intro-text">
+        <p>
+          This approach ensures your performance is at its peak, and encourages continued improvement throughout the
+          data analysis process to <em>maximize ROI</em>.
+        </p>
+        <p>
+          Developing and executing a successful digital marketing campaign can be time-consuming and resource-intensive.
+          We can <em>help you</em> and your current team or we can handle the <em>entire campaign</em>
+          for you.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="service-list services-list--marketing wrapper">
+    <h2><a href="/services/digital-marketing/">Digital Marketing</a></h2>
+    <div class="service-list-item">
+      <div data-lg-parallax data-lg-parallax-amplitude="0.2">
+        <div
+          class="service-list-item-square"
+          style="background-color: var(--light-green)"
+          data-lg-reveal="layer-to-right"
+        >
+        </div>
+      </div>
+      <div
+        data-lg-parallax
+        data-lg-parallax-amplitude="0.4"
+        data-lg-lottie="/animations/audience-targeting.json"
+        data-lg-lottie-autoplay="true"
+        data-lg-lottie-loop="true"
+        data-lg-lottie-lazy="true"
+        class="service-list-item-icon"
+      >
+      </div>
+      <h3><a href="/services/audience-targeting/">Audience Targeting</a></h3>
+      <p>
+        Understanding which group of people is most likely going to convert into buyers of your products can help us
+        provide the best user experience, as well as higher conversion rates.
+      </p>
+    </div>
+    <div class="service-list-item">
+      <div data-lg-parallax data-lg-parallax-amplitude="0.2">
+        <div
+          class="service-list-item-square"
+          style="background-color: var(--light-green)"
+          data-lg-reveal="layer-to-right"
+        >
+        </div>
+      </div>
+      <div
+        data-lg-parallax
+        data-lg-parallax-amplitude="0.4"
+        data-lg-lottie="/animations/campaign-management.json"
+        data-lg-lottie-autoplay="true"
+        data-lg-lottie-loop="true"
+        data-lg-lottie-lazy="true"
+        class="service-list-item-icon"
+      >
+      </div>
+      <h3><a href="/services/campaign-management/">Campaign Management</a></h3>
+      <p>
+        By taking a strategic approach to your campaign management, you can maximize the budget and increase
+        conversions.
+      </p>
+    </div>
+    <div class="service-list-item">
+      <div data-lg-parallax data-lg-parallax-amplitude="0.2">
+        <div
+          class="service-list-item-square"
+          style="background-color: var(--light-green)"
+          data-lg-reveal="layer-to-right"
+        >
+        </div>
+      </div>
+      <div
+        data-lg-parallax
+        data-lg-parallax-amplitude="0.4"
+        data-lg-lottie="/animations/social-ppc.json"
+        data-lg-lottie-autoplay="true"
+        data-lg-lottie-loop="true"
+        data-lg-lottie-lazy="true"
+        class="service-list-item-icon"
+      >
+      </div>
+      <h3><a href="/services/social-ppc/">Social & PPC</a></h3>
+      <p>
+        Increase your impact through paid social campaigns and PPC that amplify your reach and put your content in front
+        of the right people.
+      </p>
+    </div>
+    <div class="service-list-item">
+      <div data-lg-parallax data-lg-parallax-amplitude="0.2">
+        <div
+          class="service-list-item-square"
+          style="background-color: var(--light-green)"
+          data-lg-reveal="layer-to-right"
+        >
+        </div>
+      </div>
+      <div
+        data-lg-parallax
+        data-lg-parallax-amplitude="0.4"
+        data-lg-lottie="/animations/reporting.json"
+        data-lg-lottie-autoplay="true"
+        data-lg-lottie-loop="true"
+        data-lg-lottie-lazy="true"
+        class="service-list-item-icon"
+      >
+      </div>
+      <h3><a href="/services/reporting/">Reporting</a></h3>
+      <p>Improve your marketing with reporting that provides the most relevant insights.</p>
+    </div>
+  </div>
 </Layout>
+<style lang="scss">
+  .service-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4rem;
+    max-width: 1000px;
+    margin-bottom: 8rem;
+    @media (max-width: 767px) {
+      margin-bottom: 4rem;
+      gap: 2rem;
+    }
+    h2 {
+      flex: 1 1 100%;
+      text-align: center;
+      max-width: none;
+      margin-top: 8rem;
+      margin-bottom: 3rem;
+      @media (max-width: 767px) {
+        margin-top: 5rem;
+        margin-bottom: 1rem;
+      }
+    }
+    &-item {
+      flex: 1 1 400px;
+      position: relative;
+      p {
+        max-width: 50ch;
+      }
+      &-square {
+        width: 103px;
+        height: 103px;
+        left: 0;
+        z-index: -1;
+        top: 0;
+        background: var(--light-teal);
+      }
+      &-icon {
+        display: block;
+        position: absolute;
+        top: 0;
+        max-width: 120px;
+        max-height: 120px;
+      }
+    }
+  }
+  .service-intro {
+    background: var(--lighter-teal);
+    padding: 8rem 0;
+    @media (max-width: 767px) {
+      padding-bottom: 4rem;
+    }
+    .wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2rem 3rem;
+    }
+    .h4 {
+      flex: 1 1 100%;
+      color: var(--purple);
+      max-width: 52ch;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      margin-bottom: 5rem;
+    }
+    &-media {
+      flex: 1 1 400px;
+    }
+    &-text {
+      flex: 1 1 400px;
+      p {
+        max-width: none;
+      }
+    }
+  }
+</style>

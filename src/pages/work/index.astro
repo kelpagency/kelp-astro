@@ -46,3 +46,36 @@ const tags = await tagsResponse.json();
 		</div>
 	</article>
 </Layout>
+
+<style lang="scss" is:global>
+	.tease {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		@media (max-width: 900px) {
+			display: block;
+		}
+		gap: 6rem;
+		margin-bottom: 16rem;
+		@media (max-width: 767px) {
+			margin-bottom: 7rem;
+		}
+		.media {
+			flex: 1 1 400px;
+			text-align: center;
+			picture {
+				height: 100%;
+				width: 100%;
+				object-fit: cover;
+			}
+		}
+		.text {
+			flex: 1 1 400px;
+		}
+		&:nth-child(even) {
+			.media {
+				order: 1;
+			}
+		}
+	}
+</style>

@@ -7,7 +7,7 @@
 @use 'flickity-fade/flickity-fade';
 @use 'highlight.js/styles/monokai-sublime';
 
-// the default wordpress block styles for the work and blog posts
+// the default WordPress block styles for the work and blog posts formatting
 @use './base/wordpress';
 
 // the luge.cool animation overrides
@@ -28,27 +28,4 @@
 // buttons (form buttons and link buttons!)
 @use './base/buttons';
 
-// the global header styles
-@use './components/header';
-
-// the global footer styles
-@use './components/footer';
-
-// rest of the components
-@use './components/featured-articles';
-@use './components/hero';
-@use './components/how-we-work';
-@use './components/recent-work';
-@use './components/services';
-@use './components/simple-hero';
-@use './components/testimonials';
-
-// page specific styles
-@use './pages/four-oh-four';
-@use './pages/about';
-@use './pages/blog';
-@use './pages/clients';
-@use './pages/contact';
 @use './pages/services-list';
-@use './pages/work';
-@use './pages/videos';

@@ -107,3 +107,59 @@ const posts = await response.json();
 	}
 	<FeaturedArticles />
 </Layout>
+
+<style lang="scss">
+	.video-showcase {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 4rem 3rem;
+		margin-top: 6rem;
+		margin-bottom: 6rem;
+		h2 {
+			flex: 1 1 350px;
+		}
+		figure {
+			flex: 1 1 250px;
+			margin: 0;
+			padding: 0.5rem;
+			background: var(--light-green);
+			border-radius: 1rem;
+			text-align: center;
+			&:nth-child(2) {
+				background: var(--light-teal);
+			}
+			&:nth-child(3) {
+				background: var(--light-red);
+			}
+			&:nth-child(4) {
+				background: var(--light-purple);
+			}
+			&.small {
+				flex-basis: 250px;
+			}
+			&.wide {
+				flex-basis: 500px;
+			}
+		}
+		figcaption {
+			margin-top: 0.5rem;
+			opacity: 0.5;
+			font-weight: bold;
+			font-family: var(--sans-serif);
+			letter-spacing: 1px;
+			text-transform: uppercase;
+			font-size: 13px;
+		}
+		video {
+			border-radius: 0.75rem;
+		}
+	}
+	
+	iframe[src^="https://www.youtube"]
+	{
+		aspect-ratio: 16 / 9;
+		width: 100%;
+		height: auto;
+		border-radius: 0.75rem;
+	}
+</style>

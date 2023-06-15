@@ -202,7 +202,6 @@ burger?.addEventListener('click', function (event) {
 
 // fix for anchor links
 luge.lifecycle.add('pageIn', navigateToTarget);
-
 function navigateToTarget(done) {
   const hash = window.location.hash;
   if (hash) {
@@ -211,6 +210,5 @@ function navigateToTarget(done) {
       window.scrollTo(0, target.getBoundingClientRect().top + window.unifiedScrollTop);
     }
   }
-
   done();
 }

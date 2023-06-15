@@ -1,21 +1,163 @@
 ---
-import Layout from "../Base.astro";
-import HowWeWork from "../components/HowWeWork.astro";
-import Team from "../components/OurTeam.astro";
+import Layout from '../Base.astro';
+import HowWeWork from '../components/HowWeWork.astro';
+import Team from '../components/OurTeam.astro';
 ---
 
-<Layout title='About Kelp'>
-	<div class='wrapper wrapper--narrow'>
-		<h1
-			data-splitting
-			style='margin: 8rem 0 12rem; line-height: 1.4; font-size: var(--step-5); max-width: none;'
-			data-lg-reveal='fade'
-			data-lg-reveal-stagger='0.03'
-		>
-			Our team spans a broad range of digital expertise allowing us to take on very unique and intricate
-			projects. If you can dream it, we can make it.
-		</h1>
-	</div>
-	<HowWeWork />
-	<Team />
+<Layout title="About Kelp">
+  <div class="wrapper wrapper--narrow">
+    <h1
+      data-splitting
+      style="margin: 8rem 0 12rem; line-height: 1.4; font-size: var(--step-5); max-width: none;"
+      data-lg-reveal="fade"
+      data-lg-reveal-stagger="0.03"
+    >
+      Our team spans a broad range of digital expertise allowing us to take on very unique and intricate projects. If
+      you can dream it, we can make it.
+    </h1>
+  </div>
+  <HowWeWork />
+  <Team />
 </Layout>
+
+<style lang="scss" is:global>
+  .team {
+    text-align: center;
+    padding-bottom: 8rem;
+    position: relative;
+    .button {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 4rem;
+      &--skeleton {
+        right: 0;
+      }
+      &--disco {
+        left: 0;
+      }
+    }
+    h2 {
+      max-width: none;
+      margin: 12rem 0 4rem 0;
+      @media (max-width: 767px) {
+        margin-top: 5rem;
+      }
+    }
+    &-badge {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+      margin-top: 12rem;
+      &-media {
+        flex: 1 1 400px;
+      }
+      &-text {
+        flex: 1 1 400px;
+        text-align: left;
+      }
+    }
+    &-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      @media (max-width: 1100px) {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+      @media (max-width: 800px) {
+        grid-template-columns: 1fr 1fr;
+      }
+      @media (max-width: 400px) {
+        grid-template-columns: 1fr;
+      }
+      gap: 2rem;
+      &-item {
+        picture {
+          background: var(--light-green);
+        }
+      }
+      h3 {
+        margin: 1rem 0 0 0;
+      }
+      p {
+        margin: 0;
+      }
+    }
+    &.skulls {
+      picture {
+        img {
+          opacity: 0;
+        }
+        &:after {
+          opacity: 1 !important;
+        }
+      }
+    }
+    &.dance {
+      .team-grid-item {
+        picture {
+          animation: 5s disco infinite linear;
+        }
+        &:nth-child(2) {
+          picture {
+            animation-delay: -1s;
+          }
+        }
+        &:nth-child(3) {
+          picture {
+            animation-delay: -2s;
+          }
+        }
+        &:nth-child(4) {
+          picture {
+            animation-delay: -4s;
+          }
+        }
+        &:nth-child(5) {
+          picture {
+            animation-delay: -3s;
+          }
+        }
+        &:nth-child(6) {
+          picture {
+            animation-delay: -4.5s;
+          }
+        }
+        &:nth-child(7) {
+          picture {
+            animation-delay: -5.5s;
+          }
+        }
+      }
+    }
+  }
+  @keyframes disco {
+    0% {
+      background: var(--purple);
+    }
+    13% {
+      background: var(--light-teal);
+    }
+    25% {
+      background: var(--green);
+    }
+    37% {
+      background: var(--light-purple);
+    }
+    50% {
+      background: var(--teal);
+    }
+    62% {
+      background: var(--red);
+    }
+    74% {
+      background: var(--black);
+    }
+    87% {
+      background: var(--light-green);
+    }
+    100% {
+      background: var(--light-red);
+    }
+  }
+</style>

@@ -2,71 +2,148 @@
 import { Picture } from 'astro-imagetools/components';
 ---
 
-<section class='how-we-work'>
-	<div class='wrapper'>
-		<div class='how-we-work-media'>
-			<div>
-				<Picture
-					src='/images/services/how-we-work-bg.jpg'
-					alt='a laptop next to a construction worker toy'
-					placeholder='none'
-				/>
-			</div>
-			<div data-lg-parallax data-lg-parallax-amplitude='0.7'>
-				<Picture src='/images/services/how-we-work-middle.png' alt='computer mouse cursor' placeholder='none' />
-			</div>
-			<div data-lg-parallax data-lg-parallax-amplitude='0.2' data-lg-parallax-anchor='top'>
-				<Picture
-					src='/images/services/how-we-work-frnt.png'
-					alt='a computer moues hanging by a rope'
-					placeholder='none'
-				/>
-			</div>
-		</div>
-		<div class='how-we-work-intro'>
-			<h2>How We<br />Work</h2>
-			<p>
-				Simply put:<br />
-				Kelp aims to - know your audience, create attractive content for them, reach them where they are, and compel them
-				to take action.
-			</p>
-			<hr />
-		</div>
-		<div class='how-we-work-phase' data-lg-reveal='layer-to-right'>
-			<h3 class='h5'>Discovery</h3>
-			<p>
-				The Discovery phase establishes the answers to any project’s most important question. “Why?” This information is
-				then used to thoroughly prep the project for planning.
-			</p>
-		</div>
-		<div class='how-we-work-phase' data-lg-reveal='layer-to-right'>
-			<h3 class='h5'>Planning</h3>
-			<p>
-				With key insight we strategize. A production plan-of-attack maps out our tactics and techniques and is the clear
-				roadmap of goals and “How” to reach them.
-			</p>
-		</div>
-		<div class='how-we-work-phase' data-lg-reveal='layer-to-right'>
-			<h3 class='h5'>Production</h3>
-			<p>
-				With a clear strategy we create the appropriate, engaging content pieces that will attract and inform a targeted
-				audience.
-			</p>
-		</div>
-		<div class='how-we-work-phase' data-lg-reveal='layer-to-right'>
-			<h3 class='h5'>Market</h3>
-			<p>
-				Executing your developed marketing plan we take everything we have learned and created to the people, making
-				refinements as the data flows through.
-			</p>
-		</div>
-		<div class='how-we-work-phase' data-lg-reveal='layer-to-right'>
-			<h3 class='h5'>Ongoing Support</h3>
-			<p>
-				The digital world is evolving at a rate much faster than most can keep up. Remain safe and relevant with ongoing
-				web, and creative support services.
-			</p>
-			<a href='/contact/' class='squiggle'>Let's Chat</a>
-		</div>
-	</div>
+<section class="how-we-work">
+  <div class="wrapper">
+    <div class="how-we-work-media">
+      <div>
+        <Picture
+          src="/images/services/how-we-work-bg.jpg"
+          alt="a laptop next to a construction worker toy"
+          placeholder="none"
+        />
+      </div>
+      <div data-lg-parallax data-lg-parallax-amplitude="0.7">
+        <Picture src="/images/services/how-we-work-middle.png" alt="computer mouse cursor" placeholder="none" />
+      </div>
+      <div data-lg-parallax data-lg-parallax-amplitude="0.2" data-lg-parallax-anchor="top">
+        <Picture
+          src="/images/services/how-we-work-frnt.png"
+          alt="a computer moues hanging by a rope"
+          placeholder="none"
+        />
+      </div>
+    </div>
+    <div class="how-we-work-intro">
+      <h2>How We<br />Work</h2>
+      <p>
+        Simply put:<br />
+        Kelp aims to - know your audience, create attractive content for them, reach them where they are, and compel them
+        to take action.
+      </p>
+      <hr />
+    </div>
+    <div class="how-we-work-phase" data-lg-reveal="layer-to-right">
+      <h3 class="h5">Discovery</h3>
+      <p>
+        The Discovery phase establishes the answers to any project’s most important question. “Why?” This information is
+        then used to thoroughly prep the project for planning.
+      </p>
+    </div>
+    <div class="how-we-work-phase" data-lg-reveal="layer-to-right">
+      <h3 class="h5">Planning</h3>
+      <p>
+        With key insight we strategize. A production plan-of-attack maps out our tactics and techniques and is the clear
+        roadmap of goals and “How” to reach them.
+      </p>
+    </div>
+    <div class="how-we-work-phase" data-lg-reveal="layer-to-right">
+      <h3 class="h5">Production</h3>
+      <p>
+        With a clear strategy we create the appropriate, engaging content pieces that will attract and inform a targeted
+        audience.
+      </p>
+    </div>
+    <div class="how-we-work-phase" data-lg-reveal="layer-to-right">
+      <h3 class="h5">Market</h3>
+      <p>
+        Executing your developed marketing plan we take everything we have learned and created to the people, making
+        refinements as the data flows through.
+      </p>
+    </div>
+    <div class="how-we-work-phase" data-lg-reveal="layer-to-right">
+      <h3 class="h5">Ongoing Support</h3>
+      <p>
+        The digital world is evolving at a rate much faster than most can keep up. Remain safe and relevant with ongoing
+        web, and creative support services.
+      </p>
+      <a href="/contact/" class="squiggle">Let's Chat</a>
+    </div>
+  </div>
 </section>
+
+<style lang="scss">
+  .how-we-work {
+    padding: 6rem 0;
+    @media (max-width: 767px) {
+      padding: 3rem 0;
+    }
+    background: var(--black);
+    color: white;
+    .lg-reveal--layer:after,
+    .lg-reveal--layer-to-top:after,
+    .lg-reveal--layer-to-right:after,
+    .lg-reveal--layer-to-bottom:after,
+    .lg-reveal--layer-to-left:after {
+      background-color: var(--purple);
+    }
+    a {
+      color: white;
+    }
+    .wrapper {
+      display: grid;
+      gap: 2rem 3rem;
+      @media (min-width: 768px) {
+        grid-template-columns: 1fr 1fr;
+        grid-auto-flow: dense;
+      }
+    }
+    &-media {
+      position: relative;
+      aspect-ratio: 1/1;
+      overflow: hidden;
+      margin-top: -12rem;
+      > div {
+        position: absolute;
+        top: 0;
+        overflow: hidden;
+        &:nth-of-type(1) {
+          z-index: 1;
+        }
+        &:nth-of-type(2) {
+          z-index: 2;
+        }
+        &:nth-of-type(3) {
+          z-index: 3;
+        }
+        img {
+        }
+      }
+    }
+    &-intro {
+      @media (min-width: 768px) {
+        grid-column: 1;
+        grid-row: 1;
+      }
+    }
+    &-phase {
+      grid-column: 1;
+      a {
+        margin-top: 2rem;
+        display: inline-block;
+      }
+      &:nth-last-child(2) {
+        @media (min-width: 768px) {
+          grid-column: 2;
+          margin-top: auto;
+        }
+      }
+      &:last-child {
+        @media (min-width: 768px) {
+          grid-column: 2;
+          grid-row: span 2;
+          margin-bottom: auto;
+        }
+      }
+    }
+  }
+</style>

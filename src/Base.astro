@@ -176,9 +176,10 @@ if (darkHeader) {
     </style>
   </head>
   <body class={bodyClasses}>
+    <a href="#main" class="screen-reader-text">Skip to content</a>
     <Header />
     <div data-lg-smooth>
-      <main>
+      <main id="main">
         <slot />
       </main>
       <Footer />
