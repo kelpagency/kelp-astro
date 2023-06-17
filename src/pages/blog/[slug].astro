@@ -7,309 +7,309 @@ import { Picture } from 'astro-imagetools/components';
 import 'highlight.js/styles/monokai-sublime.css';
 
 export async function getStaticPaths() {
-	const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/posts?per_page=100&_embed`);
-	const posts = await response.json();
+  const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/posts?per_page=100&_embed`);
+  const posts = await response.json();
 
-	const requestCategories = await fetch(`${import.meta.env.PUBLIC_WP_URL}/categories?per_page=100`);
-	const categories = await requestCategories.json();
+  const requestCategories = await fetch(`${import.meta.env.PUBLIC_WP_URL}/categories?per_page=100`);
+  const categories = await requestCategories.json();
 
-	return posts.map((post) => {
-		return {
-			params: { slug: post.slug },
-			props: {
-				title: post.title.rendered,
-				description: post.excerpt.rendered.replace(/(<([^>]+)>)/gi, ''),
-				image: post.fimg_url,
-				content: post.content.rendered,
-				id: post.id,
-				categories: post.categories,
-				allCategories: categories,
-				author: post._embedded.author,
-				schema: JSON.stringify({
-					'@context': 'https://schema.org',
-					'@type': 'Article',
-					headline: post.title.rendered,
-					description: post.excerpt.rendered.replace(/(<([^>]+)>)/gi, ''),
-					datePublished: post.date,
-					dateModified: post.modified,
-					image: [post.fimg_url],
-					author: [
-						{
-							'@type': 'Person',
-							name: post._embedded.author[0].name,
-							url: post._embedded.author[0].url
-						}
-					],
-					mainEntityOfPage: {
-						'@type': 'webPage',
-						id: Astro.url
-					}
-				})
-			}
-		};
-	});
+  return posts.map((post) => {
+    return {
+      params: { slug: post.slug },
+      props: {
+        title: post.title.rendered,
+        description: post.excerpt.rendered.replace(/(<([^>]+)>)/gi, ''),
+        image: post.fimg_url,
+        content: post.content.rendered,
+        id: post.id,
+        categories: post.categories,
+        allCategories: categories,
+        author: post._embedded.author,
+        schema: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'Article',
+          headline: post.title.rendered,
+          description: post.excerpt.rendered.replace(/(<([^>]+)>)/gi, ''),
+          datePublished: post.date,
+          dateModified: post.modified,
+          image: [post.fimg_url],
+          author: [
+            {
+              '@type': 'Person',
+              name: post._embedded.author[0].name,
+              url: post._embedded.author[0].url,
+            },
+          ],
+          mainEntityOfPage: {
+            '@type': 'webPage',
+            id: Astro.url,
+          },
+        }),
+      },
+    };
+  });
 }
 
 const { title, content, id, author, schema, image, description, categories, allCategories } = Astro.props;
 const comments = await fetch(`${import.meta.env.PUBLIC_WP_URL}/comments?post=${id}`);
 const jsonComments = await comments.json();
 const category = {
-	slug: allCategories.find((cat) => cat.id === categories[0]).slug,
-	name: allCategories.find((cat) => cat.id === categories[0]).name,
-	id: allCategories.find((cat) => cat.id === categories[0]).id
+  slug: allCategories.find((cat) => cat.id === categories[0]).slug,
+  name: allCategories.find((cat) => cat.id === categories[0]).name,
+  id: allCategories.find((cat) => cat.id === categories[0]).id,
 };
 ---
 
-<Layout title={title} description={description} image={image} bodyClass='blog-post' schema={schema} darkHeader={true}>
-	<article class='wrapper single'>
-		<div class='single-article'>
-			<h1 set:html={title} />
-			<Picture src={image} alt={description} loading='eager' />
-			<div class='single-article-content' set:html={content} />
-			{
-				jsonComments.length > 0 && (
-					<section class='single-article-comments'>
-						<h4>Comments</h4>
-						{jsonComments.map(
-							(comment) =>
-								comment.parent == 0 && (
-									<div class='single-article-comments-item'>
-										<img
-											class='single-article-comments-item-img'
-											src={comment.author_avatar_urls['96']}
-											width='48'
-											loading='lazy'
-										/>
-										<h4 class='single-article-comments-item-name h6'>{comment.author_name} says</h4>
-										<div class='single-article-comments-item-body' set:html={comment.content.rendered} />
-										{jsonComments.map(
-											(reply) =>
-												reply.parent == comment.id && (
-													<div class='single-article-comments-item single-article-comments-item--reply'>
-														<img
-															class='single-article-comments-item-img'
-															src={reply.author_avatar_urls['96']}
-															width='48'
-															loading='lazy'
-														/>
-														<h4 class='single-article-comments-item-name h6'>{reply.author_name} says</h4>
-														<div class='single-article-comments-item-body' set:html={reply.content.rendered} />
-													</div>
-												)
-										)}
-									</div>
-								)
-						)}
-					</section>
-				)
-			}
-			<section class='single-article-leave-a-comment'>
-				<h4>Leave a Comment</h4>
-				<hr />
-				<form>
-					<label
-						>Your Name<br />
-						<input type='text' placeholder='Johnny Boy' required />
-					</label>
-					<label
-						>Your Email<br />
-						<input type='email' placeholder='name@example.com' required />
-					</label>
-					<label
-						>Your Comment<br />
-						<textarea placeholder='whats with the squid 🦑' required></textarea>
-					</label>
-					<input type='hidden' name='post' value={id} />
-					<button class='button' type='submit'>Post Comment</button>
-				</form>
-			</section>
-		</div>
-		<BlogSingleSidebar author={author[0]} category={category} postId={id} />
-	</article>
-	<FeaturedArticles />
+<Layout title={title} description={description} image={image} bodyClass="blog-post" schema={schema} darkHeader={true}>
+  <article class="wrapper single">
+    <div class="single-article">
+      <h1 set:html={title} />
+      <Picture src={image} alt={description} loading="eager" />
+      <div class="single-article-content" set:html={content} />
+      {
+        jsonComments.length > 0 && (
+          <section class="single-article-comments">
+            <h4>Comments</h4>
+            {jsonComments.map(
+              (comment) =>
+                comment.parent == 0 && (
+                  <div class="single-article-comments-item">
+                    <img
+                      class="single-article-comments-item-img"
+                      src={comment.author_avatar_urls['96']}
+                      width="48"
+                      loading="lazy"
+                    />
+                    <h4 class="single-article-comments-item-name h6">{comment.author_name} says</h4>
+                    <div class="single-article-comments-item-body" set:html={comment.content.rendered} />
+                    {jsonComments.map(
+                      (reply) =>
+                        reply.parent == comment.id && (
+                          <div class="single-article-comments-item single-article-comments-item--reply">
+                            <img
+                              class="single-article-comments-item-img"
+                              src={reply.author_avatar_urls['96']}
+                              width="48"
+                              loading="lazy"
+                            />
+                            <h4 class="single-article-comments-item-name h6">{reply.author_name} says</h4>
+                            <div class="single-article-comments-item-body" set:html={reply.content.rendered} />
+                          </div>
+                        )
+                    )}
+                  </div>
+                )
+            )}
+          </section>
+        )
+      }
+      <section class="single-article-leave-a-comment">
+        <h4>Leave a Comment</h4>
+        <hr />
+        <form>
+          <label
+            >Your Name<br />
+            <input type="text" placeholder="Johnny Boy" required />
+          </label>
+          <label
+            >Your Email<br />
+            <input type="email" placeholder="name@example.com" required />
+          </label>
+          <label
+            >Your Comment<br />
+            <textarea placeholder="whats with the squid 🦑" required></textarea>
+          </label>
+          <input type="hidden" name="post" value={id} />
+          <button class="button" type="submit">Post Comment</button>
+        </form>
+      </section>
+    </div>
+    <BlogSingleSidebar author={author[0]} category={category} postId={id} />
+  </article>
+  <FeaturedArticles />
 </Layout>
 
-<style lang='scss' is:global>
-	.single {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 3rem 4rem;
-		margin-top: 3rem;
-		&-sidebar {
-			flex: 1 1 250px;
-			margin-top: 8rem;
-			margin-bottom: 3rem;
-			@media (min-width: 1100px) {
-				order: -1;
-			}
-			&-author {
-				display: grid;
-				grid-template-columns: 3rem auto;
-				align-items: center;
-				gap: 0.5rem 1rem;
-				h5 {
-					margin: 0;
-				}
-				img {
-					border-radius: 1rem;
-				}
-				p {
-					margin: 0.5rem 0 0.5rem 0;
-					line-height: 1.2;
-					grid-column: span 2;
-				}
-			}
-			&-category {
-				display: flex;
-				gap: 1rem;
-				justify-content: space-between;
-				align-items: flex-end;
-				margin: 1rem 0;
-				border-top: 1px solid;
-				border-bottom: 1px solid;
-				padding-top: 1rem;
-				padding-bottom: 1rem;
-				h6 {
-					font-size: var(--step-0);
-					margin: 0;
-				}
-				a {
-					font-size: var(--step-0);
-					line-height: 1;
-				}
-			}
-			&-share {
-				display: flex;
-				gap: 1rem;
-				justify-content: space-between;
-				align-items: center;
-				border-bottom: 1px solid;
-				padding-bottom: 1rem;
-				h6 {
-					font-size: var(--step-0);
-					margin: 0;
-				}
-				p {
-					margin: 0;
-					display: flex;
-					gap: 1rem;
-				}
-			}
-			&-related {
-				margin-top: 7rem;
-				position: sticky;
-				top: 3rem;
-				h6 {
-					width: 100%;
-					display: block;
-					border-bottom: 1px solid;
-					padding-bottom: 1rem;
-					margin-bottom: 1rem;
-					max-width: none;
-				}
-				ul {
-					list-style: none;
-					padding: 0;
-					margin: 0;
-					li + li {
-						border-top: 1px dashed;
-						padding-top: 0.75rem;
-						margin-top: 0.75rem;
-					}
-				}
-			}
-		}
-		&-article {
-			flex: 1 1 700px;
-			min-width: 0;
-			h1 {
-				margin-bottom: 3rem;
-			}
-			&-comments {
-				img {
-					border-radius: 1rem;
-				}
-				&-item {
-					margin: 3rem 0;
-					display: grid;
-					grid-template-columns: 48px auto;
-					gap: 0 2rem;
-					@media (max-width: 767px) {
-						grid-template-columns: 40px auto;
-						gap: 0 1rem;
-					}
-					align-items: start;
-					&-img {
-						grid-column: 1;
-						grid-row: span 2;
-					}
-					h4 {
-						grid-column: 2;
-						margin: 0;
-					}
-					&-body {
-						grid-column: 2;
-					}
-					&--reply {
-						margin-left: 3rem;
-						margin-top: 2rem;
-						grid-column: span 2;
-					}
-				}
-			}
-			&-leave-a-comment {
-				margin-top: 4rem;
-				margin-bottom: 4rem;
-				max-width: 500px !important;
-				form {
-					display: flex;
-					flex-wrap: wrap;
-					gap: 1rem;
-					margin-top: 2rem;
-				}
-				label {
-					flex: 1 1 200px;
-					margin-bottom: 0.5rem;
-					display: block;
-				}
-				button {
-					flex: 1 1 100%;
-				}
-			}
-		}
-	}
+<style lang="scss" is:global>
+  .single {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem 4rem;
+    margin-top: 3rem;
+    &-sidebar {
+      flex: 1 1 250px;
+      margin-top: 8rem;
+      margin-bottom: 3rem;
+      @media (min-width: 1100px) {
+        order: -1;
+      }
+      &-author {
+        display: grid;
+        grid-template-columns: 3rem auto;
+        align-items: center;
+        gap: 0.5rem 1rem;
+        h5 {
+          margin: 0;
+        }
+        img {
+          border-radius: 1rem;
+        }
+        p {
+          margin: 0.5rem 0 0.5rem 0;
+          line-height: 1.2;
+          grid-column: span 2;
+        }
+      }
+      &-category {
+        display: flex;
+        gap: 1rem;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin: 1rem 0;
+        border-top: 1px solid;
+        border-bottom: 1px solid;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        h6 {
+          font-size: var(--step-0);
+          margin: 0;
+        }
+        a {
+          font-size: var(--step-0);
+          line-height: 1;
+        }
+      }
+      &-share {
+        display: flex;
+        gap: 1rem;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid;
+        padding-bottom: 1rem;
+        h6 {
+          font-size: var(--step-0);
+          margin: 0;
+        }
+        p {
+          margin: 0;
+          display: flex;
+          gap: 1rem;
+        }
+      }
+      &-related {
+        margin-top: 7rem;
+        position: sticky;
+        top: 3rem;
+        h6 {
+          width: 100%;
+          display: block;
+          border-bottom: 1px solid;
+          padding-bottom: 1rem;
+          margin-bottom: 1rem;
+          max-width: none;
+        }
+        ul {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          li + li {
+            border-top: 1px dashed;
+            padding-top: 0.75rem;
+            margin-top: 0.75rem;
+          }
+        }
+      }
+    }
+    &-article {
+      flex: 1 1 700px;
+      min-width: 0;
+      h1 {
+        margin-bottom: 3rem;
+      }
+      &-comments {
+        img {
+          border-radius: 1rem;
+        }
+        &-item {
+          margin: 3rem 0;
+          display: grid;
+          grid-template-columns: 48px auto;
+          gap: 0 2rem;
+          @media (max-width: 767px) {
+            grid-template-columns: 40px auto;
+            gap: 0 1rem;
+          }
+          align-items: start;
+          &-img {
+            grid-column: 1;
+            grid-row: span 2;
+          }
+          h4 {
+            grid-column: 2;
+            margin: 0;
+          }
+          &-body {
+            grid-column: 2;
+          }
+          &--reply {
+            margin-left: 3rem;
+            margin-top: 2rem;
+            grid-column: span 2;
+          }
+        }
+      }
+      &-leave-a-comment {
+        margin-top: 4rem;
+        margin-bottom: 4rem;
+        max-width: 500px !important;
+        form {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 1rem;
+          margin-top: 2rem;
+        }
+        label {
+          flex: 1 1 200px;
+          margin-bottom: 0.5rem;
+          display: block;
+        }
+        button {
+          flex: 1 1 100%;
+        }
+      }
+    }
+  }
 </style>
 <script>
-	// leave a comment
-	const commentForm = document.querySelector('.leave-a-comment form');
-	commentForm?.addEventListener('submit', function (event) {
-		event.preventDefault();
-		const email = commentForm.querySelector("input[type='email']").value;
-		const name = commentForm.querySelector('input[type="text"]').value;
-		const comment = commentForm.querySelector('textarea').value;
-		const postId = commentForm.querySelector('input[type="hidden"]').value;
-		const button = commentForm.querySelector('button');
-		button.innerText = '... posting ...';
-		const data = {
-			post: postId,
-			author_name: name,
-			author_email: email,
-			content: comment
-		};
-		fetch(`${import.meta.env.PUBLIC_WP_URL}/comments`, {
-			method: 'POST', // or 'PUT'
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(data)
-		})
-			.then((response) => response.json())
-			.then((data) => {
-				console.log('Success:', data);
-				commentForm.innerHTML = 'Comment submitted!';
-			})
-			.catch((error) => {
-				commentForm.innerHTML = error;
-			});
-	});
+  // leave a comment
+  const commentForm = document.querySelector('.single-article-leave-a-comment form');
+  commentForm?.addEventListener('submit', function (event) {
+    event.preventDefault();
+    const email = commentForm.querySelector("input[type='email']").value;
+    const name = commentForm.querySelector('input[type="text"]').value;
+    const comment = commentForm.querySelector('textarea').value;
+    const postId = commentForm.querySelector('input[type="hidden"]').value;
+    const button = commentForm.querySelector('button');
+    button.innerText = '... posting ...';
+    const data = {
+      post: postId,
+      author_name: name,
+      author_email: email,
+      content: comment,
+    };
+    fetch(`${import.meta.env.PUBLIC_WP_URL}/comments`, {
+      method: 'POST', // or 'PUT'
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Success:', data);
+        commentForm.innerHTML = 'Comment submitted!';
+      })
+      .catch((error) => {
+        commentForm.innerHTML = error;
+      });
+  });
 </script>
