@@ -47,9 +47,9 @@ const tags = await tagsResponse.json();
 				{
 					posts.map((post) => (
 						<article class="tease" data-tags={post.tags.join(',')} data-lg-reveal="layer-to-right" data-lg-reveal-stagger="0.2">
-							<div class="media">
+							<a href=`/work/${post.slug}/` class="media">
 								<Picture src={post.fimg_url} alt={post.title.rendered} loading="lazy" />
-							</div>
+							</a>
 							<div class="text">
 								<h2 class="h4"><a href=`/work/${post.slug}/` set:html={post.title.rendered}/></h2>
 								<div set:html={post.excerpt.rendered} />
