@@ -1,6 +1,7 @@
 # Redirects from what the browser requests to what we serve
-/why-kelp						/about
+/why-kelp					/about
 /how-we-work				/about
-/the-team						/about
+/the-team					/about
 /solutions					/services
 /commercials				/services/video/
+/simple-social-sharing		/resources

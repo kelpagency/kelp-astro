@@ -1,0 +1,123 @@
+---
+import Layout from '../Base.astro';
+import { Picture } from 'astro-imagetools/components';
+---
+
+<Layout title="Kelp Resources" darkHeader={true}>
+	<div class='wrapper wrapper--narrow'>
+		<h1 style="margin-top: 8rem;" data-splitting data-lg-reveal="fade" data-lg-reveal-stagger="0.05">Kelp Resources</h1>
+		<p style="max-width: 800px; flex: 1 1 500px; font-size: var(--step-1)" data-lg-reveal="fade" data-lg-reveal-delay=".5">
+			Some things we've made that you might find useful.
+		</p>
+	</div>
+  <div class="wrapper archive">
+		<article class='archive-tease' data-lg-reveal='layer-to-right' data-lg-reveal-stagger='0.15'>
+			<a href='https://wordpress.org/plugins/simple-social-sharing-kelp/' class='media'>
+				<Picture src='/images/resources/simple-social-sharing.png' alt='Simple Social Sharing WordPress Widget' loading='lazy' />
+			</a>
+			<div class='text'>
+				<p class='text-meta'>WordPress Plugin</p>
+				<h2 class='h5'><a href="https://wordpress.org/plugins/simple-social-sharing-kelp/">Simple Social Sharing</a></h2>
+				<div>Social sharing buttons that are performant, accessible, and have a ton of customization features built-in. Choose your sharing icon design ranging from rounded, squircles, or just basic icons. Display them in a vertical layout for a sidebar or horizontally with your main content.</div>
+			</div>
+		</article>
+		<article class='archive-tease' data-lg-reveal='layer-to-right' data-lg-reveal-stagger='0.15'>
+			<a href='https://ecosystem.hubspot.com/marketplace/website/modern-pro-theme-by-kelp-creative-agency' class='media'>
+				<Picture src='/images/resources/modern-pro.png' alt='Modern Pro - HubSpot Theme' loading='lazy' />
+			</a>
+			<div class='text'>
+				<p class='text-meta'>HubSpot Theme</p>
+				<h2 class='h5'><a href="https://ecosystem.hubspot.com/marketplace/website/modern-pro-theme-by-kelp-creative-agency">Modern Pro</a></h2>
+				<div>Modern Pro is a versatility focused HubSpot theme built specifically to do more with less. If you are looking for a HubSpot theme that can adapt and change as your business does, this is it.</div>
+			</div>
+		</article>
+		<article class='archive-tease' data-lg-reveal='layer-to-right' data-lg-reveal-stagger='0.15'>
+			<a href='https://ecosystem.hubspot.com/marketplace/website/restaurant-pro-theme-by-kelp-creative-agency' class='media'>
+				<Picture src='/images/resources/restaurant-pro.png' alt='Modern Pro - HubSpot Theme' loading='lazy' />
+			</a>
+			<div class='text'>
+				<p class='text-meta'>HubSpot Theme</p>
+				<h2 class='h5'><a href="https://ecosystem.hubspot.com/marketplace/website/restaurant-pro-theme-by-kelp-creative-agency">Restuarant Pro</a></h2>
+				<div>Modern Pro is a versatility focused HubSpot theme built specifically to do more with less. If you are looking for a HubSpot theme that can adapt and change as your business does, this is it.</div>
+			</div>
+		</article>
+  </div>
+</Layout>
+
+<style lang="scss" is:global>
+  .archive {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	@media (max-width: 1300px) {
+	  grid-template-columns: 1fr 1fr;
+	}
+	@media (max-width: 890px) {
+	  grid-template-columns: 1fr;
+	}
+	gap: 3rem;
+	padding-bottom: 5rem;
+	margin-top: 5rem;
+	&-tease {
+	  position: relative;
+	  .media {
+		aspect-ratio: 4 / 3;
+		overflow: hidden;
+		display: block;
+		picture,
+		img {
+		  height: 100% !important;
+		  width: 100% !important;
+		  object-fit: cover;
+		  max-width: none !important;
+		}
+	  }
+	  .text {
+		a {
+		  text-decoration: none;
+		  &:after {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 2;
+		  }
+		}
+		&-meta {
+		  text-transform: uppercase;
+		  font-family: var(--sans-serif);
+		  font-size: 14px;
+		  line-height: 1.2;
+		  opacity: 0.5;
+		  margin-top: 1.5rem;
+		  span + span {
+			border-left: 1px solid;
+			margin-left: 0.5rem;
+			padding-left: 0.7rem;
+		  }
+		}
+	  }
+	  &:nth-of-type(4n + 1) {
+		.lg-reveal--layer-to-right:after {
+		  background-color: var(--light-purple);
+		}
+	  }
+	  &:nth-of-type(4n + 2) {
+		.lg-reveal--layer-to-right:after {
+		  background-color: var(--green);
+		}
+	  }
+	  &:nth-of-type(4n + 3) {
+		.lg-reveal--layer-to-right:after {
+		  background-color: var(--purple);
+		}
+	  }
+	  &:nth-of-type(4n + 4) {
+		.lg-reveal--layer-to-right:after {
+		  background-color: var(--red);
+		}
+	  }
+	}
+  }
+</style>
