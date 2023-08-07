@@ -20,26 +20,26 @@ const posts = await response.json();
 		<div class='slider'>
 			{
 				posts.map((post) => (
-						<div class='slider-item'>
-							<div class='slider-item-media'>
-								<Picture src={post.fimg_url} alt={post.title.rendered} />
-							</div>
-							<div class='slider-item-text'>
-								<h3 class='slider-item-text-heading h6' set:html={post.title.rendered} />
-								<div class="slider-item-text-body">
-									<div set:html={post.excerpt.rendered} />
-									<p>
-										<a href=`/work/${post.slug}/` class='squiggle'>
-											Read More <span class="screen-reader-text">About {post.title.rendered}</span>
-										</a>
-									</p>
-								</div>
-								<nav class="slider-item-text-nav">
-									<button class="button button--link button--prev">← Prev</button>
-									<button class="button button--link button--next">Next →</button>
-								</nav>
-							</div>
+					<div class='slider-item'>
+						<div class='slider-item-media'>
+							<Picture src={post.fimg_url} alt={post.title.rendered} />
 						</div>
+						<div class='slider-item-text'>
+							<h3 class='slider-item-text-heading h6' set:html={post.title.rendered} />
+							<div class="slider-item-text-body">
+								<div set:html={post.excerpt.rendered} />
+								<p>
+									<a href=`/work/${post.slug}/` class='squiggle'>
+										Read More <span class="screen-reader-text">About {post.title.rendered}</span>
+									</a>
+								</p>
+							</div>
+							<nav class="slider-item-text-nav">
+								<button class="button button--link button--prev">← Prev</button>
+								<button class="button button--link button--next">Next →</button>
+							</nav>
+						</div>
+					</div>
 				))
 			}
 		</div>
@@ -95,7 +95,7 @@ const posts = await response.json();
 					}
 				}
 				&-text {
-					display: flex;
+					display: none;
 					flex-wrap: wrap;
 					align-items: flex-start;
 					margin: 2rem 0;
@@ -120,6 +120,9 @@ const posts = await response.json();
 						display: flex;
 						margin: 0 auto;
 					}
+				}
+				&.is-selected .slider-item-text {
+					display: flex;
 				}
 			}
 		}
