@@ -47,6 +47,11 @@ const tags = await tagsResponse.json();
 	</article>
 </Layout>
 
+<script>
+	import Splitting from 'splitting';
+	// intialize splitting for text animations
+	Splitting({ by: 'words' });
+</script>
 <style lang="scss" is:global>
 	.tease {
 		display: flex;

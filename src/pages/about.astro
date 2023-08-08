@@ -20,6 +20,11 @@ import Team from '../components/OurTeam.astro';
 	<Team />
 </Layout>
 
+<script>
+	import Splitting from 'splitting';
+	// intialize splitting for text animations
+	Splitting({ by: 'words' });
+</script>
 <style lang='scss' is:global>
 	.team {
 		text-align: center;

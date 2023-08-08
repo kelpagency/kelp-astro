@@ -44,7 +44,11 @@ for (const tag of tagIds) {
 		<div data-lg-reveal="fade" data-lg-reveal-stagger="0.3" set:html={content} />
 	</article>
 </Layout>
-
+<script>
+	import Splitting from 'splitting';
+	// intialize splitting for text animations
+	Splitting({ by: 'words' });
+</script>
 <style lang="scss" is:global>
 // work single
 .work-post {

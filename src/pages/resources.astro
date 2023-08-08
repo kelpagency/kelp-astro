@@ -103,7 +103,11 @@ import { Picture } from 'astro-imagetools/components';
 		</article>
   </div>
 </Layout>
-
+<script>
+	import Splitting from 'splitting';
+	// intialize splitting for text animations
+	Splitting({ by: 'words' });
+</script>
 <style lang="scss" is:global>
   .archive {
 	display: grid;
