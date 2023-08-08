@@ -1,7 +1,6 @@
 ---
-// Fetch your about page content from the WordPress API
-
 import Layout from "../../Base.astro";
+import "../../styles/pages/_wordpress.scss";
 
 export async function getStaticPaths() {
 	const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/work?per_page=100&_embed`);

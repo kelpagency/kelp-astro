@@ -121,6 +121,28 @@
       padding-left: 70px;
       padding-right: 70px;
     }
+    &-square {
+      width: 108px;
+      height: 108px;
+      display: block;
+      position: absolute;
+      right: 0;
+      z-index: -1;
+      top: 2rem;
+      background: var(--light-teal);
+      .service--marketing & {
+        background: var(--light-green);
+        right: 1rem;
+      }
+      .service--ongoing & {
+        background: var(--light-red);
+      }
+    }
+    &-icon {
+      width: 140px;
+      margin-right: -1rem;
+      margin-left: auto;
+    }
     &-left {
       flex: 0 1 260px;
       position: relative;
@@ -129,28 +151,6 @@
       h3 {
         text-align: left;
         margin: 0;
-      }
-      .service-square {
-        width: 108px;
-        height: 108px;
-        display: block;
-        position: absolute;
-        right: 0;
-        z-index: -1;
-        top: 2rem;
-        background: var(--light-teal);
-        .service--marketing & {
-          background: var(--light-green);
-          right: 1rem;
-        }
-        .service--ongoing & {
-          background: var(--light-red);
-        }
-      }
-      .service-icon {
-        width: 140px;
-        margin-right: -1rem;
-        margin-left: auto;
       }
     }
     &-right {

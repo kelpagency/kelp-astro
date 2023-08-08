@@ -4,9 +4,6 @@
 @use 'sanitize.css/assets.css';
 @use '@waaark/luge/dist/css/luge';
 
-// the default WordPress block styles for the work and blog posts formatting
-@use './base/wordpress';
-
 // the luge.cool animation overrides
 @use './base/animations';
 
@@ -24,5 +21,3 @@
 
 // buttons (form buttons and link buttons!)
 @use './base/buttons';
-
-@use './pages/services-list';

@@ -9,7 +9,7 @@ const posts = await response.json();
 
 <section class='recent-work'>
 	<div class='wrapper'>
-		<div class='top'>
+		<div class='recent-work-top'>
 			<h2 class='h3'>Our Work <span>In the real-world</span></h2>
 			<p>
 				The proof is in the pudding as they say here in the south. Weird sayings aside, it’s one thing to have
@@ -17,16 +17,16 @@ const posts = await response.json();
 				<small>(and good pudding)</small>. Take a look at some recent work below.
 			</p>
 		</div>
-		<div class='slider'>
+		<div class='recent-work-slider'>
 			{
 				posts.map((post) => (
-					<div class='slider-item'>
-						<div class='slider-item-media'>
+					<div class='recent-work-slider-item'>
+						<div class='recent-work-slider-item-media'>
 							<Picture src={post.fimg_url} alt={post.title.rendered} />
 						</div>
-						<div class='slider-item-text'>
-							<h3 class='slider-item-text-heading h6' set:html={post.title.rendered} />
-							<div class="slider-item-text-body">
+						<div class='recent-work-slider-item-text'>
+							<h3 class='recent-work-slider-item-text-heading h6' set:html={post.title.rendered} />
+							<div class='recent-work-slider-item-text-body'>
 								<div set:html={post.excerpt.rendered} />
 								<p>
 									<a href=`/work/${post.slug}/` class='squiggle'>
@@ -34,7 +34,7 @@ const posts = await response.json();
 									</a>
 								</p>
 							</div>
-							<nav class="slider-item-text-nav">
+							<nav class="recent-work-slider-item-text-nav">
 								<button class="button button--link button--prev">← Prev</button>
 								<button class="button button--link button--next">Next →</button>
 							</nav>
@@ -46,7 +46,7 @@ const posts = await response.json();
 	</div>
 </section>
 
-<style lang="scss">
+<style lang="scss" is:global>
 	.recent-work {
 		background: var(--black);
 		padding: 12rem 0 7rem;
@@ -54,7 +54,7 @@ const posts = await response.json();
 			padding: 6rem 0 0rem;
 		}
 		color: white;
-		.top {
+		&-top {
 			max-width: 1180px;
 			width: 100%;
 			margin: auto;
@@ -78,10 +78,10 @@ const posts = await response.json();
 				}
 			}
 		}
-		.slider {
+		&-slider {
 			max-width: 980px;
 			margin: 4rem auto;
-			> .slider-item {
+			> .recent-work-slider-item {
 				&:not(:first-child) {
 					display: none;
 				}
@@ -92,6 +92,8 @@ const posts = await response.json();
 					aspect-ratio: 1400 / 788;
 					img {
 						width: 100%;
+						height: 100%;
+						object-fit: cover;
 					}
 				}
 				&-text {
@@ -121,7 +123,7 @@ const posts = await response.json();
 						margin: 0 auto;
 					}
 				}
-				&.is-selected .slider-item-text {
+				&.is-selected .recent-work-slider-item-text {
 					display: flex;
 				}
 			}
@@ -133,7 +135,7 @@ const posts = await response.json();
 	import Flickity from 'flickity';
 	import 'flickity-fade';
 	// recent work slider
-	const slider = document.querySelector('.slider');
+	const slider = document.querySelector('.recent-work-slider');
 	if (slider) {
 		const next = document.querySelectorAll('.button--next');
 		const prev = document.querySelectorAll('.button--prev');
@@ -141,7 +143,8 @@ const posts = await response.json();
 			prevNextButtons: false,
 			wrapAround: true,
 			pageDots: false,
-			fade: true
+			fade: true,
+			imagesLoaded: true
 		});
 		next.forEach(function (button) {
 			button.addEventListener('click', function () {
