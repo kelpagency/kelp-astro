@@ -126,11 +126,11 @@ const posts = await response.json();
 				// hack to fix accessibility issue in lighthouse
 				a,
 				button {
-					pointer-events: none;
+					visibility: hidden;
 				}
 				&.is-selected a,
 				&.is-selected button {
-					pointer-events: unset;
+					visibility: visible;
 				}
 			}
 		}
