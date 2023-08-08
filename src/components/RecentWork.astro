@@ -22,7 +22,7 @@ const posts = await response.json();
 				posts.map((post) => (
 					<div class='recent-work-slider-item'>
 						<div class='recent-work-slider-item-media'>
-							<Picture src={post.fimg_url} alt={post.title.rendered} />
+							<Picture src={post.fimg_url} alt={post.title.rendered} width={980} height={552} />
 						</div>
 						<div class='recent-work-slider-item-text'>
 							<h3 class='recent-work-slider-item-text-heading h6' set:html={post.title.rendered} />
