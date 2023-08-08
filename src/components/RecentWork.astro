@@ -97,7 +97,7 @@ const posts = await response.json();
 					}
 				}
 				&-text {
-					display: none;
+					display: flex;
 					flex-wrap: wrap;
 					align-items: flex-start;
 					margin: 2rem 0;
@@ -123,8 +123,14 @@ const posts = await response.json();
 						margin: 0 auto;
 					}
 				}
-				&.is-selected .recent-work-slider-item-text {
-					display: flex;
+				// hack to fix accessibility issue in lighthouse
+				a,
+				button {
+					pointer-events: none;
+				}
+				&.is-selected a,
+				&.is-selected button {
+					pointer-events: unset;
 				}
 			}
 		}
