@@ -4,6 +4,7 @@ import FeaturedArticles from '../../components/FeaturedArticles.astro';
 import Layout from '../../Base.astro';
 import BlogSingleSidebar from '../../components/BlogSingleSidebar.astro';
 import { Picture } from 'astro-imagetools/components';
+import readingTime from 'reading-time';
 
 import "../../styles/pages/_wordpress.scss";
 import 'highlight.js/styles/monokai-sublime.css';
@@ -27,6 +28,7 @@ export async function getStaticPaths() {
         categories: post.categories,
         allCategories: categories,
         author: post._embedded.author,
+        datePublished: post.date,
         schema: JSON.stringify({
           '@context': 'https://schema.org',
           '@type': 'Article',
@@ -52,7 +54,7 @@ export async function getStaticPaths() {
   });
 }
 
-const { title, content, id, author, schema, image, description, categories, allCategories } = Astro.props;
+const { title, content, id, author, schema, image, description, datePublished, categories, allCategories } = Astro.props;
 const comments = await fetch(`${import.meta.env.PUBLIC_WP_URL}/comments?post=${id}`);
 const jsonComments = await comments.json();
 const category = {
@@ -66,6 +68,10 @@ const category = {
   <article class="wrapper single">
     <div class="single-article">
       <h1 set:html={title} />
+      <p class='single-article-meta'>
+        <time datetime={datePublished}>{new Date(datePublished).toLocaleDateString('en-us', { year: 'numeric', month: 'short', day: 'numeric' })}</time>
+        <span>{readingTime(content).text}</span>
+      </p>
       <Picture src={image} alt={description} loading="eager" />
       <div class="single-article-content" set:html={content} />
       {
@@ -83,6 +89,7 @@ const category = {
                       loading="lazy"
                     />
                     <h4 class="single-article-comments-item-name h6">{comment.author_name} says</h4>
+                    <time datetime={comment.date}>{new Date(comment.date).toLocaleDateString('en-us', { year: 'numeric', month: 'short', day: 'numeric' })}</time>
                     <div class="single-article-comments-item-body" set:html={comment.content.rendered} />
                     {jsonComments.map(
                       (reply) =>
@@ -95,6 +102,7 @@ const category = {
                               loading="lazy"
                             />
                             <h4 class="single-article-comments-item-name h6">{reply.author_name} says</h4>
+                            <time datetime={reply.date}>{new Date(reply.date).toLocaleDateString('en-us', { year: 'numeric', month: 'short', day: 'numeric' })}</time>
                             <div class="single-article-comments-item-body" set:html={reply.content.rendered} />
                           </div>
                         )
@@ -225,11 +233,30 @@ const category = {
       flex: 1 1 700px;
       min-width: 0;
       h1 {
-        margin-bottom: 3rem;
+        margin-bottom: 1.5rem;
+      }
+      &-meta {
+        display: flex;
+        justify-content: space-between;
+        text-transform: uppercase;
+        font-family: var(--sans-serif);
+        font-size: 14px;
+        line-height: 1.2;
+        opacity: .5;
+        margin-bottom: 1rem;
+        border-top: 1px solid #ddd;
+        padding-top: 1rem;
       }
       &-comments {
         img {
           border-radius: 1rem;
+        }
+        time {
+          text-transform: uppercase;
+          font-family: var(--sans-serif);
+          font-size: 12px;
+          line-height: 1;
+          opacity: .5;
         }
         &-item {
           margin: 3rem 0;
