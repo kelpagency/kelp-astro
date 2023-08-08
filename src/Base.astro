@@ -127,10 +127,12 @@ if (darkHeader) {
 	<body class={bodyClasses}>
 		<a href='#main' class='screen-reader-text'>Skip to content</a>
 		<Header />
-		<main id='main'>
-			<slot />
-		</main>
-		<Footer />
+		<div data-lg-smooth>
+			<main id='main'>
+				<slot />
+			</main>
+			<Footer />
+		</div>
 		<div data-lg-cursor data-lg-cursor-inertia='.15'>
 			<div data-lg-cursor-pointer></div>
 		</div>
