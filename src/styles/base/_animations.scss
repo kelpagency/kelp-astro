@@ -1,7 +1,7 @@
 [data-lg-reveal-stagger] > *,
 .lg-reveal,
 [data-splitting][data-lg-reveal] {
-	opacity: 0.001;
+	opacity: 0.0001;
 }
 
 [data-splitting][data-lg-reveal].splitting {
@@ -11,6 +11,7 @@
 .is-safari [data-lg-parallax] {
 	will-change: transform;
 }
+
 .lg-cursor {
 	&-pointer:before {
 		width: 4rem;
