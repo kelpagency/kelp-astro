@@ -113,3 +113,17 @@ import { Picture } from 'astro-imagetools/components';
 		</div>
 	</div>
 </section>
+<script>
+	// team page easter eggs
+	const skeleton = document.querySelector('.button--skeleton');
+	const team = document.querySelector('.team');
+	
+	skeleton?.addEventListener('click', function () {
+		team.classList.toggle('skulls');
+	});
+	
+	const disco = document.querySelector('.button--disco');
+	disco?.addEventListener('click', function () {
+		team.classList.toggle('dance');
+	});
+</script>
