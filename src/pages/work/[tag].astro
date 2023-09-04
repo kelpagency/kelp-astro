@@ -24,7 +24,7 @@ const tags = await tagsResponse.json();
 <Layout title={title} bodyClass="work-archive">
 	<article class="archive">
 		<div class='wrapper wrapper--narrow'>
-			<h1 style="margin-top: 8rem; line-height: 1.3;" data-splitting data-lg-reveal="fade" data-lg-reveal-stagger="0.05">Our <em>{title}</em> Work in the Real-world</h1>
+			<h1 style="margin-top: 8rem; line-height: 1.3;" data-lg-reveal="fade" data-lg-reveal-stagger="0.05"><span>Our</span> <em>{title}</em> <span>Work in the</span> <span>Real-world</span></h1>
 			<p style="max-width: 800px; flex: 1 1 500px; font-size: var(--step-1)" data-lg-reveal="fade" data-lg-reveal-delay=".5">
 				The proof is in the pudding as they say here in the south. 	Weird sayings aside, it’s one thing to have a good strategy, but it takes special talent to create excellent content
 				<small>(and good pudding)</small>. Take a look at some recent work below.
@@ -46,7 +46,7 @@ const tags = await tagsResponse.json();
 			</label>
 				{
 					posts.map((post) => (
-						<article class="tease" data-tags={post.tags.join(',')} data-lg-reveal="layer-to-right" data-lg-reveal-stagger="0.2">
+						<article class="tease" data-tags={post.tags.join(',')} transition:name=`hero-${post.id}` data-lg-reveal="layer-to-right" data-lg-reveal-stagger="0.2">
 							<a href=`/work/${post.slug}/` class="media">
 								<Picture src={post.fimg_url} alt={post.title.rendered} loading="lazy" />
 							</a>
@@ -60,11 +60,6 @@ const tags = await tagsResponse.json();
 		</div>
 	</article>
 </Layout>
-<script>
-	import Splitting from 'splitting';
-	// intialize splitting for text animations
-	Splitting({ by: 'words' });
-</script>
 <style lang="scss" is:global>
 	// work archive
 	.work-archive {
@@ -101,8 +96,10 @@ const tags = await tagsResponse.json();
 	}
 </style>
 <script>
-	const workPostFilter = document.querySelector('.work-post-filter');
-	workPostFilter?.addEventListener('change', function (event) {
-		window.location.href = event.target.value;
+	document.addEventListener('astro:page-load', () => {
+		const workPostFilter = document.querySelector('.work-post-filter');
+		workPostFilter?.addEventListener('change', function (event) {
+			window.location.href = event.target.value;
+		});
 	});
 </script>

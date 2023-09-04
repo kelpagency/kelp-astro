@@ -52,7 +52,7 @@ if (lottieFile) {
 				</p>
 			)
 		}
-		<h1 data-splitting data-lg-reveal='fade' data-lg-reveal-stagger='0.05' class='simple-hero-h1' set:html={title} />
+		<h1 transition:name={title} data-lg-reveal='fade' data-lg-reveal-stagger='0.05' class='simple-hero-h1' set:html={title} />
 		{
 			description && (
 				<p data-lg-reveal='fade' data-lg-reveal-delay='.1' class='simple-hero-description'>
@@ -76,11 +76,6 @@ if (lottieFile) {
 	</div>
 </section>
 
-<script>
-	import Splitting from 'splitting';
-	// intialize splitting for text animations
-	Splitting({ by: 'words' });
-</script>
 <style lang="scss">
 	.simple-hero {
 		padding: 6rem 0;

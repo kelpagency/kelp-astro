@@ -10,10 +10,10 @@ const tags = await tagsResponse.json();
 <Layout title='Our Work' bodyClass="work-archive">
 	<article class="archive">
 		<div class='wrapper wrapper--narrow'>
-			<h1 style="margin-top: 8rem;" data-splitting data-lg-reveal="fade" data-lg-reveal-stagger="0.05">Our Work in the Real-world</h1>
+			<h1 style="margin-top: 8rem;" data-lg-reveal="fade" data-lg-reveal-stagger="0.05"><span>Our</span> <span>Work</span> <span>in</span> <span>the</span> <span>Real-world</span></h1>
 			<p style="max-width: 800px; flex: 1 1 500px; font-size: var(--step-1)" data-lg-reveal="fade" data-lg-reveal-delay=".5">
-				The proof is in the pudding as they say here in the south. 	Weird sayings aside, it’s one thing to have a good strategy, but it takes special talent to create excellent content
-				<small>(and good pudding)</small>. Take a look at some recent work below.
+				<span>The</span> <span>proof</span> <span>is</span> <span>in</span> <span>the</span> <span>pudding</span> <span>as</span> <span>they</span> <span>say</span> <span>here</span> <span>in</span> <span>the</span> <span>south.</span> <span>	Weird</span> <span>sayings</span> <span>aside,</span> <span>it’s</span> <span>one</span> <span>thing</span> <span>to</span> <span>have</span> <span>a</span> <span>good</span> <span>strategy,</span> <span>but</span> <span>it</span> <span>takes</span> <span>special</span> <span>talent</span> <span>to</span> <span>create</span> <span>excellent</span> <span>content
+				<small>(and</span> <span>good</span> <span>pudding)</small>.</span> <span>Take</span> <span>a</span> <span>look</span> <span>at</span> <span>some</span> <span>recent</span> <span>work</span> <span>below.</span>
 			</p>
 		</div>
 		<div class="wrapper archive-list">
@@ -32,13 +32,13 @@ const tags = await tagsResponse.json();
 			</label>
 				{
 					posts.map((post) => (
-						<article class="tease" data-tags={post.tags.join(',')} data-lg-reveal="layer-to-right" data-lg-reveal-stagger="0.2">
-							<a href=`/work/${post.slug}/` class="media">
+						<article class="tease" data-tags={post.tags.join(',')}>
+							<a href=`/work/${post.slug}/` class="media" transition:name=`hero-${post.id}`  data-lg-reveal="layer-to-right">
 								<Picture src={post.fimg_url} alt={post.title.rendered} loading="lazy" />
 							</a>
 							<div class="text">
-								<h2 class="h4"><a href=`/work/${post.slug}/` set:html={post.title.rendered}/></h2>
-								<div set:html={post.excerpt.rendered} />
+								<h2 class="h4" transition:name=`heading-${post.id}`><a href=`/work/${post.slug}/` set:html={post.title.rendered}/></h2>
+								<div data-lg-reveal="layer-to-right" set:html={post.excerpt.rendered} />
 							</div>
 						</article>
 					))
@@ -47,11 +47,6 @@ const tags = await tagsResponse.json();
 	</article>
 </Layout>
 
-<script>
-	import Splitting from 'splitting';
-	// intialize splitting for text animations
-	Splitting({ by: 'words' });
-</script>
 <style lang="scss" is:global>
 	.tease {
 		display: flex;
@@ -85,8 +80,10 @@ const tags = await tagsResponse.json();
 	}
 </style>
 <script>
-	const workPostFilter = document.querySelector('.work-post-filter');
-	workPostFilter?.addEventListener('change', function (event) {
-		window.location.href = event.target.value;
+	document.addEventListener('astro:page-load', () => {
+		const workPostFilter = document.querySelector('.work-post-filter');
+		workPostFilter?.addEventListener('change', function (event) {
+			window.location.href = event.target.value;
+		});
 	});
 </script>

@@ -67,12 +67,14 @@ const category = {
 <Layout title={title} description={description} image={image} bodyClass="blog-post" schema={schema} darkHeader={true}>
   <article class="wrapper single">
     <div class="single-article">
-      <h1 set:html={title} />
+      <h1 transition:name=`heading-${id}` set:html={title} />
       <p class='single-article-meta'>
         <time datetime={datePublished}>{new Date(datePublished).toLocaleDateString('en-us', { year: 'numeric', month: 'short', day: 'numeric' })}</time>
         <span>{readingTime(content).text}</span>
       </p>
-      <Picture src={image} alt={description} loading="eager" />
+      <div transition:name=`hero-${id}`>
+        <Picture src={image} alt={description} loading="eager" />
+      </div>
       <div class="single-article-content" set:html={content} />
       {
         jsonComments.length > 0 && (
@@ -309,6 +311,7 @@ const category = {
   }
 </style>
 <script>
+document.addEventListener('astro:page-load', () => {
   // leave a comment
   const commentForm = document.querySelector('.single-article-leave-a-comment form');
   commentForm?.addEventListener('submit', function (event) {
@@ -341,4 +344,5 @@ const category = {
         commentForm.innerHTML = error;
       });
   });
+});
 </script>

@@ -2,6 +2,7 @@
 import './styles/global.scss';
 import Header from './components/Header.astro';
 import Footer from './components/Footer.astro';
+import { ViewTransitions } from 'astro:transitions';
 
 export interface Props {
 	title: string;
@@ -50,7 +51,8 @@ if (darkHeader) {
 	<head>
 		<meta charset='UTF-8' />
 		<meta name='viewport' content='width=device-width, initial-scale=1' />
-
+		<ViewTransitions />
+			
 		<!-- Meta -->
 		<title set:html={title} />
 		<meta name='description' content={description} />
@@ -140,35 +142,41 @@ if (darkHeader) {
 			import luge from '@waaark/luge';
 			import lottie from 'lottie-web/build/player/lottie_light';
 			import { annotate } from 'rough-notation';
-		
 			window.lottie = lottie;
 			window.luge = luge;
-			
-			luge.settings({
-				credits: {
-					show: false
-				}
-			});
-		
-			// Underline all em tags
-			// when they come into view
-			const emphasisElements = document.querySelectorAll('main em');
-			function handleIntersection(entries) {
-				entries.map((entry) => {
-					if (entry.isIntersecting) {
-						const annotation = annotate(entry.target, {
-							type: 'underline',
-							multiline: true,
-							padding: 0,
-							animationDuration: 300
-						});
-						annotation.show();
-						observer.unobserve(entry.target);
+
+			document.addEventListener('astro:page-load', () => {
+								
+				luge.settings({
+					credits: {
+						show: false
 					}
 				});
-			}
-			const observer = new IntersectionObserver(handleIntersection);
-			emphasisElements?.forEach((item) => observer.observe(item));
+				
+				// Underline all em tags
+				// when they come into view
+				const emphasisElements = document.querySelectorAll('main em');
+				function handleIntersection(entries) {
+					entries.map((entry) => {
+						if (entry.isIntersecting) {
+							const annotation = annotate(entry.target, {
+								type: 'underline',
+								multiline: true,
+								padding: 0,
+								animationDuration: 300
+							});
+							annotation.show();
+							observer.unobserve(entry.target);
+						}
+					});
+				}
+				const observer = new IntersectionObserver(handleIntersection);
+				emphasisElements?.forEach((item) => observer.observe(item));
+	  	});
+			
+			document.addEventListener('astro:after-swap', () => {
+				luge.lifecycle.refresh()
+			});
 		</script>
 	</body>
 </html>

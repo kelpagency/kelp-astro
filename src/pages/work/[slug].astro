@@ -13,14 +13,15 @@ export async function getStaticPaths() {
 				description: post.excerpt.rendered.replace(/(<([^>]+)>)/gi, ''),
 				image: [post.fimg_url],
 				content: post.content.rendered,
-				tagIds: post.tags
+				tagIds: post.tags,
+				id: post.id
 			}
 		};
 	});
 }
 
-const { title, content, description, image, tagIds } = Astro.props;
-
+const { title, content, description, image, tagIds, id } = Astro.props;
+console.log(id);
 let tags = [];
 for (const tag of tagIds) {
 	const tagResponse = await fetch(`${import.meta.env.PUBLIC_WP_URL}/tags/${tag}`);
@@ -31,7 +32,7 @@ for (const tag of tagIds) {
 
 <Layout title={title} description={description} image={image} bodyClass="work-post" >
 	<article class="wrapper">
-		<h1 data-splitting data-lg-reveal="fade" data-lg-reveal-stagger="0.1" set:html={title} />
+		<h1 transition:name=`heading-${id}` set:html={title} />
 		<p data-lg-reveal="layer-to-left" data-lg-reveal-delay="0.2" class="tags">
 			{tags.map(
 				(tag, i) => 
@@ -43,11 +44,6 @@ for (const tag of tagIds) {
 		<div data-lg-reveal="fade" data-lg-reveal-stagger="0.3" set:html={content} />
 	</article>
 </Layout>
-<script>
-	import Splitting from 'splitting';
-	// intialize splitting for text animations
-	Splitting({ by: 'words' });
-</script>
 <style lang="scss" is:global>
 // work single
 .work-post {

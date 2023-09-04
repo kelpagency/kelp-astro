@@ -165,8 +165,10 @@ const posts = await response.json();
 	}
 </style>
 <script>
-	const videos = document.querySelectorAll('.video-showcase video');
-	videos?.forEach(function (video) {
-		video.play();
+	document.addEventListener('astro:page-load', () => {
+		const videos = document.querySelectorAll('.video-showcase video');
+		videos?.forEach(function (video) {
+			video.play();
+		});
 	});
 </script>

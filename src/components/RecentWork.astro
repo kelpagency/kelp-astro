@@ -25,7 +25,7 @@ const posts = await response.json();
 							<Picture src={post.fimg_url} alt={post.title.rendered} width={980} height={552} />
 						</div>
 						<div class='recent-work-slider-item-text'>
-							<h3 class='recent-work-slider-item-text-heading h6' set:html={post.title.rendered} />
+							<h3 class='recent-work-slider-item-text-heading h6' transition:name=`heading-${post.id}` set:html={post.title.rendered} />
 							<div class='recent-work-slider-item-text-body'>
 								<div set:html={post.excerpt.rendered} />
 								<p>
@@ -140,28 +140,30 @@ const posts = await response.json();
 <script>
 	import Flickity from 'flickity';
 	import 'flickity-fade';
-	// recent work slider
-	const slider = document.querySelector('.recent-work-slider');
-	if (slider) {
-		const next = document.querySelectorAll('.button--next');
-		const prev = document.querySelectorAll('.button--prev');
-		const flkty = new Flickity(slider, {
-			prevNextButtons: false,
-			wrapAround: true,
-			pageDots: false,
-			fade: true,
-			imagesLoaded: true
-		});
-		next.forEach(function (button) {
-			button.addEventListener('click', function () {
-				flkty.next();
+	document.addEventListener('astro:page-load', () => {
+		// recent work slider
+		const slider = document.querySelector('.recent-work-slider');
+		if (slider) {
+			const next = document.querySelectorAll('.button--next');
+			const prev = document.querySelectorAll('.button--prev');
+			const flkty = new Flickity(slider, {
+				prevNextButtons: false,
+				wrapAround: true,
+				pageDots: false,
+				fade: true,
+				imagesLoaded: true
 			});
-		});
-		prev.forEach(function (button) {
-			button.addEventListener('click', function () {
-				flkty.previous();
+			next.forEach(function (button) {
+				button.addEventListener('click', function () {
+					flkty.next();
+				});
 			});
-		});
-		luge.emitter.emit('resize');
-	}
+			prev.forEach(function (button) {
+				button.addEventListener('click', function () {
+					flkty.previous();
+				});
+			});
+			luge.emitter.emit('resize');
+		}
+	});
 </script>
