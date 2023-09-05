@@ -52,7 +52,7 @@ if (lottieFile) {
 				</p>
 			)
 		}
-		<h1 transition:name={title} data-lg-reveal='fade' data-lg-reveal-stagger='0.05' class='simple-hero-h1' set:html={title} />
+		<h1 transition:name={title.replace(/(<([^>]+)>)/gi, "")} data-lg-reveal='fade' data-lg-reveal-stagger='0.05' class='simple-hero-h1' set:html={title} />
 		{
 			description && (
 				<p data-lg-reveal='fade' data-lg-reveal-delay='.1' class='simple-hero-description'>
