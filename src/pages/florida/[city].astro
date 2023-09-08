@@ -3,6 +3,10 @@ import Layout from '../../Base.astro';
 import SimpleHero from '../../components/SimpleHero.astro';
 import RecentWork from '../../components/RecentWork.astro';
 import Testimonials from '../../components/Testimonials.astro';
+import Services from "../../components/Services.astro";
+import HowWeWork from "../../components/HowWeWork.astro";
+import FeaturedArticles from "../../components/FeaturedArticles.astro";
+
 import countries from 'countrycitystatejson';
 import slugify from 'slugify';
 
@@ -57,8 +61,10 @@ const { title } = Astro.props;
 			to web design that is tailored to the specific needs of your business. We are also able to provide a more
 			cost-effective solution than larger, out-of-state agencies. But don't just take our word for it...
 		</p>
-		<!-- <p>{text}</p> -->
 	</div>
 	<RecentWork />
+	<Services />
+	<HowWeWork />
 	<Testimonials />
+	<FeaturedArticles />
 </Layout>

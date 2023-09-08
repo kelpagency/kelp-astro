@@ -15,7 +15,7 @@
     "@astrojs/rss": "^3.0.0",
     "@astrojs/sitemap": "^3.0.0",
     "@waaark/luge": "0.6.17-beta.2",
-    "astro": "3.0.7",
+    "astro": "3.0.12",
     "astro-critters": "^2.0.11",
     "astro-imagetools": "^0.9.0",
     "autoprefixer": "^10.4.15",
