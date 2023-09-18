@@ -1,6 +1,7 @@
 ---
 import Layout from '../Base.astro';
 import { Picture } from 'astro-imagetools/components';
+import AwardBadge from '../components/AwardBadge.astro';
 ---
 
 <Layout title="Kelp Resources" description="A collection of digital assets we've made that you might find useful for yourself." darkHeader={true}>
@@ -12,6 +13,7 @@ import { Picture } from 'astro-imagetools/components';
 	</div>
   <div class="wrapper archive">
 		<article class='archive-tease' data-lg-reveal='layer-to-right' data-lg-reveal-stagger='0.15'>
+			<AwardBadge title="Winner of the 2021 HubSpot Themes Challenge" />
 			<a href='https://ecosystem.hubspot.com/marketplace/website/modern-pro-theme-by-kelp-creative-agency' class='media'>
 				<Picture src='/images/resources/modern-pro.png' alt='Modern Pro - HubSpot Theme' loading='lazy' />
 			</a>
@@ -22,6 +24,7 @@ import { Picture } from 'astro-imagetools/components';
 			</div>
 		</article>
 		<article class='archive-tease' data-lg-reveal='layer-to-right' data-lg-reveal-stagger='0.15'>
+			<AwardBadge title="Winner of the 2021 HubSpot Themes Challenge" />
 			<a href='https://ecosystem.hubspot.com/marketplace/website/restaurant-pro-theme-by-kelp-creative-agency' class='media'>
 				<Picture src='/images/resources/restaurant-pro.png' alt='Modern Pro - HubSpot Theme' loading='lazy' />
 			</a>
@@ -123,13 +126,13 @@ import { Picture } from 'astro-imagetools/components';
 		aspect-ratio: 4 / 3;
 		overflow: hidden;
 		display: block;
-		picture,
-		img {
-		  height: 100% !important;
-		  width: 100% !important;
-		  object-fit: cover;
-		  max-width: none !important;
-		}
+			picture,
+			img {
+		  	height: 100% !important;
+		  	width: 100% !important;
+		  	object-fit: cover;
+		  	max-width: none !important;
+			}
 	  }
 	  .text {
 		a {

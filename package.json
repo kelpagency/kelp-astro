@@ -15,7 +15,7 @@
     "@astrojs/rss": "^3.0.0",
     "@astrojs/sitemap": "^3.0.0",
     "@waaark/luge": "0.6.17-beta.2",
-    "astro": "3.0.12",
+    "astro": "3.1.0",
     "astro-critters": "^2.0.11",
     "astro-imagetools": "^0.9.0",
     "autoprefixer": "^10.4.15",
@@ -37,6 +37,6 @@
   "devDependencies": {
     "prettier": "^3.0.3",
     "prettier-plugin-astro": "^0.12.0",
-    "sass": "^1.66.1"
+    "sass": "^1.67.0"
   }
 }
