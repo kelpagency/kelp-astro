@@ -16,12 +16,15 @@ const categories = await requestCategories.json();
 	</a>
 	<div class='text'>
 		<p class='text-meta'>
-			<span>{new Date(post.date).toLocaleDateString('en-us', { year: 'numeric', month: 'short', day: 'numeric' })}</span
-			>
+			<span>
+				{new Date(post.date).toLocaleDateString('en-us', { year: 'numeric', month: 'short', day: 'numeric' })}
+			</span>
 			<span>{readingTime(post.content.rendered).text}</span>
 			<span>{categories.find((cat) => cat.id === post.categories[0]).name}</span>
 		</p>
-		<h2 class='h5' transition:name=`heading-${post.id}`><a href=`/blog/${post.slug}/` set:html={post.title.rendered} /></h2>
+		<h2 class='h5' transition:name=`heading-${post.id}`>
+			<a href=`/blog/${post.slug}/` set:html={post.title.rendered} />
+		</h2>
 		<div set:html={post.excerpt.rendered} />
 	</div>
 </article>

@@ -73,7 +73,7 @@ const category = {
         <span>{readingTime(content).text}</span>
       </p>
       <div transition:name=`hero-${id}`>
-        <Picture src={image} alt={description} loading="eager" />
+        <Picture src={image} alt={description} preload="avif" />
       </div>
       <div class="single-article-content" set:html={content} />
       {
