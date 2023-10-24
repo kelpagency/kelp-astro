@@ -23,72 +23,78 @@ export async function getStaticPaths() {
 
 const { title } = Astro.props;
 
-
-const data = {
-	model: "gpt-3.5-turbo",
-	messages: [
-		{
-			role: "system",
-			content:
-				"You are an SEO expert for a marketing agency that helps get clients to the first page of Google search results by writing helpful content."
-		},
-		{ role: "user", content: `write a paragraph of text for a city page for a digital agency called "Kelp" and about why a local agency to ${title} is important, try to include some unique info about said city.` }
-	],
-	temperature: 0.7,
-	max_tokens: 700
-};
-
-const chatGpt = await fetch("https://api.openai.com/v1/chat/completions", {
-	headers: {
-		Authorization: `Bearer ${import.meta.env.OPENAI_KEY}`,
-		"Content-Type": "application/json"
-	},
-	method: "POST",
-	body: JSON.stringify(data)
-});
-const response = await chatGpt.json();
-const text = response.choices[0].message.content;
-
-
-const data2 = {
-	model: "gpt-3.5-turbo",
-	messages: [
-		{
-			role: "system",
-			content:
-				"You are an SEO expert for a digital agency that helps get clients to the first page of Google search results by writing helpful content."
-		},
-		{ role: "user", content: `write a meta description for a city page about a digital agency called "Kelp" local to ${title}, keep it under 170 characters and don't put it in quotation marks.` }
-	],
-	temperature: 0.7,
-	max_tokens: 700
-};
-const chatGpt2 = await fetch("https://api.openai.com/v1/chat/completions", {
-	headers: {
-		Authorization: `Bearer ${import.meta.env.OPENAI_KEY}`,
-		"Content-Type": "application/json"
-	},
-	method: "POST",
-	body: JSON.stringify(data2)
-});
-const response2 = await chatGpt2.json();
-const text2 = response2.choices[0].message.content;
+// 
+// const data = {
+// 	model: "gpt-3.5-turbo",
+// 	messages: [
+// 		{
+// 			role: "system",
+// 			content:
+// 				"You are an SEO expert for a marketing agency that helps get clients to the first page of Google search results by writing helpful content."
+// 		},
+// 		{ role: "user", content: `write a paragraph of text for a city page for a digital agency called "Kelp" and about why a local agency to ${title} is important, try to include some unique info about said city.` }
+// 	],
+// 	temperature: 0.7,
+// 	max_tokens: 700
+// };
+// 
+// const chatGpt = await fetch("https://api.openai.com/v1/chat/completions", {
+// 	headers: {
+// 		Authorization: `Bearer ${import.meta.env.OPENAI_KEY}`,
+// 		"Content-Type": "application/json"
+// 	},
+// 	method: "POST",
+// 	body: JSON.stringify(data)
+// });
+// const response = await chatGpt.json();
+// const text = response.choices[0].message.content;
+// 
+// 
+// const data2 = {
+// 	model: "gpt-3.5-turbo",
+// 	messages: [
+// 		{
+// 			role: "system",
+// 			content:
+// 				"You are an SEO expert for a digital agency that helps get clients to the first page of Google search results by writing helpful content."
+// 		},
+// 		{ role: "user", content: `write a meta description for a city page about a digital agency called "Kelp" local to ${title}, keep it under 170 characters and don't put it in quotation marks.` }
+// 	],
+// 	temperature: 0.7,
+// 	max_tokens: 700
+// };
+// const chatGpt2 = await fetch("https://api.openai.com/v1/chat/completions", {
+// 	headers: {
+// 		Authorization: `Bearer ${import.meta.env.OPENAI_KEY}`,
+// 		"Content-Type": "application/json"
+// 	},
+// 	method: "POST",
+// 	body: JSON.stringify(data2)
+// });
+// const response2 = await chatGpt2.json();
+// const text2 = response2.choices[0].message.content;
 
 
 ---
 
 <Layout
 	title={title}
-	description={text2}
+	description='We’re a team of designers, developers, and marketers who love to take your ideas and bring them to life based in the heart of Florida.'
 >
 	<SimpleHero
 		tagline='Digtal Agency serving:'
 		title={title.replace('Digital Agency | Kelp Creative Agency', '')}
-		description={text2}
+		description='We’re a team of designers, developers, and marketers who love to take your ideas and bring them to life based in the heart of Florida.'
 	/>
 	<div class='wrapper wrapper--narrow dark' style='margin-bottom: 150px;'>
-		<h2 class='h3'>Why a local digital agency is important</h2>
-		<p>{ text }</p>
+		<h2 class='h3'>Why a local agency is important</h2>
+		<p>
+			As a local web design agency in Florida, we understand the unique needs of businesses in the area. We are familiar
+			with the market, the competition, and the trends that are impacting businesses in the area. We also have a deep
+			understanding of the local culture and how to best reach the target audience. We provide a personalized approach
+			to web design that is tailored to the specific needs of your business. We are also able to provide a more
+			cost-effective solution than larger, out-of-state agencies.
+		</p>
 	</div>
 	<Services />
 	<HowWeWork />
