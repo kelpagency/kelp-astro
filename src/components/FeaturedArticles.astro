@@ -15,15 +15,15 @@ const posts = await response.json();
 						</div>
 						<h4 class="h5" transition:name=`heading-${post.id}`><a href=`/blog/${post.slug}/` set:html={post.title.rendered} /></h4>
 						<p>
-						{post._embedded['wp:term'][0].map((category) => (
-							<span>{category.name}</span>
-						))}</p>
+							{post._embedded['wp:term'][0].map((category) => (
+								<span>{category.name}</span>
+							))}
+						</p>
 					</article>
 				))}
 		</div>
 	</div>
 </section>
-
 
 <style lang="scss" is:global>
 	.featured-articles {
