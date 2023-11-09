@@ -14,8 +14,18 @@ const posts = await response.json();
 	description='High-quality photographs can make a strong first impression and create a positive image for a business or product.'
 >
 	<SimpleHero tagline='Content Creation Services' title='Photography' description="High-quality photographs can make a strong first impression and create a positive image for a business or product." lottieFile='photography.json'/>
+	<div class="wrapper our-photos" data-lg-reveal="layer-to-right" data-lg-reveal-stagger="0.1">
+		<h2>We Take<br />Photos Like...</h2>
+		<Picture width='1140' src='/images/photography/airplane-photography.jpg' loading="lazy" alt='airplane photography' />
+		<Picture width='1140' src='/images/photography/apparal-photography.jpg' loading="lazy" alt='apparel photography' />
+		<Picture width='1140' src='/images/photography/exterior-building-photography.jpg' loading="lazy" alt='exterior buildings photography' />
+		<Picture width='1140' src='/images/photography/food-business-photography.jpg' loading="lazy" alt='food photography' />
+		<Picture width='1140' src='/images/photography/law-firm-photography.jpg' loading="lazy" alt='law firm photography' />
+		<Picture width='1140' src='/images/photography/training-photography.jpg' loading="lazy" alt='school training photography' />
+		<Picture width='1140' src='/images/photography/well-drilling-photography.jpg' loading="lazy" alt='well drilling photography' />
+	</div>
 	<div class='service-body'>
-		<div class='wrapper wrapper--narrow'>
+		<div class='wrapper wrapper--narrow' data-lg-reveal>
 			<h2>Why photography matters</h2>
 			<p>
 				High-quality photographs can make a strong first impression and create a positive image for a business or product. They can also be a powerful way to communicate information and ideas, and can help to tell a story or convey a message for your brand or current marketing campaign.
@@ -62,3 +72,21 @@ const posts = await response.json();
 	</div>
 	<FeaturedArticles />
 </Layout>
+
+<style lang="scss" is:global>
+.our-photos {
+	column-count: 2;
+	column-gap: 3rem;
+	@media (max-width: 767px) {
+		column-count: 1;
+	}
+	margin-bottom: 6rem;
+	h2 {
+		margin-bottom: 4rem;
+	}
+	picture {
+		display: block;
+		margin-bottom: 2rem;
+	}
+}
+</style>
