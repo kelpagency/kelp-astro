@@ -10,8 +10,10 @@ const posts = await response.json();
 		<div class="grid">
 			{posts.map((post) => (
 					<article>
-						<Picture src={post.fimg_url} loading="lazy" alt={post.title.rendered} />
-						<h4 class="h5"><a href=`/blog/${post.slug}/` set:html={post.title.rendered} /></h4>
+						<div transition:name=`hero-${post.id}`>
+							<Picture src={post.fimg_url} loading="lazy" alt={post.title.rendered} />
+						</div>
+						<h4 class="h5" transition:name=`heading-${post.id}`><a href=`/blog/${post.slug}/` set:html={post.title.rendered} /></h4>
 						<p>
 						{post._embedded['wp:term'][0].map((category) => (
 							<span>{category.name}</span>
@@ -21,6 +23,7 @@ const posts = await response.json();
 		</div>
 	</div>
 </section>
+
 
 <style lang="scss" is:global>
 	.featured-articles {
