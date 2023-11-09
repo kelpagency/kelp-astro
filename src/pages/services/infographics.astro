@@ -14,6 +14,17 @@ const posts = await response.json();
 	description='Infographics are a great way to make your brand story come alive. They’re captivating and engaging because they combine text with images in creative ways that hook readers of all ages.'
 >
 	<SimpleHero tagline='Content Creation Services' title='Infographics' description="Infographics are a great way to make your brand story come alive. They’re captivating and engaging because they combine text with images in creative ways that hook readers of all ages." lottieFile='infographics.json'/>
+	<div class="wrapper infographics">
+		<div class="infographics-grid">
+			<h2>We Make<br> Infographics Like...</h2>
+			<Picture src="/images/infographics/battery-upkeep-infographic.png" loading="lazy" alt="battery upkeep infographic" />
+			<Picture src="/images/infographics/boost-infographic.jpg" loading="lazy" alt="marketing infographic" />
+			<Picture src="/images/infographics/flashlight-safety-infographic.jpg" loading="lazy" alt="flashlight safety infographic" />
+			<Picture src="/images/infographics/flashlights-infographic.jpg" loading="lazy" alt="flashlights infographic" />
+			<Picture src="/images/infographics/label-printer-infographic.gif" loading="lazy" alt="marketing infographic" />
+			<Picture src="/images/infographics/safety-tips-infographic.jpg" loading="lazy" alt="safety tips infographic" />
+		</div>
+	</div>
 	<div class='service-body'>
 		<div class='wrapper wrapper--narrow'>
 			<h2>Why infographics matter</h2>
@@ -65,3 +76,20 @@ const posts = await response.json();
 	</div>
 	<FeaturedArticles />
 </Layout>
+
+<style lang="scss" is:global>
+.infographics {
+	margin-bottom: 6rem;
+	max-width: 1200px;
+	h2 {
+		margin-bottom: 2rem;
+	}
+	&-grid {
+		column-count: 2;
+		column-gap: 2rem;
+		picture {
+			margin-bottom: 2rem;
+		}
+	}
+}
+</style>
