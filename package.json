@@ -1,42 +1,42 @@
 {
-  "name": "@kelpagency/website",
-  "type": "module",
-  "version": "1.0.1",
-  "private": true,
-  "scripts": {
-    "dev": "astro dev",
-    "start": "serve dist/",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "@astrojs/rss": "^4.0.5",
-    "@astrojs/sitemap": "^3.1.1",
-    "@waaark/luge": "0.6.18-beta.2",
-    "astro": "^4.4.13",
-    "astro-imagetools": "^0.9.0",
-    "autoprefixer": "^10.4.18",
-    "countrycitystatejson": "^22.10.2102",
-    "flickity": "^3.0.0",
-    "flickity-fade": "^2.0.0",
-    "flipping": "^1.1.0",
-    "gsap": "^3.12.5",
-    "headroom.js": "^0.12.0",
-    "highlight.js": "^11.9.0",
-    "lottie-web": "^5.12.2",
-    "reading-time": "^1.5.0",
-    "rough-notation": "^0.5.1",
-    "sanitize.css": "^13.0.0",
-    "slugify": "^1.6.6"
-  },
-  "devDependencies": {
-    "prettier": "^3.2.5",
-    "prettier-plugin-astro": "^0.13.0",
-    "sass": "^1.71.1"
-  },
-  "overrides": {
-    "vite-imagetools": "^6.2.7",
-    "sharp": "^0.33.0"
-  }
+	"name": "@kelpagency/website",
+	"type": "module",
+	"version": "1.0.1",
+	"private": true,
+	"scripts": {
+		"dev": "astro dev",
+		"start": "serve dev",
+		"build": "astro build",
+		"preview": "astro preview",
+		"astro": "astro"
+	},
+	"dependencies": {
+		"@astrojs/rss": "^4.0.5",
+		"@astrojs/sitemap": "^3.1.1",
+		"@waaark/luge": "0.6.18-beta.2",
+		"astro": "^4.5.2",
+		"astro-imagetools": "^0.9.0",
+		"autoprefixer": "^10.4.18",
+		"countrycitystatejson": "^22.10.2102",
+		"flickity": "^3.0.0",
+		"flickity-fade": "^2.0.0",
+		"flipping": "^1.1.0",
+		"gsap": "^3.12.5",
+		"headroom.js": "^0.12.0",
+		"highlight.js": "^11.9.0",
+		"lottie-web": "^5.12.2",
+		"reading-time": "^1.5.0",
+		"rough-notation": "^0.5.1",
+		"sanitize.css": "^13.0.0",
+		"slugify": "^1.6.6"
+	},
+	"devDependencies": {
+		"prettier": "^3.2.5",
+		"prettier-plugin-astro": "^0.13.0",
+		"sass": "^1.71.1"
+	},
+	"overrides": {
+		"vite-imagetools": "^6.2.7",
+		"sharp": "^0.33.0"
+	}
 }
