@@ -12,11 +12,11 @@
 	},
 	"dependencies": {
 		"@astrojs/rss": "^4.0.5",
-		"@astrojs/sitemap": "^3.1.1",
+		"@astrojs/sitemap": "^3.1.2",
 		"@waaark/luge": "0.6.18-beta.2",
-		"astro": "^4.5.2",
+		"astro": "^4.5.10",
 		"astro-imagetools": "^0.9.0",
-		"autoprefixer": "^10.4.18",
+		"autoprefixer": "^10.4.19",
 		"countrycitystatejson": "^22.10.2102",
 		"flickity": "^3.0.0",
 		"flickity-fade": "^2.0.0",
@@ -33,7 +33,7 @@
 	"devDependencies": {
 		"prettier": "^3.2.5",
 		"prettier-plugin-astro": "^0.13.0",
-		"sass": "^1.71.1"
+		"sass": "^1.72.0"
 	},
 	"overrides": {
 		"vite-imagetools": "^6.2.7",
