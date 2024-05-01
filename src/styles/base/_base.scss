@@ -1,75 +1,86 @@
 main {
-  padding-top: 7rem;
-  @media (max-width: 767px) {
-    padding-top: 5rem;
-  }
+	padding-top: 7rem;
+	@media (max-width: 767px) {
+		padding-top: 5rem;
+	}
 }
 
 .wrapper {
-  width: 90%;
-  margin: auto;
-  max-width: 1400px;
-  &--narrow {
-    @media (min-width: 768px) {
-      padding-left: 70px;
-      padding-right: 70px;
-    }
-  }
+	width: 90%;
+	margin: auto;
+	max-width: 1400px;
+	&--narrow {
+		@media (min-width: 768px) {
+			padding-left: 70px;
+			padding-right: 70px;
+		}
+	}
 }
 
 .hidden {
-  display: none !important;
+	display: none !important;
 }
 
 ::selection {
-  background: var(--green);
+	background: var(--green);
+}
+
+body::-webkit-scrollbar {
+	width: 0.7em;
+}
+body::-webkit-scrollbar-track {
+	background: var(--light-green);
+}
+body::-webkit-scrollbar-thumb {
+	background-color: var(--green);
+	outline: 1px solid var(--green);
 }
 
 iframe[src^="https://codepen.io"]
 {
-  min-height: 500px;
+	min-height: 500px;
 }
 iframe[src^="https://docs.google.com"]
 {
-  aspect-ratio: 5 / 3;
+	aspect-ratio: 5 / 3;
 }
 .columns {
-  column-count: 3;
-  @media (max-width: 960px) {
-    column-count: 2;
-  }
-  @media (max-width: 700px) {
-    column-count: 1;
-  }
+	column-count: 3;
+	@media (max-width: 960px) {
+		column-count: 2;
+	}
+	@media (max-width: 700px) {
+		column-count: 1;
+	}
 }
 
 .screen-reader-text {
-  border: 0;
-  clip: rect(1px, 1px, 1px, 1px);
-  -webkit-clip-path: inset(50%);
-  clip-path: inset(50%);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-  word-wrap: normal !important;
-  &:focus {
-    background-color: #ddd;
-    clip: auto !important;
-    -webkit-clip-path: none;
-    clip-path: none;
-    color: #444;
-    display: block;
-    font-size: 1em;
-    height: auto;
-    left: 5px;
-    line-height: normal;
-    padding: 15px 23px 14px;
-    text-decoration: none;
-    top: 5px;
-    width: auto;
-    z-index: 100000;
-  }
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	-webkit-clip-path: inset(50%);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	word-wrap: normal !important;
+	&:focus {
+		background-color: #ddd;
+		clip: auto !important;
+		-webkit-clip-path: none;
+		clip-path: none;
+		color: #444;
+		display: block;
+		font-size: 1em;
+		height: auto;
+		left: 5px;
+		line-height: normal;
+		padding: 15px 23px 14px;
+		text-decoration: none;
+		top: 5px;
+		width: auto;
+		z-index: 100000;
+	}
 }
