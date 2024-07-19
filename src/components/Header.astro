@@ -68,15 +68,15 @@
 <style lang='scss' is:global>
 	.header {
 		padding: 2rem 0;
-		@media (max-width: 767px) {
-			padding: 1.25rem 0;
-		}
 		position: fixed;
 		left: 0;
 		width: 100%;
 		top: 0;
 		z-index: 99;
 		--text-color: var(--black);
+		@media (max-width: 767px) {
+			padding: 1.25rem 0;
+		}
 		&.headroom {
 			will-change: transform;
 			transition: transform 200ms linear;
@@ -89,12 +89,12 @@
 			}
 			&--unpinned {
 				transform: translateY(-100%);
-				.mobile-menu-active & {
-					transform: translateY(0);
-				}
 				background: transparent;
 				--text-color: var(--black);
 				--bg-color: white;
+				.mobile-menu-active & {
+					transform: translateY(0);
+				}
 			}
 			&--top {
 				background: transparent;

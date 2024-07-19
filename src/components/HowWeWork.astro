@@ -81,11 +81,11 @@ import { Picture } from 'astro-imagetools/components';
 <style lang="scss">
   .how-we-work {
     padding: 6rem 0;
+    background: var(--black);
+    color: white;
     @media (max-width: 767px) {
       padding: 3rem 0;
     }
-    background: var(--black);
-    color: white;
     .lg-reveal--layer:after,
     .lg-reveal--layer-to-top:after,
     .lg-reveal--layer-to-right:after,
@@ -121,8 +121,6 @@ import { Picture } from 'astro-imagetools/components';
         }
         &:nth-of-type(3) {
           z-index: 3;
-        }
-        img {
         }
       }
     }

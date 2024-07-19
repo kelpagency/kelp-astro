@@ -89,18 +89,18 @@ if (lottieFile) {
 		.wrapper {
 			display: grid;
 			grid-template-columns: 1fr 1.5fr;
+			align-items: center;
+			gap: 1rem 4rem;
 			@media (max-width: 960px) {
 				display: block;
 			}
-			align-items: center;
-			gap: 1rem 4rem;
 		}
 		&--media {
-			@media (max-width: 767px) {
-				padding-bottom: 6rem;
-			}
 			.wrapper {
 				grid-template-columns: 1fr 0.9fr;
+			}
+			@media (max-width: 767px) {
+				padding-bottom: 6rem;
 			}
 		}
 		&--lottie {
@@ -168,8 +168,6 @@ if (lottieFile) {
 				}
 				&:nth-of-type(3) {
 					z-index: 3;
-				}
-				img {
 				}
 			}
 		}
