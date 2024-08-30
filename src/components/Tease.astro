@@ -11,7 +11,7 @@ const categories = await requestCategories.json();
 ---
 
 <article class='archive-tease'>
-	<a href=`/blog/${post.slug}/` class='media' transition:name=`hero-${post.id}`>
+	<a data-astro-prefetch href=`/blog/${post.slug}/` class='media' transition:name=`hero-${post.id}`>
 		<Picture src={post.fimg_url} alt={post.title.rendered} loading='lazy' />
 	</a>
 	<div class='text'>
