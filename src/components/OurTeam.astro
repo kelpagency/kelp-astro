@@ -84,18 +84,6 @@ import { Picture } from 'astro-imagetools/components';
 				<h3 class='h5'>Luke Kenney</h3>
 				<p>Creative Director | Co-founder</p>
 			</div>
-			<!-- <div class='team-grid-item' data-lg-reveal='layer-to-bottom'>
-				<Picture
-					src='/images/team/matt.jpg'
-					alt='Matt Prouty'
-					loading='lazy'
-					placeholder='tracedSVG'
-					width={890}
-					height={1188}
-				/>
-				<h3 class='h5'>Matthew Prouty</h3>
-				<p>Sales Associate</p>
-			</div> -->
 			<div class='team-grid-item' data-lg-reveal='layer-to-bottom'>
 				<Picture
 					src='/images/team/stefen.jpg'
@@ -108,44 +96,14 @@ import { Picture } from 'astro-imagetools/components';
 				<h3 class='h5'>Stefen Phelps</h3>
 				<p>Software Engineer | Co-founder</p>
 			</div>
-			<button class='button button--skeleton'>☠️</button>
-			<button class='button button--disco'>🪩</button>
 		</div>
 	</div>
 </section>
-<script>
-	document.addEventListener('astro:page-load', () => {
-		// team page easter eggs
-		const skeleton = document.querySelector('.button--skeleton');
-		const team = document.querySelector('.team');
-		
-		skeleton?.addEventListener('click', function () {
-			team.classList.toggle('skulls');
-		});
-		
-		const disco = document.querySelector('.button--disco');
-		disco?.addEventListener('click', function () {
-			team.classList.toggle('dance');
-		});
-	});
-</script>
 <style lang="scss">
 	.team {
 		text-align: center;
 		padding-bottom: 8rem;
 		position: relative;
-		.button {
-			position: absolute;
-			bottom: 0;
-			right: 0;
-			width: 4rem;
-			&--skeleton {
-				right: 0;
-			}
-			&--disco {
-				left: 0;
-			}
-		}
 		h2 {
 			max-width: none;
 			margin: 12rem 0 4rem 0;
@@ -188,82 +146,6 @@ import { Picture } from 'astro-imagetools/components';
 			p {
 				margin: 0;
 			}
-		}
-		&.skulls {
-			picture {
-				img {
-					opacity: 0;
-				}
-				&:after {
-					opacity: 1 !important;
-				}
-			}
-		}
-		&.dance {
-			.team-grid-item {
-				picture {
-					animation: 5s disco infinite linear;
-				}
-				&:nth-child(2) {
-					picture {
-						animation-delay: -1s;
-					}
-				}
-				&:nth-child(3) {
-					picture {
-						animation-delay: -2s;
-					}
-				}
-				&:nth-child(4) {
-					picture {
-						animation-delay: -4s;
-					}
-				}
-				&:nth-child(5) {
-					picture {
-						animation-delay: -3s;
-					}
-				}
-				&:nth-child(6) {
-					picture {
-						animation-delay: -4.5s;
-					}
-				}
-				&:nth-child(7) {
-					picture {
-						animation-delay: -5.5s;
-					}
-				}
-			}
-		}
-	}
-	@keyframes disco {
-		0% {
-			background: var(--purple);
-		}
-		13% {
-			background: var(--light-teal);
-		}
-		25% {
-			background: var(--green);
-		}
-		37% {
-			background: var(--light-purple);
-		}
-		50% {
-			background: var(--teal);
-		}
-		62% {
-			background: var(--red);
-		}
-		74% {
-			background: var(--black);
-		}
-		87% {
-			background: var(--light-green);
-		}
-		100% {
-			background: var(--light-red);
 		}
 	}
 </style>
