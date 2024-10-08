@@ -31,6 +31,7 @@
 					<a href='/services/' data-astro-prefetch>
 						Services
 						<svg xmlns='http://www.w3.org/2000/svg' width='9.75' height='6'>
+							<title>dropdown</title>
 							<path
 								d='M4.08 5.67.33 1.92a1.13 1.13 0 0 1 0-1.59 1.12 1.12 0 0 1 .8-.33 1.12 1.12 0 0 1 .8.33l2.95 2.96L7.84.33a1.12 1.12 0 0 1 .8-.33 1.12 1.12 0 0 1 .8.33 1.13 1.13 0 0 1 0 1.6L5.69 5.66a1.12 1.12 0 0 1-.8.33 1.11 1.11 0 0 1-.81-.33Z'
 								fill='currentColor'></path>
@@ -46,6 +47,7 @@
 					<a data-astro-prefetch href='/work/'>
 						Work
 						<svg xmlns='http://www.w3.org/2000/svg' width='9.75' height='6'>
+							<title>dropdown</title>
 							<path
 								d='M4.08 5.67.33 1.92a1.13 1.13 0 0 1 0-1.59 1.12 1.12 0 0 1 .8-.33 1.12 1.12 0 0 1 .8.33l2.95 2.96L7.84.33a1.12 1.12 0 0 1 .8-.33 1.12 1.12 0 0 1 .8.33 1.13 1.13 0 0 1 0 1.6L5.69 5.66a1.12 1.12 0 0 1-.8.33 1.11 1.11 0 0 1-.81-.33Z'
 								fill='currentColor'></path>
@@ -230,11 +232,11 @@
 								visibility: visible;
 								opacity: 1;
 								transform: translate(0px);
-								&:before {
+								&::before {
 									transform: translate(5px, 5px);
 									opacity: 1;
 								}
-								&:after {
+								&::after {
 									opacity: 1;
 								}
 							}
