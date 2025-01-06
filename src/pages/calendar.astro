@@ -6,8 +6,10 @@ import { Img } from 'astro-imagetools/components';
 
 <Layout title='Kelp Calendar' description='The days we take off — 2025 years since the birth of Our Blessed Lord.'>
 	<SimpleHero tagline='Kelp Holidays' title='2025 Calendar' />
-	<div class='wrapper wrapper--narrow' style='margin-bottom: 150px;'>
-		<h2 class='h4' data-lg-reveal='fade'>The days we'll be off this year.</h2>
+	<div class='wrapper wrapper--narrow'>
+		<div>
+			<h2 class='h4' data-lg-reveal='fade'>The days we'll be off this year.</h2>
+		</div>
 		<ul data-lg-reveal='fade' data-lg-reveal-stagger='.1'>
 			<li><b>Martin Luther King Jr. Day:</b> Monday, January 20, 2025</li>
 			<li><b>Presidents Day:</b> Monday, February 17, 2025</li>
@@ -21,5 +23,25 @@ import { Img } from 'astro-imagetools/components';
 			<li><b>Thanksgiving:</b> November 27-28, 2025</li>
 			<li><b>Christmas Break:</b> December 22, 2025-January 2, 2026</li>
 		</ul>
+		<Img src="images/squid-calendar.png" alt="Squid Squidly checking his calendar" placeholder="tracedSVG" />
 	</div>
 </Layout>
+
+<style lang="scss" is:global>
+.wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0 5rem;
+	align-items: flex-start;
+	div {
+		flex: 1 1 100%;
+	}
+	ul {
+		flex: 1 1 200px;
+	}
+	img {
+		flex: 1 1 200px;
+		margin-bottom: 200px;
+	}
+}
+</style>
