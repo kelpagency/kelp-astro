@@ -4,6 +4,7 @@ import SimpleHero from '../../components/SimpleHero.astro';
 import { Picture } from 'astro-imagetools/components';
 import FeaturedArticles from "../../components/FeaturedArticles.astro";
 import "../../styles/pages/_services-list.scss";
+import { Img } from 'astro-imagetools/components';
 
 const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/work?per_page=3&tags=84`);
 const posts = await response.json();
@@ -14,6 +15,9 @@ const posts = await response.json();
 	description="Selling products and services online is easier for customers to purchase from anywhere at any time (if done correctly). This convenience and accessibility leads to increased sales and customer satisfaction."
 >
 	<SimpleHero tagline='Content Creation Services' title='Ecommerce' description="Selling products and services online is easier for customers to purchase from anywhere at any time (if it's done correctly). This convenience and accessibility leads to increased sales and customer satisfaction." lottieFile="ecommerce.json"/>
+		<div class="wrapper wrapper--narrow" style="padding-bottom: 100px; text-align: center;">
+			We are proud to be certified partners with both <a href="https://woocommerce.com/development-services/kelp-creative-agency/232621912/">WooCommerce</a> & Shopify.
+		</div>
 	<div class='service-body'>
 		<div class='wrapper wrapper--narrow'>
 			<h2>Why ecommerce websites matter</h2>
