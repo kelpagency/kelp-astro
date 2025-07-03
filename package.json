@@ -13,9 +13,9 @@
 	"dependencies": {
 		"@astrojs/rss": "^4.0.12",
 		"@astrojs/sitemap": "^3.4.1",
-		"@github/copilot-language-server": "^1.337.0",
+		"@github/copilot-language-server": "^1.339.0",
 		"@waaark/luge": "0.6.20-beta",
-		"astro": "^5.10.1",
+		"astro": "^5.11.0",
 		"astro-imagetools": "^0.9.0",
 		"autoprefixer": "^10.4.21",
 		"countrycitystatejson": "^25.5.2908",
@@ -31,7 +31,7 @@
 		"slugify": "^1.6.6"
 	},
 	"devDependencies": {
-		"prettier": "^3.6.0",
+		"prettier": "^3.6.2",
 		"prettier-plugin-astro": "^0.14.1",
 		"sass": "^1.89.2"
 	},
