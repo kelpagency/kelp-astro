@@ -32,48 +32,44 @@ import { Picture } from 'astro-imagetools/components';
     </div>
     <div class="how-we-work-intro">
       <h2>How We<br />Work</h2>
-      <p>
-        Simply put:<br />
-        Kelp aims to - know your audience, create attractive content for them, reach them where they are, and compel them
-        to take action.
-      </p>
+      <p>Everything we work on follows the same 5 basic steps in order:</p>
       <hr />
     </div>
     <div class="how-we-work-phase" data-lg-reveal="layer-to-right">
-      <h3 class="h5">Discovery</h3>
+      <h3 class="h5">1. Discovery</h3>
       <p>
         The Discovery phase establishes the answers to any project’s most important question. “Why?” This information is
         then used to thoroughly prep the project for planning.
       </p>
     </div>
     <div class="how-we-work-phase" data-lg-reveal="layer-to-right">
-      <h3 class="h5">Planning</h3>
+      <h3 class="h5">2. Planning</h3>
       <p>
         With key insight we strategize. A production plan-of-attack maps out our tactics and techniques and is the clear
         roadmap of goals and “How” to reach them.
       </p>
     </div>
     <div class="how-we-work-phase" data-lg-reveal="layer-to-right">
-      <h3 class="h5">Production</h3>
+      <h3 class="h5">3. Production</h3>
       <p>
         With a clear strategy we create the appropriate, engaging content pieces that will attract and inform a targeted
         audience.
       </p>
     </div>
     <div class="how-we-work-phase" data-lg-reveal="layer-to-right">
-      <h3 class="h5">Market</h3>
+      <h3 class="h5">4. Market</h3>
       <p>
         Executing your developed marketing plan we take everything we have learned and created to the people, making
         refinements as the data flows through.
       </p>
     </div>
     <div class="how-we-work-phase" data-lg-reveal="layer-to-right">
-      <h3 class="h5">Ongoing Support</h3>
+      <h3 class="h5">5. Ongoing Support</h3>
       <p>
         The digital world is evolving at a rate much faster than most can keep up. Remain safe and relevant with ongoing
         web, and creative support services.
       </p>
-      <a href="/contact/" class="squiggle">Let's Chat</a>
+      <a href="/contact/" class="squiggle">Ready to get started?</a>
     </div>
   </div>
 </section>
@@ -125,9 +121,17 @@ import { Picture } from 'astro-imagetools/components';
       }
     }
     &-intro {
+      h2 {
+        font-size: var(--step-7);
+      }
+      p {
+        font-size: var(--step-4);
+        line-height: 1.4;
+      }
       @media (min-width: 768px) {
         grid-column: 1;
         grid-row: 1;
+        margin: auto 0;
       }
     }
     &-phase {

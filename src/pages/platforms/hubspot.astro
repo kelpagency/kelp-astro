@@ -1,0 +1,85 @@
+---
+import Layout from '../../Base.astro';
+import SimpleHero from '../../components/SimpleHero.astro';
+import { Image } from 'astro:assets';
+import FeaturedArticles from '../../components/FeaturedArticles.astro';
+import RecentWork from '../../components/RecentWork.astro';
+
+import HubspotPartner from '../../assets/hubspot.svg';
+---
+
+<Layout title="Kelp ❤️'s HubSpot" darkHeader={true}>
+	<article>
+		<SimpleHero
+			title="HubSpot"
+			description="We build scalable, user-friendly HubSpot websites, themes, and modules designed for marketing teams to actually use — not fight against. As official HubSpot Solutions Partners and multi-award-winning theme developers, we know the CMS inside and out."
+			dark="true"
+		/>
+
+		<section class="wrapper">
+			<div class="platform">
+				<div class="platform-logo">
+					<HubspotPartner />
+				</div>
+
+				<div class="platform-text">
+					<p>
+						HubSpot CMS is powerful — but only when it’s built the right way. We focus on creating flexible, marketer-friendly themes, modules, and landing pages that empower your team instead of slowing them down. 
+					</p>
+					<p>
+						Our award-winning HubSpot templates are used by hundreds of companies and were recognized in HubSpot’s official CMS Themes Challenge. Explore some of our recent HubSpot projects below.
+					</p>
+				</div>
+			</div>
+		</section>
+	</article>
+
+	<RecentWork
+		tag="89"
+		limit={3}
+		heading="HubSpot Projects"
+		description="<p>Here’s a look at some of the HubSpot builds we’ve launched — crafted to make content management and campaign execution seamless.</p>"
+	/>
+
+	<FeaturedArticles
+		category="12"
+		heading="Our Articles about HubSpot"
+		limit={3}
+	/>
+</Layout>
+
+<style lang="scss">
+.platform {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 2rem 6rem;
+	margin: 1rem 0;
+	padding: 4rem 0;
+	border-bottom: 2px solid var(--teal);
+
+	&:last-child {
+		border-bottom: 0;
+	}
+
+	&-logo {
+		flex: 0 1 220px;
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+		order: 2;
+		svg {
+			width: 100%;
+			height: auto;
+		}
+		@media (max-width: 767px) {
+			margin: auto;
+		}
+	}
+
+	&-text {
+		flex: 1 1 500px;
+	}
+}
+</style>

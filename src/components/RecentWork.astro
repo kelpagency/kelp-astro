@@ -3,19 +3,30 @@ import { Picture } from "astro-imagetools/components";
 import 'flickity/css/flickity.css';
 import 'flickity-fade/flickity-fade.css';
 
-const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/work?per_page=3`);
+// Accept optional props
+const { tag, category, limit = 3, heading = "Our Work", subheading = "In the real-world", description = "The proof is in the pudding as they say here in the south. Weird sayings aside, it’s one thing to have a good strategy, but it takes special talent to create excellent content <small>(and good pudding)</small>. Take a look at some recent work below." } = Astro.props;
+
+// Build query params dynamically
+let queryParams = `per_page=${limit}`;
+
+if (tag) {
+	queryParams += `&tags=${tag}`; // use tag slug
+}
+
+if (category) {
+	queryParams += `&categories=${category}`;
+}
+
+// Fetch posts with filters applied
+const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/work?${queryParams}`);
 const posts = await response.json();
 ---
 
 <section class='recent-work'>
 	<div class='wrapper'>
 		<div class='recent-work-top'>
-			<h2 class='h3'>Our Work <span>In the real-world</span></h2>
-			<p>
-				The proof is in the pudding as they say here in the south. Weird sayings aside, it’s one thing to have
-				a good strategy, but it takes special talent to create excellent content
-				<small>(and good pudding)</small>. Take a look at some recent work below.
-			</p>
+			<h2 class='h3'>{heading} <span>{subheading}</span></h2>
+			<p set:html={description}></p>
 		</div>
 		<div class='recent-work-slider'>
 			{
@@ -34,10 +45,12 @@ const posts = await response.json();
 									</a>
 								</p>
 							</div>
-							<nav class="recent-work-slider-item-text-nav">
-								<button class="button button--link button--prev">← Prev</button>
-								<button class="button button--link button--next">Next →</button>
-							</nav>
+							{posts.length > 1 && (
+								<nav class="recent-work-slider-item-text-nav">
+									<button class="button button--link button--prev">← Prev</button>
+									<button class="button button--link button--next">Next →</button>
+								</nav>
+							)}
 						</div>
 					</div>
 				))

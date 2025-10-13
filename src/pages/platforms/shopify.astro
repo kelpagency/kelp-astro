@@ -1,0 +1,65 @@
+---
+import Layout from '../../Base.astro';
+import SimpleHero from '../../components/SimpleHero.astro';
+import { Image } from 'astro:assets';
+import FeaturedArticles from '../../components/FeaturedArticles.astro';
+import RecentWork from '../../components/RecentWork.astro';
+
+import ShopifyPartner from '../../assets/shopify.svg';
+---
+
+<Layout title="Kelp ❤️'s Shopify" darkHeader={true}>
+	<article>
+		<SimpleHero
+			title="Shopify"
+			description="We build high-performance, conversion-focused Shopify storefronts using both Liquid and Hydrogen. We’re Shopify experts — from theme development and app integration to fully headless builds."
+			dark="true"
+		/>
+
+		<section class="wrapper">
+			<div class="platform">
+				<div class="platform-logo">
+					<ShopifyPartner />
+				</div>
+				
+				<div class="platform-text">
+					<p>
+						We design and build Shopify storefronts that are fast, scalable, and designed to convert. Whether you’re selling a single product or managing an enterprise-level catalog, Shopify is one of the most flexible commerce platforms available.
+					</p>
+					<p>
+						Our team is experienced in building both traditional Liquid themes and advanced headless storefronts powered by Hydrogen. Explore some of our recent Shopify projects below.
+					</p>
+				</div>
+			</div>
+	</article>
+	<RecentWork tag="90" limit={3} heading="Shopify Stores" description="<p>Here are a few of the Shopify builds we’ve launched — all optimized for performance, scalability, and sales.</p>" />
+	<!-- <FeaturedArticles category="90" heading="Our Articles about Shopify" limit={3} /> -->
+</Layout>
+<style lang="scss">
+.platform {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 2rem 6rem;
+	margin: 1rem 0;
+	padding: 4rem 0;
+	border-bottom: 2px solid var(--teal);
+	&:last-child {
+		border-bottom: 0;
+	}
+	&-logo {
+		flex: 0 1 220px;
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+		order: 2;
+		@media (max-width: 767px) {
+			margin: auto;
+		}
+	}
+	&-text {
+		flex: 1 1 500px;
+	}
+}
+</style>

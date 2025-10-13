@@ -1,12 +1,17 @@
 ---
 import { Picture } from "astro-imagetools/components";
-const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/posts?per_page=3&category_name=featured&_embed`);
+
+const { category = "17", heading = "Featured Articles", limit = 3 } = Astro.props;
+
+const response = await fetch(
+	`${import.meta.env.PUBLIC_WP_URL}/posts?per_page=${limit}&categories=${category}&_embed`
+);
 const posts = await response.json();
 ---
 
 <section class="featured-articles">
 	<div class="wrapper">
-		<h3>Featured Articles</h3>
+		<h3>{heading}</h3>
 		<div class="grid">
 			{posts.map((post) => (
 					<article>
