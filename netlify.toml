@@ -5,7 +5,7 @@
 		# - Allows scripts, styles, images, and fonts from your own domain.
 		# - Allows inline/eval scripts (safe fallback — tighten later if possible).
 		# - Blocks all object embeds, sets a secure base, and requires HTTPS.
-		Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' https:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'; upgrade-insecure-requests;"
+		Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' https:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'; upgrade-insecure-requests;"
 	
 		# ✅ Prevent clickjacking (only allow same-origin iframes)
 		X-Frame-Options = "SAMEORIGIN"
