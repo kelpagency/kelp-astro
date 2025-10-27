@@ -4,33 +4,33 @@ import SimpleHero from '../components/SimpleHero.astro';
 import Testimonials from '../components/Testimonials.astro';
 ---
 
-<Layout title='Contact Kelp' darkHeader={true}>
+<Layout title="Contact Kelp" darkHeader={true}>
 	<article>
-		<section class='contact-section'>
-			<div class='wrapper'>
-				<div class='contact-section-column' data-lg-reveal='fade' data-lg-reveal-stagger='.2'>
+		<section class="contact-section">
+			<div class="wrapper">
+				<div class="contact-section-column" data-lg-reveal="fade" data-lg-reveal-stagger=".2">
 					<h1>Well hello there.</h1>
 					<hr />
-					<p data-lg-reveal='fade' data-lg-reveal-delay='.25'>
+					<p data-lg-reveal="fade" data-lg-reveal-delay=".25">
 						Interested in our services? Setup a chat with Andrew. He’d love to talk with you and see how Kelp can be of
 						help.
 					</p>
 
 					<h2>Other ways to reach us.</h2>
-					<h3 class='h6'>Office Address</h3>
-					<address>
-						924 Hale <br />
-						Brooksville, FL 34601
-					</address>
-					<p>Phone: <a href='tel:+1-352-325-7688'>352-325-7688</a></p>
+					<h3 class="h6">Office Address</h3>
+					<address>P.O. Box 116<br /> Brooksville, FL 34605</address>
+					<p><i>New Office Coming Soon</i></p>
+					<p>Phone: <a href="tel:+1-352-325-7688">352-325-7688</a></p>
 				</div>
-				<div class='contact-section-column'>
+				<div class="contact-section-column">
 					<!-- Embed script is in global js file -->
-					<div id='meetings-embed' data-lg-reveal='layer-to-right' data-lg-reveal-delay='.5'>
+					<div id="meetings-embed" data-lg-reveal="layer-to-right" data-lg-reveal-delay=".5">
 						<!-- Start of Meetings Embed Script -->
-							<div class="meetings-iframe-container" data-src="https://store.kelp.agency/meetings/andrew1417?embed=true"></div>
-							<script type="text/javascript" src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"></script>
-					  	<!-- End of Meetings Embed Script -->
+						<div class="meetings-iframe-container" data-src="https://store.kelp.agency/meetings/andrew1417?embed=true">
+						</div>
+						<script type="text/javascript" src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"
+						></script>
+						<!-- End of Meetings Embed Script -->
 					</div>
 				</div>
 			</div>
@@ -39,7 +39,7 @@ import Testimonials from '../components/Testimonials.astro';
 	</article>
 </Layout>
 
-<style lang='scss'>
+<style lang="scss">
 	// contact page
 	.contact-section {
 		background: var(--black);
