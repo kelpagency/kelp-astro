@@ -1,5 +1,5 @@
 ---
-import { Picture } from "astro-imagetools/components";
+import { Image } from 'astro:assets';
 import 'flickity/css/flickity.css';
 import 'flickity-fade/flickity-fade.css';
 
@@ -33,33 +33,41 @@ const posts = await response.json();
 				posts.map((post) => (
 					<div class='recent-work-slider-item'>
 						<div class='recent-work-slider-item-media'>
-							<Picture src={post.fimg_url} alt={post.title.rendered} width={980} height={552} />
+							<Image
+								src={post.fimg_url}
+								alt={post.title.rendered}
+								width={980}
+								height={552}
+								format="webp"
+								loading="lazy"
+								class="recent-work-slider-item-media-img"
+							/>
 						</div>
 						<div class='recent-work-slider-item-text'>
 							<h3 class='recent-work-slider-item-text-heading h6' transition:name=`heading-${post.id}` set:html={post.title.rendered} />
 							<div class='recent-work-slider-item-text-body'>
 								<div set:html={post.excerpt.rendered} />
-								<p>
+								<p class="recent-work-slider-item-text-body-p">
 									<a href=`/work/${post.slug}/` class='squiggle'>
 										Read More <span class="screen-reader-text">About {post.title.rendered}</span>
 									</a>
 								</p>
 							</div>
-							{posts.length > 1 && (
-								<nav class="recent-work-slider-item-text-nav">
-									<button class="button button--link button--prev">← Prev</button>
-									<button class="button button--link button--next">Next →</button>
-								</nav>
-							)}
 						</div>
 					</div>
 				))
 			}
+			{posts.length > 1 && (
+				<nav class="recent-work-slider-nav">
+					<button class="button button--link button--prev">← Prev</button>
+					<button class="button button--link button--next">Next →</button>
+				</nav>
+			)}
 		</div>
 	</div>
 </section>
 
-<style lang="scss" is:global>
+<style lang="scss">
 	.recent-work {
 		background: var(--black);
 		padding: 12rem 0 7rem;
@@ -116,13 +124,16 @@ const posts = await response.json();
 					align-items: flex-start;
 					margin: 2rem 0;
 					gap: 1rem 3rem;
+					@media (min-width: 767px) {
+						padding-right: 240px;
+					}
 					&-heading {
 						margin: 0;
-						flex: 1 1 120px;
+						flex: 1 1 100px;
 					}
 					&-body {
-						flex: 1 1 500px;
-						p {
+						flex: 1 1 400px;
+						&-p {
 							margin-top: 0;
 						}
 						a {
@@ -130,21 +141,18 @@ const posts = await response.json();
 							margin: 1rem 0;
 						}
 					}
-					&-nav {
-						flex: 0 0 auto;
-						white-space: nowrap;
-						display: flex;
-						margin: 0 auto;
-					}
 				}
-				// hack to fix accessibility issue in lighthouse
-				a,
-				button {
-					visibility: hidden;
-				}
-				&.is-selected a,
-				&.is-selected button {
-					visibility: visible;
+			}
+			&-nav {
+				flex: 0 0 auto;
+				white-space: nowrap;
+				display: flex;
+				margin: 0 auto;
+				@media (min-width: 767px) {
+					position: absolute;
+					right: 0;
+					top: 70%;
+					z-index: 1;
 				}
 			}
 		}
@@ -161,6 +169,7 @@ const posts = await response.json();
 			const next = document.querySelectorAll('.button--next');
 			const prev = document.querySelectorAll('.button--prev');
 			const flkty = new Flickity(slider, {
+				cellSelector: '.recent-work-slider-item',
 				prevNextButtons: false,
 				wrapAround: true,
 				pageDots: false,
