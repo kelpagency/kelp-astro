@@ -1,6 +1,6 @@
 ---
 import Layout from "../../Base.astro";
-import { Picture } from "astro-imagetools/components";
+import { Picture } from "astro:assets";
 
 export async function getStaticPaths() {
 	const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/tags?per_page=100`);
@@ -48,7 +48,7 @@ const tags = await tagsResponse.json();
 					posts.map((post) => (
 						<article class="tease" data-tags={post.tags.join(',')} transition:name=`hero-${post.id}` data-lg-reveal="layer-to-right" data-lg-reveal-stagger="0.2">
 							<a href=`/work/${post.slug}/` class="media">
-								<Picture src={post.fimg_url} alt={post.title.rendered} loading="lazy" />
+								<Picture src={post.fimg_url} alt={post.title.rendered} loading="lazy"  inferSize />
 							</a>
 							<div class="text">
 								<h2 class="h4"><a href=`/work/${post.slug}/` set:html={post.title.rendered}/></h2>

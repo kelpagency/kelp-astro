@@ -1,7 +1,11 @@
 ---
 import Base from '../../../Base.astro';
 import SimpleHero from '../../../components/SimpleHero.astro';
-import { Img } from 'astro-imagetools/components';
+import { Picture } from 'astro:assets';
+import ongoingSupportFront from '../../../assets/images/services/ongoing-support-front.png';
+import ongoingSupportMiddle from '../../../assets/images/services/ongoing-support-middle.png';
+import ongoingSupportBack from '../../../assets/images/services/ongoing-support-back.jpg';
+import ongoingSupportOffice from '../../../assets/images/services/ongoing-support-office-photo.jpg';
 ---
 
 <Base title="Ongoing Support">
@@ -9,9 +13,15 @@ import { Img } from 'astro-imagetools/components';
     tagline="Services"
     title="Ongoing <br>Support"
     description="The digital world is evolving at a rate much faster than most can keep up. We work in the digital realm everyday, so we can make sure that your assets are up to date and remain safe and relevant. Just need services on a regular basis? We do that too."
-    mediaFront="images/services/ongoing-support-front.png"
-    mediaMiddle="images/services/ongoing-support-middle.png"
-    mediaBack="images/services/ongoing-support-back.jpg"
+    mediaFront={ongoingSupportFront}
+    mediaFrontWidth={1300}
+    mediaFrontHeight={1300}
+    mediaMiddle={ongoingSupportMiddle}
+    mediaMiddleWidth={1300}
+    mediaMiddleHeight={1300}
+    mediaBack={ongoingSupportBack}
+    mediaBackWidth={1300}
+    mediaBackHeight={1300}
   />
   <div class="service-intro service-intro--marketing">
     <div class="wrapper">
@@ -21,10 +31,15 @@ import { Img } from 'astro-imagetools/components';
       </p>
       <div class="service-intro-media" data-lg-parallax="child">
         <div>
-          <Img
-            src="/images/services/ongoing-support-office-photo.jpg"
+          <Picture
+            src={ongoingSupportOffice}
             alt="developer debugging performance issues on a website"
             loading="lazy"
+            width={866}
+            height={866}
+            widths={[480, 720, 866]}
+            sizes="(max-width: 900px) 100vw, 50vw"
+            inferSize
           />
         </div>
       </div>

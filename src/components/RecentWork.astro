@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import 'flickity/css/flickity.css';
 import 'flickity-fade/flickity-fade.css';
 
@@ -33,14 +33,16 @@ const posts = await response.json();
 				posts.map((post) => (
 					<div class='recent-work-slider-item'>
 						<div class='recent-work-slider-item-media'>
-							<Image
+							<Picture
 								src={post.fimg_url}
 								alt={post.title.rendered}
 								width={980}
 								height={552}
-								format="webp"
+								widths={[480, 720, 980]}
+								sizes="(max-width: 900px) 100vw, 70vw"
 								loading="lazy"
 								class="recent-work-slider-item-media-img"
+								inferSize
 							/>
 						</div>
 						<div class='recent-work-slider-item-text'>

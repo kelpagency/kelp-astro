@@ -1,7 +1,14 @@
 ---
 import Layout from '../../Base.astro';
 import SimpleHero from '../../components/SimpleHero.astro';
-import { Picture } from 'astro-imagetools/components';
+import { Picture } from 'astro:assets';
+import photoAirplane from '../../assets/images/photography/airplane-photography.jpg';
+import photoApparel from '../../assets/images/photography/apparal-photography.jpg';
+import photoExterior from '../../assets/images/photography/exterior-building-photography.jpg';
+import photoFood from '../../assets/images/photography/food-business-photography.jpg';
+import photoLaw from '../../assets/images/photography/law-firm-photography.jpg';
+import photoTraining from '../../assets/images/photography/training-photography.jpg';
+import photoWell from '../../assets/images/photography/well-drilling-photography.jpg';
 import FeaturedArticles from "../../components/FeaturedArticles.astro";
 import "../../styles/pages/_services-list.scss";
 
@@ -16,13 +23,13 @@ const posts = await response.json();
 	<SimpleHero tagline='Content Creation Services' title='Photography' description="High-quality photographs can make a strong first impression and create a positive image for a business or product." lottieFile='photography.json'/>
 	<div class="wrapper our-photos" data-lg-reveal="layer-to-right" data-lg-reveal-stagger="0.1">
 		<h2>We Take<br />Photos Like...</h2>
-		<Picture width='1140' src='/images/photography/airplane-photography.jpg' loading="lazy" alt='airplane photography' />
-		<Picture width='1140' src='/images/photography/apparal-photography.jpg' loading="lazy" alt='apparel photography' />
-		<Picture width='1140' src='/images/photography/exterior-building-photography.jpg' loading="lazy" alt='exterior buildings photography' />
-		<Picture width='1140' src='/images/photography/food-business-photography.jpg' loading="lazy" alt='food photography' />
-		<Picture width='1140' src='/images/photography/law-firm-photography.jpg' loading="lazy" alt='law firm photography' />
-		<Picture width='1140' src='/images/photography/training-photography.jpg' loading="lazy" alt='school training photography' />
-		<Picture width='1140' src='/images/photography/well-drilling-photography.jpg' loading="lazy" alt='well drilling photography' />
+		<Picture width={1140} height={722} src={photoAirplane} loading="lazy" alt='airplane photography' widths={[480, 800, 1140]} sizes="(max-width: 900px) 100vw, 50vw" inferSize />
+		<Picture width={1140} height={722} src={photoApparel} loading="lazy" alt='apparel photography' widths={[480, 800, 1140]} sizes="(max-width: 900px) 100vw, 50vw" inferSize />
+		<Picture width={1140} height={722} src={photoExterior} loading="lazy" alt='exterior buildings photography' widths={[480, 800, 1140]} sizes="(max-width: 900px) 100vw, 50vw" inferSize />
+		<Picture width={1140} height={722} src={photoFood} loading="lazy" alt='food photography' widths={[480, 800, 1140]} sizes="(max-width: 900px) 100vw, 50vw" inferSize />
+		<Picture width={1140} height={722} src={photoLaw} loading="lazy" alt='law firm photography' widths={[480, 800, 1140]} sizes="(max-width: 900px) 100vw, 50vw" inferSize />
+		<Picture width={1140} height={722} src={photoTraining} loading="lazy" alt='school training photography' widths={[480, 800, 1140]} sizes="(max-width: 900px) 100vw, 50vw" inferSize />
+		<Picture width={1140} height={724} src={photoWell} loading="lazy" alt='well drilling photography' widths={[480, 800, 1140]} sizes="(max-width: 900px) 100vw, 50vw" inferSize />
 	</div>
 	<div class='service-body'>
 		<div class='wrapper wrapper--narrow' data-lg-reveal>
@@ -60,7 +67,7 @@ const posts = await response.json();
 				</svg>
 				{posts.map((post) => (
 					<article>
-						<Picture src={post.fimg_url} loading="lazy" alt={post.title.rendered} />
+						<Picture src={post.fimg_url} loading="lazy" alt={post.title.rendered}  inferSize />
 						<h3 class="h5" set:html={post.title.rendered} />
 						<p><a href=`/work/${post.slug}/` class="squiggle">Read Case Study</a></p>
 					</article>
