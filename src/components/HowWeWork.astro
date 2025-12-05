@@ -1,5 +1,8 @@
 ---
-import { Picture } from 'astro-imagetools/components';
+import { Picture } from 'astro:assets';
+import howWeWorkBg from '../assets/images/services/how-we-work-bg.jpg';
+import howWeWorkMiddle from '../assets/images/services/how-we-work-middle.png';
+import howWeWorkFront from '../assets/images/services/how-we-work-frnt.png';
 ---
 
 <section class="how-we-work">
@@ -7,27 +10,36 @@ import { Picture } from 'astro-imagetools/components';
     <div class="how-we-work-media">
       <div>
         <Picture
-          src="/images/services/how-we-work-bg.jpg"
+          src={howWeWorkBg}
           alt="a laptop next to a construction worker toy"
-          placeholder="none"
           loading="lazy"
-        />
+          width={1300}
+          height={1300}
+          widths={[480, 900, 1300]}
+          sizes="(max-width: 767px) 90vw, 50vw"
+          inferSize />
       </div>
       <div data-lg-parallax data-lg-parallax-amplitude="0.7">
         <Picture 
-          src="/images/services/how-we-work-middle.png" 
+          src={howWeWorkMiddle} 
           alt="computer mouse cursor" 
-          placeholder="none"
           loading="lazy"
-        />
+          width={1300}
+          height={1300}
+          widths={[480, 900, 1300]}
+          sizes="(max-width: 767px) 90vw, 50vw"
+          inferSize />
       </div>
       <div data-lg-parallax data-lg-parallax-amplitude="0.2" data-lg-parallax-anchor="top">
         <Picture
-          src="/images/services/how-we-work-frnt.png"
+          src={howWeWorkFront}
           alt="a computer moues hanging by a rope"
-          placeholder="none"
           loading="lazy"
-        />
+          width={1300}
+          height={1300}
+          widths={[480, 900, 1300]}
+          sizes="(max-width: 767px) 90vw, 50vw"
+          inferSize />
       </div>
     </div>
     <div class="how-we-work-intro">

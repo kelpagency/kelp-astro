@@ -1,5 +1,5 @@
 ---
-import { Picture } from 'astro-imagetools/components';
+import { Picture } from 'astro:assets';
 import readingTime from 'reading-time';
 
 export interface Props {
@@ -12,7 +12,7 @@ const categories = await requestCategories.json();
 
 <article class='archive-tease'>
 	<a data-astro-prefetch href=`/blog/${post.slug}/` class='media' transition:name=`hero-${post.id}`>
-		<Picture src={post.fimg_url} alt={post.title.rendered} loading='lazy' />
+		<Picture src={post.fimg_url} alt={post.title.rendered} loading='lazy'  inferSize />
 	</a>
 	<div class='text'>
 		<p class='text-meta'>

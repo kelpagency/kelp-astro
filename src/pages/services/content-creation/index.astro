@@ -1,7 +1,11 @@
 ---
 import Layout from '../../../Base.astro';
 import SimpleHero from '../../../components/SimpleHero.astro';
-import { Img } from 'astro-imagetools/components';
+import { Picture } from 'astro:assets';
+import contentCreationFront from '../../../assets/images/services/content-creation-front.png';
+import contentCreationMiddle from '../../../assets/images/services/content-creation-middle.png';
+import contentCreationBack from '../../../assets/images/services/content-creation-back.jpg';
+import contentCreationOffice from '../../../assets/images/services/content-creation-office-photo.jpg';
 ---
 
 <Layout title="Content Creation">
@@ -9,9 +13,15 @@ import { Img } from 'astro-imagetools/components';
     tagline="Services"
     title="Content <br>Creation"
     description="Master the art of engagement with fresh, unique and beautiful content that will be on-brand, within budget & delivered right when you need it."
-    mediaFront="/images/services/content-creation-front.png"
-    mediaMiddle="/images/services/content-creation-middle.png"
-    mediaBack="/images/services/content-creation-back.jpg"
+    mediaFront={contentCreationFront}
+    mediaFrontWidth={1300}
+    mediaFrontHeight={1300}
+    mediaMiddle={contentCreationMiddle}
+    mediaMiddleWidth={1300}
+    mediaMiddleHeight={1300}
+    mediaBack={contentCreationBack}
+    mediaBackWidth={1300}
+    mediaBackHeight={1300}
   />
   <div class="service-intro service-intro--content">
     <div class="wrapper">
@@ -21,7 +31,16 @@ import { Img } from 'astro-imagetools/components';
       </p>
       <div class="service-intro-media" data-lg-parallax="child">
         <div>
-          <Img src="/images/services/content-creation-office-photo.jpg" alt="Some kelpers in a meeting" />
+          <Picture
+            src={contentCreationOffice}
+            alt="Some kelpers in a meeting"
+            width={866}
+            height={866}
+            widths={[480, 720, 866]}
+            sizes="(max-width: 900px) 100vw, 50vw"
+            loading="lazy"
+            inferSize
+          />
         </div>
       </div>
       <div class="service-intro-text">

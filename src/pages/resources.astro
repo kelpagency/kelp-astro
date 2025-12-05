@@ -1,7 +1,16 @@
 ---
 import Layout from '../Base.astro';
-import { Picture } from 'astro-imagetools/components';
+import { Picture } from 'astro:assets';
 import AwardBadge from '../components/AwardBadge.astro';
+import modernPro from '../assets/images/resources/modern-pro.png';
+import restaurantPro from '../assets/images/resources/restaurant-pro.png';
+import simpleSocial from '../assets/images/resources/simple-social-sharing.png';
+import brandIdentityToolkit from '../assets/images/resources/brand-identity-toolkit.png';
+import brandStrategyToolkit from '../assets/images/resources/brand-strategy-toolkit.png';
+import redFlagFont from '../assets/images/resources/red-flag-font.jpg';
+import blackFlagFont from '../assets/images/resources/black-flag-font.jpg';
+import seaweedBrush from '../assets/images/resources/seaweed-brush.png';
+import ropeBrush from '../assets/images/resources/rope-brush.jpg';
 ---
 
 <Layout title="Kelp Resources" description="A collection of digital assets we've made that you might find useful for yourself." darkHeader={true}>
@@ -15,7 +24,7 @@ import AwardBadge from '../components/AwardBadge.astro';
 		<article class='archive-tease' data-lg-reveal='layer-to-right' data-lg-reveal-stagger='0.15'>
 			<AwardBadge title="Winner of the 2021 HubSpot Themes Challenge" />
 			<a href='https://ecosystem.hubspot.com/marketplace/website/modern-pro-theme-by-kelp-creative-agency' class='media'>
-				<Picture src='/images/resources/modern-pro.png' alt='Modern Pro - HubSpot Theme' loading='lazy' />
+				<Picture src={modernPro} alt='Modern Pro - HubSpot Theme' loading='lazy' width={1160} height={870} widths={[360, 720, 1160]} sizes='(max-width: 900px) 100vw, 33vw'  inferSize />
 			</a>
 			<div class='text'>
 				<p class='text-meta'>HubSpot Theme</p>
@@ -26,7 +35,7 @@ import AwardBadge from '../components/AwardBadge.astro';
 		<article class='archive-tease' data-lg-reveal='layer-to-right' data-lg-reveal-stagger='0.15'>
 			<AwardBadge title="Winner of the 2021 HubSpot Themes Challenge" />
 			<a href='https://ecosystem.hubspot.com/marketplace/website/restaurant-pro-theme-by-kelp-creative-agency' class='media'>
-				<Picture src='/images/resources/restaurant-pro.png' alt='Modern Pro - HubSpot Theme' loading='lazy' />
+				<Picture src={restaurantPro} alt='Modern Pro - HubSpot Theme' loading='lazy' width={1160} height={870} widths={[360, 720, 1160]} sizes='(max-width: 900px) 100vw, 33vw'  inferSize />
 			</a>
 			<div class='text'>
 				<p class='text-meta'>HubSpot Theme</p>
@@ -36,7 +45,7 @@ import AwardBadge from '../components/AwardBadge.astro';
 		</article>
 		<article class='archive-tease' data-lg-reveal='layer-to-right' data-lg-reveal-stagger='0.15'>
 			<a href='https://wordpress.org/plugins/simple-social-sharing-kelp/' class='media'>
-				<Picture src='/images/resources/simple-social-sharing.png' alt='Simple Social Sharing WordPress Widget' loading='lazy' />
+				<Picture src={simpleSocial} alt='Simple Social Sharing WordPress Widget' loading='lazy' width={960} height={720} widths={[360, 720, 960]} sizes='(max-width: 900px) 100vw, 33vw'  inferSize />
 			</a>
 			<div class='text'>
 				<p class='text-meta'>WordPress Plugin</p>
@@ -46,7 +55,7 @@ import AwardBadge from '../components/AwardBadge.astro';
 		</article>
 		<article class='archive-tease' data-lg-reveal='layer-to-right' data-lg-reveal-stagger='0.15'>
 			<a href='https://admin.kelp.agency/wp-content/uploads/2023/05/Kelp-Brand-Identity-Toolkit-PDF.pdf' class='media'>
-				<Picture src='/images/resources/brand-identity-toolkit.png' alt='Brand Identity Toolkit' loading='lazy' />
+				<Picture src={brandIdentityToolkit} alt='Brand Identity Toolkit' loading='lazy' width={1200} height={1553} widths={[400, 800, 1200]} sizes='(max-width: 900px) 100vw, 33vw'  inferSize />
 			</a>
 			<div class='text'>
 				<p class='text-meta'>PDF Download</p>
@@ -56,7 +65,7 @@ import AwardBadge from '../components/AwardBadge.astro';
 		</article>
 		<article class='archive-tease' data-lg-reveal='layer-to-right' data-lg-reveal-stagger='0.15'>
 			<a href='https://admin.kelp.agency/wp-content/uploads/2023/05/Kelp-Brand-Strategy-Toolkit-PDF.pdf' class='media'>
-				<Picture src='/images/resources/brand-strategy-toolkit.png' alt='Brand Strategy Toolkit' loading='lazy' />
+				<Picture src={brandStrategyToolkit} alt='Brand Strategy Toolkit' loading='lazy' width={1200} height={1553} widths={[400, 800, 1200]} sizes='(max-width: 900px) 100vw, 33vw'  inferSize />
 			</a>
 			<div class='text'>
 				<p class='text-meta'>PDF Download</p>
@@ -66,7 +75,7 @@ import AwardBadge from '../components/AwardBadge.astro';
 		</article>
 		<article class='archive-tease' data-lg-reveal='layer-to-right' data-lg-reveal-stagger='0.15'>
 			<a href='/fonts/Red-Flag.otf' class='media' download>
-				<Picture src='/images/resources/red-flag-font.jpg' alt='Red Flag - Custom Font by Kelp' loading='lazy' />
+				<Picture src={redFlagFont} alt='Red Flag - Custom Font by Kelp' loading='lazy' width={1200} height={800} widths={[400, 800, 1200]} sizes='(max-width: 900px) 100vw, 33vw'  inferSize />
 			</a>
 			<div class='text'>
 				<p class='text-meta'>Font Download</p>
@@ -76,7 +85,7 @@ import AwardBadge from '../components/AwardBadge.astro';
 		</article>
 		<article class='archive-tease' data-lg-reveal='layer-to-right' data-lg-reveal-stagger='0.15'>
 			<a href='/fonts/black-flag-fonts.zip' class='media' download>
-				<Picture src='/images/resources/black-flag-font.jpg' alt='Black Flag - Custom Font by Kelp' loading='lazy' />
+				<Picture src={blackFlagFont} alt='Black Flag - Custom Font by Kelp' loading='lazy' width={960} height={540} widths={[360, 720, 960]} sizes='(max-width: 900px) 100vw, 33vw'  inferSize />
 			</a>
 			<div class='text'>
 				<p class='text-meta'>Font Download</p>
@@ -86,7 +95,7 @@ import AwardBadge from '../components/AwardBadge.astro';
 		</article>
 		<article class='archive-tease' data-lg-reveal='layer-to-right' data-lg-reveal-stagger='0.15'>
 			<a href='/brushes/Kelp-Seaweed-Brush.ai' class='media' download>
-				<Picture src='/images/resources/seaweed-brush.png' alt='Custom seaweed Illustrator brush' loading='lazy' />
+				<Picture src={seaweedBrush} alt='Custom seaweed Illustrator brush' loading='lazy' width={600} height={600} widths={[320, 480, 600]} sizes='(max-width: 900px) 100vw, 33vw'  inferSize />
 			</a>
 			<div class='text'>
 				<p class='text-meta'>Illustrator Brush</p>
@@ -96,7 +105,7 @@ import AwardBadge from '../components/AwardBadge.astro';
 		</article>
 		<article class='archive-tease' data-lg-reveal='layer-to-right' data-lg-reveal-stagger='0.15'>
 			<a href='/brushes/Kelp-Rope-Brush.ai' class='media' download>
-				<Picture src='/images/resources/rope-brush.jpg' alt='Custom Illustrator Rope Brush' loading='lazy' />
+				<Picture src={ropeBrush} alt='Custom Illustrator Rope Brush' loading='lazy' width={500} height={500} widths={[300, 420, 500]} sizes='(max-width: 900px) 100vw, 33vw'  inferSize />
 			</a>
 			<div class='text'>
 				<p class='text-meta'>Illustrator Brush</p>

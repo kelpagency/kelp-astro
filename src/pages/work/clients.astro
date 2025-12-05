@@ -1,14 +1,23 @@
 ---
 import Layout from '../../Base.astro';
 import SimpleHero from '../../components/SimpleHero.astro';
+import clientsFront from '../../assets/images/clients/front.png';
+import clientsMiddle from '../../assets/images/clients/middle.png';
+import clientsBack from '../../assets/images/clients/back.png';
 ---
 
 <Layout title="Kelp Client List">
   <SimpleHero
     title="A Sample of Who We've Helped"
-    mediaFront="/images/clients/front.png"
-    mediaMiddle="/images/clients/middle.png"
-    mediaBack="/images/clients/back.png"
+    mediaFront={clientsFront}
+    mediaFrontWidth={154}
+    mediaFrontHeight={242}
+    mediaMiddle={clientsMiddle}
+    mediaMiddleWidth={450}
+    mediaMiddleHeight={485}
+    mediaBack={clientsBack}
+    mediaBackWidth={506}
+    mediaBackHeight={407}
   />
   <div class="clients wrapper wrapper--narrow">
     <div class="clients-group">

@@ -1,7 +1,13 @@
 ---
 import Layout from '../../Base.astro';
 import SimpleHero from '../../components/SimpleHero.astro';
-import { Picture } from 'astro-imagetools/components';
+import { Picture } from 'astro:assets';
+import batteryInfographic from '../../assets/images/infographics/battery-upkeep-infographic.png';
+import boostInfographic from '../../assets/images/infographics/boost-infographic.jpg';
+import flashlightSafetyInfographic from '../../assets/images/infographics/flashlight-safety-infographic.jpg';
+import flashlightsInfographic from '../../assets/images/infographics/flashlights-infographic.jpg';
+import labelPrinterInfographic from '../../assets/images/infographics/label-printer-infographic.gif';
+import safetyTipsInfographic from '../../assets/images/infographics/safety-tips-infographic.jpg';
 import FeaturedArticles from "../../components/FeaturedArticles.astro";
 import "../../styles/pages/_services-list.scss";
 
@@ -17,12 +23,12 @@ const posts = await response.json();
 	<div class="wrapper infographics">
 		<div class="infographics-grid" data-lg-reveal="layer-to-right" data-lg-reveal-stagger="0.1">
 			<h2>We Make<br> Infographics Like...</h2>
-			<Picture src="/images/infographics/battery-upkeep-infographic.png" loading="lazy" alt="battery upkeep infographic" />
-			<Picture src="/images/infographics/boost-infographic.jpg" loading="lazy" alt="marketing infographic" />
-			<Picture src="/images/infographics/flashlight-safety-infographic.jpg" loading="lazy" alt="flashlight safety infographic" />
-			<Picture src="/images/infographics/flashlights-infographic.jpg" loading="lazy" alt="flashlights infographic" />
-			<Picture src="/images/infographics/label-printer-infographic.gif" loading="lazy" alt="marketing infographic" />
-			<Picture src="/images/infographics/safety-tips-infographic.jpg" loading="lazy" alt="safety tips infographic" />
+			<Picture src={batteryInfographic} loading="lazy" alt="battery upkeep infographic" width={1700} height={5662} widths={[480, 900, 1700]} sizes="(max-width: 900px) 100vw, 50vw"  inferSize />
+			<Picture src={boostInfographic} loading="lazy" alt="marketing infographic" width={750} height={5945} widths={[360, 600, 750]} sizes="(max-width: 900px) 100vw, 50vw"  inferSize />
+			<Picture src={flashlightSafetyInfographic} loading="lazy" alt="flashlight safety infographic" width={600} height={1831} widths={[320, 480, 600]} sizes="(max-width: 900px) 100vw, 50vw"  inferSize />
+			<Picture src={flashlightsInfographic} loading="lazy" alt="flashlights infographic" width={800} height={5020} widths={[400, 650, 800]} sizes="(max-width: 900px) 100vw, 50vw"  inferSize />
+			<Picture src={labelPrinterInfographic} loading="lazy" alt="marketing infographic" width={600} height={1114} widths={[320, 480, 600]} sizes="(max-width: 900px) 100vw, 50vw"  inferSize />
+			<Picture src={safetyTipsInfographic} loading="lazy" alt="safety tips infographic" width={600} height={3591} widths={[320, 480, 600]} sizes="(max-width: 900px) 100vw, 50vw"  inferSize />
 		</div>
 	</div>
 	<div class='service-body'>
@@ -64,7 +70,7 @@ const posts = await response.json();
 				</svg>
 				{posts.map((post) => (
 					<article>
-						<Picture src={post.fimg_url} loading="lazy" alt={post.title.rendered} />
+						<Picture src={post.fimg_url} loading="lazy" alt={post.title.rendered}  inferSize />
 						<h3 class="h5" set:html={post.title.rendered} />
 						<p><a href=`/work/${post.slug}/` class="squiggle">Read Case Study</a></p>
 					</article>

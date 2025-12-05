@@ -3,7 +3,7 @@
 import FeaturedArticles from '../../components/FeaturedArticles.astro';
 import Layout from '../../Base.astro';
 import BlogSingleSidebar from '../../components/BlogSingleSidebar.astro';
-import { Picture } from 'astro-imagetools/components';
+import { Picture } from 'astro:assets';
 import readingTime from 'reading-time';
 
 import "../../styles/pages/_wordpress.scss";
@@ -73,7 +73,7 @@ const category = {
         <span>{readingTime(content).text}</span>
       </p>
       <div transition:name=`hero-${id}`>
-        <Picture src={image} alt={description} preload="avif" />
+        <Picture src={image} alt={description} priority inferSize />
       </div>
       <div class="single-article-content" set:html={content} />
       {
@@ -88,6 +88,7 @@ const category = {
                       class="single-article-comments-item-img"
                       src={comment.author_avatar_urls['96']}
                       width="48"
+                      height="48"
                       loading="lazy"
                     />
                     <h4 class="single-article-comments-item-name h6">{comment.author_name} says</h4>
@@ -101,6 +102,7 @@ const category = {
                               class="single-article-comments-item-img"
                               src={reply.author_avatar_urls['96']}
                               width="48"
+                              height="48"
                               loading="lazy"
                             />
                             <h4 class="single-article-comments-item-name h6">{reply.author_name} says</h4>

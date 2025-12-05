@@ -1,12 +1,19 @@
 ---
-import { Picture } from 'astro-imagetools/components';
+import { Picture } from 'astro:assets';
+import staySaltyPatch from '../assets/images/stay-salty-patch.png';
+import andrewImg from '../assets/images/team/andrew.jpg';
+import brandonImg from '../assets/images/team/brandon.jpg';
+import judeImg from '../assets/images/team/jude.jpg';
+import jessicaImg from '../assets/images/team/jessica.jpg';
+import lukeImg from '../assets/images/team/luke.jpg';
+import stefenImg from '../assets/images/team/stefen.jpg';
 ---
 
 <section class='team'>
 	<div class='wrapper'>
-		<div class='team-badge'>
+			<div class='team-badge'>
 			<div class='team-badge-media'>
-				<Picture src='/images/stay-salty-patch.png' alt='Stay salty patch' loading='lazy' placeholder='tracedSVG' />
+				<Picture src={staySaltyPatch} alt='Stay salty patch' loading='lazy' width={2413} height={1378} widths={[480, 1200, 2413]} sizes='(max-width: 900px) 100vw, 50vw' inferSize />
 			</div>
 			<div class='team-badge-text'>
 				<p>
@@ -26,73 +33,79 @@ import { Picture } from 'astro-imagetools/components';
 		<div class='team-grid'>
 			<div class='team-grid-item' data-lg-reveal='layer-to-bottom'>
 				<Picture
-					src='/images/team/andrew.jpg'
+					src={andrewImg}
 					alt='Andrew Prouty'
 					loading='lazy'
-					placeholder='tracedSVG'
 					width={890}
 					height={1188}
-				/>
+					widths={[480, 720, 890]}
+					sizes='(max-width: 900px) 100vw, 33vw'
+					inferSize />
 				<h3 class='h5'>Andrew Prouty</h3>
 				<p>Project Manager</p>
 			</div>
 			<div class='team-grid-item' data-lg-reveal='layer-to-bottom'>
 				<Picture
-					src='/images/team/brandon.jpg'
+					src={brandonImg}
 					alt='Brandon Berlew'
 					loading='lazy'
-					placeholder='tracedSVG'
 					width={890}
 					height={1188}
-				/>
+					widths={[480, 720, 890]}
+					sizes='(max-width: 900px) 100vw, 33vw'
+					inferSize />
 				<h3 class='h5'>Brandon Berlew</h3>
 				<p>Creative Producer</p>
 			</div>
 			<div class='team-grid-item' data-lg-reveal='layer-to-bottom'>
 				<Picture
-					src='/images/team/jude.jpg'
+					src={judeImg}
 					alt='Jude House'
 					loading='lazy'
-					placeholder='tracedSVG'
 					width={807}
 					height={1075}
-				/>
+					widths={[420, 640, 807]}
+					sizes='(max-width: 900px) 100vw, 33vw'
+					inferSize />
 				<h3 class='h5'>Jude House</h3>
 				<p>Marketing Specialist</p>
 			</div>
 			<div class='team-grid-item' data-lg-reveal='layer-to-bottom'>
 				<Picture
-					src='/images/team/jessica.jpg'
+					src={jessicaImg}
 					alt='Jessica Kenney'
 					loading='lazy'
-					placeholder='tracedSVG'
 					width={890}
 					height={1188}
-				/>
+					widths={[480, 720, 890]}
+					sizes='(max-width: 900px) 100vw, 33vw'
+					inferSize />
 				<h3 class='h5'>Jessica Kenney</h3>
 				<p>Accounting & HR</p>
 			</div>
 			<div class='team-grid-item' data-lg-reveal='layer-to-bottom'>
 				<Picture
-					src='/images/team/luke.jpg'
+					src={lukeImg}
 					alt='Luke Kenney'
 					loading='lazy'
-					placeholder='tracedSVG'
 					width={890}
 					height={1188}
-				/>
+					widths={[480, 720, 890]}
+					sizes='(max-width: 900px) 100vw, 33vw'
+					inferSize />
 				<h3 class='h5'>Luke Kenney</h3>
 				<p>Creative Director | Co-founder</p>
 			</div>
 			<div class='team-grid-item' data-lg-reveal='layer-to-bottom'>
 				<Picture
-					src='/images/team/stefen.jpg'
+					src={stefenImg}
 					alt='Stefen Phelps'
 					loading='lazy'
-					placeholder='tracedSVG'
 					width={890}
 					height={1188}
-				/>
+					widths={[480, 720, 890]}
+					sizes='(max-width: 900px) 100vw, 33vw'
+					inferSize />
 				<h3 class='h5'>Stefen Phelps</h3>
 				<p>Software Engineer | Co-founder</p>
 			</div>

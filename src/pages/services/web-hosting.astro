@@ -1,7 +1,7 @@
 ---
 import Layout from '../../Base.astro';
 import SimpleHero from '../../components/SimpleHero.astro';
-import { Picture } from 'astro-imagetools/components';
+import { Picture } from 'astro:assets';
 import FeaturedArticles from "../../components/FeaturedArticles.astro";
 import "../../styles/pages/_services-list.scss";
 
@@ -93,7 +93,7 @@ const posts = await response.json();
 					</svg>
 					{posts.map((post) => (
 						<article>
-							<Picture src={post.fimg_url} loading="lazy" alt={post.title.rendered} />
+							<Picture src={post.fimg_url} loading="lazy" alt={post.title.rendered}  inferSize />
 							<h3 class="h5" set:html={post.title.rendered} />
 							<p><a href=`/work/${post.slug}/` class="squiggle">Read Case Study</a></p>
 						</article>

@@ -1,7 +1,11 @@
 ---
 import Layout from '../../../Base.astro';
 import SimpleHero from '../../../components/SimpleHero.astro';
-import { Img } from 'astro-imagetools/components';
+import { Picture } from 'astro:assets';
+import digitalMarketingFront from '../../../assets/images/services/digital-marketing-front.png';
+import digitalMarketingMiddle from '../../../assets/images/services/digital-marketing-middle.png';
+import digitalMarketingBack from '../../../assets/images/services/digital-marketing-back.jpg';
+import digitalMarketingOffice from '../../../assets/images/services/digital-marketing-office-photo.jpg';
 ---
 
 <Layout title="Digital Marketing">
@@ -9,9 +13,15 @@ import { Img } from 'astro-imagetools/components';
     tagline="Services"
     title="Digital Marketing"
     description="We know that every business is different, and we want to find out what works best for your brand. Whether you need help with social media management, email marketing, SEO, or something else entirely, we can help you get there."
-    mediaFront="/images/services/digital-marketing-front.png"
-    mediaMiddle="/images/services/digital-marketing-middle.png"
-    mediaBack="/images/services/digital-marketing-back.jpg"
+    mediaFront={digitalMarketingFront}
+    mediaFrontWidth={1300}
+    mediaFrontHeight={1300}
+    mediaMiddle={digitalMarketingMiddle}
+    mediaMiddleWidth={1300}
+    mediaMiddleHeight={1300}
+    mediaBack={digitalMarketingBack}
+    mediaBackWidth={1300}
+    mediaBackHeight={1300}
   />
   <div class="service-intro service-intro--marketing">
     <div class="wrapper">
@@ -22,7 +32,16 @@ import { Img } from 'astro-imagetools/components';
       </p>
       <div class="service-intro-media" data-lg-parallax="child">
         <div>
-          <Img src="/images/services/digital-marketing-office-photo.jpg" alt="Kelpers reviewing marketing analytics" loading="lazy" />
+          <Picture
+            src={digitalMarketingOffice}
+            alt="Kelpers reviewing marketing analytics"
+            loading="lazy"
+            width={866}
+            height={866}
+            widths={[480, 720, 866]}
+            sizes="(max-width: 900px) 100vw, 50vw"
+            inferSize
+          />
         </div>
       </div>
       <div class="service-intro-text">

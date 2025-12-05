@@ -1,5 +1,5 @@
 ---
-import { Picture } from "astro-imagetools/components";
+import { Picture } from "astro:assets";
 
 const { category = "17", heading = "Featured Articles", limit = 3 } = Astro.props;
 
@@ -15,7 +15,16 @@ const posts = await response.json();
 		<div class="grid">
 			{posts.map((post) => (
 					<article>
-						<Picture src={post.fimg_url} loading="lazy" alt={post.title.rendered} />
+						<Picture
+							src={post.fimg_url}
+							loading="lazy"
+							alt={post.title.rendered}
+							width={900}
+							height={600}
+							widths={[400, 650, 900]}
+							sizes="(max-width: 900px) 100vw, 33vw"
+							inferSize
+						/>
 						<h4 class="h5"><a href=`/blog/${post.slug}/` set:html={post.title.rendered} /></h4>
 						<p>
 							{post._embedded['wp:term'][0].map((category) => (
