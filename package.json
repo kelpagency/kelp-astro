@@ -13,10 +13,10 @@
 	"dependencies": {
 		"@astrojs/rss": "^4.0.14",
 		"@astrojs/sitemap": "^3.6.0",
-		"@github/copilot-language-server": "^1.400.0",
+		"@github/copilot-language-server": "^1.405.0",
 		"@waaark/luge": "0.6.20-beta",
-		"astro": "^5.16.4",
-		"autoprefixer": "^10.4.22",
+		"astro": "^5.16.6",
+		"autoprefixer": "^10.4.23",
 		"countrycitystatejson": "^25.8.101",
 		"flickity": "^3.0.0",
 		"flickity-fade": "^2.0.0",
@@ -32,7 +32,7 @@
 	"devDependencies": {
 		"prettier": "^3.7.4",
 		"prettier-plugin-astro": "^0.14.1",
-		"sass": "^1.94.2"
+		"sass": "^1.97.0"
 	},
 	"overrides": {
 		"sharp": "^0.33.0"
