@@ -1,7 +1,21 @@
 [[headers]]
 for = "/*"
 [headers.values]
-Content-Security-Policy = "default-src 'self' https://store.kelp.agency; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://static.hsappstatic.net https://static.codepen.io data:; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' https:; media-src 'self' https://*.kelp.agency https: data:; connect-src 'self' https://ingesteer.services-prod.nsvcs.net https: https://static.hsappstatic.net; frame-src 'self' https://store.kelp.agency https://static.hsappstatic.net https://www.youtube.com https://www.youtube-nocookie.com https://codepen.io; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'; upgrade-insecure-requests;"
+Content-Security-Policy = "
+	default-src 'self' https://store.kelp.agency;
+	script-src 'self' 'unsafe-inline' https://static.hsappstatic.net https://static.codepen.io https://public.codepenassets.com data:;
+	style-src 'self' 'unsafe-inline';
+	img-src 'self' data: https:;
+	font-src 'self' https:;
+	media-src 'self' https://*.kelp.agency https: data:;
+	connect-src 'self' https://ingesteer.services-prod.nsvcs.net https://static.hsappstatic.net;
+	frame-src 'self' https://store.kelp.agency https://static.hsappstatic.net https://www.youtube.com https://www.youtube-nocookie.com https://codepen.io;
+	object-src 'none';
+	base-uri 'self';
+	frame-ancestors 'none';
+	form-action 'self';
+	upgrade-insecure-requests;
+"
 X-Content-Type-Options = "nosniff"
 Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
 Referrer-Policy = "strict-origin-when-cross-origin"
