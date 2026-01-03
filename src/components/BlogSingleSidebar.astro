@@ -13,7 +13,7 @@ const posts = await response.json();
 
 <aside class='single-sidebar'>
 	<div class='single-sidebar-author'>
-		<img src={author.avatar_urls['96']} width='64' height='64' loading='lazy' />
+		<img src={author.avatar_urls['96']} alt=`Portrait photo of ${author.name}` width='64' height='64' loading='lazy' />
 		<h5 class='h6'>{author.name}</h5>
 		<p>{author.description}</p>
 	</div>
