@@ -4,8 +4,12 @@ import 'flickity/css/flickity.css';
 import 'flickity-fade/flickity-fade.css';
 
 // Accept optional props
-const { tag, category, limit = 3, heading = "Our Work", subheading = "In the real-world", description = "The proof is in the pudding as they say here in the south. Weird sayings aside, it’s one thing to have a good strategy, but it takes special talent to create excellent content <small>(and good pudding)</small>. Take a look at some recent work below." } = Astro.props;
+const { tag, category, limit = 12, heading = "Our Work", subheading = "In the real-world", description = "The proof is in the pudding as they say here in the south. Weird sayings aside, it’s one thing to have a good strategy, but it takes special talent to create excellent content <small>(and good pudding)</small>. Take a look at some recent work below." } = Astro.props;
 
+// helper to strip HTML tags from WP excerpts
+const stripHTML = (html = '') =>
+	html.replace(/<[^>]*>/g, '').trim();
+	
 // Build query params dynamically
 let queryParams = `per_page=${limit}`;
 
@@ -18,8 +22,20 @@ if (category) {
 }
 
 // Fetch posts with filters applied
-const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/work?${queryParams}`);
-const posts = await response.json();
+const response = await fetch(
+	`${import.meta.env.PUBLIC_WP_URL}/work?${queryParams}&_embed`
+);
+const posts = (await response.json())
+	.filter((post) => {
+		const media = post?._embedded?.['wp:featuredmedia']?.[0];
+		const width = media?.media_details?.width;
+		const height = media?.media_details?.height;
+	
+		// fallback — if no size data, exclude it
+		if (!width || !height) return false;
+	
+		return width > height; // landscape only
+	});
 ---
 
 <section class='recent-work'>
@@ -48,7 +64,9 @@ const posts = await response.json();
 						<div class='recent-work-slider-item-text'>
 							<h3 class='recent-work-slider-item-text-heading h6' transition:name=`heading-${post.id}` set:html={post.title.rendered} />
 							<div class='recent-work-slider-item-text-body'>
-								<div set:html={post.excerpt.rendered} />
+								<p class="recent-work-slider-item-text-body-p">
+									{stripHTML(post.excerpt.rendered)}
+								</p>
 								<p class="recent-work-slider-item-text-body-p">
 									<a href=`/work/${post.slug}/` class='squiggle'>
 										Read More <span class="screen-reader-text">About {post.title.rendered}</span>
@@ -135,6 +153,9 @@ const posts = await response.json();
 					}
 					&-body {
 						flex: 1 1 400px;
+						p {
+							margin-top: 0;
+						}
 						&-p {
 							margin-top: 0;
 						}

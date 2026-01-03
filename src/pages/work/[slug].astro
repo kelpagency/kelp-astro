@@ -50,6 +50,13 @@ for (const tag of tagIds) {
 	h1 {
 		margin: 8rem 0 12rem;
 	}
+	h2 {
+		font-size: var(--step-3);
+	}
+	h3,
+	.h3 {
+		font-size: var(--step-2);
+	}
 	.tags {
 		opacity: 0.5;
 		margin: -11rem auto 10rem auto;
@@ -62,6 +69,15 @@ for (const tag of tagIds) {
 		}
 		&:empty {
 			display: none;
+		}
+	}
+	
+	.tiled-gallery__row {
+		display: flex;
+		margin: 4rem 0;
+		gap: 2rem;
+		figure {
+				margin: 0;
 		}
 	}
 	.footer {

@@ -5,10 +5,27 @@ const workResponse = await fetch(`${import.meta.env.PUBLIC_WP_URL}/work?per_page
 const posts = await workResponse.json();
 const tagsResponse = await fetch(`${import.meta.env.PUBLIC_WP_URL}/tags?per_page=100`);
 const tags = await tagsResponse.json();
+
+const withOrientation = await Promise.all(
+	posts.map(async (post) => {
+		if (!post.fimg_url) return { ...post, isLandscape: false };
+
+		const res = await fetch(post.fimg_url);
+		const buf = await res.arrayBuffer();
+
+		const { imageSize } = await import('image-size');
+		const { width, height } = imageSize(Buffer.from(buf));
+
+		return {
+			...post,
+			isLandscape: width > height
+		};
+	})
+);
 ---
 
 <Layout title='Our Work' bodyClass="work-archive">
-	<article class="archive">
+	<section class="archive">
 		<div class='wrapper wrapper--narrow'>
 			<h1 style="margin-top: 8rem;" data-lg-reveal="fade" data-lg-reveal-stagger="0.05"><span>Our</span> <span>Work</span> <span>in</span> <span>the</span> <span>Real-world</span></h1>
 			<p style="max-width: 800px; flex: 1 1 500px; font-size: var(--step-1)" data-lg-reveal="fade" data-lg-reveal-delay=".5">
@@ -17,7 +34,7 @@ const tags = await tagsResponse.json();
 			</p>
 		</div>
 		<div class="wrapper archive-list">
-			<label data-lg-reveal="fade" style="max-width: 260px;
+			<!-- <label data-lg-reveal="fade" style="max-width: 260px;
 			display: block; margin-left: auto; margin-bottom: 4rem;"><b>Filter by</b><br>
 				<select class="work-post-filter">
 					<option value="">— Type of work done —</option>
@@ -29,52 +46,67 @@ const tags = await tagsResponse.json();
 						)
 					}
 				</select>
-			</label>
+			</label> -->
 				{
-					posts.map((post) => (
-						<article class="tease" data-tags={post.tags.join(',')}>
-							<a href=`/work/${post.slug}/` class="media" transition:name=`hero-${post.id}`  data-lg-reveal="layer-to-right">
-								<Picture src={post.fimg_url} alt={post.title.rendered} loading="lazy"  inferSize />
-							</a>
-							<div class="text">
-								<h2 class="h4" transition:name=`heading-${post.id}`><a href=`/work/${post.slug}/` set:html={post.title.rendered}/></h2>
-								<div data-lg-reveal="layer-to-right" set:html={post.excerpt.rendered} />
-							</div>
+					withOrientation.map((post) => (
+						<article
+							class={`tease ${post.isLandscape ? 'tease--wide' : ''}`}
+							data-tags={post.tags.join(',')}
+							data-lg-reveal="fade"
+						>
+							<Picture src={post.fimg_url} alt={post.title.rendered} loading="lazy" inferSize />
+							<ul class="tease-tags">
+								{
+									post.tags
+										.slice(0, 3)
+										.map(id => tags.find(tag => tag.id === id))
+										.filter(Boolean)
+										.map(tag => (
+											<li class="tease-tags-item">{tag.name}</li>
+										))
+								}
+							</ul>
+							<h2 class="h5" transition:name=`heading-${post.id}`><a href=`/work/${post.slug}/` set:html={post.title.rendered}/></h2>
 						</article>
 					))
 				}
 		</div>
-	</article>
+	</section>
 </Layout>
 
-<style lang="scss" is:global>
+<style lang="scss">
+	.archive-list {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		gap: 4rem;
+		margin-bottom: 5rem;
+		margin-top: 5rem;
+	}
 	.tease {
-		display: flex;
-		flex-wrap: wrap;
-		align-items: center;
-		gap: 6rem;
-		margin-bottom: 16rem;
-		@media (max-width: 900px) {
-			display: block;
+		position: relative;
+		&--wide {
+			grid-column: span 2;
 		}
-		@media (max-width: 767px) {
-			margin-bottom: 7rem;
-		}
-		.media {
-			flex: 1 1 400px;
-			text-align: center;
-			picture {
-				height: 100%;
-				width: 100%;
-				object-fit: cover;
+		&-tags {
+			display: flex;
+			gap: .5rem;
+			list-style: none;
+			margin: 1rem 0;
+			padding: 0;
+			&-item {
+				font-size: .8rem;
+				opacity: .7;
 			}
 		}
-		.text {
-			flex: 1 1 400px;
-		}
-		&:nth-child(even) {
-			.media {
-				order: 1;
+		h2 {
+			margin: 0;
+			a {
+				text-decoration: none;
+				&::after {
+					content: "";
+					position: absolute;
+					inset: 0;
+				}
 			}
 		}
 	}
