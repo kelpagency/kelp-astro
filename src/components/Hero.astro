@@ -82,7 +82,9 @@
 <script>
 // hack to fix safari not playing after page animation
 document.addEventListener('astro:after-swap', () => {
-  document.querySelector('#squid').play();
+  setTimeout(() => {
+    document.querySelector('#squid').play();
+  }, 225);
 });
 </script>
 <style lang="scss">

@@ -140,7 +140,9 @@ if (darkHeader) {
       });
 
       document.addEventListener('astro:after-swap', () => {
-        luge.lifecycle.refresh();
+        setTimeout(() => {
+          luge.lifecycle.refresh();
+        }, 200);
       });
     </script>
   </body>
