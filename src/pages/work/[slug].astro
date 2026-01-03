@@ -30,8 +30,8 @@ for (const tag of tagIds) {
 }
 ---
 
-<Layout title={title} description={description} image={image} bodyClass="work-post" >
-	<article class="wrapper">
+<Layout title={title} description={description} image={image}>
+	<article class="wrapper work-post">
 		<h1 transition:name=`heading-${id}` set:html={title} />
 		<p data-lg-reveal="layer-to-left" data-lg-reveal-delay="0.2" class="tags">
 			{tags.map(
@@ -47,6 +47,7 @@ for (const tag of tagIds) {
 <style lang="scss" is:global>
 // work single
 .work-post {
+	margin-bottom: 6rem;
 	h1 {
 		margin: 8rem 0 12rem;
 	}
