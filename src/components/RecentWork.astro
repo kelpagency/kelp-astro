@@ -150,11 +150,12 @@ const posts = await response.json();
 				white-space: nowrap;
 				display: flex;
 				margin: 0 auto;
+				position: absolute;
+				top: 0;
+				right: 0;
+				z-index: 1;
 				@media (min-width: 767px) {
-					position: absolute;
-					right: 0;
 					top: 70%;
-					z-index: 1;
 				}
 			}
 		}
