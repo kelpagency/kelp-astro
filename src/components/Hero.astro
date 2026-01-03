@@ -1,5 +1,5 @@
 <section class="hero">
-  <div class="wrapper" data-lg-reveal="fade" data-lg-reveal-stagger="0.1">
+  <div class="wrapper" data-lg-reveal="fade" data-lg-reveal-stagger="0.25">
     <div class="hero-content">
       <h1>Where creativity meets strategy.</h1>
       <p>We’re a team of designers, developers, and marketers who love to take great ideas and bring them to life.</p>
@@ -37,7 +37,7 @@
     </div>
     <div class="hero-squid-wrapper">
       <!-- <div data-lg-lottie='/animations/squid.json' data-lg-lottie-autoplay='true' data-lg-lottie-loop='true'></div> -->
-      <video autoplay loop muted playsinline>
+      <video autoplay loop muted playsinline width="1080" height="1080" id="squid">
         <source src="/videos/squid-squidly.mov" type='video/mp4; codecs="hvc1"' />
         <source src="/videos/squid-squidly.webm" type="video/webm" />
       </video>
@@ -79,6 +79,12 @@
   </svg>
 </section>
 
+<script>
+// hack to fix safari not playing after page animation
+document.addEventListener('astro:after-swap', () => {
+  document.querySelector('#squid').play();
+});
+</script>
 <style lang="scss">
   .hero {
     position: relative;
@@ -110,6 +116,9 @@
       @media (max-width: 900px) {
         width: 350px;
         right: -5rem;
+      }
+      video {
+        height: 100%;
       }
     }
     &-content {

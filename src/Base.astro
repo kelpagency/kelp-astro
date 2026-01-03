@@ -115,6 +115,7 @@ if (darkHeader) {
             show: false,
           },
         });
+        
 
         // Underline all em tags
         // when they come into view
@@ -135,6 +136,7 @@ if (darkHeader) {
         }
         const observer = new IntersectionObserver(handleIntersection);
         emphasisElements?.forEach((item) => observer.observe(item));
+        
       });
 
       document.addEventListener('astro:after-swap', () => {
