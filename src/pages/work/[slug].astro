@@ -1,88 +1,98 @@
 ---
-import Layout from "../../Base.astro";
-import "../../styles/pages/_wordpress.scss";
+import Layout from '../../Base.astro';
+import '../../styles/pages/_wordpress.scss';
 
 export async function getStaticPaths() {
-	const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/work?per_page=100&_embed`);
-	const posts = await response.json();
-	return posts.map((post) => {
-		return {
-			params: { slug: post.slug },
-			props: {
-				title: post.title.rendered,
-				description: post.excerpt.rendered.replace(/(<([^>]+)>)/gi, ''),
-				image: [post.fimg_url],
-				content: post.content.rendered,
-				tagIds: post.tags,
-				id: post.id
-			}
-		};
-	});
+  const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/work?per_page=100&_embed`);
+  const posts = await response.json();
+  return posts.map((post) => {
+    return {
+      params: { slug: post.slug },
+      props: {
+        title: post.title.rendered,
+        description: post.excerpt.rendered.replace(/(<([^>]+)>)/gi, ''),
+        image: [post.fimg_url],
+        content: post.content.rendered,
+        tagIds: post.tags,
+        id: post.id,
+        acf: post.acf,
+      },
+    };
+  });
 }
 
-const { title, content, description, image, tagIds, id } = Astro.props;
-console.log(id);
-let tags = [];
-for (const tag of tagIds) {
-	const tagResponse = await fetch(`${import.meta.env.PUBLIC_WP_URL}/tags/${tag}`);
-	const tag_object = await tagResponse.json();
-	tags.push(tag_object);
+const { title, content, description, image, tagIds, id, acf } = Astro.props;
+
+let bgUrl = null;
+if (acf?.hero?.background?.image) {
+  const mediaRes = await fetch(`${import.meta.env.PUBLIC_WP_URL}/media/${acf.hero.background.image}`);
+  if (mediaRes.ok) {
+    const media = await mediaRes.json();
+    bgUrl = media?.source_url || null;
+  }
 }
+const accent = acf?.site_frame_color ? acf.site_frame_color : 'transparent';
 ---
 
-<Layout title={title} description={description} image={image}>
-	<article class="wrapper work-post">
-		<h1 transition:name=`heading-${id}` set:html={title} />
-		<p data-lg-reveal="layer-to-left" data-lg-reveal-delay="0.2" class="tags">
-			{tags.map(
-				(tag, i) => 
-				<>
-					{tags.length-1 == i && tags.length > 2 && (<>and </>)}<a href=`/services/${tag.slug}/`>{tag.name}</a>{tags.length-1 != i && (<>, </>)}
-				</>
-			)}
-		</p>
-		<div data-lg-reveal="fade" data-lg-reveal-stagger="0.3" set:html={content} />
-	</article>
+<Layout title={title} description={description} image={image} darkHeader={true}>
+  <article class="work-post" style=`--accent: ${accent};`>
+    <div class="work-post-hero" style={bgUrl ? `background-image:url(${bgUrl})` : undefined}>
+      <div class="wrapper">
+        <h1 transition:name=`heading-${id}` set:html={title} />
+      </div>
+    </div>
+    <div class="wrapper work-post-body" data-lg-reveal="fade" data-lg-reveal-stagger="0.3" set:html={content} />
+  </article>
 </Layout>
 <style lang="scss" is:global>
-// work single
-.work-post {
-	margin-bottom: 6rem;
-	h1 {
-		margin: 8rem 0 12rem;
-	}
-	h2 {
-		font-size: var(--step-3);
-	}
-	h3,
-	.h3 {
-		font-size: var(--step-2);
-	}
-	.tags {
-		opacity: 0.5;
-		margin: -11rem auto 10rem auto;
-		a {
-			text-decoration: none;
-			&:hover,
-			&:focus {
-				text-decoration: underline;
-			}
-		}
-		&:empty {
-			display: none;
-		}
-	}
-	
-	.tiled-gallery__row {
-		display: flex;
-		margin: 4rem 0;
-		gap: 2rem;
-		figure {
-				margin: 0;
-		}
-	}
-	.footer {
-		margin-top: 10rem;
-	}
-}
+  // work single
+  .work-post {
+    margin-bottom: 6rem;
+    &-hero {
+      padding: 8rem 0 16rem;
+      margin-bottom: -8rem;
+      background-size: cover;
+      h1 {
+        margin: 0;
+        &::after {
+          content: '';
+          display: block;
+          width: 200px;
+          background: var(--accent);
+          height: 0.5rem;
+          margin-top: 1rem;
+        }
+      }
+    }
+    &-body {
+      h2 {
+        font-size: var(--step-3);
+      }
+      h3,
+      .h3 {
+        font-size: var(--step-2);
+      }
+    }
+    .tiled-gallery {
+      &__col {
+        @media (max-width: 767px) {
+          flex: 1 1 100%;
+        }
+      }
+      &__row {
+        display: flex;
+        margin: 4rem 0;
+        gap: 2rem;
+        @media (max-width: 767px) {
+          flex-wrap: wrap;
+        }
+        figure {
+          margin: 0;
+        }
+      }
+    }
+    .footer {
+      margin-top: 10rem;
+    }
+  }
 </style>
