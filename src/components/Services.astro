@@ -4,7 +4,7 @@
 
 <section class="wrapper services">
   <h2>Our Services</h2>
-  <div class="service service--content">
+  <div class="service service--branding" id="branding-design">
     <div class="service-left">
       <div data-lg-parallax data-lg-parallax-amplitude="0.2">
         <div class="service-square" data-lg-reveal="layer-to-right"></div>
@@ -50,7 +50,7 @@
       </ul>
     </div>
   </div>
-  <div class="service service--websites">
+  <div class="service service--websites" id="websites">
     <div class="service-left">
       <div data-lg-parallax data-lg-parallax-amplitude="0.2">
         <div class="service-square" data-lg-reveal="layer-to-right"></div>
@@ -90,7 +90,7 @@
       </ul>
     </div>
   </div>
-  <div class="service service--marketing">
+  <div class="service service--marketing" id="marketing-strategy">
     <div class="service-left">
       <div data-lg-parallax data-lg-parallax-amplitude="0.2">
         <div class="service-square" data-lg-reveal="layer-to-right"></div>
@@ -107,7 +107,7 @@
         data-lg-lottie-lazy="true"
       >
       </div>
-      <h3 data-lg-parallax>Marketing</h3>
+      <h3 data-lg-parallax>Marketing & Strategy</h3>
     </div>
     <div class="service-right">
       <p>
@@ -139,7 +139,7 @@
       </ul>
     </div>
   </div>
-  <div class="service service--content">
+  <div class="service service--media" id="media">
     <div class="service-left">
       <div data-lg-parallax data-lg-parallax-amplitude="0.2">
         <div class="service-square" data-lg-reveal="layer-to-right"></div>
@@ -174,7 +174,7 @@
       </ul>
     </div>
   </div>
-  <div class="service service--ongoing">
+  <div class="service service--ongoing" id="support">
     <div class="service-left">
       <div data-lg-parallax data-lg-parallax-amplitude="0.3">
         <div class="service-square" data-lg-reveal="layer-to-right"></div>
@@ -220,6 +220,7 @@
     gap: 1rem 5rem;
     flex-wrap: wrap;
     max-width: 1100px;
+    scroll-margin-top: 200px;
     @media (min-width: 768px) {
       padding-left: 70px;
       padding-right: 70px;
@@ -280,14 +281,15 @@
         }
       }
       ul {
-        column-count: 2;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
         list-style: none;
         padding: 0;
-        margin-top: 1rem;
+        margin-top: 2rem;
         li {
           line-height: 1.2;
           font-weight: bold;
-          margin: 1rem 0;
         }
       }
     }

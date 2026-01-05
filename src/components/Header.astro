@@ -27,9 +27,23 @@
     </button>
     <nav class="header-nav">
       <ul>
-        <li><a data-astro-prefetch href="/about/" aria-label="About">About</a></li>
         <li>
-          <a href="/services/" data-astro-prefetch aria-label="Services menu"> Services </a>
+          <a href="/services/" data-astro-prefetch aria-label="Services menu"> 
+            Services 
+            <svg xmlns="http://www.w3.org/2000/svg" width="9.75" height="6">
+              <title>dropdown</title>
+              <path
+                d="M4.08 5.67.33 1.92a1.13 1.13 0 0 1 0-1.59 1.12 1.12 0 0 1 .8-.33 1.12 1.12 0 0 1 .8.33l2.95 2.96L7.84.33a1.12 1.12 0 0 1 .8-.33 1.12 1.12 0 0 1 .8.33 1.13 1.13 0 0 1 0 1.6L5.69 5.66a1.12 1.12 0 0 1-.8.33 1.11 1.11 0 0 1-.81-.33Z"
+                fill="currentColor"></path>
+            </svg>
+          </a>
+          <ul>
+            <li><a href="/services/#branding-design" aria-label="Case Studies">Branding & Design</a></li>
+            <li><a href="/services/#websites" aria-label="Websites">Websites</a></li>
+            <li><a href="/services/#marketing-strategy" aria-label="Marketing & Strategy">Marketing & Strategy</a></li>
+            <li><a href="/services/#media" aria-label="Media">Video & Photo</a></li>
+            <li><a href="/services/#support" aria-label="Ongoing Support">Ongoing Support</a></li>
+          </ul>
         </li>
         <li>
           <a data-astro-prefetch href="/work/" aria-label="Work menu">
@@ -77,6 +91,7 @@
             <li><a data-astro-prefetch href="/blog/" aria-label="Blog">Blog</a></li>
           </ul>
         </li>
+        <li><a data-astro-prefetch href="/about/" aria-label="About">About</a></li>
         <li><a data-astro-prefetch href="/contact/" class="button" aria-label="Contact Us">Contact Us</a></li>
       </ul>
     </nav>
