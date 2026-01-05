@@ -1,7 +1,7 @@
 <section class="hero">
   <div class="wrapper" data-lg-reveal="fade" data-lg-reveal-stagger="0.25">
     <div class="hero-content">
-      <h1>Where creativity meets strategy.</h1>
+      <h1>Central Florida's Award Winning Creative Agency.</h1>
       <p>We’re a team of designers, developers, and marketers who love to take great ideas and bring them to life.</p>
       <p>
         <strong>We’ve worked with clients like:</strong>
@@ -80,12 +80,12 @@
 </section>
 
 <script>
-// hack to fix safari not playing after page animation
-document.addEventListener('astro:after-swap', () => {
-  setTimeout(() => {
-    document.querySelector('#squid').play();
-  }, 225);
-});
+  // hack to fix safari not playing after page animation
+  document.addEventListener('astro:after-swap', () => {
+    setTimeout(() => {
+      document.querySelector('#squid').play();
+    }, 225);
+  });
 </script>
 <style lang="scss">
   .hero {
@@ -124,10 +124,12 @@ document.addEventListener('astro:after-swap', () => {
       }
     }
     &-content {
-      max-width: 600px;
       h1 {
-        margin-bottom: 3rem;
-        max-width: 18ch;
+        margin-bottom: 2rem;
+        max-width: 25ch;
+      }
+      p {
+        max-width: 600px;
       }
       strong {
         font-family: var(--sans-serif);
