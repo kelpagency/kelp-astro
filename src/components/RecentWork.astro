@@ -4,11 +4,18 @@ import 'flickity/css/flickity.css';
 import 'flickity-fade/flickity-fade.css';
 
 // Accept optional props
-const { tag, category, limit = 12, heading = "Our Work", subheading = "In the real-world", description = "The proof is in the pudding as they say here in the south. Weird sayings aside, it’s one thing to have a good strategy, but it takes special talent to create excellent content <small>(and good pudding)</small>. Take a look at some recent work below." } = Astro.props;
+const { tag, category, limit = 6, heading = "Our Work", subheading = "In the real-world", description = "The proof is in the pudding as they say here in the south. Weird sayings aside, it’s one thing to have a good strategy, but it takes special talent to create excellent content <small>(and good pudding)</small>. Take a look at some recent work below." } = Astro.props;
 
 // helper to strip HTML tags from WP excerpts
+const decodeEntities = (str = '') =>
+	str.replace(/&#(\d+);/g, (_, dec) => String.fromCharCode(dec))
+		.replace(/&nbsp;/g, ' ')
+		.replace(/&amp;/g, '&')
+		.replace(/&quot;/g, '"')
+		.replace(/&apos;/g, "'");
+
 const stripHTML = (html = '') =>
-	html.replace(/<[^>]*>/g, '').trim();
+	decodeEntities(html.replace(/<[^>]*>/g, '').trim());
 	
 // Build query params dynamically
 let queryParams = `per_page=${limit}`;
@@ -25,17 +32,31 @@ if (category) {
 const response = await fetch(
 	`${import.meta.env.PUBLIC_WP_URL}/work?${queryParams}&_embed`
 );
-const posts = (await response.json())
-	.filter((post) => {
-		const media = post?._embedded?.['wp:featuredmedia']?.[0];
-		const width = media?.media_details?.width;
-		const height = media?.media_details?.height;
-	
-		// fallback — if no size data, exclude it
-		if (!width || !height) return false;
-	
-		return width > height; // landscape only
-	});
+const posts = await response.json();
+
+const postsWithImages = await Promise.all(
+	posts.map(async (post) => {
+		let heroImageUrl = null;
+
+		// if ACF + hero.image exists + is numeric id
+		if (post?.acf?.hero?.image) {
+			try {
+				const mediaRes = await fetch(
+					`${import.meta.env.PUBLIC_WP_URL}/media/${post.acf.hero.image}`
+				);
+				const media = await mediaRes.json();
+				heroImageUrl = media?.source_url ?? null;
+			} catch (e) {
+				heroImageUrl = null;
+			}
+		}
+
+		return {
+			...post,
+			heroImageUrl
+		};
+	})
+);
 ---
 
 <section class='recent-work'>
@@ -46,11 +67,11 @@ const posts = (await response.json())
 		</div>
 		<div class='recent-work-slider'>
 			{
-				posts.map((post) => (
+				postsWithImages.map((post) => (
 					<div class='recent-work-slider-item'>
 						<div class='recent-work-slider-item-media'>
 							<Picture
-								src={post.fimg_url}
+								src={post.heroImageUrl || post.fimg_url}
 								alt={post.title.rendered}
 								width={980}
 								height={552}
