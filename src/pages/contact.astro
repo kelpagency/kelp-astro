@@ -22,9 +22,9 @@ import Testimonials from '../components/Testimonials.astro';
 					<p><i>New Office Coming Soon</i></p>
 					<p>Phone: <a href="tel:+1-352-325-7688">352-325-7688</a></p>
 				</div>
-				<div class="contact-section-column">
+				<div class="contact-section-column" data-lg-reveal="layer-to-right" data-lg-reveal-delay=".5">
 					<!-- Embed script is in global js file -->
-					<div id="meetings-embed" data-lg-reveal="layer-to-right" data-lg-reveal-delay=".5">
+					<div id="meetings-embed">
 						<!-- Start of Meetings Embed Script -->
 						<div class="meetings-iframe-container" data-src="https://store.kelp.agency/meetings/andrew1417?embed=true">
 						</div>
@@ -55,6 +55,7 @@ import Testimonials from '../components/Testimonials.astro';
 		}
 		&-column {
 			flex: 1 1 500px;
+			margin-bottom: 4rem;
 			h1 {
 				margin-bottom: 2rem;
 			}
