@@ -2,6 +2,7 @@
 import Base from '../../Base.astro';
 import SimpleHero from '../../components/SimpleHero.astro';
 import FeaturedArticles from "../../components/FeaturedArticles.astro";
+import ServicesRelatedWork from "../../components/ServicesRelatedWork.astro";
 import "../../styles/pages/_services-list.scss";
 ---
 
@@ -71,6 +72,7 @@ import "../../styles/pages/_services-list.scss";
 			</ul>
 			<p><a href='/contact/' class='button button--green'>Let's Talk</a></p>
 		</div>
+		<ServicesRelatedWork tag={69} />
 	</div>
 	<FeaturedArticles />
 </Layout>
