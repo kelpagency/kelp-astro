@@ -1,6 +1,7 @@
 ---
 import Layout from '../../Base.astro';
 import '../../styles/pages/_wordpress.scss';
+import { getAverageColor } from 'fast-average-color-node';
 
 export async function getStaticPaths() {
   const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/work?per_page=100&_embed`);
@@ -24,19 +25,49 @@ export async function getStaticPaths() {
 const { title, content, description, image, tagIds, id, acf } = Astro.props;
 
 let bgUrl = null;
+let thumbUrl = null;
+
+// hero image
 if (acf?.hero?.background?.image) {
   const mediaRes = await fetch(`${import.meta.env.PUBLIC_WP_URL}/media/${acf.hero.background.image}`);
   if (mediaRes.ok) {
     const media = await mediaRes.json();
+
     bgUrl = media?.source_url || null;
+
+    // prefer thumbnail for speed if available
+    thumbUrl =
+      media?.media_details?.sizes?.medium?.source_url ||
+      media?.media_details?.sizes?.thumbnail?.source_url ||
+      bgUrl;
   }
 }
+
+let isDarkHero = false;
+
+// brightness detection
+if (thumbUrl) {
+  try {
+    const result = await getAverageColor(thumbUrl);
+    
+    const [r, g, b] = result.value; // <-- array values
+    
+    const brightness = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+    
+    isDarkHero = brightness < 165; // more human-accurate threshold
+    
+    console.log('hero brightness', { r, g, b, brightness, isDarkHero });
+  } catch (e) {
+    console.warn('Brightness detection failed', e);
+  }
+}
+
 const accent = acf?.site_frame_color ? acf.site_frame_color : 'transparent';
 ---
 
 <Layout title={title} description={description} image={image} darkHeader={true}>
   <article class="work-post" style=`--accent: ${accent};`>
-    <div class="work-post-hero">
+    <div class={`work-post-hero ${isDarkHero ? 'is-dark' : ''}`}>
       {bgUrl && (
         <img
           src={bgUrl}
@@ -59,17 +90,20 @@ const accent = acf?.site_frame_color ? acf.site_frame_color : 'transparent';
         <h1 transition:name={`heading-${id}`} set:html={title} />
       </div>
     </div>
+
     <div class="wrapper work-post-body" data-lg-reveal="fade" data-lg-reveal-stagger="0.3" set:html={content} />
   </article>
 </Layout>
+
 <style lang="scss" is:global>
   // work single
   .work-post {
     margin-bottom: 6rem;
     &-hero {
-     position: relative;
-     padding: 0;
-     margin-bottom: -8rem;
+      position: relative;
+      padding: 0;
+      margin-bottom: -8rem;
+
       &-img {
         display: block;
         width: 100%;
@@ -78,12 +112,15 @@ const accent = acf?.site_frame_color ? acf.site_frame_color : 'transparent';
         position: absolute;
         object-position: top center;
       }
+
       .wrapper {
         padding: 8rem 0 16rem;
         position: relative;
       }
+
       h1 {
         margin: 0;
+
         &::after {
           content: '';
           display: block;
@@ -94,6 +131,12 @@ const accent = acf?.site_frame_color ? acf.site_frame_color : 'transparent';
         }
       }
     }
+
+    &-hero.is-dark h1 {
+      color: #fff;
+      text-shadow: 0 8px 24px rgba(0,0,0,.35);
+    }
+
     &-body {
       h2 {
         font-size: var(--step-3);
@@ -103,24 +146,29 @@ const accent = acf?.site_frame_color ? acf.site_frame_color : 'transparent';
         font-size: var(--step-2);
       }
     }
+
     .tiled-gallery {
       &__col {
         @media (max-width: 767px) {
           flex: 1 1 100%;
         }
       }
+
       &__row {
         display: flex;
         margin: 4rem 0;
         gap: 2rem;
+
         @media (max-width: 767px) {
           flex-wrap: wrap;
         }
+
         figure {
           margin: 0;
         }
       }
     }
+
     .footer {
       margin-top: 10rem;
     }
