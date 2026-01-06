@@ -63,7 +63,7 @@ const postsWithImages = await Promise.all(
 					alt={post.title.rendered}
 					inferSize
 				/>
-				<h3 class="h5" set:html={post.title.rendered} />
+				<h3 class="h5" transition:name={`heading-${post.id}`} set:html={post.title.rendered} />
 				<p><a href=`/work/${post.slug}/` class="squiggle">Read Case Study</a></p>
 			</article>
 		))}

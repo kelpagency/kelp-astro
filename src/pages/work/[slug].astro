@@ -36,22 +36,52 @@ const accent = acf?.site_frame_color ? acf.site_frame_color : 'transparent';
 
 <Layout title={title} description={description} image={image} darkHeader={true}>
   <article class="work-post" style=`--accent: ${accent};`>
-    <div class="work-post-hero" style={bgUrl ? `background-image:url(${bgUrl})` : undefined}>
+    <div class="work-post-hero">
+      {bgUrl && (
+        <img
+          src={bgUrl}
+          alt={title}
+          loading="eager"
+          decoding="async"
+          width="1920"
+          height="1080"
+          srcset={`
+            ${bgUrl}?w=480 480w,
+            ${bgUrl}?w=768 768w,
+            ${bgUrl}?w=1200 1200w,
+            ${bgUrl}?w=1920 1920w
+          `}
+          sizes="(max-width: 900px) 100vw, 90vw"
+          class="work-post-hero-img"
+        />
+      )}
       <div class="wrapper">
-        <h1 transition:name=`heading-${id}` set:html={title} />
+        <h1 transition:name={`heading-${id}`} set:html={title} />
       </div>
     </div>
     <div class="wrapper work-post-body" data-lg-reveal="fade" data-lg-reveal-stagger="0.3" set:html={content} />
   </article>
 </Layout>
-<style lang="scss" is:global>
+<style lang="scss">
   // work single
   .work-post {
     margin-bottom: 6rem;
     &-hero {
-      padding: 8rem 0 16rem;
-      margin-bottom: -8rem;
-      background-size: cover;
+     position: relative;
+     padding: 0;
+     margin-bottom: -8rem;
+      &-img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        object-position: top center;
+      }
+      .wrapper {
+        padding: 8rem 0 16rem;
+        position: relative;
+      }
       h1 {
         margin: 0;
         &::after {
