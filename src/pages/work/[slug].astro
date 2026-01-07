@@ -49,14 +49,9 @@ let isDarkHero = false;
 if (thumbUrl) {
   try {
     const result = await getAverageColor(thumbUrl);
-    
     const [r, g, b] = result.value; // <-- array values
-    
     const brightness = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-    
-    isDarkHero = brightness < 165; // more human-accurate threshold
-    
-    console.log('hero brightness', { r, g, b, brightness, isDarkHero });
+    isDarkHero = brightness < 165; // more human-accurate threshold    
   } catch (e) {
     console.warn('Brightness detection failed', e);
   }
