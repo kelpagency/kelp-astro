@@ -1,5 +1,6 @@
 ---
 import Layout from '../../Base.astro';
+import FeaturedArticles from '../../components/FeaturedArticles.astro';
 import '../../styles/pages/_wordpress.scss';
 import { getAverageColor } from 'fast-average-color-node';
 
@@ -24,6 +25,14 @@ export async function getStaticPaths() {
 
 const { title, content, description, image, tagIds, id, acf } = Astro.props;
 
+const rawTitle = title.replace(/(<([^>]+)>)/gi, '').trim();
+const titleWords = rawTitle.split(/\s+/);
+
+const formattedTitle =
+  titleWords.length > 1
+    ? titleWords.map((word) => `<span class="work-post-hero-title-word">${word}</span>`).join(' ')
+    : rawTitle;
+
 let bgUrl = null;
 let thumbUrl = null;
 
@@ -37,9 +46,7 @@ if (acf?.hero?.background?.image) {
 
     // prefer thumbnail for speed if available
     thumbUrl =
-      media?.media_details?.sizes?.medium?.source_url ||
-      media?.media_details?.sizes?.thumbnail?.source_url ||
-      bgUrl;
+      media?.media_details?.sizes?.medium?.source_url || media?.media_details?.sizes?.thumbnail?.source_url || bgUrl;
   }
 }
 
@@ -51,7 +58,7 @@ if (thumbUrl) {
     const result = await getAverageColor(thumbUrl);
     const [r, g, b] = result.value; // <-- array values
     const brightness = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-    isDarkHero = brightness < 165; // more human-accurate threshold    
+    isDarkHero = brightness < 165; // more human-accurate threshold
   } catch (e) {
     console.warn('Brightness detection failed', e);
   }
@@ -63,31 +70,34 @@ const accent = acf?.site_frame_color ? acf.site_frame_color : 'transparent';
 <Layout title={title} description={description} image={image} darkHeader={true}>
   <article class="work-post" style=`--accent: ${accent};`>
     <div class={`work-post-hero ${isDarkHero ? 'is-dark' : ''}`}>
-      {bgUrl && (
-        <img
-          src={bgUrl}
-          alt={title}
-          loading="eager"
-          decoding="async"
-          width="1920"
-          height="1080"
-          srcset={`
+      {
+        bgUrl && (
+          <img
+            src={bgUrl}
+            alt={title}
+            loading="eager"
+            decoding="async"
+            width="1920"
+            height="1080"
+            srcset={`
             ${bgUrl}?w=480 480w,
             ${bgUrl}?w=768 768w,
             ${bgUrl}?w=1200 1200w,
             ${bgUrl}?w=1920 1920w
           `}
-          sizes="(max-width: 900px) 100vw, 90vw"
-          class="work-post-hero-img"
-        />
-      )}
+            sizes="(max-width: 900px) 100vw, 90vw"
+            class="work-post-hero-img"
+          />
+        )
+      }
       <div class="wrapper">
-        <h1 transition:name={`heading-${id}`} set:html={title} />
+        <h1 transition:name={`heading-${id}`} set:html={formattedTitle} />
       </div>
     </div>
 
     <div class="wrapper work-post-body" data-lg-reveal="fade" data-lg-reveal-stagger="0.3" set:html={content} />
   </article>
+  <FeaturedArticles />
 </Layout>
 
 <style lang="scss" is:global>
@@ -112,24 +122,33 @@ const accent = acf?.site_frame_color ? acf.site_frame_color : 'transparent';
         padding: 8rem 0 16rem;
         position: relative;
       }
-
       h1 {
-        margin: 0;
-
+        margin: 0 4rem;
+        font-size: var(--step-8);
+        line-height: 0.833;
+        @media (max-width: 767px) {
+          margin: 0;
+        }
+        span:last-child {
+          display: block;
+        }
         &::after {
           content: '';
           display: block;
           width: 200px;
           background: var(--accent);
           height: 0.5rem;
-          margin-top: 1rem;
+          margin-top: 0;
         }
       }
     }
 
-    &-hero.is-dark h1 {
-      color: #fff;
-      text-shadow: 0 8px 24px rgba(0,0,0,.35);
+    &-hero.is-dark {
+      background-color: var(--black);
+      h1 {
+        color: #fff;
+        text-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      }
     }
 
     &-body {
@@ -139,6 +158,23 @@ const accent = acf?.site_frame_color ? acf.site_frame_color : 'transparent';
       h3,
       .h3 {
         font-size: var(--step-2);
+      }
+      blockquote {
+        @media (min-width: 961px) {
+          background: #f4f4f4;
+          padding: 12rem 8rem 11rem;
+        }
+        cite {
+          display: block;
+          &::before {
+            margin-top: 2.5rem;
+            margin-bottom: 2.5rem;
+          }
+        }
+        &::before,
+        &::after {
+          color: var(--green);
+        }
       }
     }
 
@@ -174,14 +210,15 @@ const accent = acf?.site_frame_color ? acf.site_frame_color : 'transparent';
     }
   }
 </style>
+
 <script>
-document.querySelectorAll("iframe[width][height]").forEach(el => {
-  const w = parseFloat(el.getAttribute("width"));
-  const h = parseFloat(el.getAttribute("height"));
-  if (w > 0 && h > 0) {
-    el.style.aspectRatio = `${w} / ${h}`;
-    el.style.width = "100%";
-    el.style.height = "auto";
-  }
-});
+  document.querySelectorAll('iframe[width][height]').forEach((el) => {
+    const w = parseFloat(el.getAttribute('width'));
+    const h = parseFloat(el.getAttribute('height'));
+    if (w > 0 && h > 0) {
+      el.style.aspectRatio = `${w} / ${h}`;
+      el.style.width = '100%';
+      el.style.height = 'auto';
+    }
+  });
 </script>

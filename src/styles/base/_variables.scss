@@ -1,58 +1,72 @@
 :root {
-	// brand colors
-	--purple: #5544f8;
-	--light-purple: #aaa2f9;
-	--green: #42c634;
-	--light-green: #a1e39a;
-	--teal: #8aeaed;
-	--light-teal: #c5f5f6;
-	--lighter-teal: #edf6f2;
-	--red: #f4513b;
-	--light-red: #f9a79c;
-	--black: #0d1726;
-	--white: #f4f4f4;
-	--grey: #aaaaaa;
-	--light-grey: #d7ddda;
+  // brand colors
+  --purple: #5544f8;
+  --light-purple: #aaa2f9;
+  --green: #42c634;
+  --light-green: #a1e39a;
+  --teal: #8aeaed;
+  --light-teal: #c5f5f6;
+  --lighter-teal: #edf6f2;
+  --red: #f4513b;
+  --light-red: #f9a79c;
+  --black: #0d1726;
+  --white: #f4f4f4;
+  --grey: #aaaaaa;
+  --light-grey: #d7ddda;
 
-	// specific color use cases
-	// where we might want to change them
-	// dark mode for example
-	--text-color: #0d1726;
-	--bg-color: #d7ddda;
+  // specific color use cases
+  // where we might want to change them
+  // dark mode for example
+  --text-color: #0d1726;
+  --bg-color: #d7ddda;
 
-	// fonts
-	--serif: 'Newsreader', serif;
-	--sans-serif: 'Poppins', sans-serif;
+  // fonts
+  --serif: 'Newsreader', serif;
+  --sans-serif: 'Poppins', sans-serif;
 
-	// fluid type
-	// @link https://utopia.fyi/type/calculator?c=320,16,1.2,1302,18,1.25,7,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l
-	--step-0: clamp(1rem, calc(0.96rem + 0.2vw), 1.13rem);
-	--step-1: clamp(1.2rem, calc(1.13rem + 0.34vw), 1.41rem);
-	--step-2: clamp(1.44rem, calc(1.34rem + 0.52vw), 1.76rem);
-	--step-3: clamp(1.73rem, calc(1.58rem + 0.76vw), 2.2rem);
-	--step-4: clamp(2.07rem, calc(1.85rem + 1.1vw), 2.75rem);
-	--step-5: clamp(2.49rem, calc(2.18rem + 1.54vw), 3.43rem);
-	--step-6: clamp(2.99rem, calc(2.56rem + 2.13vw), 4.29rem);
-	--step-7: clamp(3.58rem, calc(3rem + 2.9vw), 5.36rem);
+  // fluid type
+  /* @link https://utopia.fyi/type/calculator?c=320,16,1.2,1302,18,1.25,8,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+  /* Step -2: 11.1111px → 11.52px */
+  --step--2: clamp(0.6944rem, 0.6861rem + 0.0416vw, 0.72rem);
+  /* Step -1: 13.3333px → 14.4px */
+  --step--1: clamp(0.8333rem, 0.8116rem + 0.1086vw, 0.9rem);
+  /* Step 0: 16px → 18px */
+  --step-0: clamp(1rem, 0.9593rem + 0.2037vw, 1.125rem);
+  /* Step 1: 19.2px → 22.5px */
+  --step-1: clamp(1.2rem, 1.1328rem + 0.336vw, 1.4063rem);
+  /* Step 2: 23.04px → 28.125px */
+  --step-2: clamp(1.44rem, 1.3364rem + 0.5178vw, 1.7578rem);
+  /* Step 3: 27.648px → 35.1563px */
+  --step-3: clamp(1.728rem, 1.5751rem + 0.7646vw, 2.1973rem);
+  /* Step 4: 33.1776px → 43.9453px */
+  --step-4: clamp(2.0736rem, 1.8543rem + 1.0965vw, 2.7466rem);
+  /* Step 5: 39.8131px → 54.9316px */
+  --step-5: clamp(2.4883rem, 2.1804rem + 1.5396vw, 3.4332rem);
+  /* Step 6: 47.7757px → 68.6646px */
+  --step-6: clamp(2.986rem, 2.5606rem + 2.1272vw, 4.2915rem);
+  /* Step 7: 57.3309px → 85.8307px */
+  --step-7: clamp(3.5832rem, 3.0027rem + 2.9022vw, 5.3644rem);
+  /* Step 8: 68.7971px → 107.2884px */
+  --step-8: clamp(4.2998rem, 3.5159rem + 3.9197vw, 6.7055rem);
 }
 
 // HD colors where supported
 @supports (color: color(display-p3 1 1 1)) {
-	@media (color-gamut: p3) {
-		:root {
-			// brand colors
-			--purple: color(display-p3 0.312 0.252 1);
-			--light-purple: color(display-p3 0.672 0.644 1);
-			--green: color(display-p3 0.198 0.786 0);
-			--light-green: color(display-p3 0.687 0.883 0.631);
-			--teal: color(display-p3 0 0.85 0.897);
-			--light-teal: color(display-p3 0.81 0.955 0.962);
-			--red: color(display-p3 1 0.32 0.202);
-			--light-red: color(display-p3 1 0.68 0.625);
-			--black: color(display-p3 0.059 0.089 0.144);
-			--white: color(display-p3 0.957 0.957 0.957);
-			--grey: color(display-p3 0.667 0.667 0.667);
-			--light-grey: color(display-p3 0.847 0.866 0.856);
-		}
-	}
+  @media (color-gamut: p3) {
+    :root {
+      // brand colors
+      --purple: color(display-p3 0.312 0.252 1);
+      --light-purple: color(display-p3 0.672 0.644 1);
+      --green: color(display-p3 0.198 0.786 0);
+      --light-green: color(display-p3 0.687 0.883 0.631);
+      --teal: color(display-p3 0 0.85 0.897);
+      --light-teal: color(display-p3 0.81 0.955 0.962);
+      --red: color(display-p3 1 0.32 0.202);
+      --light-red: color(display-p3 1 0.68 0.625);
+      --black: color(display-p3 0.059 0.089 0.144);
+      --white: color(display-p3 0.957 0.957 0.957);
+      --grey: color(display-p3 0.667 0.667 0.667);
+      --light-grey: color(display-p3 0.847 0.866 0.856);
+    }
+  }
 }
