@@ -97,7 +97,7 @@ const accent = acf?.site_frame_color ? acf.site_frame_color : 'transparent';
 
     <div class="wrapper work-post-body" data-lg-reveal="fade" data-lg-reveal-stagger="0.3" set:html={content} />
   </article>
-  <FeaturedArticles />
+  <FeaturedArticles tag={tagIds} heading="Related Articles" />
 </Layout>
 
 <style lang="scss" is:global>

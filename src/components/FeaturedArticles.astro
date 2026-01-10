@@ -1,86 +1,124 @@
 ---
-import { Picture } from "astro:assets";
+import { Picture } from 'astro:assets';
 
-const { category = "17", heading = "Featured Articles", limit = 3 } = Astro.props;
+const { category = null, tag = null, heading = 'Featured Articles', limit = 3 } = Astro.props;
+
+// Decide taxonomy (backward compatible)
+const taxonomyType = tag ? 'tags' : 'categories';
+const taxonomyInput = tag ?? category ?? '17';
+
+// Normalize input:
+// - "17"
+// - 17
+// - "17,22,31"
+// - [17, 22, 31]
+const normalizedIds = Array.isArray(taxonomyInput)
+  ? taxonomyInput
+  : String(taxonomyInput)
+      .split(',')
+      .map((id) => id.trim())
+      .filter(Boolean);
+
+const taxonomyParam = normalizedIds.join(',');
 
 const response = await fetch(
-	`${import.meta.env.PUBLIC_WP_URL}/posts?per_page=${limit}&categories=${category}&_embed`
+  `${import.meta.env.PUBLIC_WP_URL}/posts?per_page=${limit * 2}&${taxonomyType}=${taxonomyParam}&_embed`,
 );
-const posts = await response.json();
+const posts = response.ok ? await response.json() : [];
+const shuffledPosts = posts.sort(() => 0.5 - Math.random()).slice(0, limit);
 ---
 
-<section class="featured-articles">
-	<div class="wrapper">
-		<h3>{heading}</h3>
-		<div class="grid">
-			{posts.map((post) => (
-					<article>
-						<Picture
-							src={post.fimg_url}
-							loading="lazy"
-							alt={post.title.rendered}
-							width={900}
-							height={600}
-							widths={[400, 650, 900]}
-							sizes="(max-width: 900px) 100vw, 33vw"
-							inferSize
-						/>
-						<h4 class="h5"><a href=`/blog/${post.slug}/` set:html={post.title.rendered} /></h4>
-						<p>
-							{post._embedded['wp:term'][0].map((category) => (
-								<span>{category.name}</span>
-							))}
-						</p>
-					</article>
-				))}
-		</div>
-	</div>
-</section>
+{
+  posts.length > 0 && (
+    <section class="featured-articles">
+      <div class="wrapper">
+        <h3>{heading}</h3>
+
+        <div class="grid">
+          {shuffledPosts.map((post) => (
+            <article>
+              {post.fimg_url && (
+                <Picture
+                  src={post.fimg_url}
+                  loading="lazy"
+                  alt={post.title?.rendered ?? ''}
+                  width={900}
+                  height={600}
+                  widths={[400, 650, 900]}
+                  sizes="(max-width: 900px) 100vw, 33vw"
+                  inferSize
+                />
+              )}
+
+              <h4 class="h5">
+                <a href={`/blog/${post.slug}/`} set:html={post.title.rendered} />
+              </h4>
+
+              {post._embedded?.['wp:term']?.[0]?.length > 0 && (
+                <p>
+                  {post._embedded['wp:term'][0].map((term) => (
+                    <span>{term.name}</span>
+                  ))}
+                </p>
+              )}
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
 
 <style lang="scss">
-	.featured-articles {
-		margin: 8rem 0;
-		@media (max-width: 767px) {
-			margin: 5rem 0 3rem;
-		}
-		.grid {
-			margin-top: 2rem;
-			display: flex;
-			flex-wrap: wrap;
-			gap: 1rem;
-			article {
-				flex: 1 1 250px;
-				display: flex;
-				flex-direction: column;
-				position: relative;
-				picture,
-				img {
-					height: 250px !important;
-					object-fit: cover;
-				}
-				a {
-					text-decoration: none;
-					&:after {
-						content: '';
-						display: block;
-						position: absolute;
-						top: 0;
-						left: 0;
-						width: 100%;
-						height: 100%;
-						z-index: 1;
-					}
-				}
-				p {
-					margin-top: auto;
-					color: #757575;
-					span + span {
-						&:before {
-							content: ', ';
-						}
-					}
-				}
-			}
-		}
-	}
+  .featured-articles {
+    margin: 8rem 0;
+
+    @media (max-width: 767px) {
+      margin: 5rem 0 3rem;
+    }
+
+    .grid {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+
+      article {
+        flex: 1 1 250px;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+
+        picture,
+        img {
+          height: 250px !important;
+          object-fit: cover;
+        }
+
+        a {
+          text-decoration: none;
+
+          &:after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+          }
+        }
+
+        p {
+          margin-top: auto;
+          color: #757575;
+
+          span + span:before {
+            content: ', ';
+          }
+        }
+      }
+    }
+  }
 </style>
