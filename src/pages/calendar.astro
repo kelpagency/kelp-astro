@@ -11,20 +11,20 @@ import calendarSquid from '../assets/calendar-squid.jpeg';
   <div class="wrapper wrapper--narrow holidays">
     <div>
       <h2 class="h4" data-lg-reveal="fade">The days we'll be off this year.</h2>
+      <ul data-lg-reveal="fade" data-lg-reveal-stagger=".1">
+        <li><b>Martin Luther King Jr. Day:</b> Monday, January 19, 2026</li>
+        <li><b>Presidents Day:</b> Monday, February 16, 2026</li>
+        <li><b>Good Friday:</b> Friday, April 3, 2026</li>
+        <li><b>Memorial Day:</b> Monday, May 25, 2026</li>
+        <li><b>Juneteenth:</b> Friday, June 19, 2026</li>
+        <li><b>Independence Day:</b> Saturday, July 4, 2026</li>
+        <li><b>Labor Day:</b> Monday, September 7, 2026</li>
+        <li><b>Columbus/Indigenous People’s Day:</b> Monday, October 12, 2026</li>
+        <li><b>Veterans Day:</b> Wednesday, November 11, 2026</li>
+        <li><b>Thanksgiving:</b> November 26–27, 2026</li>
+        <li><b>Christmas Break:</b> December 23, 2026–January 1, 2027</li>
+      </ul>
     </div>
-    <ul data-lg-reveal="fade" data-lg-reveal-stagger=".1">
-      <li><b>Martin Luther King Jr. Day:</b> Monday, January 19, 2026</li>
-      <li><b>Presidents Day:</b> Monday, February 16, 2026</li>
-      <li><b>Good Friday:</b> Friday, April 3, 2026</li>
-      <li><b>Memorial Day:</b> Monday, May 25, 2026</li>
-      <li><b>Juneteenth:</b> Friday, June 19, 2026</li>
-      <li><b>Independence Day:</b> Saturday, July 4, 2026</li>
-      <li><b>Labor Day:</b> Monday, September 7, 2026</li>
-      <li><b>Columbus/Indigenous People’s Day:</b> Monday, October 12, 2026</li>
-      <li><b>Veterans Day:</b> Wednesday, November 11, 2026</li>
-      <li><b>Thanksgiving:</b> November 26–27, 2026</li>
-      <li><b>Christmas Break:</b> December 23, 2026–January 1, 2027</li>
-    </ul>
     <Image
       src={calendarSquid}
       alt="Squid Squidly checking his calendar"
@@ -42,10 +42,7 @@ import calendarSquid from '../assets/calendar-squid.jpeg';
     flex-wrap: wrap;
     gap: 0 5rem;
     align-items: flex-start;
-    div {
-      flex: 1 1 100%;
-    }
-    ul {
+    > div {
       flex: 1 1 400px;
     }
     img {
