@@ -1,6 +1,9 @@
 ---
 import Layout from '../Base.astro';
 import SimpleHero from '../components/SimpleHero.astro';
+import { Image } from 'astro:assets';
+
+import calendarSquid from '../assets/calendar-squid.jpeg';
 ---
 
 <Layout title="Kelp Calendar" description="The days we take off — 2026 years since the birth of Our Blessed Lord.">
@@ -22,12 +25,13 @@ import SimpleHero from '../components/SimpleHero.astro';
       <li><b>Thanksgiving:</b> November 26–27, 2026</li>
       <li><b>Christmas Break:</b> December 23, 2026–January 1, 2027</li>
     </ul>
-    <img
-      src="/images/squid-calendar.png"
+    <Image
+      src={calendarSquid}
       alt="Squid Squidly checking his calendar"
-      width="981"
-      height="772"
       loading="lazy"
+      decoding="async"
+      widths={[320, 480, 640, 800]}
+      sizes="(max-width: 768px) 100vw, 400px"
     />
   </div>
 </Layout>
