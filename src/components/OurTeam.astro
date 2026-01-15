@@ -1,164 +1,130 @@
 ---
-import { Picture } from 'astro:assets';
-import staySaltyPatch from '../assets/images/stay-salty-patch.png';
-import andrewImg from '../assets/images/team/andrew.jpg';
-import brandonImg from '../assets/images/team/brandon.jpg';
-import judeImg from '../assets/images/team/jude.jpg';
-import jessicaImg from '../assets/images/team/jessica.jpg';
-import lukeImg from '../assets/images/team/luke.jpg';
-import stefenImg from '../assets/images/team/stefen.jpg';
+
 ---
 
-<section class='team'>
-	<div class='wrapper'>
-			<div class='team-badge'>
-			<div class='team-badge-media'>
-				<Picture src={staySaltyPatch} alt='Stay salty patch' loading='lazy' width={2413} height={1378} widths={[480, 1200, 2413]} sizes='(max-width: 900px) 100vw, 50vw' inferSize />
-			</div>
-			<div class='team-badge-text'>
-				<p>
-					<i>“Stay Salty”</i> is our creative agency's way of saying that we <em>add flavor</em> and <em>personality</em
-					> to everything we do. Our work brings out the best in our clients' projects and helps them stand out in a sea
-					of competitors. We're passionate about crafting unique and impactful designs, campaigns, and strategies that leave
-					a lasting impression on our clients' audiences.
-				</p>
-				<p>
-					So when we say <i>“Stay Salty,”</i> we're encouraging our clients to embrace their distinctive flavors and allow
-					us to help them enhance and amplify those qualities. Our goal is to be the secret ingredient that makes our clients'
-					brands more <i>memorable</i> and <i>successful</i>.
-				</p>
-			</div>
-		</div>
-		<h2 id='team'>Meet the team</h2>
-		<div class='team-grid'>
-			<div class='team-grid-item' data-lg-reveal='layer-to-bottom'>
-				<Picture
-					src={andrewImg}
-					alt='Andrew Prouty'
-					loading='lazy'
-					width={890}
-					height={1188}
-					widths={[480, 720, 890]}
-					sizes='(max-width: 900px) 100vw, 33vw'
-					inferSize />
-				<h3 class='h5'>Andrew Prouty</h3>
-				<p>Project Manager</p>
-			</div>
-			<div class='team-grid-item' data-lg-reveal='layer-to-bottom'>
-				<Picture
-					src={brandonImg}
-					alt='Brandon Berlew'
-					loading='lazy'
-					width={890}
-					height={1188}
-					widths={[480, 720, 890]}
-					sizes='(max-width: 900px) 100vw, 33vw'
-					inferSize />
-				<h3 class='h5'>Brandon Berlew</h3>
-				<p>Creative Producer</p>
-			</div>
-			<div class='team-grid-item' data-lg-reveal='layer-to-bottom'>
-				<Picture
-					src={judeImg}
-					alt='Jude House'
-					loading='lazy'
-					width={807}
-					height={1075}
-					widths={[420, 640, 807]}
-					sizes='(max-width: 900px) 100vw, 33vw'
-					inferSize />
-				<h3 class='h5'>Jude House</h3>
-				<p>Marketing Specialist</p>
-			</div>
-			<div class='team-grid-item' data-lg-reveal='layer-to-bottom'>
-				<Picture
-					src={jessicaImg}
-					alt='Jessica Kenney'
-					loading='lazy'
-					width={890}
-					height={1188}
-					widths={[480, 720, 890]}
-					sizes='(max-width: 900px) 100vw, 33vw'
-					inferSize />
-				<h3 class='h5'>Jessica Kenney</h3>
-				<p>Accounting & HR</p>
-			</div>
-			<div class='team-grid-item' data-lg-reveal='layer-to-bottom'>
-				<Picture
-					src={lukeImg}
-					alt='Luke Kenney'
-					loading='lazy'
-					width={890}
-					height={1188}
-					widths={[480, 720, 890]}
-					sizes='(max-width: 900px) 100vw, 33vw'
-					inferSize />
-				<h3 class='h5'>Luke Kenney</h3>
-				<p>Creative Director | Co-founder</p>
-			</div>
-			<div class='team-grid-item' data-lg-reveal='layer-to-bottom'>
-				<Picture
-					src={stefenImg}
-					alt='Stefen Phelps'
-					loading='lazy'
-					width={890}
-					height={1188}
-					widths={[480, 720, 890]}
-					sizes='(max-width: 900px) 100vw, 33vw'
-					inferSize />
-				<h3 class='h5'>Stefen Phelps</h3>
-				<p>Software Engineer | Co-founder</p>
-			</div>
-		</div>
-	</div>
+<section class="team">
+  <div class="wrapper">
+    <h2 id="team">The People Behind Kelp</h2>
+    <hr />
+    <div class="team-member">
+      <div class="team-member-text">
+        <h3>Andrew Prouty</h3>
+        <p class="team-member-text-position">Project Manager</p>
+        <p>
+          Andrew Prouty runs projects day to day and is the primary point of contact for our clients—which means he’s
+          the one keeping timelines tight, communication clear, and expectations grounded in reality. He has a rare mix
+          of organization, technical understanding, and calm honesty, even when the honest answer isn’t the easiest one
+          to hear. Andrew is great at translating complexity into clarity, keeping everyone aligned, and making sure
+          nothing quietly drifts off course. He also drinks chai lattes instead of coffee, which we’ve accepted, though
+          not without questions.
+        </p>
+      </div>
+      <div class="team-member-media">
+        <video playsinline autoplay muted loop src="/videos/team/andrew.mp4"></video>
+      </div>
+    </div>
+    <div class="team-member">
+      <div class="team-member-text">
+        <h3>Brandon Berlew</h3>
+        <p class="team-member-text-position">Creative Producer</p>
+        <p>
+          Brandon is our creative producer and motion wizard—the person responsible for making things move, feel alive,
+          and look effortlessly polished. He’s a master of video, After Effects, motion graphics, and animation, and
+          also happens to be a very capable web developer when projects need that extra layer of technical finesse.
+          Brandon has a sharp sense of timing, a strong visual instinct, and an eye for the details most people miss.
+          Outside of work, he’s usually wrangling multiple pets or playing ultimate frisbee, which explains both his
+          patience and his ability to move very fast when needed.
+        </p>
+      </div>
+      <div class="team-member-media">
+        <video playsinline autoplay muted loop src="/videos/team/brandon.mp4"></video>
+      </div>
+    </div>
+    <div class="team-member">
+      <div class="team-member-text">
+        <h3>Jude House</h3>
+        <p class="team-member-text-position">Marketing Specialist</p>
+        <p>
+          Jude is our marketing specialist, with a skill set that stretches well beyond strategy and analytics. He’s
+          equally at home behind a camera, shooting photography and video, or behind an espresso machine pulling a
+          genuinely great shot. Jude brings a sharp creative eye to marketing work and understands how content actually
+          performs in the real world. As the youngest on the team, he’s naturally taken on the role of the little
+          brother—occasionally roasted, always supported, and fully trusted to deliver when it matters.
+        </p>
+      </div>
+      <div class="team-member-media">
+        <video playsinline autoplay muted loop src="/videos/team/jude.mp4"></video>
+      </div>
+    </div>
+    <div class="team-member">
+      <div class="team-member-text">
+        <h3>Luke Kenney</h3>
+        <p class="team-member-text-position">Creative Director / Co-founder</p>
+        <p>
+          Luke is our co-founder and creative master—the person who can turn a loose idea into something polished,
+          intentional, and built to last. He’s designed everything from logos and brand systems to beer cans and protein
+          oatmeal packaging, and at this point can pretty much design anything put in front of him. He has a sharp eye
+          for detail, a deep understanding of how design actually gets used, and a habit of thinking several steps
+          ahead. When he’s not refining a project, he’s probably trying to convince the rest of the team to sign up for
+          another 10k.
+        </p>
+      </div>
+      <div class="team-member-media">
+        <video playsinline autoplay muted loop src="/videos/team/luke.mp4"></video>
+      </div>
+    </div>
+    <div class="team-member">
+      <div class="team-member-text">
+        <h3>Stefen Phelps</h3>
+        <p class="team-member-text-position">Developer / Co-founder</p>
+        <p>
+          Stefen is our other co-founder and code expert—the person you want around when things get complex, custom, or
+          slightly uncomfortable. He learned to code before AI made everything easier, back when documentation was
+          questionable and you had to figure things out the hard way (typing uphill, both ways). Stefen cares deeply
+          about clean architecture, long-term maintainability, and building things that won’t fall apart six months
+          later. He also has a well-documented tendency to talk about Tesla, Elon Musk, and Cybertrucks at length, which
+          we’ve come to accept as the natural side effect of being extremely nerdy and very good at what you do.
+        </p>
+      </div>
+      <div class="team-member-media">
+        <video playsinline autoplay muted loop src="/videos/team/stefen.mp4"></video>
+      </div>
+    </div>
+  </div>
 </section>
 <style lang="scss">
-	.team {
-		text-align: center;
-		padding-bottom: 8rem;
-		position: relative;
-		h2 {
-			max-width: none;
-			margin: 12rem 0 4rem 0;
-			@media (max-width: 767px) {
-				margin-top: 5rem;
-			}
-		}
-		&-badge {
-			display: flex;
-			flex-wrap: wrap;
-			gap: 2rem;
-			align-items: center;
-			margin-top: 12rem;
-			&-media {
-				flex: 1 1 400px;
-			}
-			&-text {
-				flex: 1 1 400px;
-				text-align: left;
-			}
-		}
-		&-grid {
-			display: grid;
-			grid-template-columns: 1fr 1fr 1fr;
-			gap: 2rem;
-			@media (max-width: 800px) {
-				grid-template-columns: 1fr 1fr;
-			}
-			@media (max-width: 400px) {
-				grid-template-columns: 1fr;
-			}
-			&-item {
-				picture {
-					background: var(--light-green);
-				}
-			}
-			h3 {
-				margin: 1rem 0 0 0;
-			}
-			p {
-				margin: 0;
-			}
-		}
-	}
+  .team {
+    h2 {
+      text-align: center;
+      max-width: none;
+    }
+    hr {
+      margin: 2rem auto;
+      max-width: 400px;
+    }
+    &-member {
+      display: flex;
+      gap: 2rem 4rem;
+      flex-wrap: wrap;
+      margin: 4rem 0;
+      align-items: center;
+      &-text {
+        flex: 1 1 350px;
+        &-position {
+          font-weight: bold;
+        }
+      }
+      &-media {
+        flex: 1 1 350px;
+        video {
+          border-radius: 1rem;
+        }
+      }
+      &:nth-child(even) {
+        .team-member-media {
+          order: -1;
+        }
+      }
+    }
+  }
 </style>
