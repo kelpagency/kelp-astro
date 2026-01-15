@@ -20,7 +20,7 @@
         </p>
       </div>
       <div class="team-member-media">
-        <video playsinline autoplay muted loop src="/videos/team/andrew.mp4"></video>
+        <video class="mirror" playsinline autoplay muted loop src="/videos/team/andrew.mp4"></video>
       </div>
     </div>
     <div class="team-member">
@@ -37,7 +37,7 @@
         </p>
       </div>
       <div class="team-member-media">
-        <video playsinline autoplay muted loop src="/videos/team/brandon.mp4"></video>
+        <video class="mirror" playsinline autoplay muted loop src="/videos/team/brandon.mp4"></video>
       </div>
     </div>
     <div class="team-member">
@@ -70,7 +70,7 @@
         </p>
       </div>
       <div class="team-member-media">
-        <video playsinline autoplay muted loop src="/videos/team/luke.mp4"></video>
+        <video class="mirror" playsinline autoplay muted loop src="/videos/team/luke.mp4"></video>
       </div>
     </div>
     <div class="team-member">
@@ -118,6 +118,9 @@
         flex: 1 1 350px;
         video {
           border-radius: 1rem;
+          &.mirror {
+            transform: rotateY(180deg);
+          }
         }
       }
       &:nth-child(even) {
