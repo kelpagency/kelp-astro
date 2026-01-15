@@ -105,9 +105,11 @@
     &-member {
       display: flex;
       gap: 2rem 4rem;
-      flex-wrap: wrap;
       margin: 4rem 0;
       align-items: center;
+      @media (max-width: 767px) {
+        flex-wrap: wrap;
+      }
       &-text {
         flex: 1 1 350px;
         &-position {
@@ -116,6 +118,9 @@
       }
       &-media {
         flex: 1 1 350px;
+        @media (max-width: 767px) {
+          order: -1;
+        }
         video {
           border-radius: 1rem;
           &.mirror {
