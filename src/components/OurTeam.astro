@@ -1,9 +1,37 @@
 ---
-
+import { Picture } from 'astro:assets';
+import staySaltyPatch from '../assets/images/stay-salty-patch.png';
 ---
 
 <section class="team">
   <div class="wrapper">
+    <div class="team-badge">
+      <div class="team-badge-media">
+        <Picture
+          src={staySaltyPatch}
+          alt="Stay salty patch"
+          loading="lazy"
+          width={2413}
+          height={1378}
+          widths={[480, 1200, 2413]}
+          sizes="(max-width: 900px) 100vw, 50vw"
+          inferSize
+        />
+      </div>
+      <div class="team-badge-text">
+        <p>
+          <i>“Stay Salty”</i> is our creative agency's way of saying that we <em>add flavor</em> and <em>personality</em
+          > to everything we do. Our work brings out the best in our clients' projects and helps them stand out in a sea
+          of competitors. We're passionate about crafting unique and impactful designs, campaigns, and strategies that leave
+          a lasting impression on our clients' audiences.
+        </p>
+        <p>
+          So when we say <i>“Stay Salty,”</i> we're encouraging our clients to embrace their distinctive flavors and allow
+          us to help them enhance and amplify those qualities. Our goal is to be the secret ingredient that makes our clients'
+          brands more <i>memorable</i> and <i>successful</i>.
+        </p>
+      </div>
+    </div>
     <h2 id="team">The People Behind Kelp</h2>
     <hr />
     <div class="team-member">
@@ -91,10 +119,66 @@
         <video playsinline autoplay muted loop src="/videos/team/stefen.mp4"></video>
       </div>
     </div>
+    <div class="team-story">
+      <h2>Our Story</h2>
+      <p>Kelp didn’t start as an agency. It started as two freelancers helping each other out.</p>
+      <p>
+        Stefen and Luke met in the late 2000s, trading design and development work back and forth while building their
+        skills and learning the craft the hard way—by doing it. There was no grand plan, just mutual respect and a
+        shared care for good work.
+      </p>
+      <p>
+        By the early 2010s, both dove deep into the professional design and development world. Stefen joined a
+        HubSpot-focused marketing agency in Tampa in 2014. Luke began working at a marketing agency in Brooksville soon
+        after. A few years later, they found themselves at the same agency—this time with experience, perspective, and a
+        growing sense that something was off.
+      </p>
+      <p>
+        Too often, decisions were driven by trends instead of substance. Marketing led the conversation, while design
+        and engineering were expected to catch up. The work moved fast—but not always forward.
+      </p>
+      <p>So we decided to build the kind of place we wished existed.</p>
+      <p>
+        Kelp became real in 2018. The idea was simple: let strong thinking, good design, and well-built products lead.
+        Marketing still matters—but only when it’s built on something solid.
+      </p>
+      <p>
+        Since then, we’ve grown into a small, focused team of five. Our work has been recognized by WordPress and
+        HubSpot, but what matters more is the trust we’ve built with clients who care about doing things right.
+      </p>
+      <p>
+        We’re still collaborating the way we always have—thoughtfully, honestly, and with a deep respect for the craft.
+      </p>
+    </div>
   </div>
 </section>
 <style lang="scss">
   .team {
+    &-story {
+      max-width: 800px;
+      margin: 8rem auto;
+      background: #fafafa;
+      padding: 1.5rem 3rem;
+      h2 {
+        text-align: left !important;
+        margin-bottom: 1.5rem;
+      }
+    }
+    &-badge {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+      margin-top: 12rem;
+      margin-bottom: 12rem;
+      &-media {
+        flex: 1 1 400px;
+      }
+      &-text {
+        flex: 1 1 400px;
+        text-align: left;
+      }
+    }
     h2 {
       text-align: center;
       max-width: none;
