@@ -28,7 +28,7 @@ import cultureClient from '../assets/images/culture/culture-client.jpg';
 		</p>
 	</div>
 
-	<div class="culture-media">
+	<div class="culture-media" data-lg-reveal="layer-to-right">
 		<Picture
 			src={cultureOfficeIntro}
 			alt="Kelp team collaborating in the office"
@@ -56,7 +56,7 @@ import cultureClient from '../assets/images/culture/culture-client.jpg';
 		</p>
 	</div>
 
-	<div class="culture-media">
+	<div class="culture-media" data-lg-reveal="layer-to-left">
 		<Picture
 			src={cultureOfficeBalance}
 			alt="Kelp office space for focused work"
@@ -84,7 +84,7 @@ import cultureClient from '../assets/images/culture/culture-client.jpg';
 		</p>
 	</div>
 
-	<div class="culture-media">
+	<div class="culture-media" data-lg-reveal="layer-to-right">
 		<Picture
 			src={cultureOfficeHonest}
 			alt="Team reviewing work together"
@@ -108,7 +108,7 @@ import cultureClient from '../assets/images/culture/culture-client.jpg';
 		</p>
 	</div>
 
-	<div class="culture-media">
+	<div class="culture-media" data-lg-reveal="layer-to-left">
 		<Picture
 			src={cultureCollaboration}
 			alt="Team collaborating around a desk"
@@ -136,7 +136,7 @@ import cultureClient from '../assets/images/culture/culture-client.jpg';
 		</p>
 	</div>
 
-	<div class="culture-media">
+	<div class="culture-media" data-lg-reveal="layer-to-right">
 		<Picture
 			src={cultureTools}
 			alt="Work tools laid out on a desk"
@@ -164,9 +164,9 @@ import cultureClient from '../assets/images/culture/culture-client.jpg';
 		</p>
 	</div>
 
-	<div class="culture-media">
+	<div class="culture-media" data-lg-reveal="layer-to-left">
 		<Picture
-			src={cultureOpenWeb}
+			src={cultureOfficeIntro}
 			alt="Developer workspace with laptop and code"
 			loading="lazy"
 			decoding="async"
@@ -192,7 +192,7 @@ import cultureClient from '../assets/images/culture/culture-client.jpg';
 		</p>
 	</div>
 
-	<div class="culture-media">
+	<div class="culture-media" data-lg-reveal="layer-to-right">
 		<Picture
 			src={cultureFun}
 			alt="Colleagues sharing a light moment at work"
@@ -216,7 +216,7 @@ import cultureClient from '../assets/images/culture/culture-client.jpg';
 		</p>
 	</div>
 
-	<div class="culture-media">
+	<div class="culture-media" data-lg-reveal="layer-to-left">
 		<Picture
 			src={cultureWorkspace}
 			alt="Bright office workspace with desk and chair"
@@ -244,7 +244,7 @@ import cultureClient from '../assets/images/culture/culture-client.jpg';
 		</p>
 	</div>
 
-	<div class="culture-media">
+	<div class="culture-media" data-lg-reveal="layer-to-right">
 		<Picture
 			src={cultureClient}
 			alt="Meeting table set for client collaboration"
@@ -262,6 +262,7 @@ import cultureClient from '../assets/images/culture/culture-client.jpg';
 	.culture {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
+		align-items: center;
 		gap: 8rem 15%;
 		margin: 12rem auto;
 		position: relative;
