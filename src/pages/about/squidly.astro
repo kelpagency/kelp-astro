@@ -1,0 +1,20 @@
+---
+import Layout from '../../Base.astro';
+import TeamMemberProfile from '../../components/TeamMemberProfile.astro';
+
+const description = `Squid Squidly is the Kelp mascot, popping up wherever we need a bit more energy, curiosity, and good vibes.
+He keeps the team light on its fins, cheers on big launches, and reminds us that good work can still be fun.`;
+---
+
+<Layout
+  title="Squid Squidly | Kelp Creative Agency"
+  description="Squid Squidly is the Kelp mascot, keeping the team energized and the work light on its fins."
+>
+  <TeamMemberProfile
+    name="Squid Squidly"
+    title="Company Mascot"
+    videoSrc="/videos/team/squidly.mp4"
+    description={description}
+    transitionName="squidly"
+  />
+</Layout>
