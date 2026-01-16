@@ -1,0 +1,64 @@
+---
+import Layout from '../../Base.astro';
+import Team from '../../components/OurTeam.astro';
+import { Picture } from 'astro:assets';
+
+import founders from '../../assets/images/kelp-founders.jpg';
+---
+
+<Layout
+  title="About Kelp"
+  description="Our team spans a broad range of digital expertise allowing us to take on very unique and intricate projects. If you can dream it, we can make it."
+>
+  <div class="wrapper wrapper--narrow">
+    <h1 data-lg-reveal="fade" data-lg-reveal-stagger><span>Our</span> <span>Mission</span></h1>
+    <p data-lg-reveal="fade" data-lg-reveal-stagger data-lg-reveal-delay="0.22">
+      <span>Our mission</span>
+      <span>is to create durable, well-designed digital products</span>
+      <span>by leading with clarity,</span>
+      <span>strong engineering,</span>
+      <span>and a culture that respects</span>
+      <span>both the work and the people behind it.</span>
+    </p>
+    <div class="founding-story">
+      <div class="founding-story-image">
+      <Picture src={founders} alt="Luke, Stefen, and Caleb" layout='constrained' width={500}/>
+      </div>
+      <div class="founding-story-text">
+        <h2>Founding Story</h2>
+        <p>Kelp didn’t start as an agency—it started as people who enjoyed working together and cared deeply about how the work was done.</p>
+        <p>Stefen and Luke began collaborating as freelancers in the early 2010s before moving into the agency world. After eventually working at the same agency alongside Caleb Kenney, they shared a growing frustration with trend-driven work that prioritized marketing gimmicks over strong design, solid engineering, and common-sense strategies.</p>
+        <p>In 2018, they founded Kelp to build something better: an agency led by thoughtful design, well-built products, and a healthy, honest culture.</p>
+        <p>Today, Kelp is a small, senior team doing focused work we’re proud of—trusted by clients who value clarity, longevity, and craftsmanship.</p>
+      </div>
+    </div>
+  </div>
+  <Team />
+</Layout>
+<style lang="scss">
+  h1 {
+    margin-top: 10rem;
+    + p {
+      font-size: var(--step-1);
+      max-width: 900px;
+    }
+  }
+  p {
+    max-width: 700px;
+  }
+  .wrapper--narrow {
+    max-width: 1220px;
+  }
+  .founding-story {
+    display: flex;
+    gap: 2rem 4rem;
+    flex-wrap: wrap;
+    margin: 12rem 0;
+    &-image {
+      flex: 1 1 300px;
+    }
+    &-text {
+      flex: 1 1 400px;
+    }
+  }
+</style>

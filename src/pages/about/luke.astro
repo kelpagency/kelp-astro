@@ -1,0 +1,24 @@
+---
+import Layout from '../../Base.astro';
+import TeamMemberProfile from '../../components/TeamMemberProfile.astro';
+
+const description = `Luke is our co-founder and creative master—the person who can turn a loose idea into something polished,
+intentional, and built to last. He’s designed everything from logos and brand systems to beer cans and
+oatmeal packaging, and at this point can pretty much design anything put in front of him. He has a sharp eye
+for detail, a deep understanding of how design actually gets used, and a habit of thinking several steps
+ahead. When he’s not refining a project, he’s probably trying to convince the rest of the team to sign up for
+another 21.1k.`;
+---
+
+<Layout
+  title="Luke Kenney | Kelp Creative Agency"
+  description="Luke is our co-founder and creative director who turns loose ideas into polished, lasting design."
+>
+  <TeamMemberProfile
+    name="Luke Kenney"
+    title="Creative Director / Co-founder"
+    videoSrc="/videos/team/luke.mp4"
+    description={description}
+    transitionName="luke"
+  />
+</Layout>

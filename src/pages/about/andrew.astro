@@ -1,0 +1,24 @@
+---
+import Layout from '../../Base.astro';
+import TeamMemberProfile from '../../components/TeamMemberProfile.astro';
+
+const description = `Andrew Prouty runs projects day to day and is the primary point of contact for our clients—which means he’s
+the one keeping timelines tight, communication clear, and expectations grounded in reality. He has a rare mix
+of organization, technical understanding, and calm honesty, even when the honest answer isn’t the easiest one
+to hear. Andrew is great at translating complexity into clarity, keeping everyone aligned, and making sure
+nothing quietly drifts off course. He also drinks chai lattes instead of coffee, which we’ve accepted, though
+not without questions.`;
+---
+
+<Layout
+  title="Andrew Prouty | Kelp Creative Agency"
+  description="Andrew Prouty runs projects day to day and is the primary point of contact for our clients, keeping timelines tight and communication clear."
+>
+  <TeamMemberProfile
+    name="Andrew Prouty"
+    title="Project Manager"
+    videoSrc="/videos/team/andrew.mp4"
+    description={description}
+    transitionName="andrew"
+  />
+</Layout>
