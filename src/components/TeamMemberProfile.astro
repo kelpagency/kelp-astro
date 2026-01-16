@@ -15,12 +15,17 @@ const transitionRole = transitionName ? `title-${transitionName}` : undefined;
 ---
 
 <div class="wrapper">
-  <a class="team-back" href="/about/#team">Back to team</a>
   <div class="team-member">
-    <div class="team-member-media" transition:name={transitionVideo}>
-      <video class:list={[{ mirror }]} playsinline autoplay muted loop src={videoSrc}></video>
+    <div class="team-member-media">
+      <video transition:name={transitionVideo} class:list={[{ mirror }]} playsinline autoplay muted loop src={videoSrc}></video>
     </div>
     <div class="team-member-text">
+      <a class="team-member-text-back" href=`/about/#${transitionName}`>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="32" height="32">
+          <title>Back to team</title>
+          <path d="M183.1 137.4C170.6 124.9 150.3 124.9 137.8 137.4C125.3 149.9 125.3 170.2 137.8 182.7L275.2 320L137.9 457.4C125.4 469.9 125.4 490.2 137.9 502.7C150.4 515.2 170.7 515.2 183.2 502.7L320.5 365.3L457.9 502.6C470.4 515.1 490.7 515.1 503.2 502.6C515.7 490.1 515.7 469.8 503.2 457.3L365.8 320L503.1 182.6C515.6 170.1 515.6 149.8 503.1 137.3C490.6 124.8 470.3 124.8 457.8 137.3L320.5 274.7L183.1 137.4z"/>
+        </svg>
+      </a>
       <h3 transition:name={transitionTitle}>{name}</h3>
       <p class="team-member-text-position" transition:name={transitionRole}>{title}</p>
       <p>{description}</p>
@@ -44,16 +49,26 @@ const transitionRole = transitionName ? `title-${transitionName}` : undefined;
     }
     &-member {
       display: flex;
-      gap: 2rem 4rem;
+      gap: 3rem;
       margin: 4rem 0;
-      align-items: center;
       @media (max-width: 767px) {
         flex-wrap: wrap;
       }
       &-text {
         flex: 1 1 350px;
+        background: #F4F4F4;
+        padding: 2rem 3rem;
+        position: relative;
         &-position {
-          font-weight: bold;
+          font-size: var(--step-1);
+          margin-top: -1rem;
+          border-bottom: 1px solid #707070;
+          padding-bottom: 1rem;
+        }
+        &-back {
+          position :absolute;
+          top: 1.5rem;
+          right: 1.5rem;
         }
       }
       &-media {
