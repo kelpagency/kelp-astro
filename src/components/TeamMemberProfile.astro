@@ -13,6 +13,7 @@ const transitionVideo = transitionName ? `video-${transitionName}` : undefined;
 const transitionTitle = transitionName ? `name-${transitionName}` : undefined;
 const transitionRole = transitionName ? `title-${transitionName}` : undefined;
 const posterSrc = videoSrc.replace(/\.[^.]+$/, '.jpg');
+const webmSrc = videoSrc.replace(/\.[^.]+$/, '.webm');
 ---
 
 <div class="wrapper">
@@ -25,9 +26,11 @@ const posterSrc = videoSrc.replace(/\.[^.]+$/, '.jpg');
         autoplay
         muted
         loop
-        src={videoSrc}
         poster={posterSrc}
-      ></video>
+      >
+        <source src={webmSrc} type="video/webm" />
+        <source src={videoSrc} type="video/mp4" />
+      </video>
     </div>
     <div class="team-member-text">
       <a class="team-member-text-back" href=`/about/#${transitionName}`>
