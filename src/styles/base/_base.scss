@@ -36,12 +36,10 @@ body::-webkit-scrollbar-thumb {
 	outline: 1px solid var(--green);
 }
 
-iframe[src^="https://codepen.io"]
-{
+iframe[src^='https://codepen.io'] {
 	min-height: 500px;
 }
-iframe[src^="https://docs.google.com"]
-{
+iframe[src^='https://docs.google.com'] {
 	aspect-ratio: 5 / 3;
 }
 .columns {
