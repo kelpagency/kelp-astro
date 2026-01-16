@@ -12,12 +12,22 @@ const { name, title, videoSrc, description, transitionName, mirror = false } = A
 const transitionVideo = transitionName ? `video-${transitionName}` : undefined;
 const transitionTitle = transitionName ? `name-${transitionName}` : undefined;
 const transitionRole = transitionName ? `title-${transitionName}` : undefined;
+const posterSrc = videoSrc.replace(/\.[^.]+$/, '.jpg');
 ---
 
 <div class="wrapper">
   <div class="team-member">
     <div class="team-member-media">
-      <video transition:name={transitionVideo} class:list={[{ mirror }]} playsinline autoplay muted loop src={videoSrc}></video>
+      <video
+        transition:name={transitionVideo}
+        class:list={[{ mirror }]}
+        playsinline
+        autoplay
+        muted
+        loop
+        src={videoSrc}
+        poster={posterSrc}
+      ></video>
     </div>
     <div class="team-member-text">
       <a class="team-member-text-back" href=`/about/#${transitionName}`>
