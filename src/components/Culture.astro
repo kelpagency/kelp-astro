@@ -1,4 +1,14 @@
 ---
+import { Picture } from 'astro:assets';
+import cultureOfficeIntro from '../assets/images/services/content-creation-office-photo.jpg';
+import cultureOfficeBalance from '../assets/images/services/ongoing-support-office-photo.jpg';
+import cultureOfficeHonest from '../assets/images/services/digital-marketing-office-photo.jpg';
+import cultureCollaboration from '../assets/images/culture/culture-collaboration.jpg';
+import cultureTools from '../assets/images/culture/culture-tools.jpg';
+import cultureOpenWeb from '../assets/images/culture/culture-open-web.jpg';
+import cultureFun from '../assets/images/culture/culture-fun.jpg';
+import cultureWorkspace from '../assets/images/culture/culture-workspace.jpg';
+import cultureClient from '../assets/images/culture/culture-client.jpg';
 ---
 <div class="culture wrapper">
 
@@ -19,11 +29,14 @@
 	</div>
 
 	<div class="culture-media">
-		<img
-			src="https://placehold.co/600x500"
-			alt="Kelp culture introduction placeholder"
+		<Picture
+			src={cultureOfficeIntro}
+			alt="Kelp team collaborating in the office"
 			loading="lazy"
 			decoding="async"
+			widths={[480, 720, 960]}
+			sizes="(max-width: 900px) 100vw, 50vw"
+			inferSize
 		/>
 	</div>
 
@@ -44,11 +57,14 @@
 	</div>
 
 	<div class="culture-media">
-		<img
-			src="https://placehold.co/600x500"
-			alt="Work life balance culture placeholder"
+		<Picture
+			src={cultureOfficeBalance}
+			alt="Kelp office space for focused work"
 			loading="lazy"
 			decoding="async"
+			widths={[480, 720, 960]}
+			sizes="(max-width: 900px) 100vw, 50vw"
+			inferSize
 		/>
 	</div>
 
@@ -69,11 +85,14 @@
 	</div>
 
 	<div class="culture-media">
-		<img
-			src="https://placehold.co/600x500"
-			alt="Honest communication culture placeholder"
+		<Picture
+			src={cultureOfficeHonest}
+			alt="Team reviewing work together"
 			loading="lazy"
 			decoding="async"
+			widths={[480, 720, 960]}
+			sizes="(max-width: 900px) 100vw, 50vw"
+			inferSize
 		/>
 	</div>
 
@@ -90,11 +109,14 @@
 	</div>
 
 	<div class="culture-media">
-		<img
-			src="https://placehold.co/600x500"
-			alt="Collaborative team culture placeholder"
+		<Picture
+			src={cultureCollaboration}
+			alt="Team collaborating around a desk"
 			loading="lazy"
 			decoding="async"
+			widths={[480, 720, 960, 1200]}
+			sizes="(max-width: 900px) 100vw, 50vw"
+			inferSize
 		/>
 	</div>
 
@@ -115,11 +137,14 @@
 	</div>
 
 	<div class="culture-media">
-		<img
-			src="https://placehold.co/600x500"
-			alt="Tools and workflow culture placeholder"
+		<Picture
+			src={cultureTools}
+			alt="Work tools laid out on a desk"
 			loading="lazy"
 			decoding="async"
+			widths={[480, 720, 960, 1200]}
+			sizes="(max-width: 900px) 100vw, 50vw"
+			inferSize
 		/>
 	</div>
 
@@ -140,11 +165,14 @@
 	</div>
 
 	<div class="culture-media">
-		<img
-			src="https://placehold.co/600x500"
-			alt="Open web standards culture placeholder"
+		<Picture
+			src={cultureOpenWeb}
+			alt="Developer workspace with laptop and code"
 			loading="lazy"
 			decoding="async"
+			widths={[480, 720, 960, 1200]}
+			sizes="(max-width: 900px) 100vw, 50vw"
+			inferSize
 		/>
 	</div>
 
@@ -165,11 +193,14 @@
 	</div>
 
 	<div class="culture-media">
-		<img
-			src="https://placehold.co/600x500"
-			alt="Office culture fun placeholder"
+		<Picture
+			src={cultureFun}
+			alt="Colleagues sharing a light moment at work"
 			loading="lazy"
 			decoding="async"
+			widths={[480, 720, 960, 1200]}
+			sizes="(max-width: 900px) 100vw, 50vw"
+			inferSize
 		/>
 	</div>
 
@@ -186,11 +217,14 @@
 	</div>
 
 	<div class="culture-media">
-		<img
-			src="https://placehold.co/600x500"
-			alt="Office workspace placeholder"
+		<Picture
+			src={cultureWorkspace}
+			alt="Bright office workspace with desk and chair"
 			loading="lazy"
 			decoding="async"
+			widths={[480, 720, 960, 1200]}
+			sizes="(max-width: 900px) 100vw, 50vw"
+			inferSize
 		/>
 	</div>
 
@@ -211,11 +245,14 @@
 	</div>
 
 	<div class="culture-media">
-		<img
-			src="https://placehold.co/600x500"
-			alt="Client collaboration placeholder"
+		<Picture
+			src={cultureClient}
+			alt="Meeting table set for client collaboration"
 			loading="lazy"
 			decoding="async"
+			widths={[480, 720, 960, 1200]}
+			sizes="(max-width: 900px) 100vw, 50vw"
+			inferSize
 		/>
 	</div>
 
