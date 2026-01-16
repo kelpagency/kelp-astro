@@ -1,0 +1,25 @@
+---
+import Layout from '../../Base.astro';
+import TeamMemberProfile from '../../components/TeamMemberProfile.astro';
+
+const description = `Brandon is our creative producer and motion wizard—the person responsible for making things move, feel alive,
+and look effortlessly polished. He’s a master of video, After Effects, motion graphics, visual storytelling,
+and also happens to be a very capable web developer when projects need that extra layer of technical finesse.
+Brandon has a sharp sense of timing, a strong visual instinct, and an eye for the details most people miss.
+Outside of work, he’s usually wrangling multiple pets or playing ultimate frisbee, which explains both his
+patience and his ability to move very fast when needed.`;
+---
+
+<Layout
+  title="Brandon Berlew | Kelp Creative Agency"
+  description="Brandon is our creative producer and motion wizard, responsible for video, motion graphics, and visual storytelling."
+>
+  <TeamMemberProfile
+    name="Brandon Berlew"
+    title="Creative Producer"
+    videoSrc="/videos/team/brandon.mp4"
+    description={description}
+    transitionName="brandon"
+    mirror={true}
+  />
+</Layout>

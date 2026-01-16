@@ -1,122 +1,36 @@
 ---
 import { Picture } from 'astro:assets';
-import staySaltyPatch from '../assets/images/stay-salty-patch.png';
 ---
 
 <section class="team">
   <div class="wrapper">
-    <div class="team-badge">
-      <div class="team-badge-media">
-        <Picture
-          src={staySaltyPatch}
-          alt="Stay salty patch"
-          loading="lazy"
-          width={2413}
-          height={1378}
-          widths={[480, 1200, 2413]}
-          sizes="(max-width: 900px) 100vw, 50vw"
-          inferSize
-        />
-      </div>
-      <div class="team-badge-text">
-        <p>
-          <i>“Stay Salty”</i> is our creative agency's way of saying that we <em>add flavor</em> and <em>personality</em
-          > to everything we do. Our work brings out the best in our clients' projects and helps them stand out in a sea
-          of competitors. We're passionate about crafting unique and impactful designs, campaigns, and strategies that leave
-          a lasting impression on our clients' audiences.
-        </p>
-        <p>
-          So when we say <i>“Stay Salty,”</i> we're encouraging our clients to embrace their distinctive flavors and allow
-          us to help them enhance and amplify those qualities. Our goal is to be the secret ingredient that makes our clients'
-          brands more <i>memorable</i> and <i>successful</i>.
-        </p>
-      </div>
-    </div>
     <h2 id="team">The People Behind Kelp</h2>
     <hr />
-    <div class="team-member">
-      <div class="team-member-text">
-        <h3>Andrew Prouty</h3>
-        <p class="team-member-text-position">Project Manager</p>
-        <p>
-          Andrew Prouty runs projects day to day and is the primary point of contact for our clients—which means he’s
-          the one keeping timelines tight, communication clear, and expectations grounded in reality. He has a rare mix
-          of organization, technical understanding, and calm honesty, even when the honest answer isn’t the easiest one
-          to hear. Andrew is great at translating complexity into clarity, keeping everyone aligned, and making sure
-          nothing quietly drifts off course. He also drinks chai lattes instead of coffee, which we’ve accepted, though
-          not without questions.
-        </p>
+    <div class="team-grid">
+      <div class="team-grid-member">
+        <video transition:name="video-andrew" playsinline autoplay muted loop src="/videos/team/andrew.mp4"></video>
+        <h3 class="h4" transition:name="name-andrew"><a href="/about/andrew/">Andrew Prouty</a></h3>
+        <p transition:name="title-andrew">Project Manager</p>
       </div>
-      <div class="team-member-media">
-        <video class="mirror" playsinline autoplay muted loop src="/videos/team/andrew.mp4"></video>
+      <div class="team-grid-member">
+        <video transition:name="video-brandon" playsinline autoplay muted loop src="/videos/team/brandon.mp4"></video>
+        <h3 class="h4" transition:name="name-brandon"><a href="/about/brandon/">Brandon Berlew</a></h3>
+        <p transition:name="title-brandon">Creative Producer</p>
       </div>
-    </div>
-    <div class="team-member">
-      <div class="team-member-text">
-        <h3>Brandon Berlew</h3>
-        <p class="team-member-text-position">Creative Producer</p>
-        <p>
-          Brandon is our creative producer and motion wizard—the person responsible for making things move, feel alive,
-          and look effortlessly polished. He’s a master of video, After Effects, motion graphics, visual storytelling,
-          and also happens to be a very capable web developer when projects need that extra layer of technical finesse.
-          Brandon has a sharp sense of timing, a strong visual instinct, and an eye for the details most people miss.
-          Outside of work, he’s usually wrangling multiple pets or playing ultimate frisbee, which explains both his
-          patience and his ability to move very fast when needed.
-        </p>
+      <div class="team-grid-member">
+        <video transition:name="video-jude" playsinline autoplay muted loop src="/videos/team/jude.mp4"></video>
+        <h3 class="h4" transition:name="name-jude"><a href="/about/jude/">Jude House</a></h3>
+        <p class="team-grid-member-text-position" transition:name="title-jude">Marketing Specialist</p>
       </div>
-      <div class="team-member-media">
-        <video class="mirror" playsinline autoplay muted loop src="/videos/team/brandon.mp4"></video>
+      <div class="team-grid-member">
+        <video transition:name="video-luke" playsinline autoplay muted loop src="/videos/team/luke.mp4"></video>
+        <h3 class="h4" transition:name="name-luke"><a href="/about/luke/">Luke Kenney</a></h3>
+        <p transition:name="title-luke">Creative Director / Co-founder</p>
       </div>
-    </div>
-    <div class="team-member">
-      <div class="team-member-text">
-        <h3>Jude House</h3>
-        <p class="team-member-text-position">Marketing Specialist</p>
-        <p>
-          Jude is our marketing specialist, and one of the few people in the world that understands how Google Tag
-          Manager works. With a skill set that stretches well beyond strategy and analytics. He’s equally at home behind
-          a camera, shooting photography and video, or behind an espresso machine pulling a genuinely great shot. Jude
-          brings a sharp creative eye to marketing work and understands how content actually performs in the real world.
-          As the youngest on the team, he’s naturally taken on the role of the little brother—occasionally roasted,
-          always supported, and fully trusted to deliver when it matters.
-        </p>
-      </div>
-      <div class="team-member-media">
-        <video playsinline autoplay muted loop src="/videos/team/jude.mp4"></video>
-      </div>
-    </div>
-    <div class="team-member">
-      <div class="team-member-text">
-        <h3>Luke Kenney</h3>
-        <p class="team-member-text-position">Creative Director / Co-founder</p>
-        <p>
-          Luke is our co-founder and creative master—the person who can turn a loose idea into something polished,
-          intentional, and built to last. He’s designed everything from logos and brand systems to beer cans and protein
-          oatmeal packaging, and at this point can pretty much design anything put in front of him. He has a sharp eye
-          for detail, a deep understanding of how design actually gets used, and a habit of thinking several steps
-          ahead. When he’s not refining a project, he’s probably trying to convince the rest of the team to sign up for
-          another 10k.
-        </p>
-      </div>
-      <div class="team-member-media">
-        <video class="mirror" playsinline autoplay muted loop src="/videos/team/luke.mp4"></video>
-      </div>
-    </div>
-    <div class="team-member">
-      <div class="team-member-text">
-        <h3>Stefen Phelps</h3>
-        <p class="team-member-text-position">Developer / Co-founder</p>
-        <p>
-          Stefen is our other co-founder and resident code expert — the one who learned to write software back when you
-          couldn’t just ask an AI nicely and get an answer. He comes from the era of reading questionable documentation,
-          trial-and-error debugging, and solving problems the hard way. He obsesses over clean architecture, accessible
-          UIs, performance, and building things that won’t mysteriously implode later due to too many dependencies. He
-          will also, without warning, pivot a conversation to talk about CyberTrucks, humanoid robots, or new battery
-          technology — which is how you know you’re talking to a true, deeply committed nerd.
-        </p>
-      </div>
-      <div class="team-member-media">
-        <video playsinline autoplay muted loop src="/videos/team/stefen.mp4"></video>
+      <div class="team-grid-member">
+        <video transition:name="video-stefen" laysinline autoplay muted loop src="/videos/team/stefen.mp4"></video>
+        <h3 class="h4" transition:name="name-stefen"><a href="/about/stefen/">Stefen Phelps</a></h3>
+        <p transition:name="title-stefen">Developer / Co-founder</p>
       </div>
     </div>
     <div class="team-story">
@@ -154,6 +68,20 @@ import staySaltyPatch from '../assets/images/stay-salty-patch.png';
 </section>
 <style lang="scss">
   .team {
+    margin: 8rem 0;
+    h2 {
+      text-align: center;
+      max-width: none;
+    }
+    hr {
+      margin: 2rem auto 5rem;
+      max-width: 400px;
+    }
+    &-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2rem;
+    }
     &-story {
       max-width: 800px;
       margin: 8rem auto;
@@ -163,63 +91,8 @@ import staySaltyPatch from '../assets/images/stay-salty-patch.png';
         padding: 0.5rem 1.5rem;
       }
       h2 {
-        text-align: left !important;
-        margin-bottom: 1.5rem;
-      }
-    }
-    &-badge {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      align-items: center;
-      margin-top: 12rem;
-      margin-bottom: 12rem;
-      &-media {
-        flex: 1 1 400px;
-      }
-      &-text {
-        flex: 1 1 400px;
         text-align: left;
-      }
-    }
-    h2 {
-      text-align: center;
-      max-width: none;
-    }
-    hr {
-      margin: 2rem auto;
-      max-width: 400px;
-    }
-    &-member {
-      display: flex;
-      gap: 2rem 4rem;
-      margin: 4rem 0;
-      align-items: center;
-      @media (max-width: 767px) {
-        flex-wrap: wrap;
-      }
-      &-text {
-        flex: 1 1 350px;
-        &-position {
-          font-weight: bold;
-        }
-      }
-      &-media {
-        flex: 1 1 350px;
-        @media (max-width: 767px) {
-          order: -1;
-        }
-        video {
-          border-radius: 1rem;
-          &.mirror {
-            transform: rotateY(180deg);
-          }
-        }
-      }
-      &:nth-child(even) {
-        .team-member-media {
-          order: -1;
-        }
+        margin-bottom: 1.5rem;
       }
     }
   }

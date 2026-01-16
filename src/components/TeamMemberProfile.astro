@@ -1,0 +1,73 @@
+---
+interface Props {
+  name: string;
+  title: string;
+  videoSrc: string;
+  description: string;
+  transitionName?: string;
+  mirror?: boolean;
+}
+
+const { name, title, videoSrc, description, transitionName, mirror = false } = Astro.props;
+const transitionVideo = transitionName ? `video-${transitionName}` : undefined;
+const transitionTitle = transitionName ? `name-${transitionName}` : undefined;
+const transitionRole = transitionName ? `title-${transitionName}` : undefined;
+---
+
+<div class="wrapper">
+  <a class="team-back" href="/about/#team">Back to team</a>
+  <div class="team-member">
+    <div class="team-member-media" transition:name={transitionVideo}>
+      <video class:list={[{ mirror }]} playsinline autoplay muted loop src={videoSrc}></video>
+    </div>
+    <div class="team-member-text">
+      <h3 transition:name={transitionTitle}>{name}</h3>
+      <p class="team-member-text-position" transition:name={transitionRole}>{title}</p>
+      <p>{description}</p>
+    </div>
+  </div>
+</div>
+
+<style lang="scss">
+  .team {
+    &-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-top: 2rem;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    &-back::before {
+      content: '←';
+    }
+    &-member {
+      display: flex;
+      gap: 2rem 4rem;
+      margin: 4rem 0;
+      align-items: center;
+      @media (max-width: 767px) {
+        flex-wrap: wrap;
+      }
+      &-text {
+        flex: 1 1 350px;
+        &-position {
+          font-weight: bold;
+        }
+      }
+      &-media {
+        flex: 1 1 350px;
+        @media (max-width: 767px) {
+          order: -1;
+        }
+        video {
+          border-radius: 1rem;
+          &.mirror {
+            transform: rotateY(180deg);
+          }
+        }
+      }
+    }
+  }
+</style>

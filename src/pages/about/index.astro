@@ -1,0 +1,26 @@
+---
+import Layout from '../../Base.astro';
+import Team from '../../components/OurTeam.astro';
+---
+
+<Layout
+  title="About Kelp"
+  description="Our team spans a broad range of digital expertise allowing us to take on very unique and intricate projects. If you can dream it, we can make it."
+>
+  <div class="wrapper wrapper--narrow">
+    <h1>Our Mission</h1>
+    <p>
+      Our mission is to create durable, well-designed digital products by leading with clarity, strong engineering, and
+      a culture that respects both the work and the people behind it.
+    </p>
+  </div>
+  <Team />
+</Layout>
+<style lang="scss">
+  h1 {
+    margin-top: 5rem;
+  }
+  p {
+    max-width: 700px;
+  }
+</style>
