@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://www.kelp.agency',
-	compressHTML: false,
+	compressHTML: true,
 	integrations: [sitemap()],
 	prefetch: true,
 	image: {
