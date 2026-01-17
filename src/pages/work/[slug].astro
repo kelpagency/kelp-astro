@@ -3,6 +3,7 @@ import Layout from '../../Base.astro';
 import FeaturedArticles from '../../components/FeaturedArticles.astro';
 import '../../styles/pages/_wordpress.scss';
 import { getAverageColor } from 'fast-average-color-node';
+import { sanitizeHtml } from '../../lib/sanitize';
 
 export async function getStaticPaths() {
   const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/work?per_page=100&_embed`);
@@ -65,6 +66,7 @@ if (thumbUrl) {
 }
 
 const accent = acf?.site_frame_color ? acf.site_frame_color : 'transparent';
+const safeContent = sanitizeHtml(content);
 ---
 
 <Layout title={title} description={description} image={image} darkHeader={true}>
@@ -95,7 +97,7 @@ const accent = acf?.site_frame_color ? acf.site_frame_color : 'transparent';
       </div>
     </div>
 
-    <div class="wrapper work-post-body" data-lg-reveal="fade" data-lg-reveal-stagger="0.3" set:html={content} />
+    <div class="wrapper work-post-body" data-lg-reveal="fade" data-lg-reveal-stagger="0.3" set:html={safeContent} />
   </article>
   <FeaturedArticles tag={tagIds} heading="Related Articles" />
 </Layout>
