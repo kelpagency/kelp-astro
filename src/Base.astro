@@ -123,6 +123,8 @@ if (darkHeader) {
             const { default: lottie } = await import('lottie-web/build/player/lottie_light');
             window.lottie = lottie;
           }
+
+          luge.init();
         }
 
         if (emphasisElements.length > 0) {

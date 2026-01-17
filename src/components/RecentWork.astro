@@ -232,7 +232,9 @@ const postsWithImages = await Promise.all(
 					flkty.previous();
 				});
 			});
-			luge.emitter.emit('resize');
+			if (window.luge?.emitter) {
+				window.luge.emitter.emit('resize');
+			}
 		}
 	});
 </script>
