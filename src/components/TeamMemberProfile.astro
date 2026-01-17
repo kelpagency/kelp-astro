@@ -12,7 +12,7 @@ const { name, title, videoSrc, description, transitionName, mirror = false } = A
 const transitionVideo = transitionName ? `video-${transitionName}` : undefined;
 const transitionTitle = transitionName ? `name-${transitionName}` : undefined;
 const transitionRole = transitionName ? `title-${transitionName}` : undefined;
-const posterSrc = videoSrc.replace(/\.[^.]+$/, '.jpg');
+const posterSrc = videoSrc.replace(/\.[^.]+$/, '.webp');
 const webmSrc = videoSrc.replace(/\.[^.]+$/, '.webm');
 ---
 
