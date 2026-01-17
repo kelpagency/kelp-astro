@@ -103,6 +103,18 @@ if (darkHeader) {
       <div data-lg-cursor-pointer></div>
     </div>
     <script>
+      const playAutoplayVideos = () => {
+        const videos = document.querySelectorAll('video[autoplay]');
+        videos.forEach((video) => {
+          video.muted = true;
+          video.playsInline = true;
+          const playPromise = video.play();
+          if (playPromise?.catch) {
+            playPromise.catch(() => {});
+          }
+        });
+      };
+
       document.addEventListener('astro:page-load', async () => {
         const needsLuge = document.querySelector(
           '[data-lg-reveal],[data-lg-parallax],[data-lg-lottie],[data-lg-cursor]',
@@ -146,6 +158,8 @@ if (darkHeader) {
           const observer = new IntersectionObserver(handleIntersection);
           emphasisElements.forEach((item) => observer.observe(item));
         }
+
+        playAutoplayVideos();
       });
 
       document.addEventListener('astro:after-swap', () => {
@@ -155,6 +169,10 @@ if (darkHeader) {
         setTimeout(() => {
           window.luge.lifecycle.refresh();
         }, 200);
+
+        setTimeout(() => {
+          playAutoplayVideos();
+        }, 250);
       });
     </script>
   </body>
