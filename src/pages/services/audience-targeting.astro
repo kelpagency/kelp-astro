@@ -1,25 +1,40 @@
 ---
 import Layout from '../../Base.astro';
 import SimpleHero from '../../components/SimpleHero.astro';
-import FeaturedArticles from "../../components/FeaturedArticles.astro";
-import ServicesRelatedWork from "../../components/ServicesRelatedWork.astro";
-import "../../styles/pages/_services-list.scss";
+import FeaturedArticles from '../../components/FeaturedArticles.astro';
+import ServicesRelatedWork from '../../components/ServicesRelatedWork.astro';
+import '../../styles/pages/_services-list.scss';
 ---
 
 <Layout
-	title='Audience Targeting | Florida Marketing Agency'
-	description='Understanding which group of people is most likely going to convert into buyers for your products can help us provide a better user experience, as well as higher conversion rates!'
+  title="Audience Targeting | Florida Marketing Agency"
+  description="Understanding which group of people is most likely going to convert into buyers for your products can help us provide a better user experience, as well as higher conversion rates!"
 >
-	<SimpleHero tagline='Digital Marketing Services' title='Audience Targeting' description="Understanding which group of people is most likely going to convert into buyers for your products can help us provide a better user experience, as well as higher conversion rates!" lottieFile='audience-targeting.json' />
-	<div class='service-body'>
-		<div class='wrapper wrapper--narrow'>
-			<h2>Why audience targeting matters</h2>
-			<p>You can't market to people if you don’t know who they are, what their needs and wants in life may be. The key is understanding that not everyone has the same goals or desires so by creating different personas for each group of potential customers it will allow organizations an opportunity not only see more clearly but also make better decisions when servicing these distinct segments with tailored strategies accordingly!</p>
-			<h2>How we approach audience targeting</h2>
-			<p>We dive deep into your brand to understand what makes it unique, then use data analytics and strategic criteria like segmenting audiences based on values, interests, other various targeting techniques and personalisation strategies. This allows us to reach out more effectively with each group of people—expanding the impact of every campaign.</p>
-			<p><a href='/contact/' class='button button--green'>Let's Talk</a></p>
-		</div>
-		<ServicesRelatedWork tag={77} />
-	</div>
-	<FeaturedArticles />
+  <SimpleHero
+    tagline="Digital Marketing Services"
+    title="Audience Targeting"
+    description="Understanding which group of people is most likely going to convert into buyers for your products can help us provide a better user experience, as well as higher conversion rates!"
+    lottieFile="audience-targeting.json"
+  />
+  <div class="service-body">
+    <div class="wrapper wrapper--narrow">
+      <h2>Why audience targeting matters</h2>
+      <p>
+        You can't market to people if you don’t know who they are, what their needs and wants in life may be. The key is
+        understanding that not everyone has the same goals or desires so by creating different personas for each group
+        of potential customers it will allow organizations an opportunity not only see more clearly but also make better
+        decisions when servicing these distinct segments with tailored strategies accordingly!
+      </p>
+      <h2>How we approach audience targeting</h2>
+      <p>
+        We dive deep into your brand to understand what makes it unique, then use data analytics and strategic criteria
+        like segmenting audiences based on values, interests, other various targeting techniques and personalisation
+        strategies. This allows us to reach out more effectively with each group of people&thinsp;—&thinsp;expanding the
+        impact of every campaign.
+      </p>
+      <p><a href="/contact/" class="button button--green">Let's Talk</a></p>
+    </div>
+    <ServicesRelatedWork tag={77} />
+  </div>
+  <FeaturedArticles />
 </Layout>

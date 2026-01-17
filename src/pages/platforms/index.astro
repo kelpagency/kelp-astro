@@ -13,99 +13,109 @@ import ShopifyIcon from '../../assets/shopify.svg';
 ---
 
 <Layout title="Kelp's Preferred Platforms" darkHeader={true}>
-	<article>
-		<SimpleHero
-			title="Our <br><span style='margin-left: 1em;'>Platforms</span>"
-			description="In addition to our expertise in the fundamentals of the web, we know the top platforms out there better than most. And we aren't just saying that — we've won awards from multiple platforms to prove it."
-			dark="true"
-		/>
+  <article>
+    <SimpleHero
+      title="Our <br><span style='margin-left: 1em;'>Platforms</span>"
+      description="In addition to our expertise in the fundamentals of the web, we know the top platforms out there better than most. And we aren't just saying that — we've won awards from multiple platforms to prove it."
+      dark="true"
+    />
 
-		<section class="wrapper">
-			<!-- WordPress + Woo -->
-			<div class="platform">
-				<div class="platform-logo">
-					<Image
-						src={wordpressLogo}
-						alt="WordPress logo"
-						loading="lazy"
-						decoding="async"
-					/>
-					+
-					<WooCommerceIcon />
-				</div>
+    <section class="wrapper">
+      <!-- WordPress + Woo -->
+      <div class="platform">
+        <div class="platform-logo">
+          <Image src={wordpressLogo} alt="WordPress logo" loading="lazy" decoding="async" />
+          +
+          <WooCommerceIcon />
+        </div>
 
-				<div class="platform-text">
-					<h2>WordPress &amp; WooCommerce</h2>
-					<p>
-						We love building custom WordPress themes and plugins with a clear purpose. WordPress can be an incredibly powerful platform — as long as you respect its ecosystem and use it the way it was designed. We’ve embraced the Gutenberg editor and gone all-in on block-based themes. 
-						<a href="https://woocommerce.com/posts/the-wooexpert-awards-americas-2023/">Automattic recognized our work</a> with <strong>The Innovator Award in 2023</strong>.
-					</p>
-					<a href="/platforms/wordpress/" class="squiggle">Learn more</a>
-				</div>
-			</div>
+        <div class="platform-text">
+          <h2>WordPress &amp; WooCommerce</h2>
+          <p>
+            We love building custom WordPress themes and plugins with a clear purpose. WordPress can be an incredibly
+            powerful platform&thinsp;—&thinsp;as long as you respect its ecosystem and use it the way it was designed.
+            We’ve embraced the Gutenberg editor and gone all-in on block-based themes.
+            <a href="https://woocommerce.com/posts/the-wooexpert-awards-americas-2023/"
+              >Automattic recognized our work</a
+            > with <strong>The Innovator Award in 2023</strong>.
+          </p>
+          <a href="/platforms/wordpress/" class="squiggle">Learn more</a>
+        </div>
+      </div>
 
-			<!-- HubSpot -->
-			<div class="platform">
-				<div class="platform-logo">
-					<HubSpotIcon />
-				</div>
+      <!-- HubSpot -->
+      <div class="platform">
+        <div class="platform-logo">
+          <HubSpotIcon />
+        </div>
 
-				<div class="platform-text">
-					<h2>HubSpot</h2>
-					<p>
-						HubSpot CMS gives marketers a powerful platform to grow with — but it can also be overwhelming if modules aren’t built with usability and flexibility in mind. We’ve solved that problem with award-winning themes focused on simplicity, scalability, and real-world marketing workflows. 
-						In fact, we have <a href="https://ecosystem.hubspot.com/marketplace/website?eco_providers=Kelp%20Creative%20Agency">two themes in the HubSpot Marketplace</a>, both of which <strong>won HubSpot awards</strong> in  
-						<a href="https://hubspot.devpost.com/updates/19595-and-the-hubspot-cms-themes-challenge-winners-are">The CMS Themes Challenge</a>.
-					</p>
-					<a href="/platforms/hubspot/" class="squiggle">Learn more</a>
-				</div>
-			</div>
+        <div class="platform-text">
+          <h2>HubSpot</h2>
+          <p>
+            HubSpot CMS gives marketers a powerful platform to grow with&thinsp;—&thinsp;but it can also be overwhelming
+            if modules aren’t built with usability and flexibility in mind. We’ve solved that problem with award-winning
+            themes focused on simplicity, scalability, and real-world marketing workflows. In fact, we have <a
+              href="https://ecosystem.hubspot.com/marketplace/website?eco_providers=Kelp%20Creative%20Agency"
+              >two themes in the HubSpot Marketplace</a
+            >, both of which <strong>won HubSpot awards</strong> in
+            <a href="https://hubspot.devpost.com/updates/19595-and-the-hubspot-cms-themes-challenge-winners-are"
+              >The CMS Themes Challenge</a
+            >.
+          </p>
+          <a href="/platforms/hubspot/" class="squiggle">Learn more</a>
+        </div>
+      </div>
 
-			<!-- Shopify -->
-			<div class="platform">
-				<div class="platform-logo">
-					<ShopifyIcon />
-				</div>
+      <!-- Shopify -->
+      <div class="platform">
+        <div class="platform-logo">
+          <ShopifyIcon />
+        </div>
 
-				<div class="platform-text">
-					<h2>Shopify</h2>
-					<p>
-						Shopify stores can be built in two powerful ways: using traditional Liquid themes or with Hydrogen for a fully headless experience — and we’re experts at both. 
-						Whether you’re launching a high-performing storefront with advanced functionality or building a scalable headless experience that connects across multiple sales channels, we create Shopify sites that are <strong>designed to sell and built to grow</strong>.
-					</p>
-					<a href="/platforms/shopify/" class="squiggle">Learn more</a>
-				</div>
-			</div>
-		</section>
-	</article>
+        <div class="platform-text">
+          <h2>Shopify</h2>
+          <p>
+            Shopify stores can be built in two powerful ways: using traditional Liquid themes or with Hydrogen for a
+            fully headless experience&thinsp;—&thinsp;and we’re experts at both. Whether you’re launching a
+            high-performing storefront with advanced functionality or building a scalable headless experience that
+            connects across multiple sales channels, we create Shopify sites that are <strong
+              >designed to sell and built to grow</strong
+            >.
+          </p>
+          <a href="/platforms/shopify/" class="squiggle">Learn more</a>
+        </div>
+      </div>
+    </section>
+  </article>
 </Layout>
 <style lang="scss">
-.platform {
-	display: flex;
-	align-items: center;
-	flex-wrap: wrap;
-	gap: 2rem 4rem;
-	margin: 1rem 0;
-	padding: 4rem 0;
-	border-bottom: 2px solid var(--teal);
-	&:last-child {
-		border-bottom: 0;
-	}
-	&-logo {
-		flex: 0 1 250px;
-		text-align: center;
-		order: 1;
-		@media (max-width: 960px) {
-			order: 0;
-		}
-		svg, img {
-			width: 100%;
-			height: auto;
-			margin: 1rem 0;
-		}
-	}
-	&-text {
-		flex: 1 1 500px;
-	}
-}
+  .platform {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem 4rem;
+    margin: 1rem 0;
+    padding: 4rem 0;
+    border-bottom: 2px solid var(--teal);
+    &:last-child {
+      border-bottom: 0;
+    }
+    &-logo {
+      flex: 0 1 250px;
+      text-align: center;
+      order: 1;
+      @media (max-width: 960px) {
+        order: 0;
+      }
+      svg,
+      img {
+        width: 100%;
+        height: auto;
+        margin: 1rem 0;
+      }
+    }
+    &-text {
+      flex: 1 1 500px;
+    }
+  }
 </style>

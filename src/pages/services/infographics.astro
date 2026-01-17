@@ -8,67 +8,138 @@ import flashlightSafetyInfographic from '../../assets/images/infographics/flashl
 import flashlightsInfographic from '../../assets/images/infographics/flashlights-infographic.jpg';
 import labelPrinterInfographic from '../../assets/images/infographics/label-printer-infographic.gif';
 import safetyTipsInfographic from '../../assets/images/infographics/safety-tips-infographic.jpg';
-import FeaturedArticles from "../../components/FeaturedArticles.astro";
-import ServicesRelatedWork from "../../components/ServicesRelatedWork.astro";
-import "../../styles/pages/_services-list.scss";
-
+import FeaturedArticles from '../../components/FeaturedArticles.astro';
+import ServicesRelatedWork from '../../components/ServicesRelatedWork.astro';
+import '../../styles/pages/_services-list.scss';
 ---
 
 <Layout
-	title='Infographics | Florida Graphic Design Agency'
-	description='Infographics are a great way to make your brand story come alive. They’re captivating and engaging because they combine text with images in creative ways that hook readers of all ages.'
+  title="Infographics | Florida Graphic Design Agency"
+  description="Infographics are a great way to make your brand story come alive. They’re captivating and engaging because they combine text with images in creative ways that hook readers of all ages."
 >
-	<SimpleHero tagline='Content Creation Services' title='Infographics' description="Infographics are a great way to make your brand story come alive. They’re captivating and engaging because they combine text with images in creative ways that hook readers of all ages." lottieFile='infographics.json'/>
-	<div class="wrapper infographics">
-		<div class="infographics-grid" data-lg-reveal="layer-to-right" data-lg-reveal-stagger="0.1">
-			<h2>We Make<br> Infographics Like...</h2>
-			<Picture src={batteryInfographic} loading="lazy" alt="battery upkeep infographic" width={1700} height={5662} widths={[480, 900, 1700]} sizes="(max-width: 900px) 100vw, 50vw"  inferSize />
-			<Picture src={boostInfographic} loading="lazy" alt="marketing infographic" width={750} height={5945} widths={[360, 600, 750]} sizes="(max-width: 900px) 100vw, 50vw"  inferSize />
-			<Picture src={flashlightSafetyInfographic} loading="lazy" alt="flashlight safety infographic" width={600} height={1831} widths={[320, 480, 600]} sizes="(max-width: 900px) 100vw, 50vw"  inferSize />
-			<Picture src={flashlightsInfographic} loading="lazy" alt="flashlights infographic" width={800} height={5020} widths={[400, 650, 800]} sizes="(max-width: 900px) 100vw, 50vw"  inferSize />
-			<Picture src={labelPrinterInfographic} loading="lazy" alt="marketing infographic" width={600} height={1114} widths={[320, 480, 600]} sizes="(max-width: 900px) 100vw, 50vw"  inferSize />
-			<Picture src={safetyTipsInfographic} loading="lazy" alt="safety tips infographic" width={600} height={3591} widths={[320, 480, 600]} sizes="(max-width: 900px) 100vw, 50vw"  inferSize />
-		</div>
-	</div>
-	<div class='service-body'>
-		<div class='wrapper wrapper--narrow'>
-			<h2>Why infographics matter</h2>
-			<p>
-				Infographics are a great way to communicate complex data and information in an easy-to understand, eye catching format. They stimulate our brain's visual processing center which forges powerful connections at first glance by presenting stimulating visuals that increase appeal while making it easier on the human memory system as well because of how streamlined displays allow users near instant comprehension allowing them greater accessibility later down line when trying recall certain pieces or even entire studies!
-			</p>
-			<h2>Applications for infographics</h2>
-			<ul>
-				<li>Informational design</li>
-				<li>Process visualization</li>
-				<li>Explainers</li>
-				<li>Flowcharts</li>
-				<li>Tutorials</li>
-				<li>Microcontent</li>
-				<li>Social </li>
-			</ul>
-			<p>Infographics are a fantastic way to share data with the world. They're perfect for those who have too much information and need an easier medium than just text, or if you want people's attention drawn quickly towards what matters most in your story; they also work well when there is some sort of element which needs explanation (such as animation).</p>
-			<h2>How we approach infographics</h2>
-			<p>Our designers will brainstorm with you and research on what resonates most about the brand goals, then gather all of our findings together in one place. From there we’ll create copy that is engaging but also informative—a perfect balance between aesthetics and substance.</p>
-			<p><a href='/contact/' class='button button--green'>Let's Talk</a></p>
-		</div>
-		<ServicesRelatedWork tag={85} />
-	</div>
-	<FeaturedArticles />
+  <SimpleHero
+    tagline="Content Creation Services"
+    title="Infographics"
+    description="Infographics are a great way to make your brand story come alive. They’re captivating and engaging because they combine text with images in creative ways that hook readers of all ages."
+    lottieFile="infographics.json"
+  />
+  <div class="wrapper infographics">
+    <div class="infographics-grid" data-lg-reveal="layer-to-right" data-lg-reveal-stagger="0.1">
+      <h2>We Make<br /> Infographics Like...</h2>
+      <Picture
+        src={batteryInfographic}
+        loading="lazy"
+        alt="battery upkeep infographic"
+        width={1700}
+        height={5662}
+        widths={[480, 900, 1700]}
+        sizes="(max-width: 900px) 100vw, 50vw"
+        inferSize
+      />
+      <Picture
+        src={boostInfographic}
+        loading="lazy"
+        alt="marketing infographic"
+        width={750}
+        height={5945}
+        widths={[360, 600, 750]}
+        sizes="(max-width: 900px) 100vw, 50vw"
+        inferSize
+      />
+      <Picture
+        src={flashlightSafetyInfographic}
+        loading="lazy"
+        alt="flashlight safety infographic"
+        width={600}
+        height={1831}
+        widths={[320, 480, 600]}
+        sizes="(max-width: 900px) 100vw, 50vw"
+        inferSize
+      />
+      <Picture
+        src={flashlightsInfographic}
+        loading="lazy"
+        alt="flashlights infographic"
+        width={800}
+        height={5020}
+        widths={[400, 650, 800]}
+        sizes="(max-width: 900px) 100vw, 50vw"
+        inferSize
+      />
+      <Picture
+        src={labelPrinterInfographic}
+        loading="lazy"
+        alt="marketing infographic"
+        width={600}
+        height={1114}
+        widths={[320, 480, 600]}
+        sizes="(max-width: 900px) 100vw, 50vw"
+        inferSize
+      />
+      <Picture
+        src={safetyTipsInfographic}
+        loading="lazy"
+        alt="safety tips infographic"
+        width={600}
+        height={3591}
+        widths={[320, 480, 600]}
+        sizes="(max-width: 900px) 100vw, 50vw"
+        inferSize
+      />
+    </div>
+  </div>
+  <div class="service-body">
+    <div class="wrapper wrapper--narrow">
+      <h2>Why infographics matter</h2>
+      <p>
+        Infographics are a great way to communicate complex data and information in an easy-to understand, eye catching
+        format. They stimulate our brain's visual processing center which forges powerful connections at first glance by
+        presenting stimulating visuals that increase appeal while making it easier on the human memory system as well
+        because of how streamlined displays allow users near instant comprehension allowing them greater accessibility
+        later down line when trying recall certain pieces or even entire studies!
+      </p>
+      <h2>Applications for infographics</h2>
+      <ul>
+        <li>Informational design</li>
+        <li>Process visualization</li>
+        <li>Explainers</li>
+        <li>Flowcharts</li>
+        <li>Tutorials</li>
+        <li>Microcontent</li>
+        <li>Social</li>
+      </ul>
+      <p>
+        Infographics are a fantastic way to share data with the world. They're perfect for those who have too much
+        information and need an easier medium than just text, or if you want people's attention drawn quickly towards
+        what matters most in your story; they also work well when there is some sort of element which needs explanation
+        (such as animation).
+      </p>
+      <h2>How we approach infographics</h2>
+      <p>
+        Our designers will brainstorm with you and research on what resonates most about the brand goals, then gather
+        all of our findings together in one place. From there we’ll create copy that is engaging but also
+        informative&thinsp;—&thinsp;a perfect balance between aesthetics and substance.
+      </p>
+      <p><a href="/contact/" class="button button--green">Let's Talk</a></p>
+    </div>
+    <ServicesRelatedWork tag={85} />
+  </div>
+  <FeaturedArticles />
 </Layout>
 
 <style lang="scss" is:global>
-.infographics {
-	margin-bottom: 6rem;
-	max-width: 1200px;
-	h2 {
-		margin-bottom: 2rem;
-	}
-	&-grid {
-		column-count: 2;
-		column-gap: 2rem;
-		picture {
-			margin-bottom: 2rem;
-		}
-	}
-}
+  .infographics {
+    margin-bottom: 6rem;
+    max-width: 1200px;
+    h2 {
+      margin-bottom: 2rem;
+    }
+    &-grid {
+      column-count: 2;
+      column-gap: 2rem;
+      picture {
+        margin-bottom: 2rem;
+      }
+    }
+  }
 </style>

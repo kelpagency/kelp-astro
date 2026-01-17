@@ -13,183 +13,316 @@ import seaweedBrush from '../assets/images/resources/seaweed-brush.png';
 import ropeBrush from '../assets/images/resources/rope-brush.jpg';
 ---
 
-<Layout title="Kelp Resources" description="A collection of digital assets we've made that you might find useful for yourself." darkHeader={true}>
-	<div class='wrapper wrapper--narrow'>
-		<h1 style="margin-top: 8rem;" data-lg-reveal="fade" data-lg-reveal-stagger="0.05"><span>Kelp</span> <span>Resources</span></h1>
-		<p style="max-width: 800px; flex: 1 1 500px; font-size: var(--step-1)" data-lg-reveal="fade" data-lg-reveal-delay=".5">
-			A collection of digital assets we've made that you might find useful for yourself. Don't see what you're looking for? <a href="/contact">Contact us</a> — we'd love to build it for you.
-		</p>
-	</div>
+<Layout
+  title="Kelp Resources"
+  description="A collection of digital assets we've made that you might find useful for yourself."
+  darkHeader={true}
+>
+  <div class="wrapper wrapper--narrow">
+    <h1 style="margin-top: 8rem;" data-lg-reveal="fade" data-lg-reveal-stagger="0.05">
+      <span>Kelp</span>
+      <span>Resources</span>
+    </h1>
+    <p
+      style="max-width: 800px; flex: 1 1 500px; font-size: var(--step-1)"
+      data-lg-reveal="fade"
+      data-lg-reveal-delay=".5"
+    >
+      A collection of digital assets we've made that you might find useful for yourself. Don't see what you're looking
+      for? <a href="/contact">Contact us</a>&thinsp;—&thinsp;we'd love to build it for you.
+    </p>
+  </div>
   <div class="wrapper archive">
-		<article class='archive-tease' data-lg-reveal='layer-to-right' data-lg-reveal-stagger='0.15'>
-			<AwardBadge title="Winner of the 2021 HubSpot Themes Challenge" />
-			<a href='https://ecosystem.hubspot.com/marketplace/website/modern-pro-theme-by-kelp-creative-agency' class='media'>
-				<Picture src={modernPro} alt='Modern Pro - HubSpot Theme' loading='lazy' width={1160} height={870} widths={[360, 720, 1160]} sizes='(max-width: 900px) 100vw, 33vw'  inferSize />
-			</a>
-			<div class='text'>
-				<p class='text-meta'>HubSpot Theme</p>
-				<h2 class='h5'><a href="https://ecosystem.hubspot.com/marketplace/website/modern-pro-theme-by-kelp-creative-agency">Modern Pro</a></h2>
-				<p>Modern Pro is a versatility focused HubSpot theme built specifically to do more with less. If you are looking for a HubSpot theme that can adapt and change as your business does, this is it.</p>
-			</div>
-		</article>
-		<article class='archive-tease' data-lg-reveal='layer-to-right' data-lg-reveal-stagger='0.15'>
-			<AwardBadge title="Winner of the 2021 HubSpot Themes Challenge" />
-			<a href='https://ecosystem.hubspot.com/marketplace/website/restaurant-pro-theme-by-kelp-creative-agency' class='media'>
-				<Picture src={restaurantPro} alt='Modern Pro - HubSpot Theme' loading='lazy' width={1160} height={870} widths={[360, 720, 1160]} sizes='(max-width: 900px) 100vw, 33vw'  inferSize />
-			</a>
-			<div class='text'>
-				<p class='text-meta'>HubSpot Theme</p>
-				<h2 class='h5'><a href='https://ecosystem.hubspot.com/marketplace/website/restaurant-pro-theme-by-kelp-creative-agency'>Restaurant Pro</a></h2>
-				<p>Restaurant Pro is a quirky, fun, and polished theme that is ready to be the digital facelift your restaurant or food business needs.Packed with features specifically to make your food based business shine, Restaurant Pro will elevate your brand.</p>
-			</div>
-		</article>
-		<article class='archive-tease' data-lg-reveal='layer-to-right' data-lg-reveal-stagger='0.15'>
-			<a href='https://wordpress.org/plugins/simple-social-sharing-kelp/' class='media'>
-				<Picture src={simpleSocial} alt='Simple Social Sharing WordPress Widget' loading='lazy' width={960} height={720} widths={[360, 720, 960]} sizes='(max-width: 900px) 100vw, 33vw'  inferSize />
-			</a>
-			<div class='text'>
-				<p class='text-meta'>WordPress Plugin</p>
-				<h2 class='h5'><a href="https://wordpress.org/plugins/simple-social-sharing-kelp/">Simple Social Sharing</a></h2>
-				<p>Social sharing buttons that are performant, accessible, and have a ton of customization features built-in. Choose your sharing icon design ranging from rounded, squircles, or just basic icons. Display them in a vertical layout for a sidebar or horizontally with your main content.</p>
-			</div>
-		</article>
-		<article class='archive-tease' data-lg-reveal='layer-to-right' data-lg-reveal-stagger='0.15'>
-			<a href='https://admin.kelp.agency/wp-content/uploads/2023/05/Kelp-Brand-Identity-Toolkit-PDF.pdf' class='media'>
-				<Picture src={brandIdentityToolkit} alt='Brand Identity Toolkit' loading='lazy' width={1200} height={1553} widths={[400, 800, 1200]} sizes='(max-width: 900px) 100vw, 33vw'  inferSize />
-			</a>
-			<div class='text'>
-				<p class='text-meta'>PDF Download</p>
-				<h2 class='h5'><a href='https://admin.kelp.agency/wp-content/uploads/2023/05/Kelp-Brand-Identity-Toolkit-PDF.pdf'>Brand Identity Toolkit</a></h2>
-				<p>Our templates, exercises, and checklists aid in designing a stunning identity that stands out against competition, effectively engages with customers, and truly reflects the essence of your brand.</p>
-			</div>
-		</article>
-		<article class='archive-tease' data-lg-reveal='layer-to-right' data-lg-reveal-stagger='0.15'>
-			<a href='https://admin.kelp.agency/wp-content/uploads/2023/05/Kelp-Brand-Strategy-Toolkit-PDF.pdf' class='media'>
-				<Picture src={brandStrategyToolkit} alt='Brand Strategy Toolkit' loading='lazy' width={1200} height={1553} widths={[400, 800, 1200]} sizes='(max-width: 900px) 100vw, 33vw'  inferSize />
-			</a>
-			<div class='text'>
-				<p class='text-meta'>PDF Download</p>
-				<h2 class='h5'><a href='https://admin.kelp.agency/wp-content/uploads/2023/05/Kelp-Brand-Strategy-Toolkit.pdf'>Brand Strategy Toolkit</a></h2>
-				<p>We've gathered all the necessary tools, tips, and templates for you to construct a brand from scratch. Follow along sequentially or select any specific tool directly from the list provided.</p>
-			</div>
-		</article>
-		<article class='archive-tease' data-lg-reveal='layer-to-right' data-lg-reveal-stagger='0.15'>
-			<a href='/fonts/Red-Flag.otf' class='media' download>
-				<Picture src={redFlagFont} alt='Red Flag - Custom Font by Kelp' loading='lazy' width={1200} height={800} widths={[400, 800, 1200]} sizes='(max-width: 900px) 100vw, 33vw'  inferSize />
-			</a>
-			<div class='text'>
-				<p class='text-meta'>Font Download</p>
-				<h2 class='h5'><a href='/fonts/Red-Flag.otf' download>Red Flag Font</a></h2>
-				<p>This textured, pirate-inspired script by Kelp Creative Agency brings a rough, grunge feel to any design.</p>
-			</div>
-		</article>
-		<article class='archive-tease' data-lg-reveal='layer-to-right' data-lg-reveal-stagger='0.15'>
-			<a href='/fonts/black-flag-fonts.zip' class='media' download>
-				<Picture src={blackFlagFont} alt='Black Flag - Custom Font by Kelp' loading='lazy' width={960} height={540} widths={[360, 720, 960]} sizes='(max-width: 900px) 100vw, 33vw'  inferSize />
-			</a>
-			<div class='text'>
-				<p class='text-meta'>Font Download</p>
-				<h2 class='h5'><a href='/fonts/black-flag-fonts.zip' download>Black Flag Font</a></h2>
-				<p>BlackFlag is a serif font born of the salty sea. With multiple styles, this font is suitable for a variety of use cases. Your creativity is your only limitation.</p>
-			</div>
-		</article>
-		<article class='archive-tease' data-lg-reveal='layer-to-right' data-lg-reveal-stagger='0.15'>
-			<a href='/brushes/Kelp-Seaweed-Brush.ai' class='media' download>
-				<Picture src={seaweedBrush} alt='Custom seaweed Illustrator brush' loading='lazy' width={600} height={600} widths={[320, 480, 600]} sizes='(max-width: 900px) 100vw, 33vw'  inferSize />
-			</a>
-			<div class='text'>
-				<p class='text-meta'>Illustrator Brush</p>
-				<h2 class='h5'><a href='/brushes/Kelp-Seaweed-Brush.ai' download>Seaweed Brush</a></h2>
-				<p>Make seaweed in your illustrations with ease.</p>
-			</div>
-		</article>
-		<article class='archive-tease' data-lg-reveal='layer-to-right' data-lg-reveal-stagger='0.15'>
-			<a href='/brushes/Kelp-Rope-Brush.ai' class='media' download>
-				<Picture src={ropeBrush} alt='Custom Illustrator Rope Brush' loading='lazy' width={500} height={500} widths={[300, 420, 500]} sizes='(max-width: 900px) 100vw, 33vw'  inferSize />
-			</a>
-			<div class='text'>
-				<p class='text-meta'>Illustrator Brush</p>
-				<h2 class='h5'><a href='/brushes/Kelp-Rope-Brush.ai' download>Rope Brush</a></h2>
-				<p>Make ropes in your illustrations with ease.</p>
-			</div>
-		</article>
+    <article class="archive-tease" data-lg-reveal="layer-to-right" data-lg-reveal-stagger="0.15">
+      <AwardBadge title="Winner of the 2021 HubSpot Themes Challenge" />
+      <a
+        href="https://ecosystem.hubspot.com/marketplace/website/modern-pro-theme-by-kelp-creative-agency"
+        class="media"
+      >
+        <Picture
+          src={modernPro}
+          alt="Modern Pro - HubSpot Theme"
+          loading="lazy"
+          width={1160}
+          height={870}
+          widths={[360, 720, 1160]}
+          sizes="(max-width: 900px) 100vw, 33vw"
+          inferSize
+        />
+      </a>
+      <div class="text">
+        <p class="text-meta">HubSpot Theme</p>
+        <h2 class="h5">
+          <a href="https://ecosystem.hubspot.com/marketplace/website/modern-pro-theme-by-kelp-creative-agency"
+            >Modern Pro</a>
+        </h2>
+        <p>
+          Modern Pro is a versatility focused HubSpot theme built specifically to do more with less. If you are looking
+          for a HubSpot theme that can adapt and change as your business does, this is it.
+        </p>
+      </div>
+    </article>
+    <article class="archive-tease" data-lg-reveal="layer-to-right" data-lg-reveal-stagger="0.15">
+      <AwardBadge title="Winner of the 2021 HubSpot Themes Challenge" />
+      <a
+        href="https://ecosystem.hubspot.com/marketplace/website/restaurant-pro-theme-by-kelp-creative-agency"
+        class="media"
+      >
+        <Picture
+          src={restaurantPro}
+          alt="Modern Pro - HubSpot Theme"
+          loading="lazy"
+          width={1160}
+          height={870}
+          widths={[360, 720, 1160]}
+          sizes="(max-width: 900px) 100vw, 33vw"
+          inferSize
+        />
+      </a>
+      <div class="text">
+        <p class="text-meta">HubSpot Theme</p>
+        <h2 class="h5">
+          <a href="https://ecosystem.hubspot.com/marketplace/website/restaurant-pro-theme-by-kelp-creative-agency"
+            >Restaurant Pro</a>
+        </h2>
+        <p>
+          Restaurant Pro is a quirky, fun, and polished theme that is ready to be the digital facelift your restaurant
+          or food business needs.Packed with features specifically to make your food based business shine, Restaurant
+          Pro will elevate your brand.
+        </p>
+      </div>
+    </article>
+    <article class="archive-tease" data-lg-reveal="layer-to-right" data-lg-reveal-stagger="0.15">
+      <a href="https://wordpress.org/plugins/simple-social-sharing-kelp/" class="media">
+        <Picture
+          src={simpleSocial}
+          alt="Simple Social Sharing WordPress Widget"
+          loading="lazy"
+          width={960}
+          height={720}
+          widths={[360, 720, 960]}
+          sizes="(max-width: 900px) 100vw, 33vw"
+          inferSize
+        />
+      </a>
+      <div class="text">
+        <p class="text-meta">WordPress Plugin</p>
+        <h2 class="h5">
+          <a href="https://wordpress.org/plugins/simple-social-sharing-kelp/">Simple Social Sharing</a>
+        </h2>
+        <p>
+          Social sharing buttons that are performant, accessible, and have a ton of customization features built-in.
+          Choose your sharing icon design ranging from rounded, squircles, or just basic icons. Display them in a
+          vertical layout for a sidebar or horizontally with your main content.
+        </p>
+      </div>
+    </article>
+    <article class="archive-tease" data-lg-reveal="layer-to-right" data-lg-reveal-stagger="0.15">
+      <a href="https://admin.kelp.agency/wp-content/uploads/2023/05/Kelp-Brand-Identity-Toolkit-PDF.pdf" class="media">
+        <Picture
+          src={brandIdentityToolkit}
+          alt="Brand Identity Toolkit"
+          loading="lazy"
+          width={1200}
+          height={1553}
+          widths={[400, 800, 1200]}
+          sizes="(max-width: 900px) 100vw, 33vw"
+          inferSize
+        />
+      </a>
+      <div class="text">
+        <p class="text-meta">PDF Download</p>
+        <h2 class="h5">
+          <a href="https://admin.kelp.agency/wp-content/uploads/2023/05/Kelp-Brand-Identity-Toolkit-PDF.pdf"
+            >Brand Identity Toolkit</a>
+        </h2>
+        <p>
+          Our templates, exercises, and checklists aid in designing a stunning identity that stands out against
+          competition, effectively engages with customers, and truly reflects the essence of your brand.
+        </p>
+      </div>
+    </article>
+    <article class="archive-tease" data-lg-reveal="layer-to-right" data-lg-reveal-stagger="0.15">
+      <a href="https://admin.kelp.agency/wp-content/uploads/2023/05/Kelp-Brand-Strategy-Toolkit-PDF.pdf" class="media">
+        <Picture
+          src={brandStrategyToolkit}
+          alt="Brand Strategy Toolkit"
+          loading="lazy"
+          width={1200}
+          height={1553}
+          widths={[400, 800, 1200]}
+          sizes="(max-width: 900px) 100vw, 33vw"
+          inferSize
+        />
+      </a>
+      <div class="text">
+        <p class="text-meta">PDF Download</p>
+        <h2 class="h5">
+          <a href="https://admin.kelp.agency/wp-content/uploads/2023/05/Kelp-Brand-Strategy-Toolkit.pdf"
+            >Brand Strategy Toolkit</a>
+        </h2>
+        <p>
+          We've gathered all the necessary tools, tips, and templates for you to construct a brand from scratch. Follow
+          along sequentially or select any specific tool directly from the list provided.
+        </p>
+      </div>
+    </article>
+    <article class="archive-tease" data-lg-reveal="layer-to-right" data-lg-reveal-stagger="0.15">
+      <a href="/fonts/Red-Flag.otf" class="media" download>
+        <Picture
+          src={redFlagFont}
+          alt="Red Flag - Custom Font by Kelp"
+          loading="lazy"
+          width={1200}
+          height={800}
+          widths={[400, 800, 1200]}
+          sizes="(max-width: 900px) 100vw, 33vw"
+          inferSize
+        />
+      </a>
+      <div class="text">
+        <p class="text-meta">Font Download</p>
+        <h2 class="h5"><a href="/fonts/Red-Flag.otf" download>Red Flag Font</a></h2>
+        <p>This textured, pirate-inspired script by Kelp Creative Agency brings a rough, grunge feel to any design.</p>
+      </div>
+    </article>
+    <article class="archive-tease" data-lg-reveal="layer-to-right" data-lg-reveal-stagger="0.15">
+      <a href="/fonts/black-flag-fonts.zip" class="media" download>
+        <Picture
+          src={blackFlagFont}
+          alt="Black Flag - Custom Font by Kelp"
+          loading="lazy"
+          width={960}
+          height={540}
+          widths={[360, 720, 960]}
+          sizes="(max-width: 900px) 100vw, 33vw"
+          inferSize
+        />
+      </a>
+      <div class="text">
+        <p class="text-meta">Font Download</p>
+        <h2 class="h5"><a href="/fonts/black-flag-fonts.zip" download>Black Flag Font</a></h2>
+        <p>
+          BlackFlag is a serif font born of the salty sea. With multiple styles, this font is suitable for a variety of
+          use cases. Your creativity is your only limitation.
+        </p>
+      </div>
+    </article>
+    <article class="archive-tease" data-lg-reveal="layer-to-right" data-lg-reveal-stagger="0.15">
+      <a href="/brushes/Kelp-Seaweed-Brush.ai" class="media" download>
+        <Picture
+          src={seaweedBrush}
+          alt="Custom seaweed Illustrator brush"
+          loading="lazy"
+          width={600}
+          height={600}
+          widths={[320, 480, 600]}
+          sizes="(max-width: 900px) 100vw, 33vw"
+          inferSize
+        />
+      </a>
+      <div class="text">
+        <p class="text-meta">Illustrator Brush</p>
+        <h2 class="h5"><a href="/brushes/Kelp-Seaweed-Brush.ai" download>Seaweed Brush</a></h2>
+        <p>Make seaweed in your illustrations with ease.</p>
+      </div>
+    </article>
+    <article class="archive-tease" data-lg-reveal="layer-to-right" data-lg-reveal-stagger="0.15">
+      <a href="/brushes/Kelp-Rope-Brush.ai" class="media" download>
+        <Picture
+          src={ropeBrush}
+          alt="Custom Illustrator Rope Brush"
+          loading="lazy"
+          width={500}
+          height={500}
+          widths={[300, 420, 500]}
+          sizes="(max-width: 900px) 100vw, 33vw"
+          inferSize
+        />
+      </a>
+      <div class="text">
+        <p class="text-meta">Illustrator Brush</p>
+        <h2 class="h5"><a href="/brushes/Kelp-Rope-Brush.ai" download>Rope Brush</a></h2>
+        <p>Make ropes in your illustrations with ease.</p>
+      </div>
+    </article>
   </div>
 </Layout>
 
 <style lang="scss" is:global>
   .archive {
-		display: grid;
-		grid-template-columns: 1fr 1fr 1fr;
-		gap: 3rem;
-		padding-bottom: 5rem;
-		margin-top: 5rem;
-		@media (max-width: 1300px) {
-	  	grid-template-columns: 1fr 1fr;
-		}
-		@media (max-width: 890px) {
-	  	grid-template-columns: 1fr;
-		}
-		&-tease {
-	  	position: relative;
-	  	.media {
-				aspect-ratio: 4 / 3;
-				overflow: hidden;
-				display: block;
-				picture,
-				img {
-		  		height: 100% !important;
-		  		width: 100% !important;
-		  		object-fit: cover;
-		  		max-width: none !important;
-				}
-	  	}
-	  	.text {
-				a {
-		  		text-decoration: none;
-		  		&:after {
-						content: '';
-						position: absolute;
-						top: 0;
-						left: 0;
-						width: 100%;
-						height: 100%;
-						z-index: 2;
-		  		}
-				}
-				&-meta {
-		  		text-transform: uppercase;
-		  		font-family: var(--sans-serif);
-		  		font-size: 14px;
-		  		line-height: 1.2;
-		  		opacity: 0.5;
-		  		margin-top: 1.5rem;
-		  		span + span {
-						border-left: 1px solid;
-						margin-left: 0.5rem;
-						padding-left: 0.7rem;
-		  		}
-				}
-	  	}
-	  	&:nth-of-type(4n + 1) {
-				.lg-reveal--layer-to-right:after {
-		  		background-color: var(--light-purple);
-				}
-	  	}
-	  	&:nth-of-type(4n + 2) {
-				.lg-reveal--layer-to-right:after {
-		  		background-color: var(--green);
-				}
-	  	}
-	  	&:nth-of-type(4n + 3) {
-				.lg-reveal--layer-to-right:after {
-		  		background-color: var(--purple);
-				}
-	  	}
-	  	&:nth-of-type(4n + 4) {
-				.lg-reveal--layer-to-right:after {
-		  		background-color: var(--red);
-				}
-	  	}
-		}
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 3rem;
+    padding-bottom: 5rem;
+    margin-top: 5rem;
+    @media (max-width: 1300px) {
+      grid-template-columns: 1fr 1fr;
+    }
+    @media (max-width: 890px) {
+      grid-template-columns: 1fr;
+    }
+    &-tease {
+      position: relative;
+      .media {
+        aspect-ratio: 4 / 3;
+        overflow: hidden;
+        display: block;
+        picture,
+        img {
+          height: 100% !important;
+          width: 100% !important;
+          object-fit: cover;
+          max-width: none !important;
+        }
+      }
+      .text {
+        a {
+          text-decoration: none;
+          &:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+          }
+        }
+        &-meta {
+          text-transform: uppercase;
+          font-family: var(--sans-serif);
+          font-size: 14px;
+          line-height: 1.2;
+          opacity: 0.5;
+          margin-top: 1.5rem;
+          span + span {
+            border-left: 1px solid;
+            margin-left: 0.5rem;
+            padding-left: 0.7rem;
+          }
+        }
+      }
+      &:nth-of-type(4n + 1) {
+        .lg-reveal--layer-to-right:after {
+          background-color: var(--light-purple);
+        }
+      }
+      &:nth-of-type(4n + 2) {
+        .lg-reveal--layer-to-right:after {
+          background-color: var(--green);
+        }
+      }
+      &:nth-of-type(4n + 3) {
+        .lg-reveal--layer-to-right:after {
+          background-color: var(--purple);
+        }
+      }
+      &:nth-of-type(4n + 4) {
+        .lg-reveal--layer-to-right:after {
+          background-color: var(--red);
+        }
+      }
+    }
   }
 </style>

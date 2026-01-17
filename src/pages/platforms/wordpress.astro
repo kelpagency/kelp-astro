@@ -12,76 +12,74 @@ import wooPartner from '../../assets/woo-partner.png';
 ---
 
 <Layout title="Kelp ❤️'s WordPress" darkHeader={true}>
-	<article>
-		<SimpleHero
-			title="WordPress"
-			description="Kelp is a proud Automattic Agency partner. This means we are experts within the WordPress ecosystem including Jetpack, Pressable, and WooCommerce. In fact, this very website is a headless WordPress instance."
-			dark="true"
-		/>
+  <article>
+    <SimpleHero
+      title="WordPress"
+      description="Kelp is a proud Automattic Agency partner. This means we are experts within the WordPress ecosystem including Jetpack, Pressable, and WooCommerce. In fact, this very website is a headless WordPress instance."
+      dark="true"
+    />
 
-		<section class="wrapper wrapper--narrow">
-			<div class="platform">
-				<div class="platform-logo">
-					<Image
-						src={jetpackPartner}
-						alt="Jetpack Pro Partner"
-						height="133"
-						loading="lazy"
-						decoding="async"
-					/>
-					<Image
-						src={pressablePartner}
-						alt="Pressable Pro Partner"
-						height="133"
-						loading="lazy"
-						decoding="async"
-					/>
-					<Image
-						src={wooPartner}
-						alt="WooCommerce Pro Partner"
-						height="133"
-						loading="lazy"
-						decoding="async"
-					/>
-				</div>
+    <section class="wrapper wrapper--narrow">
+      <div class="platform">
+        <div class="platform-logo">
+          <Image src={jetpackPartner} alt="Jetpack Pro Partner" height="133" loading="lazy" decoding="async" />
+          <Image src={pressablePartner} alt="Pressable Pro Partner" height="133" loading="lazy" decoding="async" />
+          <Image src={wooPartner} alt="WooCommerce Pro Partner" height="133" loading="lazy" decoding="async" />
+        </div>
 
-				<div class="platform-text">
-					<p>
-						We love building custom WordPress themes and plugins with a clear purpose. WordPress can be an incredibly powerful platform — as long as you respect its ecosystem and use it the way it was designed. We’ve embraced the Gutenberg editor and gone all-in on block-based themes. 
-						<a href="https://woocommerce.com/posts/the-wooexpert-awards-americas-2023/">Automattic recognized our work</a> with <strong>The Innovator Award in 2023</strong>.
-					</p>
-					<p>We believe that your website's underlying technology can either hold you back, or give you momentum to hit new records. Our preferred method to build custom WordPress themes is with <a href="https://upstatement.com/timber">Timber</a> as it provides a powerful templating engine with a clean syntax. However, we don't mind working in existing themes built with good ol' vanilla PHP. Headless WordPress sounds scary, but it can also be quite nice.</p>
-				</div>
-			</div>
-	</article>
-	<RecentWork tag="88" limit={13} heading="WordPress Sites" description="<p>Don't just take our word for it, check out some of our real projects in the carousel below.</p>" />
-	<FeaturedArticles category="11" heading="Our Articles about WordPress" limit={3} />
-</Layout>
-<style lang="scss">
-.platform {
-	display: flex;
-	align-items: center;
-	flex-wrap: wrap;
-	gap: 2rem 6rem;
-	margin: 1rem 0;
-	padding: 4rem 0;
-	border-bottom: 2px solid var(--teal);
-	&:last-child {
-		border-bottom: 0;
-	}
-	&-logo {
-		flex: 0 1 220px;
-		text-align: center;
-		display: flex;
-		flex-direction: column;
-		gap: 2rem;
-		order: 2;
-		@media (max-width: 767px) {
-			margin: auto;
-		}
-	}
-	&-text {
-		flex: 1 1 500px;
-	}
-}
-</style>
+        <div class="platform-text">
+          <p>
+            We love building custom WordPress themes and plugins with a clear purpose. WordPress can be an incredibly
+            powerful platform&thinsp;—&thinsp;as long as you respect its ecosystem and use it the way it was designed.
+            We’ve embraced the Gutenberg editor and gone all-in on block-based themes.
+            <a href="https://woocommerce.com/posts/the-wooexpert-awards-americas-2023/"
+              >Automattic recognized our work</a
+            > with <strong>The Innovator Award in 2023</strong>.
+          </p>
+          <p>
+            We believe that your website's underlying technology can either hold you back, or give you momentum to hit
+            new records. Our preferred method to build custom WordPress themes is with <a
+              href="https://upstatement.com/timber">Timber</a
+            > as it provides a powerful templating engine with a clean syntax. However, we don't mind working in existing
+            themes built with good ol' vanilla PHP. Headless WordPress sounds scary, but it can also be quite nice.
+          </p>
+        </div>
+      </div>
+    </section>
+    <RecentWork
+      tag="88"
+      limit={13}
+      heading="WordPress Sites"
+      description="<p>Don't just take our word for it, check out some of our real projects in the carousel below.</p>"
+    />
+    <FeaturedArticles category="11" heading="Our Articles about WordPress" limit={3} />
+  </article>
+  <style lang="scss">
+    .platform {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2rem 6rem;
+      margin: 1rem 0;
+      padding: 4rem 0;
+      border-bottom: 2px solid var(--teal);
+      &:last-child {
+        border-bottom: 0;
+      }
+      &-logo {
+        flex: 0 1 220px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        order: 2;
+        @media (max-width: 767px) {
+          margin: auto;
+        }
+      }
+      &-text {
+        flex: 1 1 500px;
+      }
+    }
+  </style></Layout
+>

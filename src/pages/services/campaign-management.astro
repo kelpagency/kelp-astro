@@ -1,25 +1,40 @@
 ---
 import Layout from '../../Base.astro';
 import SimpleHero from '../../components/SimpleHero.astro';
-import FeaturedArticles from "../../components/FeaturedArticles.astro";
-import ServicesRelatedWork from "../../components/ServicesRelatedWork.astro";
-import "../../styles/pages/_services-list.scss";
+import FeaturedArticles from '../../components/FeaturedArticles.astro';
+import ServicesRelatedWork from '../../components/ServicesRelatedWork.astro';
+import '../../styles/pages/_services-list.scss';
 ---
 
 <Layout
-	title='Campaign Management | Florida Marketing Agency'
-	description='By taking a strategic approach to your campaign management, you can maximize the budget and increase conversions.'
+  title="Campaign Management | Florida Marketing Agency"
+  description="By taking a strategic approach to your campaign management, you can maximize the budget and increase conversions."
 >
-	<SimpleHero tagline='Digital Marketing Services' title='Campaign Management' description="By taking a strategic approach to your campaign management, you can maximize the budget and increase conversions." lottieFile='campaign-management.json' />
-	<div class='service-body'>
-		<div class='wrapper wrapper--narrow'>
-			<h2>Why campaign management matters</h2>
-			<p>With the right planning and implementation, you can have a successful marketing campaign that delivers your message effectively to an engaged audience. However, it's difficult without enough time or resources which leads many businesses giving up before they even start! But there are ways around both problems—by creating effective campaigns we improve every step along way. Comprehensive management covers everything from ideation to publishing.</p>
-			<h2>How we approach campaign management</h2>
-			<p>The content you create should reflect your audience, engage them with relevant information and ideas that they find attractive. At Kelp we specialize in crafting engaging copy for any brand or business looking to get ahead of their competition.</p>
-			<p><a href='/contact/' class='button button--green'>Let's Talk</a></p>
-		</div>
-		<ServicesRelatedWork tag={78} />
-	</div>
-	<FeaturedArticles />
+  <SimpleHero
+    tagline="Digital Marketing Services"
+    title="Campaign Management"
+    description="By taking a strategic approach to your campaign management, you can maximize the budget and increase conversions."
+    lottieFile="campaign-management.json"
+  />
+  <div class="service-body">
+    <div class="wrapper wrapper--narrow">
+      <h2>Why campaign management matters</h2>
+      <p>
+        With the right planning and implementation, you can have a successful marketing campaign that delivers your
+        message effectively to an engaged audience. However, it's difficult without enough time or resources which leads
+        many businesses giving up before they even start! But there are ways around both problems&thinsp;—&thinsp;by
+        creating effective campaigns we improve every step along way. Comprehensive management covers everything from
+        ideation to publishing.
+      </p>
+      <h2>How we approach campaign management</h2>
+      <p>
+        The content you create should reflect your audience, engage them with relevant information and ideas that they
+        find attractive. At Kelp we specialize in crafting engaging copy for any brand or business looking to get ahead
+        of their competition.
+      </p>
+      <p><a href="/contact/" class="button button--green">Let's Talk</a></p>
+    </div>
+    <ServicesRelatedWork tag={78} />
+  </div>
+  <FeaturedArticles />
 </Layout>

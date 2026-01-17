@@ -1,40 +1,55 @@
 ---
 import Layout from '../../Base.astro';
 import SimpleHero from '../../components/SimpleHero.astro';
-import FeaturedArticles from "../../components/FeaturedArticles.astro";
-import ServicesRelatedWork from "../../components/ServicesRelatedWork.astro";
-import "../../styles/pages/_services-list.scss";
-
+import FeaturedArticles from '../../components/FeaturedArticles.astro';
+import ServicesRelatedWork from '../../components/ServicesRelatedWork.astro';
+import '../../styles/pages/_services-list.scss';
 ---
 
 <Layout
-	title='Motion Graphics | Florida Video Production Services'
-	description='Show off your story with eye-catching motion graphics that will make it pop on screen.'
+  title="Motion Graphics | Florida Video Production Services"
+  description="Show off your story with eye-catching motion graphics that will make it pop on screen."
 >
-	<SimpleHero tagline='Content Creation Services' title='Motion Graphics' description="Show off your story with eye-catching motion graphics that will make it pop on screen." lottieFile='motion-graphics.json'/>
-	<div class='service-body'>
-		<div class='wrapper wrapper--narrow'>
-			<h2>Why motion graphics matter</h2>
-			<p>
-				Animated videos are scientifically proven learning tools that combine both visual and auditory stimuli to cater their content quickly. They're also an engaging passive experience which makes them perfect for delivering information with little effort on behalf of the viewer, while remembering your brand long after they've watched it!
-			</p>
-			<p>At a time when keeping attention is tough this type animation can help you turn messages into memorable experiences</p>
-			<h2>Applications for motion graphics</h2>
-			<ul>
-				<li>Case studies</li>
-				<li>Data visualizations</li>
-				<li>Product reviews</li>
-				<li>Explainer videos</li>
-				<li>Testimonials</li>
-				<li>Promotion</li>
-				<li>Sales collateral</li>
-				<li>Social media</li>
-			</ul>
-			<h2>How we approach motion graphics</h2>
-			<p>We tell stories with visuals and sound, so you can engage people on your website, social media or other platforms. A careful balance of storytelling techniques is essential to make it captivating: voiceover; music that builds interest; text animation which tells part-of the tale while building curiosity for more information—all designed by our talented team!</p>
-			<p><a href='/contact/' class='button button--green'>Let's Talk</a></p>
-		</div>
-		<ServicesRelatedWork tag={76} />
-	</div>
-	<FeaturedArticles />
+  <SimpleHero
+    tagline="Content Creation Services"
+    title="Motion Graphics"
+    description="Show off your story with eye-catching motion graphics that will make it pop on screen."
+    lottieFile="motion-graphics.json"
+  />
+  <div class="service-body">
+    <div class="wrapper wrapper--narrow">
+      <h2>Why motion graphics matter</h2>
+      <p>
+        Animated videos are scientifically proven learning tools that combine both visual and auditory stimuli to cater
+        their content quickly. They're also an engaging passive experience which makes them perfect for delivering
+        information with little effort on behalf of the viewer, while remembering your brand long after they've watched
+        it!
+      </p>
+      <p>
+        At a time when keeping attention is tough this type animation can help you turn messages into memorable
+        experiences
+      </p>
+      <h2>Applications for motion graphics</h2>
+      <ul>
+        <li>Case studies</li>
+        <li>Data visualizations</li>
+        <li>Product reviews</li>
+        <li>Explainer videos</li>
+        <li>Testimonials</li>
+        <li>Promotion</li>
+        <li>Sales collateral</li>
+        <li>Social media</li>
+      </ul>
+      <h2>How we approach motion graphics</h2>
+      <p>
+        We tell stories with visuals and sound, so you can engage people on your website, social media or other
+        platforms. A careful balance of storytelling techniques is essential to make it captivating: voiceover; music
+        that builds interest; text animation which tells part-of the tale while building curiosity for more
+        information&thinsp;—&thinsp;all designed by our talented team!
+      </p>
+      <p><a href="/contact/" class="button button--green">Let's Talk</a></p>
+    </div>
+    <ServicesRelatedWork tag={76} />
+  </div>
+  <FeaturedArticles />
 </Layout>

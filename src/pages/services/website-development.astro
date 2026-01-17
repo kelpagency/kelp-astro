@@ -1,33 +1,47 @@
 ---
 import Layout from '../../Base.astro';
 import SimpleHero from '../../components/SimpleHero.astro';
-import FeaturedArticles from "../../components/FeaturedArticles.astro";
-import ServicesRelatedWork from "../../components/ServicesRelatedWork.astro";
-import "../../styles/pages/_services-list.scss";
-
+import FeaturedArticles from '../../components/FeaturedArticles.astro';
+import ServicesRelatedWork from '../../components/ServicesRelatedWork.astro';
+import '../../styles/pages/_services-list.scss';
 ---
 
 <Layout
-	title='Central Florida Website Design & Development Services'
-	description='Our web design and development team can help you increase sales by providing optimized sites that convert visitors into lifelong customers.'
+  title="Central Florida Website Design & Development Services"
+  description="Our web design and development team can help you increase sales by providing optimized sites that convert visitors into lifelong customers."
 >
-	<SimpleHero tagline='Content Creation Services' title='Website Design & Development' description="Our web design and development team can help you increase sales by providing optimized sites that convert visitors into lifelong customers." lottieFile='web-design.json' />
-	<div class='service-body'>
-		<div class='wrapper wrapper--narrow'>
-			<h2>Why web design & development matter</h2>
-			<p>Telling the right story through your website can be the key to creating a great customer experience. With all of today's online commerce, it is important that you have an engaging site with clear navigation and plenty of content on every page for people who are looking at what products or services might work best for them. Your website is your best salesmen that never stops working, why not give it the attention to unlock the potential your business deserves.</p>
-			<h2>Web Design & Development Applications</h2>
-			<p>The right site design can make or break your business. From a website's appearance, functionality to SEO optimization—it is important that you have an effective web page for customers and potential clients who may find their way onto one of these sites through search engines like Google!</p>
-			<ul>
-				<li>Website (duh)</li>
-				<li>Interactive Experiences</li>
-				<li>Interactive Data Visualizations </li>
-				<li>Dashboards</li>
-				<li>UI animations</li>
-			</ul>
-			<p><a href='/contact/' class='button button--green'>Let's Talk</a></p>
-		</div>
-		<ServicesRelatedWork tag={66} />
-	</div>
-	<FeaturedArticles />
+  <SimpleHero
+    tagline="Content Creation Services"
+    title="Website Design & Development"
+    description="Our web design and development team can help you increase sales by providing optimized sites that convert visitors into lifelong customers."
+    lottieFile="web-design.json"
+  />
+  <div class="service-body">
+    <div class="wrapper wrapper--narrow">
+      <h2>Why web design & development matter</h2>
+      <p>
+        Telling the right story through your website can be the key to creating a great customer experience. With all of
+        today's online commerce, it is important that you have an engaging site with clear navigation and plenty of
+        content on every page for people who are looking at what products or services might work best for them. Your
+        website is your best salesmen that never stops working, why not give it the attention to unlock the potential
+        your business deserves.
+      </p>
+      <h2>Web Design & Development Applications</h2>
+      <p>
+        The right site design can make or break your business. From a website's appearance, functionality to SEO
+        optimization&thinsp;—&thinsp;it is important that you have an effective web page for customers and potential
+        clients who may find their way onto one of these sites through search engines like Google!
+      </p>
+      <ul>
+        <li>Website (duh)</li>
+        <li>Interactive Experiences</li>
+        <li>Interactive Data Visualizations</li>
+        <li>Dashboards</li>
+        <li>UI animations</li>
+      </ul>
+      <p><a href="/contact/" class="button button--green">Let's Talk</a></p>
+    </div>
+    <ServicesRelatedWork tag={66} />
+  </div>
+  <FeaturedArticles />
 </Layout>
