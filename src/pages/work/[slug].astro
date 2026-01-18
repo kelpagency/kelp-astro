@@ -162,20 +162,40 @@ const safeContent = sanitizeHtml(content);
         font-size: var(--step-2);
       }
       blockquote {
+        background: #f4f4f4;
         @media (min-width: 961px) {
-          background: #f4f4f4;
           padding: 12rem 8rem 11rem;
+        }
+        @media (max-width: 767px) {
+          padding: 2rem;
+        }
+        p {
+          @media (max-width: 767px) {
+            font-size: 18px;
+          }
         }
         cite {
           display: block;
+          @media (max-width: 767px) {
+            font-size: 16px;
+          }
           &::before {
             margin-top: 2.5rem;
             margin-bottom: 2.5rem;
+            @media (max-width: 767px) {
+              margin-top: 1.5rem;
+              margin-bottom: 1.5rem;
+            }
           }
         }
         &::before,
         &::after {
           color: var(--green);
+        }
+        &::after {
+          @media (max-width: 767px) {
+            display: none;
+          }
         }
       }
     }
@@ -201,18 +221,18 @@ const safeContent = sanitizeHtml(content);
         }
       }
     }
-    
+
     .wp-block-media-text__media {
       padding: 1.5rem 1.5rem 0.5rem 1.5rem;
       @media (min-width: 768px) {
         padding: 4rem;
       }
     }
-    
+
     .wp-element-caption {
       text-align: center;
     }
-    
+
     .has-white-color {
       color: white;
     }
