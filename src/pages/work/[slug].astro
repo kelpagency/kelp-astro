@@ -5,9 +5,22 @@ import '../../styles/pages/_wordpress.scss';
 import { getAverageColor } from 'fast-average-color-node';
 import { sanitizeHtml } from '../../lib/sanitize';
 
+// Jetpack Photon helper
+const photon = (url, params = '') => {
+  if (!url) return null;
+
+  // prevent double wrapping
+  if (url.includes('i0.wp.com')) {
+    return params ? `${url}?${params}` : url;
+  }
+
+  return `https://i0.wp.com/${url.replace(/^https?:\/\//, '')}${params ? `?${params}` : ''}`;
+};
+
 export async function getStaticPaths() {
   const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/work?per_page=100&_embed`);
   const posts = await response.json();
+
   return posts.map((post) => {
     return {
       params: { slug: post.slug },
@@ -37,17 +50,21 @@ const formattedTitle =
 let bgUrl = null;
 let thumbUrl = null;
 
-// hero image
+// hero image (ACF hero.background.image)
 if (acf?.hero?.background?.image) {
   const mediaRes = await fetch(`${import.meta.env.PUBLIC_WP_URL}/media/${acf.hero.background.image}`);
+
   if (mediaRes.ok) {
     const media = await mediaRes.json();
 
-    bgUrl = media?.source_url || null;
+    const original = media?.source_url || null;
 
-    // prefer thumbnail for speed if available
-    thumbUrl =
-      media?.media_details?.sizes?.medium?.source_url || media?.media_details?.sizes?.thumbnail?.source_url || bgUrl;
+    // Photon CDN URLs
+    bgUrl = photon(original);
+
+    thumbUrl = photon(
+      media?.media_details?.sizes?.medium?.source_url || media?.media_details?.sizes?.thumbnail?.source_url || original,
+    );
   }
 }
 
@@ -57,9 +74,9 @@ let isDarkHero = false;
 if (thumbUrl) {
   try {
     const result = await getAverageColor(thumbUrl);
-    const [r, g, b] = result.value; // <-- array values
+    const [r, g, b] = result.value;
     const brightness = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-    isDarkHero = brightness < 165; // more human-accurate threshold
+    isDarkHero = brightness < 165;
   } catch (e) {
     console.warn('Brightness detection failed', e);
   }
@@ -78,15 +95,16 @@ const safeContent = sanitizeHtml(content);
             src={bgUrl}
             alt={title}
             loading="eager"
+            fetchpriority="high"
             decoding="async"
             width="1920"
             height="1080"
             srcset={`
-            ${bgUrl}?w=480 480w,
-            ${bgUrl}?w=768 768w,
-            ${bgUrl}?w=1200 1200w,
-            ${bgUrl}?w=1920 1920w
-          `}
+              ${photon(bgUrl, 'w=480')} 480w,
+              ${photon(bgUrl, 'w=768')} 768w,
+              ${photon(bgUrl, 'w=1200')} 1200w,
+              ${photon(bgUrl, 'w=1920')} 1920w
+            `}
             sizes="(max-width: 900px) 100vw, 90vw"
             class="work-post-hero-img"
           />
@@ -99,13 +117,14 @@ const safeContent = sanitizeHtml(content);
 
     <div class="wrapper work-post-body" data-lg-reveal="fade" data-lg-reveal-stagger="0.3" set:html={safeContent} />
   </article>
+
   <FeaturedArticles tag={tagIds} heading="Related Articles" />
 </Layout>
 
 <style lang="scss" is:global>
-  // work single
   .work-post {
     margin-bottom: 6rem;
+
     &-hero {
       position: relative;
       padding: 0;
@@ -124,16 +143,20 @@ const safeContent = sanitizeHtml(content);
         padding: 8rem 0 16rem;
         position: relative;
       }
+
       h1 {
         margin: 0 4rem;
         font-size: var(--step-8);
         line-height: 0.833;
+
         @media (max-width: 767px) {
           margin: 0;
         }
+
         span:last-child {
           display: block;
         }
+
         &::after {
           content: '';
           display: block;
@@ -147,6 +170,7 @@ const safeContent = sanitizeHtml(content);
 
     &-hero.is-dark {
       background-color: var(--black);
+
       h1 {
         color: #fff;
         text-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
@@ -157,41 +181,52 @@ const safeContent = sanitizeHtml(content);
       h2 {
         font-size: var(--step-3);
       }
+
       h3,
       .h3 {
         font-size: var(--step-2);
       }
+
       blockquote {
         background: #f4f4f4;
+
         @media (min-width: 961px) {
           padding: 12rem 8rem 11rem;
         }
+
         @media (max-width: 767px) {
           padding: 2rem;
         }
+
         p {
           @media (max-width: 767px) {
             font-size: 18px;
           }
         }
+
         cite {
           display: block;
+
           @media (max-width: 767px) {
             font-size: 16px;
           }
+
           &::before {
             margin-top: 2.5rem;
             margin-bottom: 2.5rem;
+
             @media (max-width: 767px) {
               margin-top: 1.5rem;
               margin-bottom: 1.5rem;
             }
           }
         }
+
         &::before,
         &::after {
           color: var(--green);
         }
+
         &::after {
           @media (max-width: 767px) {
             display: none;
@@ -224,6 +259,7 @@ const safeContent = sanitizeHtml(content);
 
     .wp-block-media-text__media {
       padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+
       @media (min-width: 768px) {
         padding: 4rem;
       }
@@ -236,9 +272,11 @@ const safeContent = sanitizeHtml(content);
     .has-white-color {
       color: white;
     }
+
     .has-black-background-color {
       background: var(--black);
     }
+
     .footer {
       margin-top: 10rem;
     }
@@ -250,6 +288,7 @@ const safeContent = sanitizeHtml(content);
     document.querySelectorAll('iframe[width][height]').forEach((el) => {
       const w = parseFloat(el.getAttribute('width'));
       const h = parseFloat(el.getAttribute('height'));
+
       if (w > 0 && h > 0) {
         el.style.aspectRatio = `${w} / ${h}`;
         el.style.width = '100%';
