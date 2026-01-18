@@ -41,7 +41,7 @@ const webmSrc = videoSrc.replace(/\.[^.]+$/, '.webm');
       </a>
       <h3 transition:name={transitionTitle}>{name}</h3>
       <p class="team-member-text-position" transition:name={transitionRole}>{title}</p>
-      <p>{description}</p>
+      <p set:html={description}></p>
     </div>
   </div>
 </div>
