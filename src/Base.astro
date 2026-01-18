@@ -103,6 +103,18 @@ if (darkHeader) {
       <div data-lg-cursor-pointer></div>
     </div>
     <script>
+      import luge from '@waaark/luge';
+      import lottie from 'lottie-web/build/player/lottie_light';
+
+      window.lottie = lottie;
+      window.luge = luge;
+
+      luge.settings({
+        credits: {
+          show: false,
+        },
+      });
+
       const playAutoplayVideos = () => {
         const videos = document.querySelectorAll('video[autoplay]');
         videos.forEach((video) => {
@@ -115,60 +127,44 @@ if (darkHeader) {
         });
       };
 
-      document.addEventListener('astro:page-load', async () => {
-        const needsLuge = document.querySelector(
-          '[data-lg-reveal],[data-lg-parallax],[data-lg-lottie],[data-lg-cursor]',
-        );
-        const needsLottie = document.querySelector('[data-lg-lottie]');
+      const initEmphasis = async () => {
         const emphasisElements = document.querySelectorAll('main em');
+        if (emphasisElements.length === 0) {
+          return;
+        }
 
-        if (needsLuge) {
-          const { default: luge } = await import('@waaark/luge');
-          window.luge = luge;
-          luge.settings({
-            credits: {
-              show: false,
-            },
+        const { annotate } = await import('rough-notation');
+        function handleIntersection(entries) {
+          entries.map((entry) => {
+            if (entry.isIntersecting) {
+              const annotation = annotate(entry.target, {
+                type: 'underline',
+                multiline: true,
+                padding: 0,
+                animationDuration: 300,
+              });
+              annotation.show();
+              observer.unobserve(entry.target);
+            }
           });
-
-          if (needsLottie) {
-            const { default: lottie } = await import('lottie-web/build/player/lottie_light');
-            window.lottie = lottie;
-          }
-
-          luge.init();
         }
+        const observer = new IntersectionObserver(handleIntersection);
+        emphasisElements.forEach((item) => observer.observe(item));
+      };
 
-        if (emphasisElements.length > 0) {
-          const { annotate } = await import('rough-notation');
-          function handleIntersection(entries) {
-            entries.map((entry) => {
-              if (entry.isIntersecting) {
-                const annotation = annotate(entry.target, {
-                  type: 'underline',
-                  multiline: true,
-                  padding: 0,
-                  animationDuration: 300,
-                });
-                annotation.show();
-                observer.unobserve(entry.target);
-              }
-            });
-          }
-          const observer = new IntersectionObserver(handleIntersection);
-          emphasisElements.forEach((item) => observer.observe(item));
-        }
-
+      document.addEventListener('astro:page-load', async () => {
+        await initEmphasis();
         playAutoplayVideos();
       });
 
-      document.addEventListener('astro:after-swap', () => {
-        if (!window.luge) {
-          return;
+      document.addEventListener('astro:after-swap', async () => {
+        await initEmphasis();
+
+        if (window.luge) {
+          setTimeout(() => {
+            window.luge.lifecycle.refresh();
+          }, 200);
         }
-        setTimeout(() => {
-          window.luge.lifecycle.refresh();
-        }, 200);
 
         setTimeout(() => {
           playAutoplayVideos();
