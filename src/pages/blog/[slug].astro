@@ -47,12 +47,15 @@ const category = {
 };
 const cleanTitle = title.replace(/(<([^>]+)>)/gi, '').trim();
 const cleanDescription = description.replace(/(<([^>]+)>)/gi, '').trim();
+const now = new Date();
+const modifiedDate = dateModified ? new Date(dateModified) : null;
+const safeDateModified = modifiedDate && modifiedDate > now ? datePublished : dateModified || datePublished;
 const schema = {
   '@type': 'BlogPosting',
   headline: cleanTitle,
   description: cleanDescription,
   datePublished,
-  dateModified,
+  dateModified: safeDateModified,
   image: image ? [image] : undefined,
   author: [
     {
@@ -72,7 +75,17 @@ const safeTitle = sanitizeHtml(title);
 const safeContent = sanitizeHtml(content);
 ---
 
-<Layout title={title} description={description} image={image} bodyClass="blog-post" schema={schema} darkHeader={true}>
+<Layout
+  title={title}
+  description={description}
+  image={image}
+  bodyClass="blog-post"
+  schema={schema}
+  darkHeader={true}
+  ogType="article"
+  articlePublished={datePublished}
+  articleModified={safeDateModified}
+>
   <article class="wrapper single">
     <div class="single-article">
       <h1 transition:name=`heading-${id}` set:html={safeTitle} />

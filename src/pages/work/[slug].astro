@@ -32,12 +32,14 @@ export async function getStaticPaths() {
         tagIds: post.tags,
         id: post.id,
         acf: post.acf,
+        datePublished: post.date,
+        dateModified: post.modified,
       },
     };
   });
 }
 
-const { title, content, description, image, tagIds, id, acf } = Astro.props;
+const { title, content, description, image, tagIds, id, acf, datePublished, dateModified } = Astro.props;
 
 const rawTitle = title.replace(/(<([^>]+)>)/gi, '').trim();
 const titleWords = rawTitle.split(/\s+/);
@@ -46,6 +48,25 @@ const formattedTitle =
   titleWords.length > 1
     ? titleWords.map((word) => `<span class="work-post-hero-title-word">${word}</span>`).join(' ')
     : rawTitle;
+
+const now = new Date();
+const modifiedDate = dateModified ? new Date(dateModified) : null;
+const safeDateModified = modifiedDate && modifiedDate > now ? datePublished : dateModified || datePublished;
+const cleanDescription = description.replace(/(<([^>]+)>)/gi, '').trim();
+const schema = {
+  '@type': 'CreativeWork',
+  headline: rawTitle,
+  description: cleanDescription,
+  datePublished,
+  dateModified: safeDateModified,
+  image: image?.length ? image : undefined,
+  publisher: {
+    '@id': 'https://www.kelp.agency/#organization',
+  },
+  mainEntityOfPage: {
+    '@id': `${Astro.url.href}#webpage`,
+  },
+};
 
 let bgUrl = null;
 let thumbUrl = null;
@@ -86,7 +107,16 @@ const accent = acf?.site_frame_color ? acf.site_frame_color : 'transparent';
 const safeContent = sanitizeHtml(content);
 ---
 
-<Layout title={title} description={description} image={image} darkHeader={true}>
+<Layout
+  title={title}
+  description={description}
+  image={image}
+  darkHeader={true}
+  schema={schema}
+  ogType="article"
+  articlePublished={datePublished}
+  articleModified={safeDateModified}
+>
   <article class="work-post" style=`--accent: ${accent};`>
     <div class={`work-post-hero ${isDarkHero ? 'is-dark' : ''}`}>
       {

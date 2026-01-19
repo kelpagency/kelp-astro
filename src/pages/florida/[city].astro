@@ -12,16 +12,66 @@ export async function getStaticPaths() {
 	const usa = countries.getCountryByShort('US');
 	const florida = usa.states['Florida'];
 
-	return florida.map((city) => {
+	return florida.map((city, index) => {
 		const slug = slugify(city.name, { lower: true, strict: true });
+		const cityName = city.name.replace("''", "'");
+		const total = florida.length;
+		const nearbyCities = [
+			florida[(index - 1 + total) % total],
+			florida[(index + 1) % total],
+			florida[(index + 2) % total],
+		].map((nearby) => nearby.name.replace("''", "'"));
 		return {
 			params: { city: slug },
-			props: { title: city.name.replace("''", "'") + ', FL Digital Agency | Kelp Creative Agency' }
+			props: {
+				title: `${cityName}, FL Digital Agency | Kelp Creative Agency`,
+				cityName,
+				nearbyCities,
+			}
 		};
 	});
 }
 
-const { title } = Astro.props;
+const { title, cityName, nearbyCities } = Astro.props;
+const description = `Kelp Creative Agency helps ${cityName}, FL businesses with branding, websites, and marketing. See nearby case studies, clear pricing, and fast support.`;
+const caseStudies = [
+	{
+		title: 'Blue Stone Construction',
+		href: '/work/blue-stone-construction/',
+		detail: 'Brand and website refresh for a growing contractor.',
+	},
+	{
+		title: 'Mountaineer Coffee',
+		href: '/work/mountaineer-coffee/',
+		detail: 'Ecommerce and identity updates built for scale.',
+	},
+	{
+		title: 'Spring Water Spirits',
+		href: '/work/spring-water-spirits/',
+		detail: 'Packaging and digital presence with a premium feel.',
+	},
+];
+const localSchema = {
+	'@type': 'LocalBusiness',
+	'@id': `${Astro.url.href}#localbusiness`,
+	name: 'Kelp Creative Agency',
+	url: Astro.url.href,
+	telephone: '+1-352-325-7688',
+	address: {
+		'@type': 'PostalAddress',
+		addressLocality: 'Brooksville',
+		addressRegion: 'FL',
+		postalCode: '34601',
+		streetAddress: '707 Harvard St.',
+		addressCountry: 'US',
+	},
+	areaServed: {
+		'@type': 'City',
+		name: cityName,
+		addressRegion: 'FL',
+		addressCountry: 'US',
+	},
+};
 
 // 
 // const data = {
@@ -79,23 +129,71 @@ const { title } = Astro.props;
 
 <Layout
 	title={title}
-	description='We’re a team of designers, developers, and marketers who love to take your ideas and bring them to life based in the heart of Florida.'
+	description={description}
+	schema={localSchema}
 >
 	<SimpleHero
-		tagline='Digtal Agency serving:'
+		tagline='Digital Agency serving:'
 		title={title.replace('Digital Agency | Kelp Creative Agency', '')}
-		description='We’re a team of designers, developers, and marketers who love to take your ideas and bring them to life based in the heart of Florida.'
+		description={description}
 	/>
 	<div class='wrapper wrapper--narrow dark' style='margin-bottom: 150px;'>
-		<h2 class='h3'>Why a local agency is important</h2>
+		<h2 class='h3'>Why a local agency matters in {cityName}</h2>
 		<p>
-			As a local web design agency in Florida, we understand the unique needs of businesses in the area. We are familiar
-			with the market, the competition, and the trends that are impacting businesses in the area. We also have a deep
-			understanding of the local culture and how to best reach the target audience. We provide a personalized approach
-			to web design that is tailored to the specific needs of your business. We are also able to provide a more
-			cost-effective solution than larger, out-of-state agencies.
+			As a Florida-based agency, we understand the market around {cityName} and what local buyers expect online. We keep
+			projects lean, move fast, and build brands and websites that feel regional without sacrificing quality. That means
+			clear positioning, thoughtful design, and marketing that matches how people in {cityName} actually search, browse,
+			and buy.
 		</p>
 	</div>
+	<section class="wrapper wrapper--narrow">
+		<h2 class="h3">Recent work near {cityName}</h2>
+		<p>
+			Here are a few recent projects that reflect the kind of results we deliver for Florida businesses.
+		</p>
+		<ul class="city-case-studies">
+			{caseStudies.map((study) => (
+				<li>
+					<a href={study.href}>{study.title}</a> — {study.detail}
+				</li>
+			))}
+		</ul>
+	</section>
+	<section class="wrapper wrapper--narrow">
+		<h2 class="h3">How we help {cityName} teams</h2>
+		<ul class="city-services">
+			<li>Brand identity, messaging, and visual systems that create trust.</li>
+			<li>High-performance websites that convert and are easy to manage.</li>
+			<li>Marketing strategy and content that drives qualified leads.</li>
+		</ul>
+	</section>
+	<section class="wrapper wrapper--narrow">
+		<h2 class="h3">Serving {cityName} and nearby areas</h2>
+		<ul class="city-nearby">
+			{nearbyCities.map((nearbyCity) => (
+				<li>
+					<a href={`/florida/${slugify(nearbyCity, { lower: true, strict: true })}/`}>{nearbyCity}</a>
+				</li>
+			))}
+		</ul>
+	</section>
+	<section class="wrapper wrapper--narrow">
+		<h2 class="h3">FAQs for {cityName} businesses</h2>
+		<div class="city-faq">
+			<h3 class="h5">Do you work with teams in {cityName}?</h3>
+			<p>
+				Yes. We partner with businesses across Florida and routinely support teams in and around {cityName}.
+			</p>
+			<h3 class="h5">What services are most popular in {cityName}?</h3>
+			<p>
+				Web design, brand identity, and marketing strategy are the most common starting points for companies in the area.
+			</p>
+			<h3 class="h5">How fast can a project start?</h3>
+			<p>
+				Most projects kick off within a few weeks depending on scope. We will confirm a timeline after a short discovery.
+			</p>
+		</div>
+	</section>
 	<Services />
 	<HowWeWork />
 	<Testimonials />
