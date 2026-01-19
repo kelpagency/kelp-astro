@@ -30,32 +30,13 @@ export async function getStaticPaths() {
         allCategories: categories,
         author: post._embedded.author,
         datePublished: post.date,
-        schema: JSON.stringify({
-          '@context': 'https://schema.org',
-          '@type': 'Article',
-          headline: post.title.rendered,
-          description: post.excerpt.rendered.replace(/(<([^>]+)>)/gi, ''),
-          datePublished: post.date,
-          dateModified: post.modified,
-          image: [post.fimg_url],
-          author: [
-            {
-              '@type': 'Person',
-              name: post._embedded.author[0].name,
-              url: post._embedded.author[0].url,
-            },
-          ],
-          mainEntityOfPage: {
-            '@type': 'webPage',
-            id: Astro.url,
-          },
-        }),
+        dateModified: post.modified,
       },
     };
   });
 }
 
-const { title, content, id, author, schema, image, description, datePublished, categories, allCategories } =
+const { title, content, id, author, image, description, datePublished, dateModified, categories, allCategories } =
   Astro.props;
 const comments = await fetch(`${import.meta.env.PUBLIC_WP_URL}/comments?post=${id}`);
 const jsonComments = await comments.json();
@@ -63,6 +44,29 @@ const category = {
   slug: allCategories.find((cat) => cat.id === categories[0]).slug,
   name: allCategories.find((cat) => cat.id === categories[0]).name,
   id: allCategories.find((cat) => cat.id === categories[0]).id,
+};
+const cleanTitle = title.replace(/(<([^>]+)>)/gi, '').trim();
+const cleanDescription = description.replace(/(<([^>]+)>)/gi, '').trim();
+const schema = {
+  '@type': 'BlogPosting',
+  headline: cleanTitle,
+  description: cleanDescription,
+  datePublished,
+  dateModified,
+  image: image ? [image] : undefined,
+  author: [
+    {
+      '@type': 'Person',
+      name: author[0].name,
+      url: author[0].url,
+    },
+  ],
+  publisher: {
+    '@id': 'https://www.kelp.agency/#organization',
+  },
+  mainEntityOfPage: {
+    '@id': `${Astro.url.href}#webpage`,
+  },
 };
 const safeTitle = sanitizeHtml(title);
 const safeContent = sanitizeHtml(content);

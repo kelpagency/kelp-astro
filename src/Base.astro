@@ -10,7 +10,7 @@ export interface Props {
   image?: string;
   darkHeader?: boolean;
   bodyClass?: string;
-  schema?: JSON;
+  schema?: JSON | Record<string, unknown> | Record<string, unknown>[] | string;
 }
 
 const {
@@ -19,32 +19,104 @@ const {
   image = '/images/og.png',
   darkHeader = false,
   bodyClass = '',
-  schema = JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: 'Kelp Creative Agency',
-    legalName: 'Kelp Agency',
-    email: 'info@kelp.agency',
-    url: 'https://www.kelp.agency',
-    logo: 'https://www.kelp.agency/images/kelp-logo.png',
-    sameAs: [
-      'https://www.facebook.com/kelpagency',
-      'https://www.instagram.com/kelpagency/',
-      'https://twitter.com/kelpagency',
-      'https://www.linkedin.com/company/kelpagency/',
-    ],
-    address: {
-      addressLocality: 'Brooksville',
-      postalCode: '34601',
-      streetAddress: '924 Hale Ave',
-    },
-  }),
+  schema,
 } = Astro.props;
 
 let bodyClasses = bodyClass;
 if (darkHeader) {
   bodyClasses = bodyClasses + ' has-dark-header';
 }
+
+const stripHtml = (value = '') => value.replace(/(<([^>]+)>)/gi, '').trim();
+const cleanTitle = stripHtml(title);
+const cleanDescription = stripHtml(description);
+const siteUrl = 'https://www.kelp.agency';
+const organizationId = `${siteUrl}/#organization`;
+const websiteId = `${siteUrl}/#website`;
+const webPageId = `${Astro.url.href}#webpage`;
+const imageUrl = new URL(image, Astro.url).href;
+
+const organizationSchema = {
+  '@type': 'Organization',
+  '@id': organizationId,
+  name: 'Kelp Creative Agency',
+  legalName: 'Kelp Agency',
+  email: 'info@kelp.agency',
+  url: siteUrl,
+  logo: {
+    '@type': 'ImageObject',
+    url: `${siteUrl}/images/kelp-logo.png`,
+  },
+  sameAs: [
+    'https://www.facebook.com/kelpagency',
+    'https://www.instagram.com/kelpagency/',
+    'https://x.com/kelpagency',
+    'https://www.linkedin.com/company/kelpagency/',
+  ],
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Brooksville',
+    postalCode: '34601',
+    streetAddress: '707 Harvard St.',
+  },
+};
+
+const websiteSchema = {
+  '@type': 'WebSite',
+  '@id': websiteId,
+  url: siteUrl,
+  name: 'Kelp Creative Agency',
+  publisher: {
+    '@id': organizationId,
+  },
+};
+
+const webPageSchema = {
+  '@type': 'WebPage',
+  '@id': webPageId,
+  url: Astro.url.href,
+  name: cleanTitle,
+  description: cleanDescription,
+  isPartOf: {
+    '@id': websiteId,
+  },
+  inLanguage: 'en',
+  primaryImageOfPage: {
+    '@type': 'ImageObject',
+    url: imageUrl,
+  },
+  publisher: {
+    '@id': organizationId,
+  },
+};
+
+const schemaNodes: Record<string, unknown>[] = [organizationSchema, websiteSchema, webPageSchema];
+if (schema) {
+  let parsedSchema: unknown = schema;
+  if (typeof schema === 'string') {
+    try {
+      parsedSchema = JSON.parse(schema);
+    } catch {
+      parsedSchema = null;
+    }
+  }
+
+  if (parsedSchema && typeof parsedSchema === 'object') {
+    const parsedObject = parsedSchema as Record<string, unknown>;
+    if (Array.isArray(parsedSchema)) {
+      schemaNodes.push(...(parsedSchema as Record<string, unknown>[]));
+    } else if (Array.isArray(parsedObject['@graph'])) {
+      schemaNodes.push(...(parsedObject['@graph'] as Record<string, unknown>[]));
+    } else {
+      schemaNodes.push(parsedObject);
+    }
+  }
+}
+
+const schemaJson = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': schemaNodes,
+});
 ---
 
 <!doctype html>
@@ -61,7 +133,7 @@ if (darkHeader) {
     <link rel="alternate" type="application/rss+xml" href="https://www.kelp.agency/rss.xml" />
 
     <!-- Structured Data -->
-    <script type="application/ld+json" set:html={schema} />
+    <script type="application/ld+json" set:html={schemaJson} />
 
     <!-- Social -->
     <meta property="og:type" content="website" />
