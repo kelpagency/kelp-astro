@@ -27,7 +27,7 @@
     </button>
     <nav class="header-nav" id="site-nav">
       <ul>
-        <li>
+        <li class="has-submenu">
           <a href="/services/" data-astro-prefetch aria-label="Services menu"> 
             Services 
             <svg xmlns="http://www.w3.org/2000/svg" width="9.75" height="6">
@@ -45,7 +45,7 @@
             <li><a href="/services/#support" aria-label="Ongoing Support">Ongoing Support</a></li>
           </ul>
         </li>
-        <li>
+        <li class="has-submenu">
           <a data-astro-prefetch href="/work/" aria-label="Work menu">
             Work
             <svg xmlns="http://www.w3.org/2000/svg" width="9.75" height="6">
@@ -60,7 +60,7 @@
             <li><a data-astro-prefetch href="/work/clients/" aria-label="Clients">Clients</a></li>
           </ul>
         </li>
-        <li>
+        <li class="has-submenu">
           <a data-astro-prefetch href="/platforms/" aria-label="Platforms menu">
             Platforms
             <svg xmlns="http://www.w3.org/2000/svg" width="9.75" height="6">
@@ -76,7 +76,7 @@
             <li><a data-astro-prefetch href="/platforms/wordpress/" aria-label="WordPress">WordPress</a></li>
           </ul>
         </li>
-        <li>
+        <li class="has-submenu">
           <a data-astro-prefetch href="/resources/" aria-label="Resources menu">
             Resources
             <svg xmlns="http://www.w3.org/2000/svg" width="9.75" height="6">
@@ -231,7 +231,15 @@
           flex-direction: column;
           justify-content: center;
           ul {
-            display: none;
+            display: block;
+            margin-top: 0;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition:
+              max-height 280ms ease,
+              opacity 220ms ease,
+              margin-top 280ms ease;
             a {
               font-weight: normal;
               font-size: var(--step-0);
@@ -243,8 +251,28 @@
             font-size: var(--step-1);
           }
         }
-        svg {
+        > ul > li > a svg {
           display: none;
+        }
+        li.has-submenu {
+          > a {
+            align-items: center;
+            display: inline-flex;
+            gap: 0.5rem;
+          }
+          > a svg {
+            display: block;
+            transition: transform 220ms ease;
+          }
+          &.is-open {
+            > a svg {
+              transform: rotate(180deg);
+            }
+            > ul {
+              margin-top: 1rem;
+              opacity: 1;
+            }
+          }
         }
       }
       // desktop styles
@@ -364,6 +392,88 @@
 
     // mobile nav
     const burger = document.querySelector('.hamburger');
+    const nav = document.querySelector('.header-nav');
+    const mobileQuery = window.matchMedia('(max-width: 1079px)');
+    const topLevelList = nav?.firstElementChild;
+    const topLevelItems =
+      topLevelList instanceof HTMLUListElement
+        ? Array.from(topLevelList.children).filter((item) => item.classList.contains('has-submenu'))
+        : [];
+
+    const getSubmenu = (item) => Array.from(item.children).find((child) => child instanceof HTMLUListElement);
+
+    const closeSubmenu = (item) => {
+      const link = item.firstElementChild;
+      const submenu = getSubmenu(item);
+      if (!(link instanceof HTMLAnchorElement)) {
+        return;
+      }
+      item.classList.remove('is-open');
+      link.setAttribute('aria-expanded', 'false');
+      if (submenu instanceof HTMLUListElement) {
+        submenu.style.maxHeight = mobileQuery.matches ? '0px' : '';
+      }
+    };
+
+    const closeAllSubmenus = () => {
+      topLevelItems.forEach((item) => closeSubmenu(item));
+    };
+
+    const syncSubmenusForViewport = () => {
+      topLevelItems.forEach((item) => {
+        const link = item.firstElementChild;
+        const submenu = getSubmenu(item);
+        if (!(link instanceof HTMLAnchorElement) || !(submenu instanceof HTMLUListElement)) {
+          return;
+        }
+        item.classList.remove('is-open');
+        link.setAttribute('aria-expanded', 'false');
+        submenu.style.maxHeight = mobileQuery.matches ? '0px' : '';
+      });
+    };
+
+    if (nav && !nav.dataset.submenuInit) {
+      topLevelItems.forEach((item, index) => {
+        const link = item.firstElementChild;
+        const submenu = getSubmenu(item);
+        if (!(link instanceof HTMLAnchorElement) || !(submenu instanceof HTMLUListElement)) {
+          return;
+        }
+
+        if (!submenu.id) {
+          submenu.id = `site-nav-submenu-${index + 1}`;
+        }
+
+        link.setAttribute('aria-expanded', 'false');
+        link.setAttribute('aria-controls', submenu.id);
+        submenu.style.maxHeight = mobileQuery.matches ? '0px' : '';
+
+        link.addEventListener('click', (event) => {
+          if (!mobileQuery.matches) {
+            return;
+          }
+
+          const isOpen = item.classList.contains('is-open');
+          if (!isOpen) {
+            event.preventDefault();
+            closeAllSubmenus();
+            item.classList.add('is-open');
+            link.setAttribute('aria-expanded', 'true');
+            submenu.style.maxHeight = `${submenu.scrollHeight}px`;
+          }
+        });
+      });
+
+      nav.dataset.submenuInit = 'true';
+    }
+
+    if (nav && !nav.dataset.submenuViewportInit) {
+      mobileQuery.addEventListener('change', syncSubmenusForViewport);
+      nav.dataset.submenuViewportInit = 'true';
+    }
+
+    syncSubmenusForViewport();
+
     if (burger) {
       burger.setAttribute('aria-expanded', String(document.body.classList.contains('mobile-menu-active')));
       if (!burger.dataset.menuInit) {
@@ -371,6 +481,9 @@
           const isOpen = document.body.classList.toggle('mobile-menu-active');
           burger.classList.toggle('active');
           burger.setAttribute('aria-expanded', String(isOpen));
+          if (!isOpen) {
+            closeAllSubmenus();
+          }
         });
         burger.dataset.menuInit = 'true';
       }
