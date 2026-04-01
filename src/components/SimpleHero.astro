@@ -94,7 +94,8 @@ if (lottieFile) {
 						alt=''
 						width={mediaBackWidth ?? heroWidth}
 						height={mediaBackHeight}
-						loading='lazy'
+						loading='eager'
+						fetchpriority='high'
 						inferSize
 					/>
 					<div data-lg-parallax data-lg-parallax-amplitude='0.3'>
@@ -103,7 +104,8 @@ if (lottieFile) {
 							alt=''
 							width={mediaMiddleWidth ?? heroWidth}
 							height={mediaMiddleHeight}
-							loading='lazy'
+							loading='eager'
+							fetchpriority='high'
 							inferSize
 						/>
 					</div>
@@ -113,7 +115,8 @@ if (lottieFile) {
 							alt=''
 							width={mediaFrontWidth ?? heroWidth}
 							height={mediaFrontHeight}
-							loading='lazy'
+							loading='eager'
+							fetchpriority='high'
 							inferSize
 						/>
 					</div>
