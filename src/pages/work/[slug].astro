@@ -3,6 +3,7 @@ import Layout from '../../Base.astro';
 import FeaturedArticles from '../../components/FeaturedArticles.astro';
 import '../../styles/pages/_wordpress.scss';
 import { getAverageColor } from 'fast-average-color-node';
+import { Picture } from 'astro:assets';
 import { sanitizeHtml } from '../../lib/sanitize';
 import { toJetpackImageUrl } from '../../lib/jetpack';
 import { fetchWpJson } from '../../lib/wp';
@@ -59,11 +60,13 @@ const schema = {
 
 let bgUrl = null;
 let thumbUrl = null;
+let bgOriginalUrl = null;
 
 // hero image (ACF hero.background.image)
 if (acf?.hero?.background?.image) {
   const media = await fetchWpJson(`/media/${acf.hero.background.image}`, null as Record<string, any> | null);
   const original = media?.source_url || null;
+  bgOriginalUrl = original;
   bgUrl = toJetpackImageUrl(original);
   thumbUrl = toJetpackImageUrl(
     media?.media_details?.sizes?.medium?.source_url || media?.media_details?.sizes?.thumbnail?.source_url || original,
@@ -102,22 +105,16 @@ const safeContent = sanitizeHtml(content);
     <div class={`work-post-hero ${isDarkHero ? 'is-dark' : ''}`}>
       {
         bgUrl && (
-          <img
-            src={bgUrl}
+          <Picture
+            src={bgOriginalUrl || bgUrl}
             alt={title}
-            loading="eager"
-            fetchpriority="high"
-            decoding="async"
             width="1920"
             height="1080"
-            srcset={`
-              ${toJetpackImageUrl(bgUrl, 'w=480')} 480w,
-              ${toJetpackImageUrl(bgUrl, 'w=768')} 768w,
-              ${toJetpackImageUrl(bgUrl, 'w=1200')} 1200w,
-              ${toJetpackImageUrl(bgUrl, 'w=1920')} 1920w
-            `}
-            sizes="(max-width: 900px) 100vw, 90vw"
+            widths={[768, 1200, 1600, 1920]}
+            sizes="100vw"
+            priority
             class="work-post-hero-img"
+            inferSize
           />
         )
       }
@@ -145,9 +142,14 @@ const safeContent = sanitizeHtml(content);
         display: block;
         width: 100%;
         height: 100%;
-        object-fit: cover;
         position: absolute;
-        object-position: top center;
+        inset: 0;
+        :global(img) {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: top center;
+        }
       }
 
       .wrapper {

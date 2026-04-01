@@ -81,8 +81,8 @@ const postsWithImages: Array<WorkPost & { heroImageUrl: string | null }> = await
 								alt={post.title.rendered}
 								width={980}
 								height={552}
-								widths={[480, 720, 980]}
-								sizes="(max-width: 900px) 100vw, 70vw"
+								widths={[480, 720, 980, 1440]}
+								sizes="(max-width: 767px) 100vw, (max-width: 1200px) 85vw, 980px"
 								loading="lazy"
 								class="recent-work-slider-item-media-img"
 								inferSize

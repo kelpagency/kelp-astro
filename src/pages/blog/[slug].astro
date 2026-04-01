@@ -101,7 +101,16 @@ const safeContent = sanitizeHtml(content);
         <span>{readingTime(content).text}</span>
       </p>
       <div transition:name=`hero-${id}`>
-        <Picture src={image} alt={description} priority inferSize />
+        <Picture
+          src={image}
+          alt={description}
+          width={1600}
+          height={900}
+          widths={[720, 1080, 1440, 1600]}
+          sizes="(max-width: 960px) 100vw, 900px"
+          priority
+          inferSize
+        />
       </div>
       <div class="single-article-content" set:html={safeContent} />
       {
@@ -119,6 +128,7 @@ const safeContent = sanitizeHtml(content);
                       width="48"
                       height="48"
                       loading="lazy"
+                      decoding="async"
                     />
                     <h4 class="single-article-comments-item-name h6">{comment.author_name} says</h4>
                     <time datetime={comment.date}>
@@ -143,6 +153,7 @@ const safeContent = sanitizeHtml(content);
                               width="48"
                               height="48"
                               loading="lazy"
+                              decoding="async"
                             />
                             <h4 class="single-article-comments-item-name h6">{reply.author_name} says</h4>
                             <time datetime={reply.date}>

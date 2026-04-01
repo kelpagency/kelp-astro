@@ -78,7 +78,16 @@ const withOrientation: Array<WorkPost & { isLandscape: boolean }> = await Promis
 							data-tags={post.tags.join(',')}
 							data-lg-reveal="fade"
 						>
-							<Picture src={post.fimg_url} alt={post.title.rendered} loading="lazy" inferSize />
+							<Picture
+								src={post.fimg_url}
+								alt={post.title.rendered}
+								width={1200}
+								height={900}
+								widths={[480, 720, 960, 1200, 1600]}
+								sizes={post.isLandscape ? "(max-width: 900px) 100vw, 66vw" : "(max-width: 900px) 100vw, 33vw"}
+								loading="lazy"
+								inferSize
+							/>
 							<ul class="tease-tags">
 								{
 										post.tagNames?.map((tagName) => (

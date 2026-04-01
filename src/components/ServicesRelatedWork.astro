@@ -65,6 +65,10 @@ const postsWithImages: Array<WorkPost & { heroImageUrl: string | null }> = await
 					src={post.heroImageUrl || post.fimg_url}
 					loading="lazy"
 					alt={post.title.rendered}
+					width={960}
+					height={720}
+					widths={[480, 720, 960, 1280]}
+					sizes="(max-width: 767px) 100vw, (max-width: 1200px) 50vw, 640px"
 					inferSize
 				/>
 				<h3 class="h5" transition:name={`heading-${post.id}`} set:html={post.title.rendered} />

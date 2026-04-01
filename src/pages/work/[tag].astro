@@ -46,7 +46,16 @@ const tags = await getWpTags() as Record<string, any>[];
 					posts.map((post) => (
 						<article class="tease" data-tags={post.tags.join(',')} transition:name=`hero-${post.id}` data-lg-reveal="layer-to-right" data-lg-reveal-stagger="0.2">
 							<a href=`/work/${post.slug}/` class="media">
-								<Picture src={post.fimg_url} alt={post.title.rendered} loading="lazy"  inferSize />
+								<Picture
+									src={post.fimg_url}
+									alt={post.title.rendered}
+									width={1200}
+									height={900}
+									widths={[480, 720, 960, 1200]}
+									sizes="(max-width: 900px) 100vw, 50vw"
+									loading="lazy"
+									inferSize
+								/>
 							</a>
 							<div class="text">
 								<h2 class="h4"><a href=`/work/${post.slug}/` set:html={post.title.rendered}/></h2>
