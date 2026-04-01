@@ -1,6 +1,7 @@
 ---
-const requestCategories = await fetch(`${import.meta.env.PUBLIC_WP_URL}/categories?per_page=100`);
-const categories = await requestCategories.json();
+import { getWpCategories } from '../lib/wp';
+
+const categories = await getWpCategories() as Record<string, any>[];
 ---
 <aside class="archive-sidebar">
 	<a href="/blog/">

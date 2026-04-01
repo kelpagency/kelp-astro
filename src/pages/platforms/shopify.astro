@@ -1,7 +1,6 @@
 ---
 import Layout from '../../Base.astro';
 import SimpleHero from '../../components/SimpleHero.astro';
-import { Image } from 'astro:assets';
 import FeaturedArticles from '../../components/FeaturedArticles.astro';
 import RecentWork from '../../components/RecentWork.astro';
 
@@ -13,7 +12,7 @@ import ShopifyPartner from '../../assets/shopify.svg';
     <SimpleHero
       title="Shopify"
       description="We build high-performance, conversion-focused Shopify storefronts using both Liquid and Hydrogen. We’re Shopify experts — from theme development and app integration to fully headless builds."
-      dark="true"
+      dark={true}
     />
 
     <section class="wrapper wrapper--narrow">

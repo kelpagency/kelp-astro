@@ -1,10 +1,10 @@
 ---
 import Layout from '../../Base.astro';
-import Tease from '../../components/Tease.astro';
+import Tease, { type BlogTeasePost } from '../../components/Tease.astro';
 import BlogArchiveSidebar from '../../components/BlogArchiveSidebar.astro';
+import { fetchWpJson } from '../../lib/wp';
 
-const requestPosts = await fetch(`${import.meta.env.PUBLIC_WP_URL}/posts?per_page=100`);
-const posts = await requestPosts.json();
+const posts = await fetchWpJson('/posts?per_page=100', [] as BlogTeasePost[]);
 ---
 
 <Layout

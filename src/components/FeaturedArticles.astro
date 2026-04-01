@@ -1,5 +1,6 @@
 ---
 import { Picture } from 'astro:assets';
+import { fetchWpJson } from '../lib/wp';
 
 const { category = null, tag = null, heading = 'Featured Articles', limit = 3 } = Astro.props;
 
@@ -21,11 +22,12 @@ const normalizedIds = Array.isArray(taxonomyInput)
 
 const taxonomyParam = normalizedIds.join(',');
 
-const response = await fetch(
-  `${import.meta.env.PUBLIC_WP_URL}/posts?per_page=${limit * 2}&${taxonomyType}=${taxonomyParam}&_embed`,
+const posts = await fetchWpJson(
+  `/posts?per_page=${limit * 2}&${taxonomyType}=${taxonomyParam}&_embed`,
+  [] as Record<string, any>[],
 );
-const posts = response.ok ? await response.json() : [];
 const shuffledPosts = posts.sort(() => 0.5 - Math.random()).slice(0, limit);
+const getTerms = (post: Record<string, any>) => (post._embedded?.['wp:term']?.[0] ?? []) as Array<Record<string, any>>;
 ---
 
 {
@@ -54,9 +56,9 @@ const shuffledPosts = posts.sort(() => 0.5 - Math.random()).slice(0, limit);
                 <a href={`/blog/${post.slug}/`} set:html={post.title.rendered} />
               </h4>
 
-              {post._embedded?.['wp:term']?.[0]?.length > 0 && (
+              {getTerms(post).length > 0 && (
                 <p>
-                  {post._embedded['wp:term'][0].map((term) => (
+                  {getTerms(post).map((term) => (
                     <span>{term.name}</span>
                   ))}
                 </p>

@@ -1,30 +1,34 @@
 ---
 import { Picture } from 'astro:assets';
+import { fetchWpJson } from '../lib/wp';
+
+type WorkPost = Record<string, any> & {
+	id: number;
+	slug: string;
+	fimg_url?: string;
+	title: { rendered: string };
+};
+
 const {
 	perPage = 3,
 	tag = 65
 } = Astro.props;
 
-// Fetch posts
-const res = await fetch(
-	`${import.meta.env.PUBLIC_WP_URL}/work?per_page=${perPage}&tags=${tag}`
-);
-
-const posts = await res.json();
+const posts = await fetchWpJson(`/work?per_page=${perPage}&tags=${tag}`, [] as WorkPost[]);
 
 // Resolve ACF hero image IDs → URLs
-const postsWithImages = await Promise.all(
-	posts.map(async (post) => {
+const postsWithImages: Array<WorkPost & { heroImageUrl: string | null }> = await Promise.all(
+	posts.map(async (post: WorkPost) => {
 
 		let heroImageUrl = null;
 
 		// if ACF hero image exists
 		if (post?.acf?.hero?.image) {
 			try {
-				const mediaRes = await fetch(
-					`${import.meta.env.PUBLIC_WP_URL}/media/${post.acf.hero.image}`
+				const media = await fetchWpJson(
+					`/media/${post.acf.hero.image}`,
+					null as Record<string, any> | null
 				);
-				const media = await mediaRes.json();
 				heroImageUrl = media?.source_url ?? null;
 			} catch (err) {
 				heroImageUrl = null;

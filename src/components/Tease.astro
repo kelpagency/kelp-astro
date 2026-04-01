@@ -1,13 +1,25 @@
 ---
 import { Picture } from 'astro:assets';
 import readingTime from 'reading-time';
+import { getWpCategories } from '../lib/wp';
 
 export interface Props {
-	post: object;
+	post: {
+		id: number;
+		slug: string;
+		date: string;
+		fimg_url: string;
+		categories?: number[];
+		title: { rendered: string };
+		content: { rendered: string };
+		excerpt: { rendered: string };
+	};
 }
-const { post = {} } = Astro.props;
-const requestCategories = await fetch(`${import.meta.env.PUBLIC_WP_URL}/categories?per_page=100`);
-const categories = await requestCategories.json();
+export type BlogTeasePost = Props['post'];
+
+const { post } = Astro.props as Props;
+const categories = await getWpCategories() as Record<string, any>[];
+const categoryName = categories.find((cat) => cat.id === post.categories?.[0])?.name;
 ---
 
 <article class='archive-tease'>
@@ -20,7 +32,7 @@ const categories = await requestCategories.json();
 				{new Date(post.date).toLocaleDateString('en-us', { year: 'numeric', month: 'short', day: 'numeric' })}
 			</span>
 			<span>{readingTime(post.content.rendered).text}</span>
-			<span>{categories.find((cat) => cat.id === post.categories[0]).name}</span>
+			{categoryName && <span>{categoryName}</span>}
 		</p>
 		<h2 class='h5' transition:name=`heading-${post.id}`>
 			<a href=`/blog/${post.slug}/` set:html={post.title.rendered} />

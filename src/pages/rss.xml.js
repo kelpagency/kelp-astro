@@ -1,8 +1,8 @@
 import rss from '@astrojs/rss';
+import { fetchWpJson } from '../lib/wp';
 
 export async function GET(context) {
-	const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/posts?per_page=100`);
-	const posts = await response.json();
+	const posts = await fetchWpJson('/posts?per_page=100', []);
 	return rss({
 		title: 'Kelp Current',
 		description:

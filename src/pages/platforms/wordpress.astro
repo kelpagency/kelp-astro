@@ -5,7 +5,6 @@ import { Image } from 'astro:assets';
 import FeaturedArticles from '../../components/FeaturedArticles.astro';
 import RecentWork from '../../components/RecentWork.astro';
 
-import wordpressLogo from '../../assets/wordpress.png';
 import jetpackPartner from '../../assets/jetpack-partner.png';
 import pressablePartner from '../../assets/pressable-partner.png';
 import wooPartner from '../../assets/woo-partner.png';
@@ -16,15 +15,15 @@ import wooPartner from '../../assets/woo-partner.png';
     <SimpleHero
       title="WordPress"
       description="Kelp is a proud Automattic Agency partner. This means we are experts within the WordPress ecosystem including Jetpack, Pressable, and WooCommerce. In fact, this very website is a headless WordPress instance."
-      dark="true"
+      dark={true}
     />
 
     <section class="wrapper wrapper--narrow">
       <div class="platform">
         <div class="platform-logo">
-          <Image src={jetpackPartner} alt="Jetpack Pro Partner" height="133" loading="lazy" decoding="async" />
-          <Image src={pressablePartner} alt="Pressable Pro Partner" height="133" loading="lazy" decoding="async" />
-          <Image src={wooPartner} alt="WooCommerce Pro Partner" height="133" loading="lazy" decoding="async" />
+          <Image src={jetpackPartner} alt="Jetpack Pro Partner" height={133} loading="lazy" decoding="async" />
+          <Image src={pressablePartner} alt="Pressable Pro Partner" height={133} loading="lazy" decoding="async" />
+          <Image src={wooPartner} alt="WooCommerce Pro Partner" height={133} loading="lazy" decoding="async" />
         </div>
 
         <div class="platform-text">

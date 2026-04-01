@@ -4,22 +4,11 @@ import FeaturedArticles from '../../components/FeaturedArticles.astro';
 import '../../styles/pages/_wordpress.scss';
 import { getAverageColor } from 'fast-average-color-node';
 import { sanitizeHtml } from '../../lib/sanitize';
-
-// Jetpack Photon helper
-const photon = (url, params = '') => {
-  if (!url) return null;
-
-  // prevent double wrapping
-  if (url.includes('i0.wp.com')) {
-    return params ? `${url}?${params}` : url;
-  }
-
-  return `https://i0.wp.com/${url.replace(/^https?:\/\//, '')}${params ? `?${params}` : ''}`;
-};
+import { toJetpackImageUrl } from '../../lib/jetpack';
+import { fetchWpJson } from '../../lib/wp';
 
 export async function getStaticPaths() {
-  const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/work?per_page=100&_embed`);
-  const posts = await response.json();
+  const posts = await fetchWpJson('/work?per_page=100&_embed', [] as Record<string, any>[]);
 
   return posts.map((post) => {
     return {
@@ -46,7 +35,7 @@ const titleWords = rawTitle.split(/\s+/);
 
 const formattedTitle =
   titleWords.length > 1
-    ? titleWords.map((word) => `<span class="work-post-hero-title-word">${word}</span>`).join(' ')
+    ? titleWords.map((word: string) => `<span class="work-post-hero-title-word">${word}</span>`).join(' ')
     : rawTitle;
 
 const now = new Date();
@@ -73,20 +62,12 @@ let thumbUrl = null;
 
 // hero image (ACF hero.background.image)
 if (acf?.hero?.background?.image) {
-  const mediaRes = await fetch(`${import.meta.env.PUBLIC_WP_URL}/media/${acf.hero.background.image}`);
-
-  if (mediaRes.ok) {
-    const media = await mediaRes.json();
-
-    const original = media?.source_url || null;
-
-    // Photon CDN URLs
-    bgUrl = photon(original);
-
-    thumbUrl = photon(
-      media?.media_details?.sizes?.medium?.source_url || media?.media_details?.sizes?.thumbnail?.source_url || original,
-    );
-  }
+  const media = await fetchWpJson(`/media/${acf.hero.background.image}`, null as Record<string, any> | null);
+  const original = media?.source_url || null;
+  bgUrl = toJetpackImageUrl(original);
+  thumbUrl = toJetpackImageUrl(
+    media?.media_details?.sizes?.medium?.source_url || media?.media_details?.sizes?.thumbnail?.source_url || original,
+  );
 }
 
 let isDarkHero = false;
@@ -110,7 +91,7 @@ const safeContent = sanitizeHtml(content);
 <Layout
   title={title}
   description={description}
-  image={image}
+  image={image?.[0]}
   darkHeader={true}
   schema={schema}
   ogType="article"
@@ -130,10 +111,10 @@ const safeContent = sanitizeHtml(content);
             width="1920"
             height="1080"
             srcset={`
-              ${photon(bgUrl, 'w=480')} 480w,
-              ${photon(bgUrl, 'w=768')} 768w,
-              ${photon(bgUrl, 'w=1200')} 1200w,
-              ${photon(bgUrl, 'w=1920')} 1920w
+              ${toJetpackImageUrl(bgUrl, 'w=480')} 480w,
+              ${toJetpackImageUrl(bgUrl, 'w=768')} 768w,
+              ${toJetpackImageUrl(bgUrl, 'w=1200')} 1200w,
+              ${toJetpackImageUrl(bgUrl, 'w=1920')} 1920w
             `}
             sizes="(max-width: 900px) 100vw, 90vw"
             class="work-post-hero-img"
@@ -315,9 +296,9 @@ const safeContent = sanitizeHtml(content);
 
 <script>
   document.addEventListener('astro:after-swap', () => {
-    document.querySelectorAll('iframe[width][height]').forEach((el) => {
-      const w = parseFloat(el.getAttribute('width'));
-      const h = parseFloat(el.getAttribute('height'));
+    document.querySelectorAll<HTMLIFrameElement>('iframe[width][height]').forEach((el) => {
+      const w = parseFloat(el.getAttribute('width') ?? '0');
+      const h = parseFloat(el.getAttribute('height') ?? '0');
 
       if (w > 0 && h > 0) {
         el.style.aspectRatio = `${w} / ${h}`;

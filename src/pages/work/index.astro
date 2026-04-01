@@ -1,25 +1,50 @@
 ---
 import Layout from "../../Base.astro";
 import { Picture } from "astro:assets";
-const workResponse = await fetch(`${import.meta.env.PUBLIC_WP_URL}/work?per_page=100`);
-const posts = await workResponse.json();
-const tagsResponse = await fetch(`${import.meta.env.PUBLIC_WP_URL}/tags?per_page=100`);
-const tags = await tagsResponse.json();
+import { fetchWpJson, getWpTags } from "../../lib/wp";
 
-const withOrientation = await Promise.all(
-	posts.map(async (post) => {
+type WorkPost = Record<string, any> & {
+	id: number;
+	slug: string;
+	tags: number[];
+	fimg_url?: string;
+	title: { rendered: string };
+	tagNames?: string[];
+};
+
+const posts = await fetchWpJson('/work?per_page=100', [] as WorkPost[]);
+const tags = await getWpTags() as Record<string, any>[];
+
+const withOrientation: Array<WorkPost & { isLandscape: boolean }> = await Promise.all(
+	posts.map(async (post: WorkPost) => {
 		if (!post.fimg_url) return { ...post, isLandscape: false };
 
-		const res = await fetch(post.fimg_url);
-		const buf = await res.arrayBuffer();
+		try {
+			const res = await fetch(post.fimg_url);
+			if (!res.ok) return { ...post, isLandscape: false };
+			const buf = await res.arrayBuffer();
 
-		const { imageSize } = await import('image-size');
-		const { width, height } = imageSize(Buffer.from(buf));
+			const { imageSize } = await import('image-size');
+			const { width, height } = imageSize(Buffer.from(buf));
 
-		return {
-			...post,
-			isLandscape: width > height
-		};
+			return {
+				...post,
+				isLandscape: width > height,
+				tagNames: post.tags
+					.slice(0, 3)
+					.map((id) => tags.find((tag: Record<string, any>) => tag.id === id)?.name)
+					.filter(Boolean)
+			};
+		} catch {
+			return {
+				...post,
+				isLandscape: false,
+				tagNames: post.tags
+					.slice(0, 3)
+					.map((id) => tags.find((tag: Record<string, any>) => tag.id === id)?.name)
+					.filter(Boolean)
+			};
+		}
 	})
 );
 ---
@@ -56,12 +81,8 @@ const withOrientation = await Promise.all(
 							<Picture src={post.fimg_url} alt={post.title.rendered} loading="lazy" inferSize />
 							<ul class="tease-tags">
 								{
-									post.tags
-										.slice(0, 3)
-										.map(id => tags.find(tag => tag.id === id))
-										.filter(Boolean)
-										.map(tag => (
-											<li class="tease-tags-item">{tag.name}</li>
+										post.tagNames?.map((tagName) => (
+											<li class="tease-tags-item">{tagName}</li>
 										))
 								}
 							</ul>
@@ -118,7 +139,10 @@ const withOrientation = await Promise.all(
 	document.addEventListener('astro:page-load', () => {
 		const workPostFilter = document.querySelector('.work-post-filter');
 		workPostFilter?.addEventListener('change', function (event) {
-			window.location.href = event.target.value;
+			const target = event.target as HTMLSelectElement | null;
+			if (target?.value) {
+				window.location.href = target.value;
+			}
 		});
 	});
 </script>

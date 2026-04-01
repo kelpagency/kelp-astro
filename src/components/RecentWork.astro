@@ -2,6 +2,15 @@
 import { Picture } from 'astro:assets';
 import 'flickity/css/flickity.css';
 import 'flickity-fade/flickity-fade.css';
+import { fetchWpJson } from '../lib/wp';
+
+type WorkPost = Record<string, any> & {
+	id: number;
+	slug: string;
+	fimg_url?: string;
+	title: { rendered: string };
+	excerpt: { rendered: string };
+};
 
 // Accept optional props
 const { tag, category, limit = 6, heading = "Our Work", subheading = "In the real-world", description = "The proof is in the pudding as they say here in the south. Weird sayings aside, it’s one thing to have a good strategy, but it takes special talent to deliver on that strategy with excellence. Take a peak at some of our recent work below." } = Astro.props;
@@ -29,22 +38,19 @@ if (category) {
 }
 
 // Fetch posts with filters applied
-const response = await fetch(
-	`${import.meta.env.PUBLIC_WP_URL}/work?${queryParams}&_embed`
-);
-const posts = await response.json();
+const posts = await fetchWpJson(`/work?${queryParams}&_embed`, [] as WorkPost[]);
 
-const postsWithImages = await Promise.all(
-	posts.map(async (post) => {
+const postsWithImages: Array<WorkPost & { heroImageUrl: string | null }> = await Promise.all(
+	posts.map(async (post: WorkPost) => {
 		let heroImageUrl = null;
 
 		// if ACF + hero.image exists + is numeric id
 		if (post?.acf?.hero?.image) {
 			try {
-				const mediaRes = await fetch(
-					`${import.meta.env.PUBLIC_WP_URL}/media/${post.acf.hero.image}`
+				const media = await fetchWpJson(
+					`/media/${post.acf.hero.image}`,
+					null as Record<string, any> | null
 				);
-				const media = await mediaRes.json();
 				heroImageUrl = media?.source_url ?? null;
 			} catch (e) {
 				heroImageUrl = null;

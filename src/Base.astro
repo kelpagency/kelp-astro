@@ -2,11 +2,11 @@
 import './styles/global.scss';
 import Header from './components/Header.astro';
 import Footer from './components/Footer.astro';
-import { ViewTransitions } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions';
 
 export interface Props {
   title: string;
-  description: string;
+  description?: string;
   image?: string;
   darkHeader?: boolean;
   bodyClass?: string;
@@ -37,7 +37,7 @@ if (darkHeader) {
   bodyClasses = bodyClasses + ' has-dark-header';
 }
 
-const stripHtml = (value = '') => value.replace(/(<([^>]+)>)/gi, '').trim();
+const stripHtml = (value = '') => value.replace(/<[^>]+>/g, '').trim();
 const cleanTitle = stripHtml(title);
 const cleanDescription = stripHtml(description);
 const siteUrl = 'https://www.kelp.agency';
@@ -136,7 +136,7 @@ const schemaJson = JSON.stringify({
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <ViewTransitions />
+    <ClientRouter />
 
     <!-- Meta -->
     <title set:html={title} />
@@ -146,7 +146,7 @@ const schemaJson = JSON.stringify({
     <link rel="alternate" type="application/rss+xml" href="https://www.kelp.agency/rss.xml" />
 
     <!-- Structured Data -->
-    <script type="application/ld+json" set:html={schemaJson} />
+    <script type="application/ld+json" is:inline set:html={schemaJson} />
 
     <!-- Social -->
     <meta property="og:type" content={ogType} />
@@ -205,7 +205,7 @@ const schemaJson = JSON.stringify({
       });
 
       const playAutoplayVideos = () => {
-        const videos = document.querySelectorAll('video[autoplay]');
+        const videos = document.querySelectorAll<HTMLVideoElement>('video[autoplay]');
         videos.forEach((video) => {
           video.muted = true;
           video.playsInline = true;
@@ -217,16 +217,16 @@ const schemaJson = JSON.stringify({
       };
 
       const initEmphasis = async () => {
-        const emphasisElements = document.querySelectorAll('main em');
+        const emphasisElements = document.querySelectorAll<HTMLElement>('main em');
         if (emphasisElements.length === 0) {
           return;
         }
 
         const { annotate } = await import('rough-notation');
-        function handleIntersection(entries) {
+        function handleIntersection(entries: IntersectionObserverEntry[]) {
           entries.map((entry) => {
             if (entry.isIntersecting) {
-              const annotation = annotate(entry.target, {
+              const annotation = annotate(entry.target as HTMLElement, {
                 type: 'underline',
                 multiline: true,
                 padding: 0,

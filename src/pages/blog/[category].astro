@@ -1,12 +1,12 @@
 ---
 import Layout from '../../Base.astro';
 import BlogArchiveSidebar from '../../components/BlogArchiveSidebar.astro';
-import Tease from '../../components/Tease.astro';
+import Tease, { type BlogTeasePost } from '../../components/Tease.astro';
+import { fetchWpJson } from '../../lib/wp';
 
 export async function getStaticPaths() {
-  const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/categories?per_page=100`);
-  const posts = await response.json();
-  return posts.map((category) => {
+  const categories = await fetchWpJson('/categories?per_page=100', [] as Record<string, any>[]);
+  return categories.map((category) => {
     return {
       params: { category: category.slug },
       props: {
@@ -18,11 +18,10 @@ export async function getStaticPaths() {
   });
 }
 
-const { title, slug, id } = Astro.props;
+const { title, id } = Astro.props;
 
 const title2 = `The Kelp Blog: ${title}`;
-const requestPosts = await fetch(`${import.meta.env.PUBLIC_WP_URL}/posts?per_page=100&categories=${id}`);
-const posts = await requestPosts.json();
+const posts = await fetchWpJson(`/posts?per_page=100&categories=${id}`, [] as BlogTeasePost[]);
 ---
 
 <Layout title={title2} description=`Helpful resources about ${title}` darkHeader={true} bodyClass="blog-archive">

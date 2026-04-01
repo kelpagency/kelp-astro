@@ -7,16 +7,14 @@ import { Picture } from 'astro:assets';
 import readingTime from 'reading-time';
 import { sanitizeHtml } from '../../lib/sanitize';
 import { toJetpackImageUrl } from '../../lib/jetpack';
+import { fetchWpJson } from '../../lib/wp';
 
 import '../../styles/pages/_wordpress.scss';
 import 'highlight.js/styles/monokai-sublime.css';
 
 export async function getStaticPaths() {
-  const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/posts?per_page=100&_embed`);
-  const posts = await response.json();
-
-  const requestCategories = await fetch(`${import.meta.env.PUBLIC_WP_URL}/categories?per_page=100`);
-  const categories = await requestCategories.json();
+  const posts = await fetchWpJson('/posts?per_page=100&_embed', [] as Record<string, any>[]);
+  const categories = await fetchWpJson('/categories?per_page=100', [] as Record<string, any>[]);
 
   return posts.map((post) => {
     return {
@@ -40,18 +38,21 @@ export async function getStaticPaths() {
 const { title, content, id, author, image, description, datePublished, dateModified, categories, allCategories } =
   Astro.props;
 const ogImage = toJetpackImageUrl(image, 'w=1200') || image;
-const comments = await fetch(`${import.meta.env.PUBLIC_WP_URL}/comments?post=${id}`);
-const jsonComments = await comments.json();
-const category = {
-  slug: allCategories.find((cat) => cat.id === categories[0]).slug,
-  name: allCategories.find((cat) => cat.id === categories[0]).name,
-  id: allCategories.find((cat) => cat.id === categories[0]).id,
-};
+const jsonComments = await fetchWpJson(`/comments?post=${id}`, [] as Record<string, any>[]);
+const categoryMatch = allCategories.find((cat) => cat.id === categories?.[0]);
+const category = categoryMatch
+  ? {
+      slug: categoryMatch.slug,
+      name: categoryMatch.name,
+      id: categoryMatch.id,
+    }
+  : null;
 const cleanTitle = title.replace(/(<([^>]+)>)/gi, '').trim();
 const cleanDescription = description.replace(/(<([^>]+)>)/gi, '').trim();
 const now = new Date();
 const modifiedDate = dateModified ? new Date(dateModified) : null;
 const safeDateModified = modifiedDate && modifiedDate > now ? datePublished : dateModified || datePublished;
+const authorEntry = Array.isArray(author) ? author[0] : author;
 const schema = {
   '@type': 'BlogPosting',
   headline: cleanTitle,
@@ -62,8 +63,8 @@ const schema = {
   author: [
     {
       '@type': 'Person',
-      name: author[0].name,
-      url: author[0].url,
+      name: authorEntry?.name,
+      url: authorEntry?.url,
     },
   ],
   publisher: {
@@ -185,9 +186,9 @@ const safeContent = sanitizeHtml(content);
         </form>
       </section>
     </div>
-    <BlogSingleSidebar author={author[0]} category={category} postId={id} />
+    <BlogSingleSidebar author={authorEntry} category={category} postId={id} />
   </article>
-  <FeaturedArticles category={categories} heading="Related Articles" />
+  {categories?.length > 0 && <FeaturedArticles category={categories} heading="Related Articles" />}
 </Layout>
 
 <style lang="scss" is:global>
@@ -366,14 +367,17 @@ const safeContent = sanitizeHtml(content);
 <script>
   document.addEventListener('astro:page-load', () => {
     // leave a comment
-    const commentForm = document.querySelector('.single-article-leave-a-comment form');
+    const commentForm = document.querySelector<HTMLFormElement>('.single-article-leave-a-comment form');
     commentForm?.addEventListener('submit', function (event) {
       event.preventDefault();
-      const email = commentForm.querySelector("input[type='email']").value;
-      const name = commentForm.querySelector('input[type="text"]').value;
-      const comment = commentForm.querySelector('textarea').value;
-      const postId = commentForm.querySelector('input[type="hidden"]').value;
-      const button = commentForm.querySelector('button');
+      const email = commentForm.querySelector<HTMLInputElement>("input[type='email']")?.value ?? '';
+      const name = commentForm.querySelector<HTMLInputElement>('input[type="text"]')?.value ?? '';
+      const comment = commentForm.querySelector<HTMLTextAreaElement>('textarea')?.value ?? '';
+      const postId = commentForm.querySelector<HTMLInputElement>('input[type="hidden"]')?.value ?? '';
+      const button = commentForm.querySelector<HTMLButtonElement>('button');
+      if (!button) {
+        return;
+      }
       button.innerText = '... posting ...';
       const data = {
         post: postId,

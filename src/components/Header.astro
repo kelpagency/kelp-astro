@@ -373,7 +373,7 @@
   import Headroom from 'headroom.js';
   document.addEventListener('astro:page-load', () => {
     // Sticky header
-    const header = document.querySelector('header');
+    const header = document.querySelector<HTMLElement>('header');
     if (header && !header.dataset.headroomInit) {
       const headroom = new Headroom(header, {
         offset: {
@@ -391,8 +391,8 @@
     }
 
     // mobile nav
-    const burger = document.querySelector('.hamburger');
-    const nav = document.querySelector('.header-nav');
+    const burger = document.querySelector<HTMLElement>('.hamburger');
+    const nav = document.querySelector<HTMLElement>('.header-nav');
     const mobileQuery = window.matchMedia('(max-width: 1079px)');
     const topLevelList = nav?.firstElementChild;
     const topLevelItems =
@@ -400,9 +400,9 @@
         ? Array.from(topLevelList.children).filter((item) => item.classList.contains('has-submenu'))
         : [];
 
-    const getSubmenu = (item) => Array.from(item.children).find((child) => child instanceof HTMLUListElement);
+    const getSubmenu = (item: Element) => Array.from(item.children).find((child) => child instanceof HTMLUListElement);
 
-    const closeSubmenu = (item) => {
+    const closeSubmenu = (item: Element) => {
       const link = item.firstElementChild;
       const submenu = getSubmenu(item);
       if (!(link instanceof HTMLAnchorElement)) {

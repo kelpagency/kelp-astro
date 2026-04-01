@@ -1,7 +1,6 @@
 ---
 import Layout from '../../Base.astro';
 import SimpleHero from '../../components/SimpleHero.astro';
-import { Image } from 'astro:assets';
 import FeaturedArticles from '../../components/FeaturedArticles.astro';
 import RecentWork from '../../components/RecentWork.astro';
 
@@ -13,7 +12,7 @@ import HubspotPartner from '../../assets/hubspot.svg';
     <SimpleHero
       title="HubSpot"
       description="We build scalable, user-friendly HubSpot websites, themes, and modules designed for marketing teams to actually use — not fight against. As official HubSpot Solutions Partners and multi-award-winning theme developers, we know the CMS inside and out."
-      dark="true"
+      dark={true}
     />
 
     <section class="wrapper wrapper--narrow">
