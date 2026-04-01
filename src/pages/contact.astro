@@ -22,14 +22,9 @@ import Testimonials from '../components/Testimonials.astro';
 					<p>Phone: <a href="tel:+1-352-325-7688">352-325-7688</a></p>
 				</div>
 				<div class="contact-section-column" data-lg-reveal="layer-to-right" data-lg-reveal-delay=".5">
-					<!-- Embed script is in global js file -->
 					<div id="meetings-embed">
-						<!-- Start of Meetings Embed Script -->
 						<div class="meetings-iframe-container" data-src="https://store.kelp.agency/meetings/andrew1417?embed=true">
 						</div>
-						<script is:inline type="text/javascript" src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"
-						></script>
-						<!-- End of Meetings Embed Script -->
 					</div>
 				</div>
 			</div>
@@ -71,3 +66,30 @@ import Testimonials from '../components/Testimonials.astro';
 		}
 	}
 </style>
+
+<script>
+	const HUBSPOT_MEETINGS_SCRIPT_SRC = 'https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js';
+
+	const initMeetingsEmbed = () => {
+		const embedRoot = document.querySelector('#meetings-embed');
+		const container = embedRoot?.querySelector('.meetings-iframe-container');
+		if (!(embedRoot instanceof HTMLElement) || !(container instanceof HTMLDivElement)) {
+			return;
+		}
+
+		embedRoot.querySelectorAll('iframe').forEach((iframe) => iframe.remove());
+		container.replaceChildren();
+
+		document.querySelectorAll('script[data-hubspot-meetings-embed]').forEach((script) => script.remove());
+
+		const script = document.createElement('script');
+		script.src = HUBSPOT_MEETINGS_SCRIPT_SRC;
+		script.async = true;
+		script.defer = true;
+		script.dataset.hubspotMeetingsEmbed = 'true';
+		document.body.appendChild(script);
+	};
+
+	document.addEventListener('astro:page-load', initMeetingsEmbed);
+	document.addEventListener('astro:after-swap', initMeetingsEmbed);
+</script>
