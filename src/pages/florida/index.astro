@@ -2,12 +2,27 @@
 import Layout from '../../Base.astro';
 import countries from 'countrycitystatejson';
 import slugify from 'slugify';
+import { buildCollectionPageSchema, buildItemList } from '../../lib/schema';
 
 const usa = countries.getCountryByShort('US');
 const florida = usa.states['Florida'];
+const schema = buildCollectionPageSchema(
+  "Florida's Web Design Agency",
+  'Florida web design, development, and digital marketing service areas.',
+  buildItemList(
+    florida.slice(0, 50).map((city) => ({
+      name: city.name.replace("''", "'"),
+      url: `/florida/${slugify(city.name, { lower: true, strict: true })}/`,
+    })),
+  ),
+);
 ---
 
-<Layout title="Florida's Web Design Agency">
+<Layout
+  title="Florida's Web Design Agency"
+  description="Florida web design, development, and digital marketing service areas."
+  schema={schema}
+>
 	<div class="wrapper wrapper--narrow" style="margin-bottom: 150px;">
 		<h1>Florida's Web Design Agency 👋</h1>
 		<h2 class="h4" style="margin: 3rem 0;" data-lg-reveal="fade">Cities we do web design work in <small>(hint: it's all of them 🤓)</small></h2>

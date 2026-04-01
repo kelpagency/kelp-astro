@@ -3,8 +3,14 @@ import Layout from '../../Base.astro';
 import Tease, { type BlogTeasePost } from '../../components/Tease.astro';
 import BlogArchiveSidebar from '../../components/BlogArchiveSidebar.astro';
 import { fetchWpJson } from '../../lib/wp';
+import { buildCollectionPageSchema, buildItemList } from '../../lib/schema';
 
 const posts = await fetchWpJson('/posts?per_page=100', [] as BlogTeasePost[]);
+const schema = buildCollectionPageSchema(
+  'The Kelp Blog',
+  'Helpful resources and creative insight from Kelp Creative Agency.',
+  buildItemList(posts.slice(0, 20).map((post) => ({ name: post.title.rendered.replace(/<[^>]+>/g, '').trim(), url: `/blog/${post.slug}/` }))),
+);
 ---
 
 <Layout
@@ -12,6 +18,7 @@ const posts = await fetchWpJson('/posts?per_page=100', [] as BlogTeasePost[]);
   description="Helpful resources. Creative insight. Join us on a journey where creativity meets problem-solving and success. Be inspired, educated, and harness the power of creativity to reach your goals."
   darkHeader={true}
   bodyClass="blog-archive"
+  schema={schema}
 >
   <article class="wrapper archive">
     <BlogArchiveSidebar />

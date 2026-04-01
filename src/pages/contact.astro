@@ -1,9 +1,47 @@
 ---
 import Layout from '../Base.astro';
 import Testimonials from '../components/Testimonials.astro';
+import { buildFaqSchema } from '../lib/schema';
+
+const schema = [
+  {
+    '@type': 'ContactPage',
+    name: 'Contact Kelp',
+    description: 'Get in touch with Kelp Creative Agency to discuss branding, websites, and marketing support.',
+  },
+  {
+    '@type': 'ProfessionalService',
+    name: 'Kelp Creative Agency',
+    url: 'https://www.kelp.agency/contact/',
+    telephone: '+1-352-325-7688',
+    email: 'info@kelp.agency',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Brooksville',
+      addressRegion: 'FL',
+      postalCode: '34605',
+      postOfficeBoxNumber: '116',
+      addressCountry: 'US',
+    },
+    areaServed: {
+      '@type': 'State',
+      name: 'Florida',
+    },
+  },
+  buildFaqSchema([
+    {
+      question: 'How do I contact Kelp Creative Agency?',
+      answer: 'You can book a meeting on the contact page or call Kelp at 352-325-7688.',
+    },
+    {
+      question: 'Where is Kelp Creative Agency located?',
+      answer: 'Kelp Creative Agency is based in Brooksville, Florida and works with businesses across Florida and beyond.',
+    },
+  ]),
+];
 ---
 
-<Layout title="Contact Kelp" darkHeader={true}>
+<Layout title="Contact Kelp" darkHeader={true} schema={schema}>
 	<article>
 		<section class="contact-section">
 			<div class="wrapper">

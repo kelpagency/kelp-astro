@@ -2,6 +2,7 @@
 import Layout from "../../Base.astro";
 import { Picture } from "astro:assets";
 import { fetchWpJson, getWpTags } from "../../lib/wp";
+import { buildCollectionPageSchema, buildItemList } from "../../lib/schema";
 
 type WorkPost = Record<string, any> & {
 	id: number;
@@ -47,9 +48,14 @@ const withOrientation: Array<WorkPost & { isLandscape: boolean }> = await Promis
 		}
 	})
 );
+const schema = buildCollectionPageSchema(
+	'Our Work',
+	'Recent case studies and client work from Kelp Creative Agency.',
+	buildItemList(withOrientation.slice(0, 24).map((post) => ({ name: post.title.rendered.replace(/<[^>]+>/g, '').trim(), url: `/work/${post.slug}/` }))),
+);
 ---
 
-<Layout title='Our Work' bodyClass="work-archive">
+<Layout title='Our Work' bodyClass="work-archive" schema={schema}>
 	<section class="archive">
 		<div class='wrapper wrapper--narrow'>
 			<h1 style="margin-top: 8rem;" data-lg-reveal="fade" data-lg-reveal-stagger="0.05"><span>Our</span> <span>Work</span> <span>in</span> <span>the</span> <span>Real-World</span></h1>

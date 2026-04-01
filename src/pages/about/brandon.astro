@@ -1,6 +1,7 @@
 ---
 import Layout from '../../Base.astro';
 import TeamMemberProfile from '../../components/TeamMemberProfile.astro';
+import { buildPersonSchema } from '../../lib/schema';
 
 const description = `Brandon is our creative producer and motion wizard&thinsp;—&thinsp;the person responsible for making things move, feel alive,
 and look effortlessly polished. He’s a master of video, After Effects, motion graphics, visual storytelling,
@@ -8,11 +9,19 @@ and also happens to be a very capable web developer when projects need that extr
 Brandon has a sharp sense of timing, a strong visual instinct, and an eye for the details most people miss.
 Outside of work, he’s usually wrangling multiple pets or playing ultimate frisbee, which explains both his
 patience and his ability to move very fast when needed.`;
+const schema = buildPersonSchema({
+  name: 'Brandon Berlew',
+  description: 'Brandon is Kelp’s creative producer, specializing in motion graphics, video, and visual storytelling.',
+  jobTitle: 'Creative Producer',
+  url: 'https://www.kelp.agency/about/brandon/',
+  image: 'https://www.kelp.agency/videos/team/brandon.webp',
+});
 ---
 
 <Layout
   title="Brandon Berlew | Kelp Creative Agency"
   description="Brandon is our creative producer and motion wizard, responsible for video, motion graphics, and visual storytelling."
+  schema={schema}
 >
   <TeamMemberProfile
     name="Brandon Berlew"

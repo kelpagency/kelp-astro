@@ -2,9 +2,37 @@
 import Layout from '../../Base.astro';
 import SimpleHero from '../../components/SimpleHero.astro';
 import Services from '../../components/Services.astro';
+import { buildCollectionPageSchema, buildItemList } from '../../lib/schema';
+
+const schema = buildCollectionPageSchema(
+  "Kelp's Services",
+  'Digital services from branding and design to development, marketing, media, and ongoing support.',
+  buildItemList([
+    { name: 'Apparel Design', url: '/services/apparel-design/' },
+    { name: 'Branding', url: '/services/branding/' },
+    { name: 'Digital Design', url: '/services/digital-design/' },
+    { name: 'Print Design', url: '/services/print-design/' },
+    { name: 'Applications', url: '/services/applications/' },
+    { name: 'Website Development', url: '/services/website-development/' },
+    { name: 'Ecommerce', url: '/services/ecommerce/' },
+    { name: 'Audience Targeting', url: '/services/audience-targeting/' },
+    { name: 'Campaign Management', url: '/services/campaign-management/' },
+    { name: 'Copywriting', url: '/services/copywriting/' },
+    { name: 'Digital Marketing', url: '/services/digital-marketing/' },
+    { name: 'Social PPC', url: '/services/social-ppc/' },
+    { name: 'Social Media Content', url: '/services/social-media-content/' },
+    { name: 'Reporting', url: '/services/reporting/' },
+    { name: 'Motion Graphics', url: '/services/motion-graphics/' },
+    { name: 'Photography', url: '/services/photography/' },
+    { name: 'Video', url: '/services/video/' },
+    { name: 'Ongoing Retainers', url: '/services/ongoing-retainers/' },
+    { name: 'Web Hosting', url: '/services/web-hosting/' },
+    { name: 'Website Support', url: '/services/website-support/' },
+  ]),
+);
 ---
 
-<Layout title="Kelp's Services" darkHeader={true}>
+<Layout title="Kelp's Services" darkHeader={true} schema={schema}>
 	<article>
 		<SimpleHero
 			title="What <br><span style='margin-left: 1em;'>We Do</span>"

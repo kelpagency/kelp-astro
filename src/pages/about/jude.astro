@@ -1,6 +1,7 @@
 ---
 import Layout from '../../Base.astro';
 import TeamMemberProfile from '../../components/TeamMemberProfile.astro';
+import { buildPersonSchema } from '../../lib/schema';
 
 const description = `Jude is our marketing specialist, and one of the few people in the world that understands how Google Tag
 Manager works. With a skill set that stretches well beyond strategy and analytics. He’s equally at home behind
@@ -8,11 +9,19 @@ a camera, shooting photography and video, or behind an espresso machine pulling 
 brings a sharp creative eye to marketing work and understands how content actually performs in the real world.
 As the youngest on the team, he’s naturally taken on the role of the little brother&thinsp;—&thinsp;occasionally roasted,
 always supported, and fully trusted to deliver when it matters.`;
+const schema = buildPersonSchema({
+  name: 'Jude House',
+  description: 'Jude is Kelp’s marketing specialist with strengths in analytics, photography, and video.',
+  jobTitle: 'Marketing Specialist',
+  url: 'https://www.kelp.agency/about/jude/',
+  image: 'https://www.kelp.agency/videos/team/jude.webp',
+});
 ---
 
 <Layout
   title="Jude House | Kelp Creative Agency"
   description="Jude is our marketing specialist with strengths in strategy, analytics, photography, and video."
+  schema={schema}
 >
   <TeamMemberProfile
     name="Jude House"

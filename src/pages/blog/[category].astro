@@ -2,6 +2,7 @@
 import Layout from '../../Base.astro';
 import BlogArchiveSidebar from '../../components/BlogArchiveSidebar.astro';
 import Tease, { type BlogTeasePost } from '../../components/Tease.astro';
+import { buildCollectionPageSchema, buildItemList } from '../../lib/schema';
 import { fetchWpJson } from '../../lib/wp';
 
 export async function getStaticPaths() {
@@ -22,9 +23,26 @@ const { title, id } = Astro.props;
 
 const title2 = `The Kelp Blog: ${title}`;
 const posts = await fetchWpJson(`/posts?per_page=100&categories=${id}`, [] as BlogTeasePost[]);
+const schema = buildCollectionPageSchema(
+  title2,
+  `Helpful resources about ${title}`,
+  buildItemList(
+    posts.slice(0, 20).map((post) => ({
+      name: post.title?.rendered ?? 'Blog post',
+      url: `/blog/${post.slug}/`,
+      description: post.excerpt?.rendered?.replace(/<[^>]+>/g, '').trim(),
+    })),
+  ),
+);
 ---
 
-<Layout title={title2} description=`Helpful resources about ${title}` darkHeader={true} bodyClass="blog-archive">
+<Layout
+  title={title2}
+  description={`Helpful resources about ${title}`}
+  darkHeader={true}
+  bodyClass="blog-archive"
+  schema={schema}
+>
   <article class="wrapper archive">
     <BlogArchiveSidebar />
     {posts.map((post) => <Tease post={post} />)}

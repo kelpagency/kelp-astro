@@ -7,6 +7,7 @@ import HowWeWork from "../../components/HowWeWork.astro";
 
 import countries from 'countrycitystatejson';
 import slugify from 'slugify';
+import { buildFaqSchema, buildItemList } from '../../lib/schema';
 
 export async function getStaticPaths() {
 	const usa = countries.getCountryByShort('US');
@@ -72,6 +73,38 @@ const localSchema = {
 		addressCountry: 'US',
 	},
 };
+const serviceSchema = {
+  '@type': 'Service',
+  name: `${cityName} Digital Agency Services`,
+  serviceType: 'Branding, website development, and marketing services',
+  provider: {
+    '@id': 'https://www.kelp.agency/#organization',
+  },
+  areaServed: {
+    '@type': 'City',
+    name: cityName,
+    addressRegion: 'FL',
+    addressCountry: 'US',
+  },
+};
+const faqSchema = buildFaqSchema([
+  {
+    question: `Do you work with teams in ${cityName}?`,
+    answer: `Yes. Kelp partners with businesses in and around ${cityName}, Florida.`,
+  },
+  {
+    question: `What services are most popular in ${cityName}?`,
+    answer: `Web design, brand identity, and marketing strategy are common starting points for businesses in ${cityName}.`,
+  },
+  {
+    question: 'How fast can a project start?',
+    answer: 'Most projects can start within a few weeks depending on scope and scheduling.',
+  },
+]);
+const caseStudyList = {
+  '@type': 'ItemList',
+  itemListElement: buildItemList(caseStudies.map((study) => ({ name: study.title, url: study.href, description: study.detail }))),
+};
 
 // 
 // const data = {
@@ -130,7 +163,7 @@ const localSchema = {
 <Layout
 	title={title}
 	description={description}
-	schema={localSchema}
+	schema={[localSchema, serviceSchema, faqSchema, caseStudyList]}
 >
 	<SimpleHero
 		tagline='Digital Agency serving:'

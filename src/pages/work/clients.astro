@@ -4,9 +4,31 @@ import SimpleHero from '../../components/SimpleHero.astro';
 import clientsFront from '../../assets/images/clients/front.png';
 import clientsMiddle from '../../assets/images/clients/middle.png';
 import clientsBack from '../../assets/images/clients/back.png';
+import { buildCollectionPageSchema, buildItemList } from '../../lib/schema';
+
+const schema = buildCollectionPageSchema(
+  'Kelp Client List',
+  'A sample of organizations Kelp Creative Agency has worked with across multiple industries.',
+  buildItemList([
+    { name: 'US Labels', url: '/work/' },
+    { name: 'Agent IQ', url: '/work/' },
+    { name: 'Capital Tacos', url: '/work/' },
+    { name: 'ReliAscent', url: '/work/' },
+    { name: 'Martin Supply', url: '/work/' },
+    { name: 'ES Tech Group', url: '/work/' },
+    { name: 'Odd Life Studios', url: '/work/' },
+    { name: 'Suncoast Obstetrics & Gynecology', url: '/work/' },
+    { name: 'Seven Rivers Church', url: '/work/' },
+    { name: 'Bluestone Construction', url: '/work/' },
+    { name: 'Mountaineer Coffee', url: '/work/' },
+    { name: 'CDS Security', url: '/work/' },
+    { name: 'Appointedd', url: '/work/' },
+    { name: 'Whitehead Farms', url: '/work/' },
+  ]),
+);
 ---
 
-<Layout title="Kelp Client List">
+<Layout title="Kelp Client List" schema={schema}>
   <SimpleHero
     title="A Sample of Who We've Helped"
     mediaFront={clientsFront}

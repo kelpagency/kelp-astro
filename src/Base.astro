@@ -3,6 +3,7 @@ import './styles/global.scss';
 import Header from './components/Header.astro';
 import Footer from './components/Footer.astro';
 import { ClientRouter } from 'astro:transitions';
+import { buildBreadcrumbSchema, buildCollectionPageSchema, buildServiceSchema } from './lib/schema';
 
 export interface Props {
   title: string;
@@ -46,6 +47,30 @@ const organizationId = `${siteUrl}/#organization`;
 const websiteId = `${siteUrl}/#website`;
 const webPageId = `${Astro.url.href}#webpage`;
 const imageUrl = new URL(image, Astro.url).href;
+const breadcrumbSchema = buildBreadcrumbSchema(Astro.url.pathname, cleanTitle);
+const isServiceDetailPage = Astro.url.pathname.startsWith('/services/') && Astro.url.pathname !== '/services/';
+const inferredPageSchema =
+  Astro.url.pathname === '/about/'
+    ? {
+        '@type': 'AboutPage',
+        name: cleanTitle,
+        description: cleanDescription,
+      }
+    : Astro.url.pathname === '/contact/'
+    ? {
+        '@type': 'ContactPage',
+        name: cleanTitle,
+        description: cleanDescription,
+      }
+    : isServiceDetailPage
+      ? buildServiceSchema({
+          name: cleanTitle,
+          description: cleanDescription,
+          url: canonicalHref,
+        })
+    : ['/blog/', '/work/', '/services/', '/platforms/', '/resources/', '/florida/', '/calendar/'].includes(Astro.url.pathname)
+      ? buildCollectionPageSchema(cleanTitle, cleanDescription)
+      : null;
 
 const organizationSchema = {
   '@type': 'Organization',
@@ -102,6 +127,12 @@ const webPageSchema = {
 };
 
 const schemaNodes: Record<string, unknown>[] = [organizationSchema, websiteSchema, webPageSchema];
+if (breadcrumbSchema) {
+  schemaNodes.push(breadcrumbSchema as Record<string, unknown>);
+}
+if (inferredPageSchema) {
+  schemaNodes.push(inferredPageSchema as Record<string, unknown>);
+}
 if (schema) {
   let parsedSchema: unknown = schema;
   if (typeof schema === 'string') {

@@ -3,13 +3,24 @@ import Layout from '../../Base.astro';
 import Team from '../../components/OurTeam.astro';
 import Culture from '../../components/Culture.astro';
 import { Picture } from 'astro:assets';
+import { buildCollectionPageSchema, buildItemList } from '../../lib/schema';
 
 import founders from '../../assets/images/kelp-founders.jpg';
+
+const schema = buildCollectionPageSchema('About Kelp', 'Meet the team and learn how Kelp Creative Agency was founded.', buildItemList([
+  { name: 'Andrew Prouty', url: '/about/andrew/' },
+  { name: 'Brandon Berlew', url: '/about/brandon/' },
+  { name: 'Jude House', url: '/about/jude/' },
+  { name: 'Luke Kenney', url: '/about/luke/' },
+  { name: 'Stefen Phelps', url: '/about/stefen/' },
+  { name: 'Squid Squidly', url: '/about/squidly/' },
+]));
 ---
 
 <Layout
   title="About Kelp"
   description="Our team spans a broad range of digital expertise allowing us to take on very unique and intricate projects. If you can dream it, we can make it."
+  schema={schema}
 >
   <div class="wrapper wrapper--narrow">
     <h1 data-lg-reveal="fade" data-lg-reveal-stagger><span>Our</span> <span>Mission</span></h1>

@@ -11,12 +11,30 @@ import redFlagFont from '../assets/images/resources/red-flag-font.jpg';
 import blackFlagFont from '../assets/images/resources/black-flag-font.jpg';
 import seaweedBrush from '../assets/images/resources/seaweed-brush.png';
 import ropeBrush from '../assets/images/resources/rope-brush.jpg';
+import { buildCollectionPageSchema, buildItemList } from '../lib/schema';
+
+const schema = buildCollectionPageSchema(
+  'Kelp Resources',
+  "A collection of digital assets, downloadable resources, and creative tools from Kelp Creative Agency.",
+  buildItemList([
+    { name: 'Modern Pro', url: 'https://ecosystem.hubspot.com/marketplace/website/modern-pro-theme-by-kelp-creative-agency' },
+    { name: 'Restaurant Pro', url: 'https://ecosystem.hubspot.com/marketplace/website/restaurant-pro-theme-by-kelp-creative-agency' },
+    { name: 'Simple Social Sharing', url: 'https://wordpress.org/plugins/simple-social-sharing-kelp/' },
+    { name: 'Brand Identity Toolkit', url: 'https://admin.kelp.agency/wp-content/uploads/2023/05/Kelp-Brand-Identity-Toolkit-PDF.pdf' },
+    { name: 'Brand Strategy Toolkit', url: 'https://admin.kelp.agency/wp-content/uploads/2023/05/Kelp-Brand-Strategy-Toolkit-PDF.pdf' },
+    { name: 'Red Flag Font', url: '/fonts/Red-Flag.otf' },
+    { name: 'Black Flag Font', url: '/fonts/black-flag-fonts.zip' },
+    { name: 'Kelp Seaweed Brush', url: '/brushes/Kelp-Seaweed-Brush.ai' },
+    { name: 'Kelp Rope Brush', url: '/brushes/Kelp-Rope-Brush.ai' },
+  ]),
+);
 ---
 
 <Layout
   title="Kelp Resources"
   description="A collection of digital assets we've made that you might find useful for yourself."
   darkHeader={true}
+  schema={schema}
 >
   <div class="wrapper wrapper--narrow">
     <h1 style="margin-top: 8rem;" data-lg-reveal="fade" data-lg-reveal-stagger="0.05">
