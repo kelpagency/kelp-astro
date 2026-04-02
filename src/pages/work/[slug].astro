@@ -297,7 +297,7 @@ const safeContent = sanitizeHtml(content);
 </style>
 
 <script>
-  document.addEventListener('astro:after-swap', () => {
+  const updateEmbeddedIframes = () => {
     document.querySelectorAll<HTMLIFrameElement>('iframe[width][height]').forEach((el) => {
       const w = parseFloat(el.getAttribute('width') ?? '0');
       const h = parseFloat(el.getAttribute('height') ?? '0');
@@ -308,5 +308,11 @@ const safeContent = sanitizeHtml(content);
         el.style.height = 'auto';
       }
     });
-  });
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', updateEmbeddedIframes, { once: true });
+  } else {
+    updateEmbeddedIframes();
+  }
 </script>

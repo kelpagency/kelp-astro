@@ -60,7 +60,8 @@ const schema = buildCollectionPageSchema(
         <Picture
           src={modernPro}
           alt="Modern Pro - HubSpot Theme"
-          loading="lazy"
+          loading="eager"
+          fetchpriority="high"
           width={1160}
           height={870}
           widths={[360, 720, 1160]}
@@ -312,7 +313,7 @@ const schema = buildCollectionPageSchema(
           font-family: var(--sans-serif);
           font-size: 14px;
           line-height: 1.2;
-          opacity: 0.5;
+          color: #666;
           margin-top: 1.5rem;
           span + span {
             border-left: 1px solid;

@@ -108,6 +108,13 @@ const schema = [
 <script>
 	const HUBSPOT_MEETINGS_SCRIPT_SRC = 'https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js';
 
+	const setEmbedIframeTitle = (embedRoot: HTMLElement) => {
+		embedRoot.querySelectorAll('iframe').forEach((iframe) => {
+			iframe.title = 'Schedule a meeting with Kelp Creative Agency';
+			iframe.loading = 'lazy';
+		});
+	};
+
 	const initMeetingsEmbed = () => {
 		const embedRoot = document.querySelector('#meetings-embed');
 		const container = embedRoot?.querySelector('.meetings-iframe-container');
@@ -126,8 +133,45 @@ const schema = [
 		script.defer = true;
 		script.dataset.hubspotMeetingsEmbed = 'true';
 		document.body.appendChild(script);
+
+		const observer = new MutationObserver(() => {
+			setEmbedIframeTitle(embedRoot);
+		});
+		observer.observe(embedRoot, {
+			childList: true,
+			subtree: true,
+		});
+
+		setEmbedIframeTitle(embedRoot);
 	};
 
-	document.addEventListener('astro:page-load', initMeetingsEmbed);
-	document.addEventListener('astro:after-swap', initMeetingsEmbed);
+	const initMeetingsEmbedWhenVisible = () => {
+		const embedRoot = document.querySelector('#meetings-embed');
+		if (!(embedRoot instanceof HTMLElement)) {
+			return;
+		}
+
+		if ('IntersectionObserver' in window) {
+			const observer = new IntersectionObserver((entries) => {
+				entries.forEach((entry) => {
+					if (!entry.isIntersecting) {
+						return;
+					}
+
+					initMeetingsEmbed();
+					observer.disconnect();
+				});
+			}, { rootMargin: '200px' });
+
+			observer.observe(embedRoot);
+		} else {
+			initMeetingsEmbed();
+		}
+	};
+
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', initMeetingsEmbedWhenVisible, { once: true });
+	} else {
+		initMeetingsEmbedWhenVisible();
+	}
 </script>

@@ -160,8 +160,16 @@ if (lottieFile) {
 				grid-template-columns: 1fr 3fr;
 			}
 			div[data-lg-lottie] {
+				width: min(100%, 320px);
+				aspect-ratio: 1 / 1;
+				margin: 0 auto;
 				grid-row: span 3;
 				position: relative;
+				svg,
+				canvas {
+					width: 100%;
+					height: 100%;
+				}
 				&:after {
 					content: '';
 					position: absolute;

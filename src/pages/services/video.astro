@@ -133,10 +133,16 @@ import "../../styles/pages/_services-list.scss";
 	}
 </style>
 <script>
-	document.addEventListener('astro:page-load', () => {
+	const initVideoShowcase = () => {
 		const videos = document.querySelectorAll<HTMLVideoElement>('.video-showcase video');
 		videos?.forEach(function (video) {
 			video.play();
 		});
-	});
+	};
+
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', initVideoShowcase, { once: true });
+	} else {
+		initVideoShowcase();
+	}
 </script>

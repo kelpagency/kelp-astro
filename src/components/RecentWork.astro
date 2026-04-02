@@ -63,6 +63,7 @@ const postsWithImages: Array<WorkPost & { heroImageUrl: string | null }> = await
 		};
 	})
 );
+const hasPosts = postsWithImages.length > 0;
 ---
 
 <section class='recent-work'>
@@ -71,46 +72,57 @@ const postsWithImages: Array<WorkPost & { heroImageUrl: string | null }> = await
 			<h2 class='h3'>{heading} <span>{subheading}</span></h2>
 			<p set:html={description}></p>
 		</div>
-		<div class='recent-work-slider'>
-			{
-				postsWithImages.map((post) => (
-					<div class='recent-work-slider-item'>
-						<div class='recent-work-slider-item-media'>
-							<Picture
-								src={post.heroImageUrl || post.fimg_url}
-								alt={post.title.rendered}
-								width={980}
-								height={552}
-								widths={[480, 720, 980, 1440]}
-								sizes="(max-width: 767px) 100vw, (max-width: 1200px) 85vw, 980px"
-								loading="lazy"
-								class="recent-work-slider-item-media-img"
-								inferSize
-							/>
-						</div>
-						<div class='recent-work-slider-item-text'>
-							<h3 class='recent-work-slider-item-text-heading h6' transition:name=`heading-${post.id}` set:html={post.title.rendered} />
-							<div class='recent-work-slider-item-text-body'>
-								<p class="recent-work-slider-item-text-body-p">
-									{stripHTML(post.excerpt.rendered)}
-								</p>
-								<p class="recent-work-slider-item-text-body-p">
-									<a href=`/work/${post.slug}/` class='squiggle'>
-										Read More <span class="screen-reader-text">About {post.title.rendered}</span>
-									</a>
-								</p>
+		{
+			hasPosts ? (
+				<div class='recent-work-slider'>
+					{
+						postsWithImages.map((post) => (
+							<div class='recent-work-slider-item'>
+								<div class='recent-work-slider-item-media'>
+									<Picture
+										src={post.heroImageUrl || post.fimg_url}
+										alt={post.title.rendered}
+										width={980}
+										height={552}
+										widths={[480, 720, 980, 1440]}
+										sizes="(max-width: 767px) 100vw, (max-width: 1200px) 85vw, 980px"
+										loading="lazy"
+										class="recent-work-slider-item-media-img"
+										inferSize
+									/>
+								</div>
+								<div class='recent-work-slider-item-text'>
+									<h3 class='recent-work-slider-item-text-heading h6' transition:name=`heading-${post.id}` set:html={post.title.rendered} />
+									<div class='recent-work-slider-item-text-body'>
+										<p class="recent-work-slider-item-text-body-p">
+											{stripHTML(post.excerpt.rendered)}
+										</p>
+										<p class="recent-work-slider-item-text-body-p">
+											<a href=`/work/${post.slug}/` class='squiggle'>
+												Read More <span class="screen-reader-text">About {post.title.rendered}</span>
+											</a>
+										</p>
+									</div>
+								</div>
 							</div>
-						</div>
-					</div>
-				))
-			}
-			{posts.length > 1 && (
-				<nav class="recent-work-slider-nav">
-					<button class="button button--link button--prev">← Prev</button>
-					<button class="button button--link button--next">Next →</button>
-				</nav>
-			)}
-		</div>
+						))
+					}
+					{posts.length > 1 && (
+						<nav class="recent-work-slider-nav">
+							<button class="button button--link button--prev">← Prev</button>
+							<button class="button button--link button--next">Next →</button>
+						</nav>
+					)}
+				</div>
+			) : (
+				<div class="recent-work-empty">
+					<p class="recent-work-empty-copy">Recent case studies are temporarily unavailable.</p>
+					<p class="recent-work-empty-copy">
+						<a href="/work/" class="squiggle">Browse all work</a>
+					</p>
+				</div>
+			)
+		}
 	</div>
 </section>
 
@@ -208,39 +220,62 @@ const postsWithImages: Array<WorkPost & { heroImageUrl: string | null }> = await
 				}
 			}
 		}
+		&-empty {
+			max-width: 980px;
+			margin: 4rem auto 0;
+			padding: 2rem 0;
+			border-top: 1px solid rgba(255, 255, 255, 0.2);
+			&-copy {
+				margin: 0 0 1rem;
+			}
+			a {
+				color: white;
+			}
+		}
 	}
 </style>
 
 <script>
 	import Flickity from 'flickity';
 	import 'flickity-fade';
-	document.addEventListener('astro:page-load', () => {
-		// recent work slider
+
+	const initRecentWork = () => {
 		const slider = document.querySelector('.recent-work-slider');
-		if (slider) {
-			const next = document.querySelectorAll('.button--next');
-			const prev = document.querySelectorAll('.button--prev');
-			const flkty = new Flickity(slider, {
-				cellSelector: '.recent-work-slider-item',
-				prevNextButtons: false,
-				wrapAround: true,
-				pageDots: false,
-				fade: true,
-				imagesLoaded: true
-			});
-			next.forEach(function (button) {
-				button.addEventListener('click', function () {
-					flkty.next();
-				});
-			});
-			prev.forEach(function (button) {
-				button.addEventListener('click', function () {
-					flkty.previous();
-				});
-			});
-			if (window.luge?.emitter) {
-				window.luge.emitter.emit('resize');
-			}
+		if (!(slider instanceof HTMLElement) || slider.dataset.sliderInit === 'true') {
+			return;
 		}
-	});
+
+		const next = document.querySelectorAll('.button--next');
+		const prev = document.querySelectorAll('.button--prev');
+		const flkty = new Flickity(slider, {
+			cellSelector: '.recent-work-slider-item',
+			prevNextButtons: false,
+			wrapAround: true,
+			pageDots: false,
+			fade: true,
+			imagesLoaded: true
+		});
+
+		next.forEach((button) => {
+			button.addEventListener('click', () => {
+				flkty.next();
+			});
+		});
+		prev.forEach((button) => {
+			button.addEventListener('click', () => {
+				flkty.previous();
+			});
+		});
+
+		slider.dataset.sliderInit = 'true';
+		window.luge?.emitter?.emit('resize');
+	};
+
+	document.addEventListener('astro:page-load', initRecentWork);
+
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', initRecentWork, { once: true });
+	} else {
+		initRecentWork();
+	}
 </script>

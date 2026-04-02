@@ -376,7 +376,7 @@ const safeContent = sanitizeHtml(content);
   }
 </style>
 <script>
-  document.addEventListener('astro:page-load', () => {
+  const initCommentForm = () => {
     // leave a comment
     const commentForm = document.querySelector<HTMLFormElement>('.single-article-leave-a-comment form');
     commentForm?.addEventListener('submit', function (event) {
@@ -412,5 +412,11 @@ const safeContent = sanitizeHtml(content);
           commentForm.innerHTML = error;
         });
     });
-  });
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCommentForm, { once: true });
+  } else {
+    initCommentForm();
+  }
 </script>

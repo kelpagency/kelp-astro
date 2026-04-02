@@ -103,7 +103,7 @@ const tags = await getWpTags() as Record<string, any>[];
 	}
 </style>
 <script>
-	document.addEventListener('astro:page-load', () => {
+	const initWorkTagFilter = () => {
 		const workPostFilter = document.querySelector('.work-post-filter');
 		workPostFilter?.addEventListener('change', function (event) {
 			const target = event.target as HTMLSelectElement | null;
@@ -111,5 +111,11 @@ const tags = await getWpTags() as Record<string, any>[];
 				window.location.href = target.value;
 			}
 		});
-	});
+	};
+
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', initWorkTagFilter, { once: true });
+	} else {
+		initWorkTagFilter();
+	}
 </script>

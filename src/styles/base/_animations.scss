@@ -1,5 +1,5 @@
-[data-lg-reveal-stagger] > *,
-.lg-reveal {
+.lg-reveal,
+[data-lg-reveal-stagger] > * {
 	opacity: 0.0001;
 }
 

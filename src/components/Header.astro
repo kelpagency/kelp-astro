@@ -371,14 +371,34 @@
 </style>
 <script>
   import Headroom from 'headroom.js';
-  document.addEventListener('astro:page-load', () => {
+  const HEADROOM_OFFSET = 50;
+
+  const syncHeaderState = (header: HTMLElement) => {
+    const isAtTop = window.scrollY <= HEADROOM_OFFSET;
+
+    header.classList.add('headroom');
+    header.classList.toggle('headroom--top', isAtTop);
+    header.classList.toggle('headroom--not-top', !isAtTop);
+
+    if (isAtTop) {
+      header.classList.add('headroom--pinned');
+      header.classList.remove('headroom--unpinned');
+      return;
+    }
+
+    if (!header.classList.contains('headroom--pinned') && !header.classList.contains('headroom--unpinned')) {
+      header.classList.add('headroom--pinned');
+    }
+  };
+
+  const initHeader = () => {
     // Sticky header
     const header = document.querySelector<HTMLElement>('header');
     if (header && !header.dataset.headroomInit) {
       const headroom = new Headroom(header, {
         offset: {
-          up: 50,
-          down: 50,
+          up: HEADROOM_OFFSET,
+          down: HEADROOM_OFFSET,
         },
         // scroll tolerance in px before state changes
         tolerance: {
@@ -388,6 +408,9 @@
       });
       headroom.init();
       header.dataset.headroomInit = 'true';
+    }
+    if (header) {
+      syncHeaderState(header);
     }
 
     // mobile nav
@@ -488,5 +511,17 @@
         burger.dataset.menuInit = 'true';
       }
     }
+  };
+
+  document.addEventListener('astro:page-load', () => {
+    requestAnimationFrame(() => {
+      initHeader();
+    });
   });
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHeader, { once: true });
+  } else {
+    initHeader();
+  }
 </script>

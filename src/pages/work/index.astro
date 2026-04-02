@@ -64,6 +64,7 @@ const schema = buildCollectionPageSchema(
 			</p>
 		</div>
 		<div class="wrapper archive-list">
+			<h2 class="screen-reader-text">Case studies</h2>
 			<!-- <label data-lg-reveal="fade" style="max-width: 260px;
 			display: block; margin-left: auto; margin-bottom: 4rem;"><b>Filter by</b><br>
 				<select class="work-post-filter">
@@ -150,14 +151,3 @@ const schema = buildCollectionPageSchema(
 		}
 	}
 </style>
-<script>
-	document.addEventListener('astro:page-load', () => {
-		const workPostFilter = document.querySelector('.work-post-filter');
-		workPostFilter?.addEventListener('change', function (event) {
-			const target = event.target as HTMLSelectElement | null;
-			if (target?.value) {
-				window.location.href = target.value;
-			}
-		});
-	});
-</script>
