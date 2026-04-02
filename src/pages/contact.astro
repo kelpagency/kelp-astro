@@ -107,6 +107,13 @@ const schema = [
 
 <script>
 	const HUBSPOT_MEETINGS_SCRIPT_SRC = 'https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js';
+	const HUBSPOT_EMBED_SELECTOR = '#meetings-embed';
+	const HUBSPOT_CONTAINER_SELECTOR = '.meetings-iframe-container';
+	const MAX_MEETINGS_RETRIES = 2;
+	let meetingsVisibilityObserver: IntersectionObserver | null = null;
+	let meetingsMutationObserver: MutationObserver | null = null;
+	let meetingsRetryTimeout: number | null = null;
+	let meetingsRetryCount = 0;
 
 	const setEmbedIframeTitle = (embedRoot: HTMLElement) => {
 		embedRoot.querySelectorAll('iframe').forEach((iframe) => {
@@ -115,14 +122,35 @@ const schema = [
 		});
 	};
 
-	const initMeetingsEmbed = () => {
-		const embedRoot = document.querySelector('#meetings-embed');
-		const container = embedRoot?.querySelector('.meetings-iframe-container');
+	const clearMeetingsTimers = () => {
+		if (meetingsVisibilityObserver) {
+			meetingsVisibilityObserver.disconnect();
+			meetingsVisibilityObserver = null;
+		}
+		if (meetingsMutationObserver) {
+			meetingsMutationObserver.disconnect();
+			meetingsMutationObserver = null;
+		}
+		if (meetingsRetryTimeout !== null) {
+			window.clearTimeout(meetingsRetryTimeout);
+			meetingsRetryTimeout = null;
+		}
+	};
+
+	const loadMeetingsEmbed = () => {
+		const embedRoot = document.querySelector(HUBSPOT_EMBED_SELECTOR);
+		const container = embedRoot?.querySelector(HUBSPOT_CONTAINER_SELECTOR);
 		if (!(embedRoot instanceof HTMLElement) || !(container instanceof HTMLDivElement)) {
 			return;
 		}
 
-		embedRoot.querySelectorAll('iframe').forEach((iframe) => iframe.remove());
+		if (embedRoot.querySelector('iframe')) {
+			meetingsRetryCount = 0;
+			setEmbedIframeTitle(embedRoot);
+			return;
+		}
+
+		clearMeetingsTimers();
 		container.replaceChildren();
 
 		document.querySelectorAll('script[data-hubspot-meetings-embed]').forEach((script) => script.remove());
@@ -134,40 +162,68 @@ const schema = [
 		script.dataset.hubspotMeetingsEmbed = 'true';
 		document.body.appendChild(script);
 
-		const observer = new MutationObserver(() => {
+		meetingsMutationObserver = new MutationObserver(() => {
 			setEmbedIframeTitle(embedRoot);
 		});
-		observer.observe(embedRoot, {
+		meetingsMutationObserver.observe(embedRoot, {
 			childList: true,
 			subtree: true,
 		});
+
+		meetingsRetryTimeout = window.setTimeout(() => {
+			if (!embedRoot.querySelector('iframe')) {
+				if (meetingsRetryCount >= MAX_MEETINGS_RETRIES) {
+					return;
+				}
+				meetingsRetryCount += 1;
+				loadMeetingsEmbed();
+				return;
+			}
+
+			meetingsRetryCount = 0;
+			setEmbedIframeTitle(embedRoot);
+		}, 2500);
 
 		setEmbedIframeTitle(embedRoot);
 	};
 
 	const initMeetingsEmbedWhenVisible = () => {
-		const embedRoot = document.querySelector('#meetings-embed');
+		const embedRoot = document.querySelector(HUBSPOT_EMBED_SELECTOR);
 		if (!(embedRoot instanceof HTMLElement)) {
 			return;
 		}
 
+		if (embedRoot.querySelector('iframe')) {
+			meetingsRetryCount = 0;
+			setEmbedIframeTitle(embedRoot);
+			return;
+		}
+
 		if ('IntersectionObserver' in window) {
-			const observer = new IntersectionObserver((entries) => {
+			meetingsVisibilityObserver?.disconnect();
+			meetingsVisibilityObserver = new IntersectionObserver((entries) => {
 				entries.forEach((entry) => {
 					if (!entry.isIntersecting) {
 						return;
 					}
 
-					initMeetingsEmbed();
-					observer.disconnect();
+					loadMeetingsEmbed();
+					meetingsVisibilityObserver?.disconnect();
+					meetingsVisibilityObserver = null;
 				});
 			}, { rootMargin: '200px' });
 
-			observer.observe(embedRoot);
+			meetingsVisibilityObserver.observe(embedRoot);
 		} else {
-			initMeetingsEmbed();
+			loadMeetingsEmbed();
 		}
 	};
+
+	document.addEventListener('astro:page-load', () => {
+		requestAnimationFrame(() => {
+			initMeetingsEmbedWhenVisible();
+		});
+	});
 
 	if (document.readyState === 'loading') {
 		document.addEventListener('DOMContentLoaded', initMeetingsEmbedWhenVisible, { once: true });

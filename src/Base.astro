@@ -233,8 +233,8 @@ const schemaJson = JSON.stringify({
         },
       });
 
-      const playAutoplayVideos = () => {
-        const videos = document.querySelectorAll<HTMLVideoElement>('video[autoplay]');
+	      const playAutoplayVideos = () => {
+	        const videos = document.querySelectorAll<HTMLVideoElement>('video[autoplay]');
         videos.forEach((video) => {
           video.muted = true;
           video.playsInline = true;
@@ -242,8 +242,13 @@ const schemaJson = JSON.stringify({
           if (playPromise?.catch) {
             playPromise.catch(() => {});
           }
-        });
-      };
+	        });
+	      };
+
+	      const restoreScrollState = () => {
+	        document.documentElement.style.removeProperty('overflow');
+	        document.body.style.removeProperty('overflow');
+	      };
 
       const initEmphasis = async () => {
         const emphasisElements = document.querySelectorAll<HTMLElement>('main em');
@@ -270,13 +275,15 @@ const schemaJson = JSON.stringify({
         emphasisElements.forEach((item) => observer.observe(item));
       };
 
-      document.addEventListener('astro:page-load', async () => {
-        await initEmphasis();
-        playAutoplayVideos();
-      });
+	      document.addEventListener('astro:page-load', async () => {
+	        restoreScrollState();
+	        await initEmphasis();
+	        playAutoplayVideos();
+	      });
 
-      document.addEventListener('astro:after-swap', async () => {
-        await initEmphasis();
+	      document.addEventListener('astro:after-swap', async () => {
+	        restoreScrollState();
+	        await initEmphasis();
 
         if (window.luge) {
           setTimeout(() => {
@@ -284,10 +291,10 @@ const schemaJson = JSON.stringify({
           }, 200);
         }
 
-        setTimeout(() => {
-          playAutoplayVideos();
-        }, 250);
-      });
-    </script>
+	        setTimeout(() => {
+	          playAutoplayVideos();
+	        }, 250);
+	      });
+	    </script>
   </body>
 </html>
