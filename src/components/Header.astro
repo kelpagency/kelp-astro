@@ -1,4 +1,17 @@
-<header class="header" transition:persist>
+---
+const pathname = Astro.url.pathname;
+
+const isActivePath = (paths: string[]) => paths.some((path) => pathname === path || pathname.startsWith(path));
+
+const servicesActive = isActivePath(['/services/']);
+const workActive = isActivePath(['/work/']);
+const platformsActive = isActivePath(['/platforms/']);
+const resourcesActive = isActivePath(['/resources/', '/blog/']);
+const aboutActive = isActivePath(['/about/']);
+const contactActive = pathname === '/contact/';
+---
+
+<header class="header">
   <div class="wrapper">
     <a href="/" class="header-logo" data-astro-prefetch>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.1 50" width="127.1" height="50">
@@ -26,9 +39,15 @@
       </svg>
     </button>
     <nav class="header-nav" id="site-nav">
-      <ul>
+      <ul class="header-nav-list">
         <li class="has-submenu">
-          <a href="/services/" data-astro-prefetch aria-label="Services menu"> 
+          <a
+            href="/services/"
+            data-astro-prefetch
+            aria-label="Services menu"
+            aria-current={servicesActive ? 'page' : undefined}
+            data-nav-route="services"
+          >
             Services 
             <svg xmlns="http://www.w3.org/2000/svg" width="9.75" height="6">
               <title>dropdown</title>
@@ -46,7 +65,13 @@
           </ul>
         </li>
         <li class="has-submenu">
-          <a data-astro-prefetch href="/work/" aria-label="Work menu">
+          <a
+            data-astro-prefetch
+            href="/work/"
+            aria-label="Work menu"
+            aria-current={workActive ? 'page' : undefined}
+            data-nav-route="work"
+          >
             Work
             <svg xmlns="http://www.w3.org/2000/svg" width="9.75" height="6">
               <title>dropdown</title>
@@ -61,7 +86,13 @@
           </ul>
         </li>
         <li class="has-submenu">
-          <a data-astro-prefetch href="/platforms/" aria-label="Platforms menu">
+          <a
+            data-astro-prefetch
+            href="/platforms/"
+            aria-label="Platforms menu"
+            aria-current={platformsActive ? 'page' : undefined}
+            data-nav-route="platforms"
+          >
             Platforms
             <svg xmlns="http://www.w3.org/2000/svg" width="9.75" height="6">
               <title>dropdown</title>
@@ -77,7 +108,13 @@
           </ul>
         </li>
         <li class="has-submenu">
-          <a data-astro-prefetch href="/resources/" aria-label="Resources menu">
+          <a
+            data-astro-prefetch
+            href="/resources/"
+            aria-label="Resources menu"
+            aria-current={resourcesActive ? 'page' : undefined}
+            data-nav-route="resources"
+          >
             Resources
             <svg xmlns="http://www.w3.org/2000/svg" width="9.75" height="6">
               <title>dropdown</title>
@@ -91,9 +128,31 @@
             <li><a data-astro-prefetch href="/blog/" aria-label="Blog">Blog</a></li>
           </ul>
         </li>
-        <li><a data-astro-prefetch href="/about/" aria-label="About">About</a></li>
-        <li><a data-astro-prefetch href="/contact/" class="button" aria-label="Contact Us">Hire Us</a></li>
+        <li>
+          <a
+            data-astro-prefetch
+            href="/about/"
+            aria-label="About"
+            aria-current={aboutActive ? 'page' : undefined}
+            data-nav-route="about"
+          >
+            About
+          </a>
+        </li>
+        <li>
+          <a
+            data-astro-prefetch
+            href="/contact/"
+            class="button"
+            aria-label="Contact Us"
+            aria-current={contactActive ? 'page' : undefined}
+            data-nav-route="contact"
+          >
+            Hire Us
+          </a>
+        </li>
       </ul>
+      <span class="header-nav-indicator" aria-hidden="true"></span>
     </nav>
   </div>
 </header>
@@ -177,19 +236,40 @@
       }
     }
     &-nav {
+      --nav-active-indicator-size: 3px;
+
       ul {
         list-style: none;
         margin: 0;
         padding: 0;
       }
       a {
+        position: relative;
         font-family: var(--sans-serif);
         color: var(--text-color);
         font-size: 15px;
         font-weight: 600;
         text-decoration: none;
+        &[aria-current='page']:not(.button) {
+          color: var(--text-color);
+        }
+        &[aria-current='page']:not(.button)::after {
+          content: '';
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: calc(var(--nav-active-indicator-size) * -1);
+          height: var(--nav-active-indicator-size);
+          background: var(--green);
+          border-radius: 999px;
+        }
         &.button {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
           font-family: var(--serif);
+          line-height: 1;
+          padding: 0.875rem 1.25rem 0.8rem;
           background-color: var(--text-color);
           color: var(--bg-color);
           &:hover,
@@ -249,6 +329,9 @@
         li {
           a {
             font-size: var(--step-1);
+            &[aria-current='page']:not(.button)::after {
+              display: none;
+            }
           }
         }
         > ul > li > a svg {
@@ -292,11 +375,16 @@
               align-items: center;
               gap: 0.5rem;
               color: var(--text-color);
+              padding-bottom: 0.45rem;
               &:hover:not(.button),
               &:focus:not(.button) {
                 color: var(--purple);
               }
-            }
+              &[aria-current='page']:not(.button) {
+                anchor-name: --header-nav-active;
+                cursor: default;
+              }
+              }
             ul {
               position: absolute;
               top: 100%;
@@ -304,6 +392,7 @@
               padding: 0.75rem 1.25rem;
               opacity: 0;
               visibility: hidden;
+              z-index: 2;
               transition: 220ms ease-out;
               a {
                 color: var(--black);
@@ -365,6 +454,31 @@
             }
           }
         }
+
+        .header-nav-indicator {
+          display: none;
+        }
+
+        @supports (anchor-name: --header-nav-active) and (left: anchor(left)) {
+          .header-nav-indicator {
+            display: block;
+            position: absolute;
+            position-anchor: --header-nav-active;
+            left: anchor(left);
+            top: calc(anchor(bottom) + 0.15rem);
+            width: anchor-size(width);
+            height: var(--nav-active-indicator-size);
+            background: var(--green);
+            border-radius: 999px;
+            z-index: 0;
+            pointer-events: none;
+            view-transition-name: header-nav-indicator;
+          }
+
+          > ul > li > a[aria-current='page']:not(.button)::after {
+            display: none;
+          }
+        }
       }
     }
   }
@@ -372,6 +486,14 @@
 <script>
   import Headroom from 'headroom.js';
   const HEADROOM_OFFSET = 50;
+  const ACTIVE_ROUTE_MATCHERS = [
+    { route: 'services', matches: (pathname: string) => pathname.startsWith('/services/') },
+    { route: 'work', matches: (pathname: string) => pathname.startsWith('/work/') },
+    { route: 'platforms', matches: (pathname: string) => pathname.startsWith('/platforms/') },
+    { route: 'resources', matches: (pathname: string) => pathname.startsWith('/resources/') || pathname.startsWith('/blog/') },
+    { route: 'about', matches: (pathname: string) => pathname.startsWith('/about/') },
+    { route: 'contact', matches: (pathname: string) => pathname === '/contact/' },
+  ];
 
   const syncHeaderState = (header: HTMLElement) => {
     const isAtTop = window.scrollY <= HEADROOM_OFFSET;
@@ -394,6 +516,21 @@
   const unlockDocumentScroll = () => {
     document.documentElement.style.removeProperty('overflow');
     document.body.style.removeProperty('overflow');
+  };
+
+  const syncActiveNavLink = () => {
+    const pathname = window.location.pathname;
+    const activeRoute = ACTIVE_ROUTE_MATCHERS.find(({ matches }) => matches(pathname))?.route;
+    const links = document.querySelectorAll<HTMLAnchorElement>('.header-nav > ul > li > a[data-nav-route]');
+
+    links.forEach((link) => {
+      const isActive = link.dataset.navRoute === activeRoute;
+      if (isActive) {
+        link.setAttribute('aria-current', 'page');
+      } else {
+        link.removeAttribute('aria-current');
+      }
+    });
   };
 
   const initHeader = () => {
@@ -510,6 +647,7 @@
 
     syncSubmenusForViewport();
     closeMobileMenu();
+    syncActiveNavLink();
 
     if (burger) {
       burger.setAttribute('aria-expanded', String(document.body.classList.contains('mobile-menu-active')));
