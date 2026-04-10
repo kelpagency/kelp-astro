@@ -1,46 +1,89 @@
 ---
 import Layout from '../../Base.astro';
 import SimpleHero from '../../components/SimpleHero.astro';
-import FeaturedArticles from "../../components/FeaturedArticles.astro";
-import ServicesRelatedWork from "../../components/ServicesRelatedWork.astro";
-import "../../styles/pages/_services-list.scss";
-
+import FeaturedArticles from '../../components/FeaturedArticles.astro';
+import ServicesRelatedWork from '../../components/ServicesRelatedWork.astro';
+import '../../styles/pages/_services-list.scss';
 ---
 
 <Layout
-	title='Ecommerce services | Florida Digital Agency'
-	description="Selling products and services online is easier for customers to purchase from anywhere at any time (if done correctly). This convenience and accessibility leads to increased sales and customer satisfaction."
+  title="Ecommerce Development | Florida Digital Agency"
+  description="We design and build ecommerce systems that reduce friction, improve conversions, and support long-term growth across Shopify and WooCommerce."
 >
-	<SimpleHero tagline='Content Creation Services' title='Ecommerce' description="Selling products and services online is easier for customers to purchase from anywhere at any time (if it's done correctly). This convenience and accessibility leads to increased sales and customer satisfaction." lottieFile="ecommerce.json"/>
-		<div class="wrapper wrapper--narrow" style="padding-bottom: 100px; text-align: center;">
-			We are proud to be certified partners with both <a href="https://woocommerce.com/development-services/kelp-creative-agency/232621912/">WooCommerce</a> & Shopify.
-		</div>
-	<div class='service-body'>
-		<div class='wrapper wrapper--narrow'>
-			<h2>Why ecommerce websites matter</h2>
-			<p>
-				Ecommerce websites play a vital role in today's economy by providing businesses with a platform to sell their products and services, and by making it more convenient for customers to shop. When you purchase online it can either be extremely easy and convenient experience or it can be an aggravating experience if it's not done right.
-			</p>
-			<h2>How we approach ecommerce websites</h2>
-			<ol>
-				<li>
-					<strong>Discovery:</strong> first we work with the you to understand your business needs, goals, and target audience.
-				</li>
-				<li>
-					<strong>Design:</strong> next, we'll create wireframes and prototypes of the site to visualize the user
-					flow and layout.
-				</li>
-				<li>
-					<strong>Development:</strong> we'll build the website according to the design specifications. This involves
-					writing code, integrating with APIs and other systems, setting up a payment gateway, and testing the entire order process.
-				</li>
-				<li>
-					<strong>Deployment:</strong> and finally we'll launch the site and make it available to users. This involves setting up the host, migrating any existing data from the old website, and making DNS changes.
-				</li>
-			</ol>
-			<p><a href='/contact/' class='button button--green'>Let's Talk</a></p>
-		</div>
-		<ServicesRelatedWork tag={84} />
-	</div>
-	<FeaturedArticles />
+  <SimpleHero
+    tagline="Ecommerce Development"
+    title="Ecommerce That Actually Converts"
+    description="Selling online isn’t just about having a store—it’s about removing friction from every step of the buying process. We build ecommerce systems that are fast, intuitive, and designed to turn traffic into revenue."
+    lottieFile="ecommerce.json"
+  />
+
+  <div class="wrapper wrapper--narrow" style="padding-bottom: 100px; text-align: center;">
+    We are certified partners with both
+    <a href="https://woocommerce.com/development-services/kelp-creative-agency/232621912/">WooCommerce</a>
+    and Shopify.
+  </div>
+
+  <div class="service-body">
+    <div class="wrapper wrapper--narrow">
+      <h2>Where most ecommerce sites fall short</h2>
+      <p>
+        Most ecommerce sites don’t fail because of their products—they fail because of friction. Slow load times,
+        confusing navigation, broken checkout flows, and disconnected systems all contribute to lost revenue.
+      </p>
+      <p>
+        A customer who is ready to buy should never have to think about how your site works. When the experience is
+        unclear or inefficient, they leave.
+      </p>
+
+      <h2>What we focus on</h2>
+      <p>
+        We treat ecommerce as a system, not just a storefront. Every part of the experience—from product discovery to
+        checkout—should work together to support a single goal: conversion.
+      </p>
+
+      <ul>
+        <li>Clear product structure and navigation</li>
+        <li>Fast, performance-focused builds</li>
+        <li>Optimized cart and checkout experiences</li>
+        <li>Seamless integrations with payment, shipping, and inventory systems</li>
+        <li>Scalable platforms that grow with your business</li>
+      </ul>
+
+      <h2>How we approach it</h2>
+      <p>We start by understanding how your business sells—then build the system to support it.</p>
+
+      <ol>
+        <li>
+          <strong>Define the buying journey:</strong> Identify how customers discover, evaluate, and purchase your products.
+        </li>
+        <li>
+          <strong>Structure the store:</strong> Organize products, categories, and content to reduce friction and improve
+          clarity.
+        </li>
+        <li>
+          <strong>Design for conversion:</strong> Create layouts and interactions that guide users toward purchase.
+        </li>
+        <li>
+          <strong>Build and integrate:</strong> Develop the store and connect it to the tools that power your operations.
+        </li>
+        <li>
+          <strong>Refine and optimize:</strong> Continuously improve performance, usability, and conversion rates over time.
+        </li>
+      </ol>
+
+      <h2>The outcome</h2>
+      <p>
+        A well-built ecommerce system removes friction, increases conversion rates, and gives your business a foundation
+        that can scale without constant rework.
+      </p>
+
+      <p>
+        <a href="/contact/" class="button button--green">Start a Project</a>
+      </p>
+    </div>
+
+    <ServicesRelatedWork tag={84} />
+  </div>
+
+  <FeaturedArticles />
 </Layout>
