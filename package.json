@@ -1,41 +1,39 @@
 {
-	"name": "@kelpagency/website",
-	"type": "module",
-	"version": "1.0.1",
-	"private": true,
-	"scripts": {
-		"dev": "astro dev",
-		"start": "astro dev",
-		"build": "astro build",
-		"preview": "astro preview",
-		"astro": "astro"
-	},
-	"dependencies": {
-		"@astrojs/rss": "^4.0.18",
-		"@astrojs/sitemap": "^3.7.2",
-		"@waaark/luge": "0.6.20-beta",
-		"astro": "^6.1.5",
-		"autoprefixer": "^10.4.27",
-		"countrycitystatejson": "^26.4.501",
-		"fast-average-color-node": "^3.2.0",
-		"flickity": "^3.0.0",
-		"flickity-fade": "^2.0.0",
-		"flipping": "^1.1.0",
-		"headroom.js": "^0.12.0",
-		"highlight.js": "^11.11.1",
-		"image-size": "^2.0.2",
-		"lottie-web": "^5.13.0",
-		"reading-time": "^1.5.0",
-		"rough-notation": "^0.5.1",
-		"sanitize.css": "^13.0.0",
-		"slugify": "^1.6.9"
-	},
-	"devDependencies": {
-		"@astrojs/check": "^0.9.8",
-		"prettier": "^3.8.2",
-		"prettier-plugin-astro": "^0.14.1",
-		"sass": "^1.99.0",
-		"typescript": "^6.0.2",
-		"unlighthouse": "^0.17.7"
-	}
+  "name": "@kelpagency/website",
+  "type": "module",
+  "version": "1.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/rss": "^4.0.18",
+    "@astrojs/sitemap": "^3.7.2",
+    "@waaark/luge": "0.6.20-beta",
+    "astro": "^6.1.5",
+    "autoprefixer": "^10.4.27",
+    "countrycitystatejson": "^26.4.501",
+    "fast-average-color-node": "^3.2.0",
+    "flickity": "^3.0.0",
+    "flickity-fade": "^2.0.0",
+    "flipping": "^1.1.0",
+    "headroom.js": "^0.12.0",
+    "highlight.js": "^11.11.1",
+    "image-size": "^2.0.2",
+    "lottie-web": "^5.13.0",
+    "reading-time": "^1.5.0",
+    "rough-notation": "^0.5.1",
+    "sanitize.css": "^13.0.0",
+    "slugify": "^1.6.9"
+  },
+  "devDependencies": {
+    "prettier": "^3.8.2",
+    "prettier-plugin-astro": "^0.14.1",
+    "sass": "^1.99.0",
+    "typescript": "^6.0.2"
+  }
 }
