@@ -14,9 +14,9 @@
 		"@astrojs/rss": "^4.0.18",
 		"@astrojs/sitemap": "^3.7.2",
 		"@waaark/luge": "0.6.20-beta",
-		"astro": "^6.1.2",
+		"astro": "^6.1.5",
 		"autoprefixer": "^10.4.27",
-		"countrycitystatejson": "^25.8.101",
+		"countrycitystatejson": "^26.4.501",
 		"fast-average-color-node": "^3.2.0",
 		"flickity": "^3.0.0",
 		"flickity-fade": "^2.0.0",
@@ -28,14 +28,14 @@
 		"reading-time": "^1.5.0",
 		"rough-notation": "^0.5.1",
 		"sanitize.css": "^13.0.0",
-		"slugify": "^1.6.8"
+		"slugify": "^1.6.9"
 	},
 	"devDependencies": {
 		"@astrojs/check": "^0.9.8",
-		"prettier": "^3.8.1",
+		"prettier": "^3.8.2",
 		"prettier-plugin-astro": "^0.14.1",
-		"sass": "^1.98.0",
-		"typescript": "^5.9.3",
+		"sass": "^1.99.0",
+		"typescript": "^6.0.2",
 		"unlighthouse": "^0.17.7"
 	}
 }
