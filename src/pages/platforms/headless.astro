@@ -1,0 +1,104 @@
+---
+import Layout from '../../Base.astro';
+import SimpleHero from '../../components/SimpleHero.astro';
+---
+
+<Layout title="Kelp ❤️'s Headless" darkHeader={true}>
+  <article>
+    <SimpleHero
+      title="Headless"
+      description="We build headless experiences that separate the frontend from the backend so each layer can do what it does best. The result is complete control over the user experience, plus the performance gains that come from a leaner frontend."
+      dark={true}
+    />
+
+    <section class="wrapper wrapper--narrow">
+      <div class="platform">
+        <div class="platform-logo platform-logo--headless">
+          <span class="platform-badge">Headless</span>
+          <p class="platform-caption">WordPress, Shopify, and custom APIs</p>
+        </div>
+
+        <div class="platform-text">
+          <p>
+            Headless works with any platform or CMS that exposes APIs. That can mean WordPress, Shopify, a Google
+            Spreadsheet, or a custom backend built around the tools your team already uses. The point is not to replace
+            the system behind the site, but to give the frontend complete freedom to shape the experience.
+          </p>
+          <p>
+            The primary reason to go headless is control. You get to design the interface without CMS constraints, and
+            you get a faster site because the frontend only ships what it needs. That usually means better performance,
+            cleaner interactions, and a system that can grow without becoming tangled.
+          </p>
+          <p>
+            We keep the implementation practical. If you already have a CMS, commerce stack, spreadsheet workflow, or
+            other API-backed system in place, we can help turn it into a cleaner, more flexible frontend experience.
+          </p>
+          <p>
+            <a href="/contact/" class="button">Talk to us about a headless build</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </article>
+</Layout>
+
+<style lang="scss">
+  .platform {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem 6rem;
+    margin: 1rem 0;
+    padding: 4rem 0;
+    border-bottom: 2px solid var(--teal);
+
+    &:last-child {
+      border-bottom: 0;
+    }
+
+    &-logo {
+      flex: 0 1 220px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      order: 2;
+
+      @media (max-width: 767px) {
+        margin: auto;
+      }
+    }
+
+    &-logo--headless {
+      align-items: center;
+      justify-content: center;
+    }
+
+    &-text {
+      flex: 1 1 500px;
+    }
+  }
+
+  .platform-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 1.5rem;
+    border: 2px solid var(--teal);
+    border-radius: 999px;
+    font-family: var(--sans-serif);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    background: white;
+  }
+
+  .platform-caption {
+    margin: 0;
+    font-family: var(--sans-serif);
+    font-size: var(--step--1);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--black);
+  }
+</style>

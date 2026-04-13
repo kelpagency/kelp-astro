@@ -105,6 +105,12 @@ const contactActive = pathname === '/contact/';
             <li><a data-astro-prefetch href="/platforms/hubspot/" aria-label="HubSpot">HubSpot</a></li>
             <li><a data-astro-prefetch href="/platforms/shopify/" aria-label="Shopify">Shopify</a></li>
             <li><a data-astro-prefetch href="/platforms/wordpress/" aria-label="WordPress">WordPress</a></li>
+            <li class="platforms-menu-headless">
+              <a data-astro-prefetch href="/platforms/headless/" aria-label="Headless">
+                <span>Headless</span>
+                <span class="platforms-menu-headless-badge">API-first</span>
+              </a>
+            </li>
           </ul>
         </li>
         <li class="has-submenu">
@@ -429,6 +435,16 @@ const contactActive = pathname === '/contact/';
                 display: block;
                 white-space: nowrap;
               }
+              li.platforms-menu-headless {
+                margin-top: 0.5rem;
+                padding-top: 0.5rem;
+                border-top: 1px solid rgba(13, 23, 38, 0.12);
+                > a {
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 0.5rem;
+                }
+              }
             }
             &:hover,
             &:focus-within {
@@ -481,6 +497,21 @@ const contactActive = pathname === '/contact/';
         }
       }
     }
+  }
+
+  .platforms-menu-headless-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.2rem 0.45rem;
+    border-radius: 999px;
+    background: var(--black);
+    color: white;
+    font-size: 0.7rem;
+    line-height: 1;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    white-space: nowrap;
   }
 </style>
 <script>

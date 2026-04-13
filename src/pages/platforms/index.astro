@@ -66,6 +66,23 @@ import ShopifyIcon from '../../assets/shopify.svg';
         </div>
       </div>
 
+      <!-- Headless -->
+      <div class="platform">
+        <div class="platform-logo platform-logo--headless">
+          <span class="platform-badge">Headless</span>
+        </div>
+
+        <div class="platform-text">
+          <h2>Headless</h2>
+          <p>
+            Headless builds let content, commerce, and presentation live in the right places. We use them when a
+            project needs complete control over the user experience, better performance, or a more flexible frontend
+            that can work with any API-backed platform or CMS.
+          </p>
+          <a href="/platforms/headless/" class="squiggle">Learn more about Headless</a>
+        </div>
+      </div>
+
       <!-- Shopify -->
       <div class="platform">
         <div class="platform-logo">
@@ -113,9 +130,29 @@ import ShopifyIcon from '../../assets/shopify.svg';
         height: auto;
         margin: 1rem 0;
       }
+      &--headless {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 160px;
+      }
     }
     &-text {
       flex: 1 1 500px;
     }
+  }
+
+  .platform-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 1.5rem;
+    border: 2px solid var(--teal);
+    border-radius: 999px;
+    font-family: var(--sans-serif);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    background: white;
   }
 </style>
