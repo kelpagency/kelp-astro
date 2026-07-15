@@ -36,10 +36,6 @@ const {
 	mediaBackHeight
 } = Astro.props;
 
-const mediaFrontSrc = typeof mediaFront === 'string' ? mediaFront : mediaFront.src;
-const mediaMiddleSrc = typeof mediaMiddle === 'string' ? mediaMiddle : mediaMiddle.src;
-const mediaBackSrc = typeof mediaBack === 'string' ? mediaBack : mediaBack.src;
-
 const maxWidth = Math.max(mediaFrontWidth ?? 0, mediaMiddleWidth ?? 0, mediaBackWidth ?? 0);
 const targetMax = maxWidth || 1200;
 const widthCandidates = [
@@ -90,34 +86,31 @@ if (lottieFile) {
 			mediaFront && (
 				<div class='simple-hero-media' data-lg-reveal='fade' data-lg-reveal-stagger='.1'>
 					<Picture
-						src={mediaBackSrc}
+						src={mediaBack}
 						alt=''
 						width={mediaBackWidth ?? heroWidth}
 						height={mediaBackHeight}
 						loading='eager'
 						fetchpriority='high'
-						inferSize
 					/>
 					<div data-lg-parallax data-lg-parallax-amplitude='0.3'>
 						<Picture
-							src={mediaMiddleSrc}
+							src={mediaMiddle}
 							alt=''
 							width={mediaMiddleWidth ?? heroWidth}
 							height={mediaMiddleHeight}
 							loading='eager'
 							fetchpriority='high'
-							inferSize
 						/>
 					</div>
 					<div data-lg-parallax data-lg-parallax-amplitude='0.15' data-lg-parallax-anchor='bottom'>
 						<Picture
-							src={mediaFrontSrc}
+							src={mediaFront}
 							alt=''
 							width={mediaFrontWidth ?? heroWidth}
 							height={mediaFrontHeight}
 							loading='eager'
 							fetchpriority='high'
-							inferSize
 						/>
 					</div>
 				</div>

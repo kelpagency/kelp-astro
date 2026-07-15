@@ -128,16 +128,19 @@
         </ul>
       </div>
     </div>
+    <p class="copyright">
+      &copy; {new Date().getFullYear()} Kelp Agency. All rights reserved. Designed by humans and coded with ❤️ in Florida.
+    </p>
   </div>
 </footer>
 
 <style lang="scss">
   .footer {
     background: var(--black);
-    padding: 0 0 8rem 0;
+    padding: 0 0 4rem 0;
     color: white;
     @media (max-width: 767px) {
-      padding: 0 0 5rem 0;
+      padding: 0 0 3rem 0;
     }
     .top {
       background: var(--purple);
@@ -240,6 +243,12 @@
           }
         }
       }
+    }
+    .copyright {
+      color: white;
+      font-size: var(--step--1);
+      text-align: center;
+      margin: 4rem 0 0;
     }
   }
 </style>
