@@ -26,14 +26,10 @@ export default defineConfig({
         "upgrade-insecure-requests",
       ],
       scriptDirective: {
-        resources: ["'self'", "https://static.hsappstatic.net"],
+        resources: ["'self'", "data:", "https://static.hsappstatic.net"],
       },
       styleDirective: {
-        resources: [
-          { resource: "'self'", kind: "element" },
-          { resource: "'unsafe-inline'", kind: "element" },
-          { resource: "'unsafe-inline'", kind: "attribute" },
-        ],
+        resources: ["'self'", "'unsafe-inline'"],
       },
     },
   },
