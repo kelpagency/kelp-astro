@@ -1,9 +1,14 @@
 ---
-import './styles/global.scss';
-import Header from './components/Header.astro';
-import Footer from './components/Footer.astro';
-import { ClientRouter } from 'astro:transitions';
-import { buildBreadcrumbSchema, buildCollectionPageSchema, buildServiceSchema } from './lib/schema';
+import "./styles/global.scss";
+import Header from "./components/Header.astro";
+import Footer from "./components/Footer.astro";
+import { ClientRouter } from "astro:transitions";
+import {
+  buildBreadcrumbSchema,
+  buildCollectionPageSchema,
+  buildServiceSchema,
+} from "./lib/schema";
+import { toPlainText } from "./lib/sanitize";
 
 export interface Props {
   title: string;
@@ -13,21 +18,21 @@ export interface Props {
   bodyClass?: string;
   schema?: JSON | Record<string, unknown> | Record<string, unknown>[] | string;
   canonicalUrl?: string;
-  ogType?: 'website' | 'article';
+  ogType?: "website" | "article";
   robots?: string;
   articlePublished?: string;
   articleModified?: string;
 }
 
 const {
-  title = 'Kelp Creative Agency',
-  description = 'Specializing in creating amazing websites, web apps, company branding, style guides, and design systems. Our goal is to make creative solutions simple for you.',
-  image = '/images/og.png',
+  title = "Kelp Creative Agency",
+  description = "Specializing in creating amazing websites, web apps, company branding, style guides, and design systems. Our goal is to make creative solutions simple for you.",
+  image = "/images/og.png",
   darkHeader = false,
-  bodyClass = '',
+  bodyClass = "",
   schema,
   canonicalUrl,
-  ogType = 'website',
+  ogType = "website",
   robots,
   articlePublished,
   articleModified,
@@ -35,98 +40,114 @@ const {
 
 let bodyClasses = bodyClass;
 if (darkHeader) {
-  bodyClasses = bodyClasses + ' has-dark-header';
+  bodyClasses = bodyClasses + " has-dark-header";
 }
 
-const stripHtml = (value = '') => value.replace(/<[^>]+>/g, '').trim();
-const cleanTitle = stripHtml(title);
-const cleanDescription = stripHtml(description);
-const siteUrl = 'https://www.kelp.agency';
-const canonicalHref = canonicalUrl ? new URL(canonicalUrl, siteUrl).href : Astro.url.href;
+const cleanTitle = toPlainText(title);
+const cleanDescription = toPlainText(description);
+const siteUrl = "https://www.kelp.agency";
+const canonicalHref = canonicalUrl
+  ? new URL(canonicalUrl, siteUrl).href
+  : Astro.url.href;
 const organizationId = `${siteUrl}/#organization`;
 const websiteId = `${siteUrl}/#website`;
 const webPageId = `${Astro.url.href}#webpage`;
 const imageUrl = new URL(image, Astro.url).href;
 const breadcrumbSchema = buildBreadcrumbSchema(Astro.url.pathname, cleanTitle);
-const isServiceDetailPage = Astro.url.pathname.startsWith('/services/') && Astro.url.pathname !== '/services/';
+const isServiceDetailPage =
+  Astro.url.pathname.startsWith("/services/") &&
+  Astro.url.pathname !== "/services/";
 const inferredPageSchema =
-  Astro.url.pathname === '/about/'
+  Astro.url.pathname === "/about/"
     ? {
-        '@type': 'AboutPage',
+        "@type": "AboutPage",
         name: cleanTitle,
         description: cleanDescription,
       }
-    : Astro.url.pathname === '/contact/'
-    ? {
-        '@type': 'ContactPage',
-        name: cleanTitle,
-        description: cleanDescription,
-      }
-    : isServiceDetailPage
-      ? buildServiceSchema({
+    : Astro.url.pathname === "/contact/"
+      ? {
+          "@type": "ContactPage",
           name: cleanTitle,
           description: cleanDescription,
-          url: canonicalHref,
-        })
-    : ['/blog/', '/work/', '/services/', '/platforms/', '/resources/', '/calendar/'].includes(Astro.url.pathname)
-      ? buildCollectionPageSchema(cleanTitle, cleanDescription)
-      : null;
+        }
+      : isServiceDetailPage
+        ? buildServiceSchema({
+            name: cleanTitle,
+            description: cleanDescription,
+            url: canonicalHref,
+          })
+        : [
+              "/blog/",
+              "/work/",
+              "/services/",
+              "/platforms/",
+              "/resources/",
+              "/calendar/",
+            ].includes(Astro.url.pathname)
+          ? buildCollectionPageSchema(cleanTitle, cleanDescription)
+          : null;
 
 const organizationSchema = {
-  '@type': 'Organization',
-  '@id': organizationId,
-  name: 'Kelp Creative Agency',
-  legalName: 'Kelp Agency',
-  email: 'info@kelp.agency',
+  "@type": "Organization",
+  "@id": organizationId,
+  name: "Kelp Creative Agency",
+  legalName: "Kelp Agency",
+  email: "info@kelp.agency",
   url: siteUrl,
   logo: {
-    '@type': 'ImageObject',
+    "@type": "ImageObject",
     url: `${siteUrl}/images/kelp-logo.png`,
   },
   sameAs: [
-    'https://www.facebook.com/kelpagency',
-    'https://www.instagram.com/kelpagency/',
-    'https://x.com/kelpagency',
-    'https://www.linkedin.com/company/kelpagency/',
+    "https://www.facebook.com/kelpagency",
+    "https://www.instagram.com/kelpagency/",
+    "https://x.com/kelpagency",
+    "https://www.linkedin.com/company/kelpagency/",
   ],
   address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'Brooksville',
-    postalCode: '34601',
-    streetAddress: '707 Harvard St.',
+    "@type": "PostalAddress",
+    addressLocality: "Brooksville",
+    addressRegion: "FL",
+    postalCode: "34605",
+    postOfficeBoxNumber: "116",
+    addressCountry: "US",
   },
 };
 
 const websiteSchema = {
-  '@type': 'WebSite',
-  '@id': websiteId,
+  "@type": "WebSite",
+  "@id": websiteId,
   url: siteUrl,
-  name: 'Kelp Creative Agency',
+  name: "Kelp Creative Agency",
   publisher: {
-    '@id': organizationId,
+    "@id": organizationId,
   },
 };
 
 const webPageSchema = {
-  '@type': 'WebPage',
-  '@id': webPageId,
+  "@type": "WebPage",
+  "@id": webPageId,
   url: Astro.url.href,
   name: cleanTitle,
   description: cleanDescription,
   isPartOf: {
-    '@id': websiteId,
+    "@id": websiteId,
   },
-  inLanguage: 'en',
+  inLanguage: "en",
   primaryImageOfPage: {
-    '@type': 'ImageObject',
+    "@type": "ImageObject",
     url: imageUrl,
   },
   publisher: {
-    '@id': organizationId,
+    "@id": organizationId,
   },
 };
 
-const schemaNodes: Record<string, unknown>[] = [organizationSchema, websiteSchema, webPageSchema];
+const schemaNodes: Record<string, unknown>[] = [
+  organizationSchema,
+  websiteSchema,
+  webPageSchema,
+];
 if (breadcrumbSchema) {
   schemaNodes.push(breadcrumbSchema as Record<string, unknown>);
 }
@@ -135,7 +156,7 @@ if (inferredPageSchema) {
 }
 if (schema) {
   let parsedSchema: unknown = schema;
-  if (typeof schema === 'string') {
+  if (typeof schema === "string") {
     try {
       parsedSchema = JSON.parse(schema);
     } catch {
@@ -143,12 +164,14 @@ if (schema) {
     }
   }
 
-  if (parsedSchema && typeof parsedSchema === 'object') {
+  if (parsedSchema && typeof parsedSchema === "object") {
     const parsedObject = parsedSchema as Record<string, unknown>;
     if (Array.isArray(parsedSchema)) {
       schemaNodes.push(...(parsedSchema as Record<string, unknown>[]));
-    } else if (Array.isArray(parsedObject['@graph'])) {
-      schemaNodes.push(...(parsedObject['@graph'] as Record<string, unknown>[]));
+    } else if (Array.isArray(parsedObject["@graph"])) {
+      schemaNodes.push(
+        ...(parsedObject["@graph"] as Record<string, unknown>[]),
+      );
     } else {
       schemaNodes.push(parsedObject);
     }
@@ -156,9 +179,12 @@ if (schema) {
 }
 
 const schemaJson = JSON.stringify({
-  '@context': 'https://schema.org',
-  '@graph': schemaNodes,
-});
+  "@context": "https://schema.org",
+  "@graph": schemaNodes,
+})
+  .replace(/</g, "\\u003c")
+  .replace(/\u2028/g, "\\u2028")
+  .replace(/\u2029/g, "\\u2029");
 ---
 
 <!doctype html>
@@ -170,11 +196,15 @@ const schemaJson = JSON.stringify({
     <ClientRouter />
 
     <!-- Meta -->
-    <title set:html={title} />
-    <meta name="description" content={description} />
+    <title>{cleanTitle}</title>
+    <meta name="description" content={cleanDescription} />
     <link rel="canonical" href={canonicalHref} />
     {robots && <meta name="robots" content={robots} />}
-    <link rel="alternate" type="application/rss+xml" href="https://www.kelp.agency/rss.xml" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      href="https://www.kelp.agency/rss.xml"
+    />
 
     <!-- Structured Data -->
     <script type="application/ld+json" is:inline set:html={schemaJson} />
@@ -182,18 +212,24 @@ const schemaJson = JSON.stringify({
     <!-- Social -->
     <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonicalHref} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <meta property="og:title" content={cleanTitle} />
+    <meta property="og:description" content={cleanDescription} />
     <meta property="og:image" content={new URL(image, Astro.url)} />
-    {ogType === 'article' && articlePublished && (
-      <meta property="article:published_time" content={articlePublished} />
-    )}
-    {ogType === 'article' && articleModified && <meta property="article:modified_time" content={articleModified} />}
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={canonicalHref} />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={new URL(image, Astro.url)} />
+    {
+      ogType === "article" && articlePublished && (
+        <meta property="article:published_time" content={articlePublished} />
+      )
+    }
+    {
+      ogType === "article" && articleModified && (
+        <meta property="article:modified_time" content={articleModified} />
+      )
+    }
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalHref} />
+    <meta name="twitter:title" content={cleanTitle} />
+    <meta name="twitter:description" content={cleanDescription} />
+    <meta name="twitter:image" content={new URL(image, Astro.url)} />
 
     <!-- Favicons -->
     <meta name="msapplication-TileColor" content="#42c634" />
@@ -205,9 +241,27 @@ const schemaJson = JSON.stringify({
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#42c634" />
 
     <!-- Fonts -->
-    <link rel="preload" href="/fonts/newsreader-v19-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/poppins-v20-latin-600.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/poppins-v24-latin-700.woff2" as="font" type="font/woff2" crossorigin />
+    <link
+      rel="preload"
+      href="/fonts/newsreader-v19-latin-regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/poppins-v20-latin-600.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/poppins-v24-latin-700.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <slot name="head" />
   </head>
   <body class={bodyClasses}>
@@ -221,11 +275,26 @@ const schemaJson = JSON.stringify({
       <div data-lg-cursor-pointer></div>
     </div>
     <script>
-      import luge from '@waaark/luge';
-      import lottie from 'lottie-web/build/player/lottie_light';
+      import luge from "@waaark/luge";
+      import lottie from "lottie-web/build/player/lottie_light";
 
       window.lottie = lottie;
       window.luge = luge;
+
+      const applyReducedMotionPreference = () => {
+        if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+          return;
+        document
+          .querySelectorAll<HTMLElement>("[data-lg-lottie-autoplay]")
+          .forEach((element) =>
+            element.removeAttribute("data-lg-lottie-autoplay"),
+          );
+        window.lottie
+          ?.getRegisteredAnimations()
+          .forEach((animation: { pause: () => void }) => animation.pause());
+      };
+
+      applyReducedMotionPreference();
 
       luge.settings({
         credits: {
@@ -233,23 +302,26 @@ const schemaJson = JSON.stringify({
         },
       });
 
-	      const restoreScrollState = () => {
-	        document.documentElement.style.removeProperty('overflow');
-	        document.body.style.removeProperty('overflow');
-	      };
+      const restoreScrollState = () => {
+        document.documentElement.style.removeProperty("overflow");
+        document.body.style.removeProperty("overflow");
+      };
 
       const initEmphasis = async () => {
-        const emphasisElements = document.querySelectorAll<HTMLElement>('main em');
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+          return;
+        const emphasisElements =
+          document.querySelectorAll<HTMLElement>("main em");
         if (emphasisElements.length === 0) {
           return;
         }
 
-        const { annotate } = await import('rough-notation');
+        const { annotate } = await import("rough-notation");
         function handleIntersection(entries: IntersectionObserverEntry[]) {
           entries.map((entry) => {
             if (entry.isIntersecting) {
               const annotation = annotate(entry.target as HTMLElement, {
-                type: 'underline',
+                type: "underline",
                 multiline: true,
                 padding: 0,
                 animationDuration: 300,
@@ -263,20 +335,49 @@ const schemaJson = JSON.stringify({
         emphasisElements.forEach((item) => observer.observe(item));
       };
 
-	      document.addEventListener('astro:page-load', async () => {
-	        restoreScrollState();
-	        await initEmphasis();
-	      });
+      const initAutoplayMedia = () => {
+        const videos = document.querySelectorAll<HTMLVideoElement>(
+          "video[data-site-autoplay]",
+        );
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          videos.forEach((video) => video.pause());
+          return;
+        }
 
-	      document.addEventListener('astro:after-swap', async () => {
-	        restoreScrollState();
-	        await initEmphasis();
-          if (window.luge) {
-            setTimeout(() => {
-              window.luge.lifecycle.refresh();
-            }, 200);
-          }
-	      });
-	    </script>
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              const video = entry.target as HTMLVideoElement;
+              if (entry.isIntersecting)
+                void video.play().catch(() => undefined);
+              else video.pause();
+            });
+          },
+          { rootMargin: "200px 0px" },
+        );
+        videos.forEach((video) => observer.observe(video));
+        document.addEventListener(
+          "astro:before-swap",
+          () => observer.disconnect(),
+          { once: true },
+        );
+      };
+
+      document.addEventListener("astro:page-load", async () => {
+        restoreScrollState();
+        applyReducedMotionPreference();
+        initAutoplayMedia();
+        await initEmphasis();
+      });
+
+      document.addEventListener("astro:after-swap", () => {
+        restoreScrollState();
+        if (window.luge) {
+          setTimeout(() => {
+            window.luge.lifecycle.refresh();
+          }, 200);
+        }
+      });
+    </script>
   </body>
 </html>

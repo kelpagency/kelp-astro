@@ -1,13 +1,19 @@
+[build]
+command = "npm run build"
+publish = "dist"
+
+[build.environment]
+NODE_VERSION = "22.12.0"
+
 [[headers]]
 for = "/*"
 [headers.values]
-Content-Security-Policy = "default-src 'self' https://store.kelp.agency; script-src 'self' 'unsafe-inline' https://static.hsappstatic.net https://static.codepen.io https://public.codepenassets.com https://v0.wordpress.com data:; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' https:; media-src 'self' https://*.kelp.agency https: data:; connect-src 'self' https://admin.kelp.agency https://ingesteer.services-prod.nsvcs.net https://static.hsappstatic.net; frame-src 'self' https://store.kelp.agency https://static.hsappstatic.net https://www.youtube.com https://www.youtube-nocookie.com https://codepen.io https://videopress.com https://player.vimeo.com https://vimeo.com; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'; upgrade-insecure-requests;"
 X-Content-Type-Options = "nosniff"
 Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
 Referrer-Policy = "strict-origin-when-cross-origin"
 Cross-Origin-Opener-Policy = "same-origin"
 Cross-Origin-Resource-Policy = "cross-origin"
-Permissions-Policy = "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), fullscreen=(self)"
+Permissions-Policy = "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), fullscreen=(self \"https://www.youtube-nocookie.com\" \"https://www.youtube.com\" \"https://player.vimeo.com\")"
 
 [[headers]]
 for = "/_astro/*"
@@ -17,19 +23,19 @@ Cache-Control = "public, max-age=31536000, immutable"
 [[headers]]
 for = "/fonts/*"
 [headers.values]
-Cache-Control = "public, max-age=31536000, immutable"
+Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
 
 [[headers]]
 for = "/videos/*"
 [headers.values]
-Cache-Control = "public, max-age=31536000, immutable"
+Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
 
 [[headers]]
 for = "/images/*"
 [headers.values]
-Cache-Control = "public, max-age=31536000, immutable"
+Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
 
 [[headers]]
 for = "/animations/*"
 [headers.values]
-Cache-Control = "public, max-age=31536000, immutable"
+Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"

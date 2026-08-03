@@ -1,51 +1,68 @@
 ---
-import { Picture } from 'astro:assets';
-import readingTime from 'reading-time';
-import { getWpCategories } from '../lib/wp';
+import { Picture } from "astro:assets";
+import readingTime from "reading-time";
+import { getWpCategories } from "../lib/wp";
+import { sanitizeHtml, sanitizeTitleHtml, toPlainText } from "../lib/sanitize";
 
 export interface Props {
-	post: {
-		id: number;
-		slug: string;
-		date: string;
-		fimg_url: string;
-		categories?: number[];
-		title: { rendered: string };
-		content: { rendered: string };
-		excerpt: { rendered: string };
-	};
+  post: {
+    id: number;
+    slug: string;
+    date: string;
+    fimg_url: string;
+    categories?: number[];
+    title: { rendered: string };
+    content: { rendered: string };
+    excerpt: { rendered: string };
+  };
 }
-export type BlogTeasePost = Props['post'];
+export type BlogTeasePost = Props["post"];
 
 const { post } = Astro.props as Props;
-const categories = await getWpCategories() as Record<string, any>[];
-const categoryName = categories.find((cat) => cat.id === post.categories?.[0])?.name;
+const categories = (await getWpCategories()) as Record<string, any>[];
+const categoryName = categories.find(
+  (cat) => cat.id === post.categories?.[0],
+)?.name;
 ---
 
-<article class='archive-tease'>
-	<a data-astro-prefetch href=`/blog/${post.slug}/` class='media' transition:name=`hero-${post.id}`>
-		<Picture
-			src={post.fimg_url}
-			alt={post.title.rendered}
-			width={1200}
-			height={660}
-			widths={[480, 720, 960, 1200]}
-			sizes="(max-width: 890px) 100vw, (max-width: 1300px) 50vw, 33vw"
-			loading='lazy'
-			inferSize
-		/>
-	</a>
-	<div class='text'>
-		<p class='text-meta'>
-			<span>
-				{new Date(post.date).toLocaleDateString('en-us', { year: 'numeric', month: 'short', day: 'numeric' })}
-			</span>
-			<span>{readingTime(post.content.rendered).text}</span>
-			{categoryName && <span>{categoryName}</span>}
-		</p>
-		<h2 class='h5' transition:name=`heading-${post.id}`>
-			<a href=`/blog/${post.slug}/` set:html={post.title.rendered} />
-		</h2>
-		<div set:html={post.excerpt.rendered} />
-	</div>
+<article class="archive-tease">
+  <a
+    data-astro-prefetch
+    href={`/blog/${post.slug}/`}
+    class="media"
+    transition:name={`hero-${post.id}`}
+  >
+    <Picture
+      src={post.fimg_url}
+      alt={toPlainText(post.title.rendered)}
+      width={1200}
+      height={660}
+      widths={[480, 720, 960, 1200]}
+      sizes="(max-width: 890px) 100vw, (max-width: 1300px) 50vw, 33vw"
+      loading="lazy"
+      inferSize
+    />
+  </a>
+  <div class="text">
+    <p class="text-meta">
+      <span>
+        {
+          new Date(post.date).toLocaleDateString("en-us", {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          })
+        }
+      </span>
+      <span>{readingTime(post.content.rendered).text}</span>
+      {categoryName && <span>{categoryName}</span>}
+    </p>
+    <h2 class="h5" transition:name={`heading-${post.id}`}>
+      <a
+        href={`/blog/${post.slug}/`}
+        set:html={sanitizeTitleHtml(post.title.rendered)}
+      />
+    </h2>
+    <div set:html={sanitizeHtml(post.excerpt.rendered)} />
+  </div>
 </article>

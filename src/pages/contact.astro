@@ -1,233 +1,251 @@
 ---
-import Layout from '../Base.astro';
-import Testimonials from '../components/Testimonials.astro';
-import { buildFaqSchema } from '../lib/schema';
+import Layout from "../Base.astro";
+import Testimonials from "../components/Testimonials.astro";
+import { buildFaqSchema } from "../lib/schema";
 
 const schema = [
   {
-    '@type': 'ContactPage',
-    name: 'Contact Kelp',
-    description: 'Get in touch with Kelp Creative Agency to discuss branding, websites, and marketing support.',
+    "@type": "ContactPage",
+    name: "Contact Kelp",
+    description:
+      "Get in touch with Kelp Creative Agency to discuss branding, websites, and marketing support.",
   },
   {
-    '@type': 'ProfessionalService',
-    name: 'Kelp Creative Agency',
-    url: 'https://www.kelp.agency/contact/',
-    telephone: '+1-352-325-7688',
-    email: 'info@kelp.agency',
+    "@type": "ProfessionalService",
+    name: "Kelp Creative Agency",
+    url: "https://www.kelp.agency/contact/",
+    telephone: "+1-352-325-7688",
+    email: "info@kelp.agency",
     address: {
-      '@type': 'PostalAddress',
-      addressLocality: 'Brooksville',
-      addressRegion: 'FL',
-      postalCode: '34605',
-      postOfficeBoxNumber: '116',
-      addressCountry: 'US',
+      "@type": "PostalAddress",
+      addressLocality: "Brooksville",
+      addressRegion: "FL",
+      postalCode: "34605",
+      postOfficeBoxNumber: "116",
+      addressCountry: "US",
     },
     areaServed: {
-      '@type': 'State',
-      name: 'Florida',
+      "@type": "State",
+      name: "Florida",
     },
   },
   buildFaqSchema([
     {
-      question: 'How do I contact Kelp Creative Agency?',
-      answer: 'You can book a meeting on the contact page or call Kelp at 352-325-7688.',
+      question: "How do I contact Kelp Creative Agency?",
+      answer:
+        "You can book a meeting on the contact page or call Kelp at 352-325-7688.",
     },
     {
-      question: 'Where is Kelp Creative Agency located?',
-      answer: 'Kelp Creative Agency is based in Brooksville, Florida and works with businesses across Florida and beyond.',
+      question: "Where is Kelp Creative Agency located?",
+      answer:
+        "Kelp Creative Agency is based in Brooksville, Florida and works with businesses across Florida and beyond.",
     },
   ]),
 ];
 ---
 
 <Layout title="Contact Kelp" darkHeader={true} schema={schema}>
-	<article>
-		<section class="contact-section">
-			<div class="wrapper">
-				<div class="contact-section-column" data-lg-reveal="fade" data-lg-reveal-stagger=".2">
-					<h1>Well hello there.</h1>
-					<hr />
-					<p data-lg-reveal="fade" data-lg-reveal-delay=".25">
-						Interested in our services? Setup a chat with Andrew. He’d love to talk with you and see how Kelp can be of
-						help.
-					</p>
+  <article>
+    <section class="contact-section">
+      <div class="wrapper">
+        <div
+          class="contact-section-column"
+          data-lg-reveal="fade"
+          data-lg-reveal-stagger=".2"
+        >
+          <h1>Well hello there.</h1>
+          <hr />
+          <p data-lg-reveal="fade" data-lg-reveal-delay=".25">
+            Interested in our services? Setup a chat with Andrew. He’d love to
+            talk with you and see how Kelp can be of help.
+          </p>
 
-					<h2>Other ways to reach us.</h2>
-					<h3 class="h6">Office Address</h3>
-					<address>P.O. Box 116<br /> Brooksville, FL 34605</address>
-					<p><i>New Office Coming Soon</i></p>
-					<p>Phone: <a href="tel:+1-352-325-7688">352-325-7688</a></p>
-				</div>
-				<div class="contact-section-column" data-lg-reveal="layer-to-right" data-lg-reveal-delay=".5">
-					<div id="meetings-embed">
-						<div class="meetings-iframe-container" data-src="https://store.kelp.agency/meetings/andrew1417?embed=true">
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<Testimonials />
-	</article>
+          <h2>Other ways to reach us.</h2>
+          <h3 class="h6">Office Address</h3>
+          <address>P.O. Box 116<br /> Brooksville, FL 34605</address>
+          <p><i>New Office Coming Soon</i></p>
+          <p>Phone: <a href="tel:+1-352-325-7688">352-325-7688</a></p>
+        </div>
+        <div
+          class="contact-section-column"
+          data-lg-reveal="layer-to-right"
+          data-lg-reveal-delay=".5"
+        >
+          <div id="meetings-embed">
+            <div
+              class="meetings-iframe-container"
+              data-src="https://store.kelp.agency/meetings/andrew1417?embed=true"
+            >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <Testimonials />
+  </article>
+
+  <style lang="scss">
+    // contact page
+    .contact-section {
+      background: var(--black);
+      color: white;
+      padding-top: 4rem;
+      a {
+        color: var(--green);
+      }
+      .wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 3rem;
+      }
+      &-column {
+        flex: 1 1 500px;
+        margin-bottom: 4rem;
+        h1 {
+          margin-bottom: 2rem;
+        }
+        h2 {
+          margin-top: 4rem;
+          margin-bottom: 2rem;
+        }
+        &:first-child {
+          flex-basis: 250px;
+        }
+      }
+      #meetings-embed {
+        height: 756px;
+      }
+    }
+  </style>
+
+  <script>
+    const HUBSPOT_MEETINGS_SCRIPT_SRC =
+      "https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js";
+    const HUBSPOT_EMBED_SELECTOR = "#meetings-embed";
+    const HUBSPOT_CONTAINER_SELECTOR = ".meetings-iframe-container";
+    const MAX_MEETINGS_RETRIES = 2;
+    let meetingsVisibilityObserver: IntersectionObserver | null = null;
+    let meetingsMutationObserver: MutationObserver | null = null;
+    let meetingsRetryTimeout: number | null = null;
+    let meetingsRetryCount = 0;
+
+    const setEmbedIframeTitle = (embedRoot: HTMLElement) => {
+      embedRoot.querySelectorAll("iframe").forEach((iframe) => {
+        iframe.title = "Schedule a meeting with Kelp Creative Agency";
+        iframe.loading = "lazy";
+      });
+    };
+
+    const clearMeetingsTimers = () => {
+      if (meetingsVisibilityObserver) {
+        meetingsVisibilityObserver.disconnect();
+        meetingsVisibilityObserver = null;
+      }
+      if (meetingsMutationObserver) {
+        meetingsMutationObserver.disconnect();
+        meetingsMutationObserver = null;
+      }
+      if (meetingsRetryTimeout !== null) {
+        window.clearTimeout(meetingsRetryTimeout);
+        meetingsRetryTimeout = null;
+      }
+    };
+
+    const loadMeetingsEmbed = () => {
+      const embedRoot = document.querySelector(HUBSPOT_EMBED_SELECTOR);
+      const container = embedRoot?.querySelector(HUBSPOT_CONTAINER_SELECTOR);
+      if (
+        !(embedRoot instanceof HTMLElement) ||
+        !(container instanceof HTMLDivElement)
+      ) {
+        return;
+      }
+
+      if (embedRoot.querySelector("iframe")) {
+        meetingsRetryCount = 0;
+        setEmbedIframeTitle(embedRoot);
+        return;
+      }
+
+      clearMeetingsTimers();
+      container.replaceChildren();
+
+      document
+        .querySelectorAll("script[data-hubspot-meetings-embed]")
+        .forEach((script) => script.remove());
+
+      const script = document.createElement("script");
+      script.src = HUBSPOT_MEETINGS_SCRIPT_SRC;
+      script.async = true;
+      script.defer = true;
+      script.dataset.hubspotMeetingsEmbed = "true";
+      document.body.appendChild(script);
+
+      meetingsMutationObserver = new MutationObserver(() => {
+        setEmbedIframeTitle(embedRoot);
+      });
+      meetingsMutationObserver.observe(embedRoot, {
+        childList: true,
+        subtree: true,
+      });
+
+      meetingsRetryTimeout = window.setTimeout(() => {
+        if (!embedRoot.querySelector("iframe")) {
+          if (meetingsRetryCount >= MAX_MEETINGS_RETRIES) {
+            return;
+          }
+          meetingsRetryCount += 1;
+          loadMeetingsEmbed();
+          return;
+        }
+
+        meetingsRetryCount = 0;
+        setEmbedIframeTitle(embedRoot);
+      }, 2500);
+
+      setEmbedIframeTitle(embedRoot);
+    };
+
+    const initMeetingsEmbedWhenVisible = () => {
+      const embedRoot = document.querySelector(HUBSPOT_EMBED_SELECTOR);
+      if (!(embedRoot instanceof HTMLElement)) {
+        return;
+      }
+
+      if (embedRoot.querySelector("iframe")) {
+        meetingsRetryCount = 0;
+        setEmbedIframeTitle(embedRoot);
+        return;
+      }
+
+      if ("IntersectionObserver" in window) {
+        meetingsVisibilityObserver?.disconnect();
+        meetingsVisibilityObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) {
+                return;
+              }
+
+              loadMeetingsEmbed();
+              meetingsVisibilityObserver?.disconnect();
+              meetingsVisibilityObserver = null;
+            });
+          },
+          { rootMargin: "200px" },
+        );
+
+        meetingsVisibilityObserver.observe(embedRoot);
+      } else {
+        loadMeetingsEmbed();
+      }
+    };
+
+    document.addEventListener("astro:page-load", () => {
+      requestAnimationFrame(() => {
+        initMeetingsEmbedWhenVisible();
+      });
+    });
+    document.addEventListener("astro:before-swap", clearMeetingsTimers);
+  </script>
 </Layout>
-
-<style lang="scss">
-	// contact page
-	.contact-section {
-		background: var(--black);
-		color: white;
-		padding-top: 4rem;
-		a {
-			color: var(--green);
-		}
-		.wrapper {
-			display: flex;
-			flex-wrap: wrap;
-			gap: 3rem;
-		}
-		&-column {
-			flex: 1 1 500px;
-			margin-bottom: 4rem;
-			h1 {
-				margin-bottom: 2rem;
-			}
-			h2 {
-				margin-top: 4rem;
-				margin-bottom: 2rem;
-			}
-			&:first-child {
-				flex-basis: 250px;
-			}
-		}
-		#meetings-embed {
-			height: 756px;
-		}
-	}
-</style>
-
-<script>
-	const HUBSPOT_MEETINGS_SCRIPT_SRC = 'https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js';
-	const HUBSPOT_EMBED_SELECTOR = '#meetings-embed';
-	const HUBSPOT_CONTAINER_SELECTOR = '.meetings-iframe-container';
-	const MAX_MEETINGS_RETRIES = 2;
-	let meetingsVisibilityObserver: IntersectionObserver | null = null;
-	let meetingsMutationObserver: MutationObserver | null = null;
-	let meetingsRetryTimeout: number | null = null;
-	let meetingsRetryCount = 0;
-
-	const setEmbedIframeTitle = (embedRoot: HTMLElement) => {
-		embedRoot.querySelectorAll('iframe').forEach((iframe) => {
-			iframe.title = 'Schedule a meeting with Kelp Creative Agency';
-			iframe.loading = 'lazy';
-		});
-	};
-
-	const clearMeetingsTimers = () => {
-		if (meetingsVisibilityObserver) {
-			meetingsVisibilityObserver.disconnect();
-			meetingsVisibilityObserver = null;
-		}
-		if (meetingsMutationObserver) {
-			meetingsMutationObserver.disconnect();
-			meetingsMutationObserver = null;
-		}
-		if (meetingsRetryTimeout !== null) {
-			window.clearTimeout(meetingsRetryTimeout);
-			meetingsRetryTimeout = null;
-		}
-	};
-
-	const loadMeetingsEmbed = () => {
-		const embedRoot = document.querySelector(HUBSPOT_EMBED_SELECTOR);
-		const container = embedRoot?.querySelector(HUBSPOT_CONTAINER_SELECTOR);
-		if (!(embedRoot instanceof HTMLElement) || !(container instanceof HTMLDivElement)) {
-			return;
-		}
-
-		if (embedRoot.querySelector('iframe')) {
-			meetingsRetryCount = 0;
-			setEmbedIframeTitle(embedRoot);
-			return;
-		}
-
-		clearMeetingsTimers();
-		container.replaceChildren();
-
-		document.querySelectorAll('script[data-hubspot-meetings-embed]').forEach((script) => script.remove());
-
-		const script = document.createElement('script');
-		script.src = HUBSPOT_MEETINGS_SCRIPT_SRC;
-		script.async = true;
-		script.defer = true;
-		script.dataset.hubspotMeetingsEmbed = 'true';
-		document.body.appendChild(script);
-
-		meetingsMutationObserver = new MutationObserver(() => {
-			setEmbedIframeTitle(embedRoot);
-		});
-		meetingsMutationObserver.observe(embedRoot, {
-			childList: true,
-			subtree: true,
-		});
-
-		meetingsRetryTimeout = window.setTimeout(() => {
-			if (!embedRoot.querySelector('iframe')) {
-				if (meetingsRetryCount >= MAX_MEETINGS_RETRIES) {
-					return;
-				}
-				meetingsRetryCount += 1;
-				loadMeetingsEmbed();
-				return;
-			}
-
-			meetingsRetryCount = 0;
-			setEmbedIframeTitle(embedRoot);
-		}, 2500);
-
-		setEmbedIframeTitle(embedRoot);
-	};
-
-	const initMeetingsEmbedWhenVisible = () => {
-		const embedRoot = document.querySelector(HUBSPOT_EMBED_SELECTOR);
-		if (!(embedRoot instanceof HTMLElement)) {
-			return;
-		}
-
-		if (embedRoot.querySelector('iframe')) {
-			meetingsRetryCount = 0;
-			setEmbedIframeTitle(embedRoot);
-			return;
-		}
-
-		if ('IntersectionObserver' in window) {
-			meetingsVisibilityObserver?.disconnect();
-			meetingsVisibilityObserver = new IntersectionObserver((entries) => {
-				entries.forEach((entry) => {
-					if (!entry.isIntersecting) {
-						return;
-					}
-
-					loadMeetingsEmbed();
-					meetingsVisibilityObserver?.disconnect();
-					meetingsVisibilityObserver = null;
-				});
-			}, { rootMargin: '200px' });
-
-			meetingsVisibilityObserver.observe(embedRoot);
-		} else {
-			loadMeetingsEmbed();
-		}
-	};
-
-	document.addEventListener('astro:page-load', () => {
-		requestAnimationFrame(() => {
-			initMeetingsEmbedWhenVisible();
-		});
-	});
-
-	if (document.readyState === 'loading') {
-		document.addEventListener('DOMContentLoaded', initMeetingsEmbedWhenVisible, { once: true });
-	} else {
-		initMeetingsEmbedWhenVisible();
-	}
-</script>

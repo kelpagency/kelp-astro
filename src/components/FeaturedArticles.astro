@@ -1,12 +1,18 @@
 ---
-import { Picture } from 'astro:assets';
-import { fetchWpJson } from '../lib/wp';
+import { Picture } from "astro:assets";
+import { fetchWpJson } from "../lib/wp";
+import { sanitizeTitleHtml, toPlainText } from "../lib/sanitize";
 
-const { category = null, tag = null, heading = 'Featured Articles', limit = 3 } = Astro.props;
+const {
+  category = null,
+  tag = null,
+  heading = "Featured Articles",
+  limit = 3,
+} = Astro.props;
 
 // Decide taxonomy (backward compatible)
-const taxonomyType = tag ? 'tags' : 'categories';
-const taxonomyInput = tag ?? category ?? '17';
+const taxonomyType = tag ? "tags" : "categories";
+const taxonomyInput = tag ?? category ?? "17";
 
 // Normalize input:
 // - "17"
@@ -16,18 +22,19 @@ const taxonomyInput = tag ?? category ?? '17';
 const normalizedIds = Array.isArray(taxonomyInput)
   ? taxonomyInput
   : String(taxonomyInput)
-      .split(',')
+      .split(",")
       .map((id) => id.trim())
       .filter(Boolean);
 
-const taxonomyParam = normalizedIds.join(',');
+const taxonomyParam = normalizedIds.join(",");
 
 const posts = await fetchWpJson(
   `/posts?per_page=${limit * 2}&${taxonomyType}=${taxonomyParam}&_embed`,
   [] as Record<string, any>[],
 );
-const shuffledPosts = posts.sort(() => 0.5 - Math.random()).slice(0, limit);
-const getTerms = (post: Record<string, any>) => (post._embedded?.['wp:term']?.[0] ?? []) as Array<Record<string, any>>;
+const shuffledPosts = posts.slice(0, limit);
+const getTerms = (post: Record<string, any>) =>
+  (post._embedded?.["wp:term"]?.[0] ?? []) as Array<Record<string, any>>;
 ---
 
 {
@@ -43,7 +50,7 @@ const getTerms = (post: Record<string, any>) => (post._embedded?.['wp:term']?.[0
                 <Picture
                   src={post.fimg_url}
                   loading="lazy"
-                  alt={post.title?.rendered ?? ''}
+                  alt={toPlainText(post.title?.rendered ?? "")}
                   width={900}
                   height={600}
                   widths={[400, 650, 900]}
@@ -53,7 +60,10 @@ const getTerms = (post: Record<string, any>) => (post._embedded?.['wp:term']?.[0
               )}
 
               <h4 class="h5">
-                <a href={`/blog/${post.slug}/`} set:html={post.title.rendered} />
+                <a
+                  href={`/blog/${post.slug}/`}
+                  set:html={sanitizeTitleHtml(post.title.rendered)}
+                />
               </h4>
 
               {getTerms(post).length > 0 && (
@@ -101,7 +111,7 @@ const getTerms = (post: Record<string, any>) => (post._embedded?.['wp:term']?.[0
           text-decoration: none;
 
           &:after {
-            content: '';
+            content: "";
             display: block;
             position: absolute;
             top: 0;
@@ -117,7 +127,7 @@ const getTerms = (post: Record<string, any>) => (post._embedded?.['wp:term']?.[0
           color: #757575;
 
           span + span:before {
-            content: ', ';
+            content: ", ";
           }
         }
       }

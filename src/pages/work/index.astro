@@ -1,153 +1,178 @@
 ---
 import Layout from "../../Base.astro";
 import { Picture } from "astro:assets";
-import { fetchWpJson, getWpTags } from "../../lib/wp";
+import { fetchWpJsonRequired, getWpTags } from "../../lib/wp";
 import { buildCollectionPageSchema, buildItemList } from "../../lib/schema";
+import { sanitizeTitleHtml, toPlainText } from "../../lib/sanitize";
 
 type WorkPost = Record<string, any> & {
-	id: number;
-	slug: string;
-	tags: number[];
-	fimg_url?: string;
-	title: { rendered: string };
-	tagNames?: string[];
+  id: number;
+  slug: string;
+  tags: number[];
+  fimg_url?: string;
+  title: { rendered: string };
+  tagNames?: string[];
+  _embedded?: {
+    "wp:featuredmedia"?: Array<{
+      media_details?: { width?: number; height?: number };
+    }>;
+  };
 };
 
-const posts = await fetchWpJson('/work?per_page=100', [] as WorkPost[]);
-const tags = await getWpTags() as Record<string, any>[];
-
-const withOrientation: Array<WorkPost & { isLandscape: boolean }> = await Promise.all(
-	posts.map(async (post: WorkPost) => {
-		if (!post.fimg_url) return { ...post, isLandscape: false };
-
-		try {
-			const res = await fetch(post.fimg_url);
-			if (!res.ok) return { ...post, isLandscape: false };
-			const buf = await res.arrayBuffer();
-
-			const { imageSize } = await import('image-size');
-			const { width, height } = imageSize(Buffer.from(buf));
-
-			return {
-				...post,
-				isLandscape: width > height,
-				tagNames: post.tags
-					.slice(0, 3)
-					.map((id) => tags.find((tag: Record<string, any>) => tag.id === id)?.name)
-					.filter(Boolean)
-			};
-		} catch {
-			return {
-				...post,
-				isLandscape: false,
-				tagNames: post.tags
-					.slice(0, 3)
-					.map((id) => tags.find((tag: Record<string, any>) => tag.id === id)?.name)
-					.filter(Boolean)
-			};
-		}
-	})
+const posts = await fetchWpJsonRequired(
+  "/work?per_page=100&_embed=wp:featuredmedia",
+  [] as WorkPost[],
 );
+const tags = (await getWpTags()) as Record<string, any>[];
+
+const withOrientation: Array<WorkPost & { isLandscape: boolean }> = posts
+  .filter((post) => Boolean(post.fimg_url))
+  .map((post) => {
+    const details = post._embedded?.["wp:featuredmedia"]?.[0]?.media_details;
+    return {
+      ...post,
+      isLandscape: Boolean(
+        details?.width && details?.height && details.width > details.height,
+      ),
+      tagNames: post.tags
+        .slice(0, 3)
+        .map(
+          (id) => tags.find((tag: Record<string, any>) => tag.id === id)?.name,
+        )
+        .filter(Boolean),
+    };
+  });
 const schema = buildCollectionPageSchema(
-	'Our Work',
-	'Recent case studies and client work from Kelp Creative Agency.',
-	buildItemList(withOrientation.slice(0, 24).map((post) => ({ name: post.title.rendered.replace(/<[^>]+>/g, '').trim(), url: `/work/${post.slug}/` }))),
+  "Our Work",
+  "Recent case studies and client work from Kelp Creative Agency.",
+  buildItemList(
+    withOrientation
+      .slice(0, 24)
+      .map((post) => ({
+        name: toPlainText(post.title.rendered),
+        url: `/work/${post.slug}/`,
+      })),
+  ),
 );
 ---
 
-<Layout title='Our Work' bodyClass="work-archive" schema={schema}>
-	<section class="archive">
-		<div class='wrapper wrapper--narrow'>
-			<h1 style="margin-top: 8rem;" data-lg-reveal="fade" data-lg-reveal-stagger="0.05"><span>Our</span> <span>Work</span> <span>in</span> <span>the</span> <span>Real-World</span></h1>
-			<p style="max-width: 800px; flex: 1 1 500px; font-size: var(--step-1)" data-lg-reveal="fade" data-lg-reveal-delay=".5">
-				The proof is in the pudding as they say here in the south. Weird sayings aside, it’s one thing to have a good strategy, but it takes special talent to deliver on that strategy in excellence. Take a peak at some of our recent work below.
-			</p>
-		</div>
-		<div class="wrapper archive-list">
-			<h2 class="screen-reader-text">Case studies</h2>
-			<!-- <label data-lg-reveal="fade" style="max-width: 260px;
+<Layout title="Our Work" bodyClass="work-archive" schema={schema}>
+  <section class="archive">
+    <div class="wrapper wrapper--narrow">
+      <h1
+        style="margin-top: 8rem;"
+        data-lg-reveal="fade"
+        data-lg-reveal-stagger="0.05"
+      >
+        <span>Our</span>
+        <span>Work</span>
+        <span>in</span>
+        <span>the</span>
+        <span>Real-World</span>
+      </h1>
+      <p
+        style="max-width: 800px; flex: 1 1 500px; font-size: var(--step-1)"
+        data-lg-reveal="fade"
+        data-lg-reveal-delay=".5"
+      >
+        The proof is in the pudding as they say here in the south. Weird sayings
+        aside, it’s one thing to have a good strategy, but it takes special
+        talent to deliver on that strategy in excellence. Take a peak at some of
+        our recent work below.
+      </p>
+    </div>
+    <div class="wrapper archive-list">
+      <h2 class="screen-reader-text">Case studies</h2>
+      <!-- <label data-lg-reveal="fade" style="max-width: 260px;
 			display: block; margin-left: auto; margin-bottom: 4rem;"><b>Filter by</b><br>
 				<select class="work-post-filter">
 					<option value="">— Type of work done —</option>
 					{tags.map(
 						(tag) => 
 							tag.count > 0 && (
-								<option value=`/work/${tag.slug}/`>{tag.name}</option>
+								<option value={`/work/${tag.slug}/`}>{tag.name}</option>
 							)
 						)
 					}
 				</select>
 			</label> -->
-				{
-					withOrientation.map((post) => (
-						<article
-							class={`tease ${post.isLandscape ? 'tease--wide' : ''}`}
-							data-tags={post.tags.join(',')}
-							data-lg-reveal="fade"
-						>
-							<Picture
-								src={post.fimg_url}
-								alt={post.title.rendered}
-								width={1200}
-								height={900}
-								widths={[480, 720, 960, 1200, 1600]}
-								sizes={post.isLandscape ? "(max-width: 900px) 100vw, 66vw" : "(max-width: 900px) 100vw, 33vw"}
-								loading="lazy"
-								inferSize
-							/>
-							<ul class="tease-tags">
-								{
-										post.tagNames?.map((tagName) => (
-											<li class="tease-tags-item">{tagName}</li>
-										))
-								}
-							</ul>
-							<h2 class="h5" transition:name=`heading-${post.id}`><a href=`/work/${post.slug}/` set:html={post.title.rendered}/></h2>
-						</article>
-					))
-				}
-		</div>
-	</section>
+      {
+        withOrientation.map((post) => (
+          <article
+            class={`tease ${post.isLandscape ? "tease--wide" : ""}`}
+            data-tags={post.tags.join(",")}
+            data-lg-reveal="fade"
+          >
+            <Picture
+              src={post.fimg_url as string}
+              alt={toPlainText(post.title.rendered)}
+              width={1200}
+              height={900}
+              widths={[480, 720, 960, 1200, 1600]}
+              sizes={
+                post.isLandscape
+                  ? "(max-width: 900px) 100vw, 66vw"
+                  : "(max-width: 900px) 100vw, 33vw"
+              }
+              loading="lazy"
+              inferSize
+            />
+            <ul class="tease-tags">
+              {post.tagNames?.map((tagName) => (
+                <li class="tease-tags-item">{tagName}</li>
+              ))}
+            </ul>
+            <h2 class="h5" transition:name={`heading-${post.id}`}>
+              <a
+                href={`/work/${post.slug}/`}
+                set:html={sanitizeTitleHtml(post.title.rendered)}
+              />
+            </h2>
+          </article>
+        ))
+      }
+    </div>
+  </section>
 </Layout>
 
 <style lang="scss">
-	.archive-list {
-		display: grid;
-		grid-template-columns: 1fr 1fr 1fr;
-		gap: 4rem;
-		margin-bottom: 5rem;
-		margin-top: 5rem;
-		@media (max-width: 900px) {
-			display: flex;
-			flex-direction: column;
-		}
-	}
-	.tease {
-		position: relative;
-		&--wide {
-			grid-column: span 2;
-		}
-		&-tags {
-			display: flex;
-			gap: .5rem;
-			list-style: none;
-			margin: 1rem 0;
-			padding: 0;
-			&-item {
-				font-size: .8rem;
-				opacity: .7;
-			}
-		}
-		h2 {
-			margin: 0;
-			a {
-				text-decoration: none;
-				&::after {
-					content: "";
-					position: absolute;
-					inset: 0;
-				}
-			}
-		}
-	}
+  .archive-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 5rem;
+    margin-top: 5rem;
+    @media (max-width: 900px) {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  .tease {
+    position: relative;
+    &--wide {
+      grid-column: span 2;
+    }
+    &-tags {
+      display: flex;
+      gap: 0.5rem;
+      list-style: none;
+      margin: 1rem 0;
+      padding: 0;
+      &-item {
+        font-size: 0.8rem;
+        opacity: 0.7;
+      }
+    }
+    h2 {
+      margin: 0;
+      a {
+        text-decoration: none;
+        &::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+        }
+      }
+    }
+  }
 </style>

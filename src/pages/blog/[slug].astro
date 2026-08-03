@@ -1,27 +1,37 @@
 ---
 // Fetch your about page content from the WordPress API
-import FeaturedArticles from '../../components/FeaturedArticles.astro';
-import Layout from '../../Base.astro';
-import BlogSingleSidebar from '../../components/BlogSingleSidebar.astro';
-import { Picture } from 'astro:assets';
-import readingTime from 'reading-time';
-import { sanitizeHtml } from '../../lib/sanitize';
-import { toJetpackImageUrl } from '../../lib/jetpack';
-import { fetchWpJson } from '../../lib/wp';
+import FeaturedArticles from "../../components/FeaturedArticles.astro";
+import Layout from "../../Base.astro";
+import BlogSingleSidebar from "../../components/BlogSingleSidebar.astro";
+import { Picture } from "astro:assets";
+import readingTime from "reading-time";
+import {
+  sanitizeHtml,
+  sanitizeTitleHtml,
+  toPlainText,
+} from "../../lib/sanitize";
+import { toJetpackImageUrl } from "../../lib/jetpack";
+import { fetchWpJson, fetchWpJsonRequired } from "../../lib/wp";
 
-import '../../styles/pages/_wordpress.scss';
-import 'highlight.js/styles/monokai-sublime.css';
+import "../../styles/pages/_wordpress.scss";
+import "highlight.js/styles/monokai-sublime.css";
 
 export async function getStaticPaths() {
-  const posts = await fetchWpJson('/posts?per_page=100&_embed', [] as Record<string, any>[]);
-  const categories = await fetchWpJson('/categories?per_page=100', [] as Record<string, any>[]);
+  const posts = await fetchWpJsonRequired(
+    "/posts?per_page=100&_embed",
+    [] as Record<string, any>[],
+  );
+  const categories = await fetchWpJsonRequired(
+    "/categories?per_page=100",
+    [] as Record<string, any>[],
+  );
 
   return posts.map((post) => {
     return {
       params: { slug: post.slug },
       props: {
         title: post.title.rendered,
-        description: post.excerpt.rendered.replace(/(<([^>]+)>)/gi, ''),
+        description: toPlainText(post.excerpt.rendered),
         image: post.fimg_url,
         content: post.content.rendered,
         id: post.id,
@@ -35,10 +45,23 @@ export async function getStaticPaths() {
   });
 }
 
-const { title, content, id, author, image, description, datePublished, dateModified, categories, allCategories } =
-  Astro.props;
-const ogImage = toJetpackImageUrl(image, 'w=1200') || image;
-const jsonComments = await fetchWpJson(`/comments?post=${id}`, [] as Record<string, any>[]);
+const {
+  title,
+  content,
+  id,
+  author,
+  image,
+  description,
+  datePublished,
+  dateModified,
+  categories,
+  allCategories,
+} = Astro.props;
+const ogImage = toJetpackImageUrl(image, "w=1200") || image;
+const jsonComments = await fetchWpJson(
+  `/comments?post=${id}`,
+  [] as Record<string, any>[],
+);
 const categoryMatch = allCategories.find((cat) => cat.id === categories?.[0]);
 const category = categoryMatch
   ? {
@@ -46,15 +69,18 @@ const category = categoryMatch
       name: categoryMatch.name,
       id: categoryMatch.id,
     }
-  : null;
-const cleanTitle = title.replace(/(<([^>]+)>)/gi, '').trim();
-const cleanDescription = description.replace(/(<([^>]+)>)/gi, '').trim();
+  : undefined;
+const cleanTitle = toPlainText(title);
+const cleanDescription = toPlainText(description);
 const now = new Date();
 const modifiedDate = dateModified ? new Date(dateModified) : null;
-const safeDateModified = modifiedDate && modifiedDate > now ? datePublished : dateModified || datePublished;
+const safeDateModified =
+  modifiedDate && modifiedDate > now
+    ? datePublished
+    : dateModified || datePublished;
 const authorEntry = Array.isArray(author) ? author[0] : author;
 const schema = {
-  '@type': 'BlogPosting',
+  "@type": "BlogPosting",
   headline: cleanTitle,
   description: cleanDescription,
   datePublished,
@@ -62,25 +88,25 @@ const schema = {
   image: ogImage ? [ogImage] : undefined,
   author: [
     {
-      '@type': 'Person',
+      "@type": "Person",
       name: authorEntry?.name,
       url: authorEntry?.url,
     },
   ],
   publisher: {
-    '@id': 'https://www.kelp.agency/#organization',
+    "@id": "https://www.kelp.agency/#organization",
   },
   mainEntityOfPage: {
-    '@id': `${Astro.url.href}#webpage`,
+    "@id": `${Astro.url.href}#webpage`,
   },
 };
-const safeTitle = sanitizeHtml(title);
+const safeTitle = sanitizeTitleHtml(title);
 const safeContent = sanitizeHtml(content);
 ---
 
 <Layout
-  title={title}
-  description={description}
+  title={cleanTitle}
+  description={cleanDescription}
   image={ogImage}
   bodyClass="blog-post"
   schema={schema}
@@ -91,19 +117,23 @@ const safeContent = sanitizeHtml(content);
 >
   <article class="wrapper single">
     <div class="single-article">
-      <h1 transition:name=`heading-${id}` set:html={safeTitle} />
+      <h1 transition:name={`heading-${id}`} set:html={safeTitle} />
       <p class="single-article-meta">
         <time datetime={datePublished}
           >{
-            new Date(datePublished).toLocaleDateString('en-us', { year: 'numeric', month: 'short', day: 'numeric' })
+            new Date(datePublished).toLocaleDateString("en-us", {
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+            })
           }</time
         >
         <span>{readingTime(content).text}</span>
       </p>
-      <div transition:name=`hero-${id}`>
+      <div transition:name={`hero-${id}`}>
         <Picture
           src={image}
-          alt={description}
+          alt={cleanTitle}
           width={1600}
           height={900}
           widths={[720, 1080, 1440, 1600]}
@@ -123,19 +153,21 @@ const safeContent = sanitizeHtml(content);
                   <div class="single-article-comments-item">
                     <img
                       class="single-article-comments-item-img"
-                      src={comment.author_avatar_urls['96']}
+                      src={comment.author_avatar_urls["96"]}
                       alt={`Avatar for ${comment.author_name}`}
                       width="48"
                       height="48"
                       loading="lazy"
                       decoding="async"
                     />
-                    <h4 class="single-article-comments-item-name h6">{comment.author_name} says</h4>
+                    <h4 class="single-article-comments-item-name h6">
+                      {comment.author_name} says
+                    </h4>
                     <time datetime={comment.date}>
-                      {new Date(comment.date).toLocaleDateString('en-us', {
-                        year: 'numeric',
-                        month: 'short',
-                        day: 'numeric',
+                      {new Date(comment.date).toLocaleDateString("en-us", {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
                       })}
                     </time>
                     <div
@@ -148,20 +180,25 @@ const safeContent = sanitizeHtml(content);
                           <div class="single-article-comments-item single-article-comments-item--reply">
                             <img
                               class="single-article-comments-item-img"
-                              src={reply.author_avatar_urls['96']}
+                              src={reply.author_avatar_urls["96"]}
                               alt={`Avatar for ${reply.author_name}`}
                               width="48"
                               height="48"
                               loading="lazy"
                               decoding="async"
                             />
-                            <h4 class="single-article-comments-item-name h6">{reply.author_name} says</h4>
+                            <h4 class="single-article-comments-item-name h6">
+                              {reply.author_name} says
+                            </h4>
                             <time datetime={reply.date}>
-                              {new Date(reply.date).toLocaleDateString('en-us', {
-                                year: 'numeric',
-                                month: 'short',
-                                day: 'numeric',
-                              })}
+                              {new Date(reply.date).toLocaleDateString(
+                                "en-us",
+                                {
+                                  year: "numeric",
+                                  month: "short",
+                                  day: "numeric",
+                                },
+                              )}
                             </time>
                             <div
                               class="single-article-comments-item-body"
@@ -182,241 +219,282 @@ const safeContent = sanitizeHtml(content);
         <form>
           <label
             >Your Name<br />
-            <input type="text" placeholder="Johnny Boy" required />
+            <input
+              type="text"
+              name="author_name"
+              autocomplete="name"
+              placeholder="Johnny Boy"
+              required
+            />
           </label>
           <label
             >Your Email<br />
-            <input type="email" placeholder="name@example.com" required />
+            <input
+              type="email"
+              name="author_email"
+              autocomplete="email"
+              placeholder="name@example.com"
+              required
+            />
           </label>
           <label
             >Your Comment<br />
-            <textarea placeholder="whats with the squid 🦑" required></textarea>
+            <textarea
+              name="content"
+              placeholder="whats with the squid 🦑"
+              required></textarea>
           </label>
           <input type="hidden" name="post" value={id} />
           <button class="button" type="submit">Post Comment</button>
+          <p class="comment-form-status" role="status" aria-live="polite"></p>
         </form>
       </section>
     </div>
     <BlogSingleSidebar author={authorEntry} category={category} postId={id} />
   </article>
-  {categories?.length > 0 && <FeaturedArticles category={categories} heading="Related Articles" />}
-</Layout>
+  {
+    categories?.length > 0 && (
+      <FeaturedArticles category={categories} heading="Related Articles" />
+    )
+  }
 
-<style lang="scss" is:global>
-  .single {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 3rem 4rem;
-    margin-top: 3rem !important;
-    &-sidebar {
-      flex: 1 1 250px;
-      margin-top: 8rem;
-      margin-bottom: 3rem;
-      @media (min-width: 1100px) {
-        order: -1;
-      }
-      &-author {
-        display: grid;
-        grid-template-columns: 3rem auto;
-        align-items: center;
-        gap: 0.5rem 1rem;
-        h5 {
-          margin: 0;
+  <style lang="scss" is:global>
+    .single {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem 4rem;
+      margin-top: 3rem !important;
+      &-sidebar {
+        flex: 1 1 250px;
+        margin-top: 8rem;
+        margin-bottom: 3rem;
+        @media (min-width: 1100px) {
+          order: -1;
         }
-        img {
-          border-radius: 1rem;
-        }
-        p {
-          margin: 0.5rem 0 0.5rem 0;
-          line-height: 1.2;
-          grid-column: span 2;
-        }
-      }
-      &-category {
-        display: flex;
-        gap: 1rem;
-        justify-content: space-between;
-        align-items: flex-end;
-        margin: 1rem 0;
-        border-top: 1px solid;
-        border-bottom: 1px solid;
-        padding-top: 1rem;
-        padding-bottom: 1rem;
-        h6 {
-          font-size: var(--step-0);
-          margin: 0;
-        }
-        a {
-          font-size: var(--step-0);
-          line-height: 1;
-        }
-      }
-      &-share {
-        display: flex;
-        gap: 1rem;
-        justify-content: space-between;
-        align-items: center;
-        border-bottom: 1px solid;
-        padding-bottom: 1rem;
-        h6 {
-          font-size: var(--step-0);
-          margin: 0;
-        }
-        p {
-          margin: 0;
-          display: flex;
-          gap: 1rem;
-        }
-      }
-      &-related {
-        margin-top: 7rem;
-        position: sticky;
-        top: 3rem;
-        h6 {
-          width: 100%;
-          display: block;
-          border-bottom: 1px solid;
-          padding-bottom: 1rem;
-          margin-bottom: 1rem;
-          max-width: none;
-        }
-        ul {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-          li + li {
-            border-top: 1px dashed;
-            padding-top: 0.75rem;
-            margin-top: 0.75rem;
-          }
-        }
-      }
-    }
-    &-article {
-      flex: 1 1 700px;
-      min-width: 0;
-      h1 {
-        margin-bottom: 1.5rem;
-      }
-      &-meta {
-        display: flex;
-        justify-content: space-between;
-        text-transform: uppercase;
-        font-family: var(--sans-serif);
-        font-size: 14px;
-        line-height: 1.2;
-        opacity: 0.5;
-        margin-bottom: 1rem;
-        border-top: 1px solid #ddd;
-        padding-top: 1rem;
-      }
-      hr {
-        margin-top: 4rem;
-        margin-bottom: 4rem;
-      }
-      &-comments {
-        img {
-          border-radius: 1rem;
-        }
-        time {
-          text-transform: uppercase;
-          font-family: var(--sans-serif);
-          font-size: 12px;
-          line-height: 1;
-          opacity: 0.5;
-        }
-        &-item {
-          margin: 3rem 0;
+        &-author {
           display: grid;
-          grid-template-columns: 48px auto;
-          gap: 0 2rem;
-          align-items: start;
-          @media (max-width: 767px) {
-            grid-template-columns: 40px auto;
-            gap: 0 1rem;
-          }
-          &-img {
-            grid-column: 1;
-            grid-row: span 2;
-          }
-          h4 {
-            grid-column: 2;
+          grid-template-columns: 3rem auto;
+          align-items: center;
+          gap: 0.5rem 1rem;
+          h5 {
             margin: 0;
           }
-          &-body {
-            grid-column: 2;
+          img {
+            border-radius: 1rem;
           }
-          &--reply {
-            margin-left: 3rem;
-            margin-top: 2rem;
+          p {
+            margin: 0.5rem 0 0.5rem 0;
+            line-height: 1.2;
             grid-column: span 2;
           }
         }
-      }
-      &-leave-a-comment {
-        margin-top: 4rem;
-        margin-bottom: 4rem;
-        max-width: 500px !important;
-        form {
+        &-category {
           display: flex;
-          flex-wrap: wrap;
           gap: 1rem;
-          margin-top: 2rem;
+          justify-content: space-between;
+          align-items: flex-end;
+          margin: 1rem 0;
+          border-top: 1px solid;
+          border-bottom: 1px solid;
+          padding-top: 1rem;
+          padding-bottom: 1rem;
+          h6 {
+            font-size: var(--step-0);
+            margin: 0;
+          }
+          a {
+            font-size: var(--step-0);
+            line-height: 1;
+          }
         }
-        label {
-          flex: 1 1 200px;
-          margin-bottom: 0.5rem;
-          display: block;
+        &-share {
+          display: flex;
+          gap: 1rem;
+          justify-content: space-between;
+          align-items: center;
+          border-bottom: 1px solid;
+          padding-bottom: 1rem;
+          h6 {
+            font-size: var(--step-0);
+            margin: 0;
+          }
+          p {
+            margin: 0;
+            display: flex;
+            gap: 1rem;
+          }
         }
-        button {
-          flex: 1 1 100%;
+        &-related {
+          margin-top: 7rem;
+          position: sticky;
+          top: 3rem;
+          h6 {
+            width: 100%;
+            display: block;
+            border-bottom: 1px solid;
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+            max-width: none;
+          }
+          ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            li + li {
+              border-top: 1px dashed;
+              padding-top: 0.75rem;
+              margin-top: 0.75rem;
+            }
+          }
+        }
+      }
+      &-article {
+        flex: 1 1 700px;
+        min-width: 0;
+        h1 {
+          margin-bottom: 1.5rem;
+        }
+        &-meta {
+          display: flex;
+          justify-content: space-between;
+          text-transform: uppercase;
+          font-family: var(--sans-serif);
+          font-size: 14px;
+          line-height: 1.2;
+          opacity: 0.5;
+          margin-bottom: 1rem;
+          border-top: 1px solid #ddd;
+          padding-top: 1rem;
+        }
+        hr {
+          margin-top: 4rem;
+          margin-bottom: 4rem;
+        }
+        &-comments {
+          img {
+            border-radius: 1rem;
+          }
+          time {
+            text-transform: uppercase;
+            font-family: var(--sans-serif);
+            font-size: 12px;
+            line-height: 1;
+            opacity: 0.5;
+          }
+          &-item {
+            margin: 3rem 0;
+            display: grid;
+            grid-template-columns: 48px auto;
+            gap: 0 2rem;
+            align-items: start;
+            @media (max-width: 767px) {
+              grid-template-columns: 40px auto;
+              gap: 0 1rem;
+            }
+            &-img {
+              grid-column: 1;
+              grid-row: span 2;
+            }
+            h4 {
+              grid-column: 2;
+              margin: 0;
+            }
+            &-body {
+              grid-column: 2;
+            }
+            &--reply {
+              margin-left: 3rem;
+              margin-top: 2rem;
+              grid-column: span 2;
+            }
+          }
+        }
+        &-leave-a-comment {
+          margin-top: 4rem;
+          margin-bottom: 4rem;
+          max-width: 500px !important;
+          form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+          }
+          label {
+            flex: 1 1 200px;
+            margin-bottom: 0.5rem;
+            display: block;
+          }
+          button {
+            flex: 1 1 100%;
+          }
         }
       }
     }
-  }
-</style>
-<script>
-  const initCommentForm = () => {
-    // leave a comment
-    const commentForm = document.querySelector<HTMLFormElement>('.single-article-leave-a-comment form');
-    commentForm?.addEventListener('submit', function (event) {
-      event.preventDefault();
-      const email = commentForm.querySelector<HTMLInputElement>("input[type='email']")?.value ?? '';
-      const name = commentForm.querySelector<HTMLInputElement>('input[type="text"]')?.value ?? '';
-      const comment = commentForm.querySelector<HTMLTextAreaElement>('textarea')?.value ?? '';
-      const postId = commentForm.querySelector<HTMLInputElement>('input[type="hidden"]')?.value ?? '';
-      const button = commentForm.querySelector<HTMLButtonElement>('button');
-      if (!button) {
-        return;
-      }
-      button.innerText = '... posting ...';
-      const data = {
-        post: postId,
-        author_name: name,
-        author_email: email,
-        content: comment,
-      };
-      fetch(`${import.meta.env.PUBLIC_WP_URL}/comments`, {
-        method: 'POST', // or 'PUT'
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log('Success:', data);
-          commentForm.innerHTML = 'Comment submitted!';
-        })
-        .catch((error) => {
-          commentForm.innerHTML = error;
-        });
-    });
-  };
+  </style>
+  <script>
+    const initCommentForm = () => {
+      // leave a comment
+      const commentForm = document.querySelector<HTMLFormElement>(
+        ".single-article-leave-a-comment form",
+      );
+      if (!commentForm || commentForm.dataset.initialized === "true") return;
+      commentForm.dataset.initialized = "true";
+      commentForm.addEventListener("submit", async function (event) {
+        event.preventDefault();
+        const email =
+          commentForm.querySelector<HTMLInputElement>("input[type='email']")
+            ?.value ?? "";
+        const name =
+          commentForm.querySelector<HTMLInputElement>('input[type="text"]')
+            ?.value ?? "";
+        const comment =
+          commentForm.querySelector<HTMLTextAreaElement>("textarea")?.value ??
+          "";
+        const postId =
+          commentForm.querySelector<HTMLInputElement>('input[type="hidden"]')
+            ?.value ?? "";
+        const button = commentForm.querySelector<HTMLButtonElement>("button");
+        const status = commentForm.querySelector<HTMLElement>(
+          ".comment-form-status",
+        );
+        if (!button || !status) {
+          return;
+        }
+        button.disabled = true;
+        button.textContent = "Posting…";
+        status.textContent = "";
+        const data = {
+          post: postId,
+          author_name: name,
+          author_email: email,
+          content: comment,
+        };
+        try {
+          const response = await fetch(
+            `${import.meta.env.PUBLIC_WP_URL}/comments`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(data),
+            },
+          );
+          if (!response.ok)
+            throw new Error(`Comment submission failed (${response.status})`);
+          commentForm.reset();
+          status.textContent = "Comment submitted for review.";
+        } catch (error) {
+          console.error(error);
+          status.textContent =
+            "We could not submit your comment. Please try again.";
+        } finally {
+          button.disabled = false;
+          button.textContent = "Post Comment";
+        }
+      });
+    };
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initCommentForm, { once: true });
-  } else {
-    initCommentForm();
-  }
-</script>
+    document.addEventListener("astro:page-load", initCommentForm);
+  </script>
+</Layout>

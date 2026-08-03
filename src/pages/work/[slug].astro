@@ -1,22 +1,25 @@
 ---
-import Layout from '../../Base.astro';
-import FeaturedArticles from '../../components/FeaturedArticles.astro';
-import '../../styles/pages/_wordpress.scss';
-import { getAverageColor } from 'fast-average-color-node';
-import { Picture } from 'astro:assets';
-import { sanitizeHtml } from '../../lib/sanitize';
-import { toJetpackImageUrl } from '../../lib/jetpack';
-import { fetchWpJson } from '../../lib/wp';
+import Layout from "../../Base.astro";
+import FeaturedArticles from "../../components/FeaturedArticles.astro";
+import "../../styles/pages/_wordpress.scss";
+import sharp from "sharp";
+import { Picture } from "astro:assets";
+import { sanitizeHtml, toPlainText } from "../../lib/sanitize";
+import { toJetpackImageUrl } from "../../lib/jetpack";
+import { fetchWpJson, fetchWpJsonRequired } from "../../lib/wp";
 
 export async function getStaticPaths() {
-  const posts = await fetchWpJson('/work?per_page=100&_embed', [] as Record<string, any>[]);
+  const posts = await fetchWpJsonRequired(
+    "/work?per_page=100&_embed",
+    [] as Record<string, any>[],
+  );
 
   return posts.map((post) => {
     return {
       params: { slug: post.slug },
       props: {
         title: post.title.rendered,
-        description: post.excerpt.rendered.replace(/(<([^>]+)>)/gi, ''),
+        description: toPlainText(post.excerpt.rendered),
         image: [post.fimg_url],
         content: post.content.rendered,
         tagIds: post.tags,
@@ -29,32 +32,50 @@ export async function getStaticPaths() {
   });
 }
 
-const { title, content, description, image, tagIds, id, acf, datePublished, dateModified } = Astro.props;
+const {
+  title,
+  content,
+  description,
+  image,
+  tagIds,
+  id,
+  acf,
+  datePublished,
+  dateModified,
+} = Astro.props;
 
-const rawTitle = title.replace(/(<([^>]+)>)/gi, '').trim();
+const rawTitle = toPlainText(title);
 const titleWords = rawTitle.split(/\s+/);
 
 const formattedTitle =
   titleWords.length > 1
-    ? titleWords.map((word: string) => `<span class="work-post-hero-title-word">${word}</span>`).join(' ')
+    ? titleWords
+        .map(
+          (word: string) =>
+            `<span class="work-post-hero-title-word">${word}</span>`,
+        )
+        .join(" ")
     : rawTitle;
 
 const now = new Date();
 const modifiedDate = dateModified ? new Date(dateModified) : null;
-const safeDateModified = modifiedDate && modifiedDate > now ? datePublished : dateModified || datePublished;
-const cleanDescription = description.replace(/(<([^>]+)>)/gi, '').trim();
+const safeDateModified =
+  modifiedDate && modifiedDate > now
+    ? datePublished
+    : dateModified || datePublished;
+const cleanDescription = toPlainText(description);
 const schema = {
-  '@type': 'CreativeWork',
+  "@type": "CreativeWork",
   headline: rawTitle,
   description: cleanDescription,
   datePublished,
   dateModified: safeDateModified,
   image: image?.length ? image : undefined,
   publisher: {
-    '@id': 'https://www.kelp.agency/#organization',
+    "@id": "https://www.kelp.agency/#organization",
   },
   mainEntityOfPage: {
-    '@id': `${Astro.url.href}#webpage`,
+    "@id": `${Astro.url.href}#webpage`,
   },
 };
 
@@ -64,12 +85,17 @@ let bgOriginalUrl = null;
 
 // hero image (ACF hero.background.image)
 if (acf?.hero?.background?.image) {
-  const media = await fetchWpJson(`/media/${acf.hero.background.image}`, null as Record<string, any> | null);
+  const media = await fetchWpJson(
+    `/media/${acf.hero.background.image}`,
+    null as Record<string, any> | null,
+  );
   const original = media?.source_url || null;
   bgOriginalUrl = original;
   bgUrl = toJetpackImageUrl(original);
   thumbUrl = toJetpackImageUrl(
-    media?.media_details?.sizes?.medium?.source_url || media?.media_details?.sizes?.thumbnail?.source_url || original,
+    media?.media_details?.sizes?.medium?.source_url ||
+      media?.media_details?.sizes?.thumbnail?.source_url ||
+      original,
   );
 }
 
@@ -78,22 +104,33 @@ let isDarkHero = false;
 // brightness detection
 if (thumbUrl) {
   try {
-    const result = await getAverageColor(thumbUrl);
-    const [r, g, b] = result.value;
+    const response = await fetch(thumbUrl, {
+      signal: AbortSignal.timeout(10_000),
+    });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const [r, g, b] = await sharp(Buffer.from(await response.arrayBuffer()))
+      .resize(1, 1, { fit: "fill" })
+      .removeAlpha()
+      .raw()
+      .toBuffer();
     const brightness = 0.2126 * r + 0.7152 * g + 0.0722 * b;
     isDarkHero = brightness < 165;
   } catch (e) {
-    console.warn('Brightness detection failed', e);
+    console.warn("Brightness detection failed", e);
   }
 }
 
-const accent = acf?.site_frame_color ? acf.site_frame_color : 'transparent';
+const accentCandidate =
+  typeof acf?.site_frame_color === "string" ? acf.site_frame_color.trim() : "";
+const accent = /^(?:transparent|#[\da-f]{3,8})$/i.test(accentCandidate)
+  ? accentCandidate
+  : "transparent";
 const safeContent = sanitizeHtml(content);
 ---
 
 <Layout
-  title={title}
-  description={description}
+  title={rawTitle}
+  description={cleanDescription}
   image={image?.[0]}
   darkHeader={true}
   schema={schema}
@@ -101,13 +138,13 @@ const safeContent = sanitizeHtml(content);
   articlePublished={datePublished}
   articleModified={safeDateModified}
 >
-  <article class="work-post" style=`--accent: ${accent};`>
-    <div class={`work-post-hero ${isDarkHero ? 'is-dark' : ''}`}>
+  <article class="work-post" style={`--accent: ${accent};`}>
+    <div class={`work-post-hero ${isDarkHero ? "is-dark" : ""}`}>
       {
         bgUrl && (
           <Picture
             src={bgOriginalUrl || bgUrl}
-            alt={title}
+            alt={rawTitle}
             width="1920"
             height="1080"
             widths={[768, 1200, 1600, 1920]}
@@ -123,196 +160,199 @@ const safeContent = sanitizeHtml(content);
       </div>
     </div>
 
-    <div class="wrapper work-post-body" data-lg-reveal="fade" data-lg-reveal-stagger="0.3" set:html={safeContent} />
+    <div
+      class="wrapper work-post-body"
+      data-lg-reveal="fade"
+      data-lg-reveal-stagger="0.3"
+      set:html={safeContent}
+    />
   </article>
 
   <FeaturedArticles tag={tagIds} heading="Related Articles" />
-</Layout>
 
-<style lang="scss" is:global>
-  .work-post {
-    margin-bottom: 6rem;
+  <style lang="scss" is:global>
+    .work-post {
+      margin-bottom: 6rem;
 
-    &-hero {
-      position: relative;
-      padding: 0;
-      margin-bottom: -8rem;
+      &-hero {
+        position: relative;
+        padding: 0;
+        margin-bottom: -8rem;
 
-      &-img {
-        display: block;
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        inset: 0;
-        img {
+        &-img {
+          display: block;
           width: 100%;
           height: 100%;
-          object-fit: cover;
-          object-position: top center;
-        }
-      }
-
-      .wrapper {
-        padding: 8rem 0 16rem;
-        position: relative;
-      }
-
-      h1 {
-        margin: 0 4rem;
-        font-size: var(--step-8);
-        line-height: 0.833;
-
-        @media (max-width: 767px) {
-          margin: 0;
-        }
-
-        span:last-child {
-          display: block;
-        }
-
-        &::after {
-          content: '';
-          display: block;
-          width: 200px;
-          background: var(--accent);
-          height: 0.5rem;
-          margin-top: 0;
-        }
-      }
-    }
-
-    &-hero.is-dark {
-      background-color: var(--black);
-
-      h1 {
-        color: #fff;
-        text-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-      }
-    }
-
-    &-body {
-      h2 {
-        font-size: var(--step-3);
-      }
-
-      h3,
-      .h3 {
-        font-size: var(--step-2);
-      }
-
-      blockquote {
-        background: #f4f4f4;
-
-        @media (min-width: 961px) {
-          padding: 12rem 8rem 11rem;
-        }
-
-        @media (max-width: 767px) {
-          padding: 2rem;
-        }
-
-        p {
-          @media (max-width: 767px) {
-            font-size: 18px;
+          position: absolute;
+          inset: 0;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
           }
         }
 
-        cite {
-          display: block;
+        .wrapper {
+          padding: 8rem 0 16rem;
+          position: relative;
+        }
+
+        h1 {
+          margin: 0 4rem;
+          font-size: var(--step-8);
+          line-height: 0.833;
 
           @media (max-width: 767px) {
-            font-size: 16px;
+            margin: 0;
           }
 
-          &::before {
-            margin-top: 2.5rem;
-            margin-bottom: 2.5rem;
+          span:last-child {
+            display: block;
+          }
+
+          &::after {
+            content: "";
+            display: block;
+            width: 200px;
+            background: var(--accent);
+            height: 0.5rem;
+            margin-top: 0;
+          }
+        }
+      }
+
+      &-hero.is-dark {
+        background-color: var(--black);
+
+        h1 {
+          color: #fff;
+          text-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+        }
+      }
+
+      &-body {
+        h2 {
+          font-size: var(--step-3);
+        }
+
+        h3,
+        .h3 {
+          font-size: var(--step-2);
+        }
+
+        blockquote {
+          background: #f4f4f4;
+
+          @media (min-width: 961px) {
+            padding: 12rem 8rem 11rem;
+          }
+
+          @media (max-width: 767px) {
+            padding: 2rem;
+          }
+
+          p {
+            @media (max-width: 767px) {
+              font-size: 18px;
+            }
+          }
+
+          cite {
+            display: block;
 
             @media (max-width: 767px) {
-              margin-top: 1.5rem;
-              margin-bottom: 1.5rem;
+              font-size: 16px;
+            }
+
+            &::before {
+              margin-top: 2.5rem;
+              margin-bottom: 2.5rem;
+
+              @media (max-width: 767px) {
+                margin-top: 1.5rem;
+                margin-bottom: 1.5rem;
+              }
+            }
+          }
+
+          &::before,
+          &::after {
+            color: var(--green);
+          }
+
+          &::after {
+            @media (max-width: 767px) {
+              display: none;
             }
           }
         }
+      }
 
-        &::before,
-        &::after {
-          color: var(--green);
+      .tiled-gallery {
+        &__col {
+          @media (max-width: 767px) {
+            flex: 1 1 100%;
+          }
         }
 
-        &::after {
+        &__row {
+          display: flex;
+          margin: 4rem 0;
+          gap: 2rem;
+
           @media (max-width: 767px) {
-            display: none;
+            flex-wrap: wrap;
+          }
+
+          figure {
+            margin: 0;
           }
         }
       }
-    }
 
-    .tiled-gallery {
-      &__col {
-        @media (max-width: 767px) {
-          flex: 1 1 100%;
+      .wp-block-media-text__media {
+        padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+
+        @media (min-width: 768px) {
+          padding: 4rem;
         }
       }
 
-      &__row {
-        display: flex;
-        margin: 4rem 0;
-        gap: 2rem;
+      .wp-element-caption {
+        text-align: center;
+      }
 
-        @media (max-width: 767px) {
-          flex-wrap: wrap;
-        }
+      .has-white-color {
+        color: white;
+      }
 
-        figure {
-          margin: 0;
-        }
+      .has-black-background-color {
+        background: var(--black);
+      }
+
+      .footer {
+        margin-top: 10rem;
       }
     }
+  </style>
 
-    .wp-block-media-text__media {
-      padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+  <script>
+    const updateEmbeddedIframes = () => {
+      document
+        .querySelectorAll<HTMLIFrameElement>("iframe[width][height]")
+        .forEach((el) => {
+          const w = parseFloat(el.getAttribute("width") ?? "0");
+          const h = parseFloat(el.getAttribute("height") ?? "0");
 
-      @media (min-width: 768px) {
-        padding: 4rem;
-      }
-    }
+          if (w > 0 && h > 0) {
+            el.style.aspectRatio = `${w} / ${h}`;
+            el.style.width = "100%";
+            el.style.height = "auto";
+          }
+        });
+    };
 
-    .wp-element-caption {
-      text-align: center;
-    }
-
-    .has-white-color {
-      color: white;
-    }
-
-    .has-black-background-color {
-      background: var(--black);
-    }
-
-    .footer {
-      margin-top: 10rem;
-    }
-  }
-</style>
-
-<script>
-  const updateEmbeddedIframes = () => {
-    document.querySelectorAll<HTMLIFrameElement>('iframe[width][height]').forEach((el) => {
-      const w = parseFloat(el.getAttribute('width') ?? '0');
-      const h = parseFloat(el.getAttribute('height') ?? '0');
-
-      if (w > 0 && h > 0) {
-        el.style.aspectRatio = `${w} / ${h}`;
-        el.style.width = '100%';
-        el.style.height = 'auto';
-      }
-    });
-  };
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', updateEmbeddedIframes, { once: true });
-  } else {
-    updateEmbeddedIframes();
-  }
-</script>
+    document.addEventListener("astro:page-load", updateEmbeddedIframes);
+  </script>
+</Layout>

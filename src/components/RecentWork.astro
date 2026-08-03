@@ -1,281 +1,307 @@
 ---
-import { Picture } from 'astro:assets';
-import 'flickity/css/flickity.css';
-import 'flickity-fade/flickity-fade.css';
-import { fetchWpJson } from '../lib/wp';
+import { Picture } from "astro:assets";
+import "flickity/css/flickity.css";
+import "flickity-fade/flickity-fade.css";
+import { fetchWpJson } from "../lib/wp";
+import { sanitizeHtml, sanitizeTitleHtml, toPlainText } from "../lib/sanitize";
 
 type WorkPost = Record<string, any> & {
-	id: number;
-	slug: string;
-	fimg_url?: string;
-	title: { rendered: string };
-	excerpt: { rendered: string };
+  id: number;
+  slug: string;
+  fimg_url?: string;
+  title: { rendered: string };
+  excerpt: { rendered: string };
 };
 
 // Accept optional props
-const { tag, category, limit = 6, heading = "Our Work", subheading = "In the real-world", description = "The proof is in the pudding as they say here in the south. Weird sayings aside, it’s one thing to have a good strategy, but it takes special talent to deliver on that strategy with excellence. Take a peak at some of our recent work below." } = Astro.props;
+const {
+  tag,
+  category,
+  limit = 6,
+  heading = "Our Work",
+  subheading = "In the real-world",
+  description = "The proof is in the pudding as they say here in the south. Weird sayings aside, it’s one thing to have a good strategy, but it takes special talent to deliver on that strategy with excellence. Take a peak at some of our recent work below.",
+} = Astro.props;
 
 // helper to strip HTML tags from WP excerpts
-const decodeEntities = (str = '') =>
-	str.replace(/&#(\d+);/g, (_, dec) => String.fromCharCode(dec))
-		.replace(/&nbsp;/g, ' ')
-		.replace(/&amp;/g, '&')
-		.replace(/&quot;/g, '"')
-		.replace(/&apos;/g, "'");
+const decodeEntities = (str = "") =>
+  str
+    .replace(/&#(\d+);/g, (_, dec) => String.fromCharCode(dec))
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&quot;/g, '"')
+    .replace(/&apos;/g, "'");
 
-const stripHTML = (html = '') =>
-	decodeEntities(html.replace(/<[^>]*>/g, '').trim());
-	
+const stripHTML = (html = "") =>
+  decodeEntities(html.replace(/<[^>]*>/g, "").trim());
+
 // Build query params dynamically
 let queryParams = `per_page=${limit}`;
 
 if (tag) {
-	queryParams += `&tags=${tag}`; // use tag slug
+  queryParams += `&tags=${tag}`; // use tag slug
 }
 
 if (category) {
-	queryParams += `&categories=${category}`;
+  queryParams += `&categories=${category}`;
 }
 
 // Fetch posts with filters applied
-const posts = await fetchWpJson(`/work?${queryParams}&_embed`, [] as WorkPost[]);
+const posts = await fetchWpJson(
+  `/work?${queryParams}&_embed`,
+  [] as WorkPost[],
+);
 
-const postsWithImages: Array<WorkPost & { heroImageUrl: string | null }> = await Promise.all(
-	posts.map(async (post: WorkPost) => {
-		let heroImageUrl = null;
+const resolvedPosts: Array<WorkPost & { heroImageUrl: string | null }> =
+  await Promise.all(
+    posts.map(async (post: WorkPost) => {
+      let heroImageUrl = null;
 
-		// if ACF + hero.image exists + is numeric id
-		if (post?.acf?.hero?.image) {
-			try {
-				const media = await fetchWpJson(
-					`/media/${post.acf.hero.image}`,
-					null as Record<string, any> | null
-				);
-				heroImageUrl = media?.source_url ?? null;
-			} catch (e) {
-				heroImageUrl = null;
-			}
-		}
+      // if ACF + hero.image exists + is numeric id
+      if (post?.acf?.hero?.image) {
+        try {
+          const media = await fetchWpJson(
+            `/media/${post.acf.hero.image}`,
+            null as Record<string, any> | null,
+          );
+          heroImageUrl = media?.source_url ?? null;
+        } catch (e) {
+          heroImageUrl = null;
+        }
+      }
 
-		return {
-			...post,
-			heroImageUrl
-		};
-	})
+      return {
+        ...post,
+        heroImageUrl,
+      };
+    }),
+  );
+const postsWithImages = resolvedPosts.filter(
+  (
+    post,
+  ): post is WorkPost & { heroImageUrl: string | null } & (
+      { heroImageUrl: string } | { fimg_url: string }
+    ) => Boolean(post.heroImageUrl || post.fimg_url),
 );
 const hasPosts = postsWithImages.length > 0;
 ---
 
-<section class='recent-work'>
-	<div class='wrapper'>
-		<div class='recent-work-top'>
-			<h2 class='h3'>{heading} <span>{subheading}</span></h2>
-			<p set:html={description}></p>
-		</div>
-		{
-			hasPosts ? (
-				<div class='recent-work-slider'>
-					{
-						postsWithImages.map((post) => (
-							<div class='recent-work-slider-item'>
-								<div class='recent-work-slider-item-media'>
-									<Picture
-										src={post.heroImageUrl || post.fimg_url}
-										alt={post.title.rendered}
-										width={980}
-										height={552}
-										widths={[480, 720, 980, 1440]}
-										sizes="(max-width: 767px) 100vw, (max-width: 1200px) 85vw, 980px"
-										loading="lazy"
-										class="recent-work-slider-item-media-img"
-										inferSize
-									/>
-								</div>
-								<div class='recent-work-slider-item-text'>
-									<h3 class='recent-work-slider-item-text-heading h6' transition:name=`heading-${post.id}` set:html={post.title.rendered} />
-									<div class='recent-work-slider-item-text-body'>
-										<p class="recent-work-slider-item-text-body-p">
-											{stripHTML(post.excerpt.rendered)}
-										</p>
-										<p class="recent-work-slider-item-text-body-p">
-											<a href=`/work/${post.slug}/` class='squiggle'>
-												Read More <span class="screen-reader-text">About {post.title.rendered}</span>
-											</a>
-										</p>
-									</div>
-								</div>
-							</div>
-						))
-					}
-					{posts.length > 1 && (
-						<nav class="recent-work-slider-nav">
-							<button class="button button--link button--prev">← Prev</button>
-							<button class="button button--link button--next">Next →</button>
-						</nav>
-					)}
-				</div>
-			) : (
-				<div class="recent-work-empty">
-					<p class="recent-work-empty-copy">Recent case studies are temporarily unavailable.</p>
-					<p class="recent-work-empty-copy">
-						<a href="/work/" class="squiggle">Browse all work</a>
-					</p>
-				</div>
-			)
-		}
-	</div>
+<section class="recent-work">
+  <div class="wrapper">
+    <div class="recent-work-top">
+      <h2 class="h3">{heading} <span>{subheading}</span></h2>
+      <p set:html={sanitizeHtml(description)} />
+    </div>
+    {
+      hasPosts ? (
+        <div class="recent-work-slider">
+          {postsWithImages.map((post) => (
+            <div class="recent-work-slider-item">
+              <div class="recent-work-slider-item-media">
+                <Picture
+                  src={(post.heroImageUrl || post.fimg_url) as string}
+                  alt={toPlainText(post.title.rendered)}
+                  width={980}
+                  height={552}
+                  widths={[480, 720, 980, 1440]}
+                  sizes="(max-width: 767px) 100vw, (max-width: 1200px) 85vw, 980px"
+                  loading="lazy"
+                  class="recent-work-slider-item-media-img"
+                  inferSize
+                />
+              </div>
+              <div class="recent-work-slider-item-text">
+                <h3
+                  class="recent-work-slider-item-text-heading h6"
+                  transition:name={`heading-${post.id}`}
+                  set:html={sanitizeTitleHtml(post.title.rendered)}
+                />
+                <div class="recent-work-slider-item-text-body">
+                  <p class="recent-work-slider-item-text-body-p">
+                    {stripHTML(post.excerpt.rendered)}
+                  </p>
+                  <p class="recent-work-slider-item-text-body-p">
+                    <a href={`/work/${post.slug}/`} class="squiggle">
+                      Read More{" "}
+                      <span class="screen-reader-text">
+                        About {toPlainText(post.title.rendered)}
+                      </span>
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+          {posts.length > 1 && (
+            <nav class="recent-work-slider-nav">
+              <button class="button button--link button--prev">← Prev</button>
+              <button class="button button--link button--next">Next →</button>
+            </nav>
+          )}
+        </div>
+      ) : (
+        <div class="recent-work-empty">
+          <p class="recent-work-empty-copy">
+            Recent case studies are temporarily unavailable.
+          </p>
+          <p class="recent-work-empty-copy">
+            <a href="/work/" class="squiggle">
+              Browse all work
+            </a>
+          </p>
+        </div>
+      )
+    }
+  </div>
 </section>
 
 <style lang="scss">
-	.recent-work {
-		background: var(--black);
-		padding: 9rem 0 3rem;
-		color: white;
-		position: relative;
-		@media (max-width: 767px) {
-			padding: 6rem 0 0rem;
-		}
-		&-top {
-			max-width: 1180px;
-			width: 100%;
-			margin: auto;
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			gap: 4rem;
-			@media (max-width: 850px) {
-				display: block;
-			}
-			h2 {
-				margin: 0;
-				@media (min-width: 768px) {
-					white-space: nowrap;
-				}
-				span {
-					@media (min-width: 851px) {
-						display: block;
-						margin-left: 40px;
-					}
-				}
-			}
-		}
-		&-slider {
-			max-width: 980px;
-			margin: 4rem auto;
-			> .recent-work-slider-item {
-				&:not(:first-child) {
-					display: none;
-				}
-			}
-			&-item {
-				width: 100%;
-				&-media {
-					aspect-ratio: 1400 / 788;
-					position: relative;
-					img {
-						width: 100%;
-						height: 100%;
-						object-fit: cover;
-					}
-				}
-				&-text {
-					display: flex;
-					flex-wrap: wrap;
-					align-items: flex-start;
-					margin: 2rem 0;
-					gap: 1rem 3rem;
-					@media (min-width: 767px) {
-						padding-right: 240px;
-					}
-					&-heading {
-						margin: 0;
-						flex: 1 1 100px;
-					}
-					&-body {
-						flex: 1 1 400px;
-						p {
-							margin-top: 0;
-						}
-						&-p {
-							margin-top: 0;
-						}
-						a {
-							color: white;
-							margin: 1rem 0;
-						}
-					}
-				}
-			}
-			&-nav {
-				flex: 0 0 auto;
-				white-space: nowrap;
-				display: flex;
-				margin: 0 auto;
-				position: absolute;
-				top: 0;
-				right: 0;
-				z-index: 1;
-				@media (min-width: 767px) {
-					top: 70%;
-				}
-			}
-		}
-		&-empty {
-			max-width: 980px;
-			margin: 4rem auto 0;
-			padding: 2rem 0;
-			border-top: 1px solid rgba(255, 255, 255, 0.2);
-			&-copy {
-				margin: 0 0 1rem;
-			}
-			a {
-				color: white;
-			}
-		}
-	}
+  .recent-work {
+    background: var(--black);
+    padding: 9rem 0 3rem;
+    color: white;
+    position: relative;
+    @media (max-width: 767px) {
+      padding: 6rem 0 0rem;
+    }
+    &-top {
+      max-width: 1180px;
+      width: 100%;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4rem;
+      @media (max-width: 850px) {
+        display: block;
+      }
+      h2 {
+        margin: 0;
+        @media (min-width: 768px) {
+          white-space: nowrap;
+        }
+        span {
+          @media (min-width: 851px) {
+            display: block;
+            margin-left: 40px;
+          }
+        }
+      }
+    }
+    &-slider {
+      max-width: 980px;
+      margin: 4rem auto;
+      > .recent-work-slider-item {
+        &:not(:first-child) {
+          display: none;
+        }
+      }
+      &-item {
+        width: 100%;
+        &-media {
+          aspect-ratio: 1400 / 788;
+          position: relative;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+        &-text {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: flex-start;
+          margin: 2rem 0;
+          gap: 1rem 3rem;
+          @media (min-width: 767px) {
+            padding-right: 240px;
+          }
+          &-heading {
+            margin: 0;
+            flex: 1 1 100px;
+          }
+          &-body {
+            flex: 1 1 400px;
+            p {
+              margin-top: 0;
+            }
+            &-p {
+              margin-top: 0;
+            }
+            a {
+              color: white;
+              margin: 1rem 0;
+            }
+          }
+        }
+      }
+      &-nav {
+        flex: 0 0 auto;
+        white-space: nowrap;
+        display: flex;
+        margin: 0 auto;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 1;
+        @media (min-width: 767px) {
+          top: 70%;
+        }
+      }
+    }
+    &-empty {
+      max-width: 980px;
+      margin: 4rem auto 0;
+      padding: 2rem 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      &-copy {
+        margin: 0 0 1rem;
+      }
+      a {
+        color: white;
+      }
+    }
+  }
 </style>
 
 <script>
-	import Flickity from 'flickity';
-	import 'flickity-fade';
+  import Flickity from "flickity";
+  import "flickity-fade";
 
-	const initRecentWork = () => {
-		const slider = document.querySelector('.recent-work-slider');
-		if (!(slider instanceof HTMLElement) || slider.dataset.sliderInit === 'true') {
-			return;
-		}
+  const initRecentWork = () => {
+    const slider = document.querySelector(".recent-work-slider");
+    if (
+      !(slider instanceof HTMLElement) ||
+      slider.dataset.sliderInit === "true"
+    ) {
+      return;
+    }
 
-		const next = document.querySelectorAll('.button--next');
-		const prev = document.querySelectorAll('.button--prev');
-		const flkty = new Flickity(slider, {
-			cellSelector: '.recent-work-slider-item',
-			prevNextButtons: false,
-			wrapAround: true,
-			pageDots: false,
-			fade: true,
-			imagesLoaded: true
-		});
+    const next = document.querySelectorAll(".button--next");
+    const prev = document.querySelectorAll(".button--prev");
+    const flkty = new Flickity(slider, {
+      cellSelector: ".recent-work-slider-item",
+      prevNextButtons: false,
+      wrapAround: true,
+      pageDots: false,
+      fade: true,
+      imagesLoaded: true,
+    });
 
-		next.forEach((button) => {
-			button.addEventListener('click', () => {
-				flkty.next();
-			});
-		});
-		prev.forEach((button) => {
-			button.addEventListener('click', () => {
-				flkty.previous();
-			});
-		});
+    next.forEach((button) => {
+      button.addEventListener("click", () => {
+        flkty.next();
+      });
+    });
+    prev.forEach((button) => {
+      button.addEventListener("click", () => {
+        flkty.previous();
+      });
+    });
 
-		slider.dataset.sliderInit = 'true';
-		window.luge?.emitter?.emit('resize');
-	};
+    slider.dataset.sliderInit = "true";
+    window.luge?.emitter?.emit("resize");
+  };
 
-	document.addEventListener('astro:page-load', initRecentWork);
-
-	if (document.readyState === 'loading') {
-		document.addEventListener('DOMContentLoaded', initRecentWork, { once: true });
-	} else {
-		initRecentWork();
-	}
+  document.addEventListener("astro:page-load", initRecentWork);
 </script>

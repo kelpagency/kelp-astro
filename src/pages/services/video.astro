@@ -1,152 +1,248 @@
 ---
-import Base from '../../Base.astro';
-import SimpleHero from '../../components/SimpleHero.astro';
+import Base from "../../Base.astro";
+import SimpleHero from "../../components/SimpleHero.astro";
 import FeaturedArticles from "../../components/FeaturedArticles.astro";
 import ServicesRelatedWork from "../../components/ServicesRelatedWork.astro";
 import "../../styles/pages/_services-list.scss";
 ---
 
 <Base
-	title='Full Service Video Agency in Brooksville Florida'
-	description='If people need more context before they trust, understand, or buy, video can close that gap fast. We produce videos that help brands explain, persuade, and stay memorable across channels.'
+  title="Full Service Video Agency in Brooksville Florida"
+  description="If people need more context before they trust, understand, or buy, video can close that gap fast. We produce videos that help brands explain, persuade, and stay memorable across channels."
 >
-	<SimpleHero tagline='Content Creation Services' title='Videography' description="If people need more context before they trust, understand, or buy, video can close that gap fast. We produce videos that help brands explain, persuade, and stay memorable across channels." lottieFile='videography.json' />
-	<div class="wrapper video-showcase" id="videos">
-		<h2 data-lg-reveal="fade">
-			We make videos like...
-		</h2>
-		<figure class="small" data-lg-reveal="layer-to-bottom">
-			<video width="540" height="960" playsinline muted loop autoplay poster="/videos/brand-video.webp">
-				<source src="/videos/brand-video.webm" type="video/webm">
-				<source src="/videos/brand-video.mp4" type="video/mp4">
-			</video>
-			<figcaption>Brand Videos</figcaption>
-		</figure>
-		<figure class="small" data-lg-reveal="layer-to-bottom">
-			<video width="540" height="960" playsinline muted loop autoplay poster="/videos/social-media-videos.webp">
-				<source src="/videos/social-media-videos.webm" type="video/webm">
-				<source src="/videos/social-media-videos.mp4" type="video/mp4">
-			</video>
-			<figcaption>Social Media Videos</figcaption>
-		</figure>
-		<figure class="small" data-lg-reveal="layer-to-bottom">
-			<video width="540" height="960" playsinline muted loop autoplay poster="/videos/product-highlight-video.webp">
-				<source src="/videos/product-highlight-video.webm" type="video/webm">
-				<source src="/videos/product-highlight-video.mp4" type="video/mp4">
-			</video>
-			<figcaption>Product Spotlight Videos</figcaption>
-		</figure>
-		<figure class="wide" data-lg-reveal="layer-to-right">
-			<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/doDGeaHVBjQ?controls=0&modestbranding=1&rel=0" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-			<figcaption>Educational videos</figcaption>
-		</figure>
-		<figure class="wide" data-lg-reveal="layer-to-right">
-			<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/3Y-kdpw84UA?controls=0&modestbranding=1&rel=0" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-			<figcaption>Client Testimonials</figcaption>
-		</figure>
-		<figure class="wide" data-lg-reveal="layer-to-right">
-			<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/E8XteV68rcA?controls=0&modestbranding=1&rel=0" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-			<figcaption>Commercials</figcaption>
-		</figure>
-		<figure class="wide" data-lg-reveal="layer-to-right">
-			<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/uvIOYv2X7HE?controls=0&modestbranding=1&rel=0" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-			<figcaption>Animated Explainers</figcaption>
-		</figure>
-	</div>
-	<div class='service-body'>
-		<div class='wrapper wrapper--narrow'>
-			<h2>Where teams get stuck</h2>
-			<p>Some offers are too important, too nuanced, or too visual to explain with text alone. When people need more proof, more context, or a stronger emotional read on the brand, still images often stop short.</p>
-			<p>That is where video becomes useful: it helps people understand faster and trust more deeply before they make a decision.</p>
-			<h2>How we fix it</h2>
-			<p>We match the format to the goal, whether that means a testimonial, explainer, commercial, educational piece, or social-first cutdown. Then we plan production around where the video will live and what it needs to move people toward.</p>
-			<ul>
-				<li>Commercials</li>
-				<li>Case studies</li>
-				<li>Data visualizations</li>
-				<li>Product reviews</li>
-				<li>Explainer videos</li>
-				<li>Testimonials</li>
-				<li>Tutorials</li>
-				<li>Promotion</li>
-				<li>Sales collateral</li>
-				<li>Social media</li>
-			</ul>
-			<h2>What moving forward looks like</h2>
-			<p>If you need a stronger way to introduce the brand, explain an offer, or build trust around real results, we can help define the right video type, shape the story, and take it through production.</p>
-			<p><a href='/contact/' class='button button--green'>Plan Your Video Project</a></p>
-		</div>
-		<ServicesRelatedWork tag={69} />
-	</div>
-	<FeaturedArticles />
-	</Base>
+  <SimpleHero
+    tagline="Content Creation Services"
+    title="Videography"
+    description="If people need more context before they trust, understand, or buy, video can close that gap fast. We produce videos that help brands explain, persuade, and stay memorable across channels."
+    lottieFile="videography.json"
+  />
+  <div class="wrapper video-showcase" id="videos">
+    <h2 data-lg-reveal="fade">We make videos like...</h2>
+    <figure class="small" data-lg-reveal="layer-to-bottom">
+      <video
+        width="540"
+        height="960"
+        playsinline
+        muted
+        loop
+        preload="none"
+        poster="/videos/brand-video.webp"
+      >
+        <source src="/videos/brand-video.webm" type="video/webm" />
+        <source src="/videos/brand-video.mp4" type="video/mp4" />
+      </video>
+      <figcaption>Brand Videos</figcaption>
+    </figure>
+    <figure class="small" data-lg-reveal="layer-to-bottom">
+      <video
+        width="540"
+        height="960"
+        playsinline
+        muted
+        loop
+        preload="none"
+        poster="/videos/social-media-videos.webp"
+      >
+        <source src="/videos/social-media-videos.webm" type="video/webm" />
+        <source src="/videos/social-media-videos.mp4" type="video/mp4" />
+      </video>
+      <figcaption>Social Media Videos</figcaption>
+    </figure>
+    <figure class="small" data-lg-reveal="layer-to-bottom">
+      <video
+        width="540"
+        height="960"
+        playsinline
+        muted
+        loop
+        preload="none"
+        poster="/videos/product-highlight-video.webp"
+      >
+        <source src="/videos/product-highlight-video.webm" type="video/webm" />
+        <source src="/videos/product-highlight-video.mp4" type="video/mp4" />
+      </video>
+      <figcaption>Product Spotlight Videos</figcaption>
+    </figure>
+    <figure class="wide" data-lg-reveal="layer-to-right">
+      <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube-nocookie.com/embed/doDGeaHVBjQ?controls=0&modestbranding=1&rel=0"
+        title="Kelp educational video"
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen></iframe>
+      <figcaption>Educational videos</figcaption>
+    </figure>
+    <figure class="wide" data-lg-reveal="layer-to-right">
+      <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube-nocookie.com/embed/3Y-kdpw84UA?controls=0&modestbranding=1&rel=0"
+        title="Kelp client testimonial video"
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen></iframe>
+      <figcaption>Client Testimonials</figcaption>
+    </figure>
+    <figure class="wide" data-lg-reveal="layer-to-right">
+      <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube-nocookie.com/embed/E8XteV68rcA?controls=0&modestbranding=1&rel=0"
+        title="Kelp commercial video"
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen></iframe>
+      <figcaption>Commercials</figcaption>
+    </figure>
+    <figure class="wide" data-lg-reveal="layer-to-right">
+      <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube-nocookie.com/embed/uvIOYv2X7HE?controls=0&modestbranding=1&rel=0"
+        title="Kelp animated explainer video"
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen></iframe>
+      <figcaption>Animated Explainers</figcaption>
+    </figure>
+  </div>
+  <div class="service-body">
+    <div class="wrapper wrapper--narrow">
+      <h2>Where teams get stuck</h2>
+      <p>
+        Some offers are too important, too nuanced, or too visual to explain
+        with text alone. When people need more proof, more context, or a
+        stronger emotional read on the brand, still images often stop short.
+      </p>
+      <p>
+        That is where video becomes useful: it helps people understand faster
+        and trust more deeply before they make a decision.
+      </p>
+      <h2>How we fix it</h2>
+      <p>
+        We match the format to the goal, whether that means a testimonial,
+        explainer, commercial, educational piece, or social-first cutdown. Then
+        we plan production around where the video will live and what it needs to
+        move people toward.
+      </p>
+      <ul>
+        <li>Commercials</li>
+        <li>Case studies</li>
+        <li>Data visualizations</li>
+        <li>Product reviews</li>
+        <li>Explainer videos</li>
+        <li>Testimonials</li>
+        <li>Tutorials</li>
+        <li>Promotion</li>
+        <li>Sales collateral</li>
+        <li>Social media</li>
+      </ul>
+      <h2>What moving forward looks like</h2>
+      <p>
+        If you need a stronger way to introduce the brand, explain an offer, or
+        build trust around real results, we can help define the right video
+        type, shape the story, and take it through production.
+      </p>
+      <p>
+        <a href="/contact/" class="button button--green"
+          >Plan Your Video Project</a>
+      </p>
+    </div>
+    <ServicesRelatedWork tag={69} />
+  </div>
+  <FeaturedArticles />
 
-<style lang="scss">
-	.video-showcase {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 4rem 3rem;
-		margin-top: 0rem;
-		margin-bottom: 6rem;
-		h2 {
-			flex: 1 1 350px;
-		}
-		figure {
-			flex: 1 1 250px;
-			margin: 0;
-			padding: 0.5rem;
-			background: var(--light-green);
-			border-radius: 1rem;
-			text-align: center;
-			&:nth-child(2) {
-				background: var(--light-teal);
-			}
-			&:nth-child(3) {
-				background: var(--light-red);
-			}
-			&:nth-child(4) {
-				background: var(--light-purple);
-			}
-			&.small {
-				flex-basis: 250px;
-			}
-			&.wide {
-				flex-basis: 500px;
-			}
-		}
-		figcaption {
-			margin-top: 0.5rem;
-			opacity: 0.5;
-			font-weight: bold;
-			font-family: var(--sans-serif);
-			letter-spacing: 1px;
-			text-transform: uppercase;
-			font-size: 13px;
-		}
-		video {
-			border-radius: 0.75rem;
-		}
-	}
-	
-	iframe[src^="https://www.youtube"]
-	{
-		aspect-ratio: 16 / 9;
-		width: 100%;
-		height: auto;
-		border-radius: 0.75rem;
-	}
-</style>
-<script>
-	const initVideoShowcase = () => {
-		const videos = document.querySelectorAll<HTMLVideoElement>('.video-showcase video');
-		videos?.forEach(function (video) {
-			video.play();
-		});
-	};
+  <style lang="scss">
+    .video-showcase {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4rem 3rem;
+      margin-top: 0rem;
+      margin-bottom: 6rem;
+      h2 {
+        flex: 1 1 350px;
+      }
+      figure {
+        flex: 1 1 250px;
+        margin: 0;
+        padding: 0.5rem;
+        background: var(--light-green);
+        border-radius: 1rem;
+        text-align: center;
+        &:nth-child(2) {
+          background: var(--light-teal);
+        }
+        &:nth-child(3) {
+          background: var(--light-red);
+        }
+        &:nth-child(4) {
+          background: var(--light-purple);
+        }
+        &.small {
+          flex-basis: 250px;
+        }
+        &.wide {
+          flex-basis: 500px;
+        }
+      }
+      figcaption {
+        margin-top: 0.5rem;
+        opacity: 0.5;
+        font-weight: bold;
+        font-family: var(--sans-serif);
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        font-size: 13px;
+      }
+      video {
+        border-radius: 0.75rem;
+      }
+    }
 
-	if (document.readyState === 'loading') {
-		document.addEventListener('DOMContentLoaded', initVideoShowcase, { once: true });
-	} else {
-		initVideoShowcase();
-	}
-</script>
+    iframe[src^="https://www.youtube"] {
+      aspect-ratio: 16 / 9;
+      width: 100%;
+      height: auto;
+      border-radius: 0.75rem;
+    }
+  </style>
+  <script>
+    const initVideoShowcase = () => {
+      const videos = document.querySelectorAll<HTMLVideoElement>(
+        ".video-showcase video",
+      );
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        videos.forEach((video) => video.pause());
+        return;
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const video = entry.target as HTMLVideoElement;
+            if (entry.isIntersecting) {
+              void video.play().catch(() => undefined);
+            } else {
+              video.pause();
+            }
+          });
+        },
+        { rootMargin: "200px 0px" },
+      );
+      videos.forEach((video) => observer.observe(video));
+      document.addEventListener(
+        "astro:before-swap",
+        () => observer.disconnect(),
+        { once: true },
+      );
+    };
+
+    document.addEventListener("astro:page-load", initVideoShowcase);
+  </script>
+</Base>

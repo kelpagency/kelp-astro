@@ -1,15 +1,26 @@
 ---
-import Layout from '../../Base.astro';
-import Tease, { type BlogTeasePost } from '../../components/Tease.astro';
-import BlogArchiveSidebar from '../../components/BlogArchiveSidebar.astro';
-import { fetchWpJson } from '../../lib/wp';
-import { buildCollectionPageSchema, buildItemList } from '../../lib/schema';
+import Layout from "../../Base.astro";
+import Tease, { type BlogTeasePost } from "../../components/Tease.astro";
+import BlogArchiveSidebar from "../../components/BlogArchiveSidebar.astro";
+import { fetchWpJsonRequired } from "../../lib/wp";
+import { buildCollectionPageSchema, buildItemList } from "../../lib/schema";
+import { toPlainText } from "../../lib/sanitize";
 
-const posts = await fetchWpJson('/posts?per_page=100', [] as BlogTeasePost[]);
+const posts = await fetchWpJsonRequired(
+  "/posts?per_page=100",
+  [] as BlogTeasePost[],
+);
 const schema = buildCollectionPageSchema(
-  'The Kelp Blog',
-  'Helpful resources and creative insight from Kelp Creative Agency.',
-  buildItemList(posts.slice(0, 20).map((post) => ({ name: post.title.rendered.replace(/<[^>]+>/g, '').trim(), url: `/blog/${post.slug}/` }))),
+  "The Kelp Blog",
+  "Helpful resources and creative insight from Kelp Creative Agency.",
+  buildItemList(
+    posts
+      .slice(0, 20)
+      .map((post) => ({
+        name: toPlainText(post.title.rendered),
+        url: `/blog/${post.slug}/`,
+      })),
+  ),
 );
 ---
 
@@ -90,7 +101,7 @@ const schema = buildCollectionPageSchema(
         a {
           text-decoration: none;
           &:after {
-            content: '';
+            content: "";
             position: absolute;
             top: 0;
             left: 0;

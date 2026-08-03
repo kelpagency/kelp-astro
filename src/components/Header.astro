@@ -1,20 +1,26 @@
 ---
 const pathname = Astro.url.pathname;
 
-const isActivePath = (paths: string[]) => paths.some((path) => pathname === path || pathname.startsWith(path));
+const isActivePath = (paths: string[]) =>
+  paths.some((path) => pathname === path || pathname.startsWith(path));
 
-const servicesActive = isActivePath(['/services/']);
-const workActive = isActivePath(['/work/']);
-const platformsActive = isActivePath(['/platforms/']);
-const resourcesActive = isActivePath(['/resources/', '/blog/']);
-const aboutActive = isActivePath(['/about/']);
-const contactActive = pathname === '/contact/';
+const servicesActive = isActivePath(["/services/"]);
+const workActive = isActivePath(["/work/"]);
+const platformsActive = isActivePath(["/platforms/"]);
+const resourcesActive = isActivePath(["/resources/", "/blog/"]);
+const aboutActive = isActivePath(["/about/"]);
+const contactActive = pathname === "/contact/";
 ---
 
 <header class="header">
   <div class="wrapper">
     <a href="/" class="header-logo" data-astro-prefetch>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.1 50" width="127.1" height="50">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 127.1 50"
+        width="127.1"
+        height="50"
+      >
         <title>Kelp</title>
         <path
           class="header-logo-text"
@@ -29,8 +35,19 @@ const contactActive = pathname === '/contact/';
           fill="var(--green)"></path>
       </svg>
     </a>
-    <button class="hamburger" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="site-nav">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="28" height="32">
+    <button
+      class="hamburger"
+      type="button"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+      aria-controls="site-nav"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 448 512"
+        width="28"
+        height="32"
+      >
         <title>Toggle Mobile Menu</title>
         <path
           fill="var(--text-color)"
@@ -45,10 +62,10 @@ const contactActive = pathname === '/contact/';
             href="/services/"
             data-astro-prefetch
             aria-label="Services menu"
-            aria-current={servicesActive ? 'page' : undefined}
+            aria-current={servicesActive ? "page" : undefined}
             data-nav-route="services"
           >
-            Services 
+            Services
             <svg xmlns="http://www.w3.org/2000/svg" width="9.75" height="6">
               <title>dropdown</title>
               <path
@@ -57,11 +74,22 @@ const contactActive = pathname === '/contact/';
             </svg>
           </a>
           <ul>
-            <li><a href="/services/#branding-design" aria-label="Case Studies">Branding & Design</a></li>
-            <li><a href="/services/#websites" aria-label="Websites">Websites</a></li>
-            <li><a href="/services/#marketing-strategy" aria-label="Marketing & Strategy">Marketing & Strategy</a></li>
-            <li><a href="/services/#media" aria-label="Media">Video & Photo</a></li>
-            <li><a href="/services/#support" aria-label="Ongoing Support">Ongoing Support</a></li>
+            <li><a href="/services/#branding-design">Branding & Design</a></li>
+            <li>
+              <a href="/services/#websites" aria-label="Websites">Websites</a>
+            </li>
+            <li>
+              <a
+                href="/services/#marketing-strategy"
+                aria-label="Marketing & Strategy">Marketing & Strategy</a>
+            </li>
+            <li>
+              <a href="/services/#media" aria-label="Media">Video & Photo</a>
+            </li>
+            <li>
+              <a href="/services/#support" aria-label="Ongoing Support"
+                >Ongoing Support</a>
+            </li>
           </ul>
         </li>
         <li class="has-submenu">
@@ -69,7 +97,7 @@ const contactActive = pathname === '/contact/';
             data-astro-prefetch
             href="/work/"
             aria-label="Work menu"
-            aria-current={workActive ? 'page' : undefined}
+            aria-current={workActive ? "page" : undefined}
             data-nav-route="work"
           >
             Work
@@ -81,8 +109,14 @@ const contactActive = pathname === '/contact/';
             </svg>
           </a>
           <ul>
-            <li><a data-astro-prefetch href="/work/" aria-label="Case Studies">Case Studies</a></li>
-            <li><a data-astro-prefetch href="/work/clients/" aria-label="Clients">Clients</a></li>
+            <li>
+              <a data-astro-prefetch href="/work/" aria-label="Case Studies"
+                >Case Studies</a>
+            </li>
+            <li>
+              <a data-astro-prefetch href="/work/clients/" aria-label="Clients"
+                >Clients</a>
+            </li>
           </ul>
         </li>
         <li class="has-submenu">
@@ -90,7 +124,7 @@ const contactActive = pathname === '/contact/';
             data-astro-prefetch
             href="/platforms/"
             aria-label="Platforms menu"
-            aria-current={platformsActive ? 'page' : undefined}
+            aria-current={platformsActive ? "page" : undefined}
             data-nav-route="platforms"
           >
             Platforms
@@ -102,11 +136,30 @@ const contactActive = pathname === '/contact/';
             </svg>
           </a>
           <ul>
-            <li><a data-astro-prefetch href="/platforms/hubspot/" aria-label="HubSpot">HubSpot</a></li>
-            <li><a data-astro-prefetch href="/platforms/shopify/" aria-label="Shopify">Shopify</a></li>
-            <li><a data-astro-prefetch href="/platforms/wordpress/" aria-label="WordPress">WordPress</a></li>
+            <li>
+              <a
+                data-astro-prefetch
+                href="/platforms/hubspot/"
+                aria-label="HubSpot">HubSpot</a>
+            </li>
+            <li>
+              <a
+                data-astro-prefetch
+                href="/platforms/shopify/"
+                aria-label="Shopify">Shopify</a>
+            </li>
+            <li>
+              <a
+                data-astro-prefetch
+                href="/platforms/wordpress/"
+                aria-label="WordPress">WordPress</a>
+            </li>
             <li class="platforms-menu-headless">
-              <a data-astro-prefetch href="/platforms/headless/" aria-label="Headless">
+              <a
+                data-astro-prefetch
+                href="/platforms/headless/"
+                aria-label="Headless"
+              >
                 <span>Headless</span>
                 <span class="platforms-menu-headless-badge">API-first</span>
               </a>
@@ -118,7 +171,7 @@ const contactActive = pathname === '/contact/';
             data-astro-prefetch
             href="/resources/"
             aria-label="Resources menu"
-            aria-current={resourcesActive ? 'page' : undefined}
+            aria-current={resourcesActive ? "page" : undefined}
             data-nav-route="resources"
           >
             Resources
@@ -130,8 +183,13 @@ const contactActive = pathname === '/contact/';
             </svg>
           </a>
           <ul>
-            <li><a data-astro-prefetch href="/resources/" aria-label="Downloads">Downloads</a></li>
-            <li><a data-astro-prefetch href="/blog/" aria-label="Blog">Blog</a></li>
+            <li>
+              <a data-astro-prefetch href="/resources/" aria-label="Downloads"
+                >Downloads</a>
+            </li>
+            <li>
+              <a data-astro-prefetch href="/blog/" aria-label="Blog">Blog</a>
+            </li>
           </ul>
         </li>
         <li>
@@ -139,7 +197,7 @@ const contactActive = pathname === '/contact/';
             data-astro-prefetch
             href="/about/"
             aria-label="About"
-            aria-current={aboutActive ? 'page' : undefined}
+            aria-current={aboutActive ? "page" : undefined}
             data-nav-route="about"
           >
             About
@@ -151,7 +209,7 @@ const contactActive = pathname === '/contact/';
             href="/contact/"
             class="button"
             aria-label="Contact Us"
-            aria-current={contactActive ? 'page' : undefined}
+            aria-current={contactActive ? "page" : undefined}
             data-nav-route="contact"
           >
             Hire Us
@@ -256,11 +314,11 @@ const contactActive = pathname === '/contact/';
         font-size: 15px;
         font-weight: 600;
         text-decoration: none;
-        &[aria-current='page']:not(.button) {
+        &[aria-current="page"]:not(.button) {
           color: var(--text-color);
         }
-        &[aria-current='page']:not(.button)::after {
-          content: '';
+        &[aria-current="page"]:not(.button)::after {
+          content: "";
           position: absolute;
           left: 0;
           right: 0;
@@ -335,7 +393,7 @@ const contactActive = pathname === '/contact/';
         li {
           a {
             font-size: var(--step-1);
-            &[aria-current='page']:not(.button)::after {
+            &[aria-current="page"]:not(.button)::after {
               display: none;
             }
           }
@@ -386,11 +444,11 @@ const contactActive = pathname === '/contact/';
               &:focus:not(.button) {
                 color: var(--purple);
               }
-              &[aria-current='page']:not(.button) {
+              &[aria-current="page"]:not(.button) {
                 anchor-name: --header-nav-active;
                 cursor: default;
               }
-              }
+            }
             ul {
               position: absolute;
               top: 100%;
@@ -411,7 +469,7 @@ const contactActive = pathname === '/contact/';
               }
               &:after,
               &:before {
-                content: '';
+                content: "";
                 background: var(--green);
                 top: 0;
                 left: 0;
@@ -491,7 +549,7 @@ const contactActive = pathname === '/contact/';
             view-transition-name: header-nav-indicator;
           }
 
-          > ul > li > a[aria-current='page']:not(.button)::after {
+          > ul > li > a[aria-current="page"]:not(.button)::after {
             display: none;
           }
         }
@@ -515,59 +573,93 @@ const contactActive = pathname === '/contact/';
   }
 </style>
 <script>
-  import Headroom from 'headroom.js';
+  import Headroom from "headroom.js";
   const HEADROOM_OFFSET = 50;
+  let activeHeadroom: { init: () => void; destroy: () => void } | null = null;
+  let headerController: AbortController | null = null;
   const ACTIVE_ROUTE_MATCHERS = [
-    { route: 'services', matches: (pathname: string) => pathname.startsWith('/services/') },
-    { route: 'work', matches: (pathname: string) => pathname.startsWith('/work/') },
-    { route: 'platforms', matches: (pathname: string) => pathname.startsWith('/platforms/') },
-    { route: 'resources', matches: (pathname: string) => pathname.startsWith('/resources/') || pathname.startsWith('/blog/') },
-    { route: 'about', matches: (pathname: string) => pathname.startsWith('/about/') },
-    { route: 'contact', matches: (pathname: string) => pathname === '/contact/' },
+    {
+      route: "services",
+      matches: (pathname: string) => pathname.startsWith("/services/"),
+    },
+    {
+      route: "work",
+      matches: (pathname: string) => pathname.startsWith("/work/"),
+    },
+    {
+      route: "platforms",
+      matches: (pathname: string) => pathname.startsWith("/platforms/"),
+    },
+    {
+      route: "resources",
+      matches: (pathname: string) =>
+        pathname.startsWith("/resources/") || pathname.startsWith("/blog/"),
+    },
+    {
+      route: "about",
+      matches: (pathname: string) => pathname.startsWith("/about/"),
+    },
+    {
+      route: "contact",
+      matches: (pathname: string) => pathname === "/contact/",
+    },
   ];
 
   const syncHeaderState = (header: HTMLElement) => {
     const isAtTop = window.scrollY <= HEADROOM_OFFSET;
 
-    header.classList.add('headroom');
-    header.classList.toggle('headroom--top', isAtTop);
-    header.classList.toggle('headroom--not-top', !isAtTop);
+    header.classList.add("headroom");
+    header.classList.toggle("headroom--top", isAtTop);
+    header.classList.toggle("headroom--not-top", !isAtTop);
 
     if (isAtTop) {
-      header.classList.add('headroom--pinned');
-      header.classList.remove('headroom--unpinned');
+      header.classList.add("headroom--pinned");
+      header.classList.remove("headroom--unpinned");
       return;
     }
 
-    if (!header.classList.contains('headroom--pinned') && !header.classList.contains('headroom--unpinned')) {
-      header.classList.add('headroom--pinned');
+    if (
+      !header.classList.contains("headroom--pinned") &&
+      !header.classList.contains("headroom--unpinned")
+    ) {
+      header.classList.add("headroom--pinned");
     }
   };
 
   const unlockDocumentScroll = () => {
-    document.documentElement.style.removeProperty('overflow');
-    document.body.style.removeProperty('overflow');
+    document.documentElement.style.removeProperty("overflow");
+    document.body.style.removeProperty("overflow");
   };
 
   const syncActiveNavLink = () => {
     const pathname = window.location.pathname;
-    const activeRoute = ACTIVE_ROUTE_MATCHERS.find(({ matches }) => matches(pathname))?.route;
-    const links = document.querySelectorAll<HTMLAnchorElement>('.header-nav > ul > li > a[data-nav-route]');
+    const activeRoute = ACTIVE_ROUTE_MATCHERS.find(({ matches }) =>
+      matches(pathname),
+    )?.route;
+    const links = document.querySelectorAll<HTMLAnchorElement>(
+      ".header-nav > ul > li > a[data-nav-route]",
+    );
 
     links.forEach((link) => {
       const isActive = link.dataset.navRoute === activeRoute;
       if (isActive) {
-        link.setAttribute('aria-current', 'page');
+        link.setAttribute("aria-current", "page");
       } else {
-        link.removeAttribute('aria-current');
+        link.removeAttribute("aria-current");
       }
     });
   };
 
   const initHeader = () => {
+    headerController?.abort();
+    headerController = new AbortController();
+    const { signal } = headerController;
+
     // Sticky header
-    const header = document.querySelector<HTMLElement>('header');
-    if (header && !header.dataset.headroomInit) {
+    const header = document.querySelector<HTMLElement>("header");
+    activeHeadroom?.destroy();
+    activeHeadroom = null;
+    if (header) {
       const headroom = new Headroom(header, {
         offset: {
           up: HEADROOM_OFFSET,
@@ -580,23 +672,28 @@ const contactActive = pathname === '/contact/';
         },
       });
       headroom.init();
-      header.dataset.headroomInit = 'true';
+      activeHeadroom = headroom;
     }
     if (header) {
       syncHeaderState(header);
     }
 
     // mobile nav
-    const burger = document.querySelector<HTMLElement>('.hamburger');
-    const nav = document.querySelector<HTMLElement>('.header-nav');
-    const mobileQuery = window.matchMedia('(max-width: 1079px)');
+    const burger = document.querySelector<HTMLElement>(".hamburger");
+    const nav = document.querySelector<HTMLElement>(".header-nav");
+    const mobileQuery = window.matchMedia("(max-width: 1079px)");
     const topLevelList = nav?.firstElementChild;
     const topLevelItems =
       topLevelList instanceof HTMLUListElement
-        ? Array.from(topLevelList.children).filter((item) => item.classList.contains('has-submenu'))
+        ? Array.from(topLevelList.children).filter((item) =>
+            item.classList.contains("has-submenu"),
+          )
         : [];
 
-    const getSubmenu = (item: Element) => Array.from(item.children).find((child) => child instanceof HTMLUListElement);
+    const getSubmenu = (item: Element) =>
+      Array.from(item.children).find(
+        (child) => child instanceof HTMLUListElement,
+      );
 
     const closeSubmenu = (item: Element) => {
       const link = item.firstElementChild;
@@ -604,10 +701,10 @@ const contactActive = pathname === '/contact/';
       if (!(link instanceof HTMLAnchorElement)) {
         return;
       }
-      item.classList.remove('is-open');
-      link.setAttribute('aria-expanded', 'false');
+      item.classList.remove("is-open");
+      link.setAttribute("aria-expanded", "false");
       if (submenu instanceof HTMLUListElement) {
-        submenu.style.maxHeight = mobileQuery.matches ? '0px' : '';
+        submenu.style.maxHeight = mobileQuery.matches ? "0px" : "";
       }
     };
 
@@ -616,23 +713,29 @@ const contactActive = pathname === '/contact/';
     };
 
     const closeMobileMenu = () => {
-      document.body.classList.remove('mobile-menu-active');
-      burger?.classList.remove('active');
-      burger?.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove("mobile-menu-active");
+      burger?.classList.remove("active");
+      burger?.setAttribute("aria-expanded", "false");
       closeAllSubmenus();
       unlockDocumentScroll();
+      document
+        .querySelectorAll<HTMLElement>("main, footer")
+        .forEach((element) => element.removeAttribute("inert"));
     };
 
     const syncSubmenusForViewport = () => {
       topLevelItems.forEach((item) => {
         const link = item.firstElementChild;
         const submenu = getSubmenu(item);
-        if (!(link instanceof HTMLAnchorElement) || !(submenu instanceof HTMLUListElement)) {
+        if (
+          !(link instanceof HTMLAnchorElement) ||
+          !(submenu instanceof HTMLUListElement)
+        ) {
           return;
         }
-        item.classList.remove('is-open');
-        link.setAttribute('aria-expanded', 'false');
-        submenu.style.maxHeight = mobileQuery.matches ? '0px' : '';
+        item.classList.remove("is-open");
+        link.setAttribute("aria-expanded", "false");
+        submenu.style.maxHeight = mobileQuery.matches ? "0px" : "";
       });
     };
 
@@ -640,7 +743,10 @@ const contactActive = pathname === '/contact/';
       topLevelItems.forEach((item, index) => {
         const link = item.firstElementChild;
         const submenu = getSubmenu(item);
-        if (!(link instanceof HTMLAnchorElement) || !(submenu instanceof HTMLUListElement)) {
+        if (
+          !(link instanceof HTMLAnchorElement) ||
+          !(submenu instanceof HTMLUListElement)
+        ) {
           return;
         }
 
@@ -648,32 +754,38 @@ const contactActive = pathname === '/contact/';
           submenu.id = `site-nav-submenu-${index + 1}`;
         }
 
-        link.setAttribute('aria-expanded', 'false');
-        link.setAttribute('aria-controls', submenu.id);
-        submenu.style.maxHeight = mobileQuery.matches ? '0px' : '';
+        link.setAttribute("aria-expanded", "false");
+        link.setAttribute("aria-controls", submenu.id);
+        submenu.style.maxHeight = mobileQuery.matches ? "0px" : "";
 
-        link.addEventListener('click', (event) => {
-          if (!mobileQuery.matches) {
-            return;
-          }
+        link.addEventListener(
+          "click",
+          (event) => {
+            if (!mobileQuery.matches) {
+              return;
+            }
 
-          const isOpen = item.classList.contains('is-open');
-          if (!isOpen) {
-            event.preventDefault();
-            closeAllSubmenus();
-            item.classList.add('is-open');
-            link.setAttribute('aria-expanded', 'true');
-            submenu.style.maxHeight = `${submenu.scrollHeight}px`;
-          }
-        });
+            const isOpen = item.classList.contains("is-open");
+            if (!isOpen) {
+              event.preventDefault();
+              closeAllSubmenus();
+              item.classList.add("is-open");
+              link.setAttribute("aria-expanded", "true");
+              submenu.style.maxHeight = `${submenu.scrollHeight}px`;
+            }
+          },
+          { signal },
+        );
       });
 
-      nav.dataset.submenuInit = 'true';
+      nav.dataset.submenuInit = "true";
     }
 
     if (nav && !nav.dataset.submenuViewportInit) {
-      mobileQuery.addEventListener('change', syncSubmenusForViewport);
-      nav.dataset.submenuViewportInit = 'true';
+      mobileQuery.addEventListener("change", syncSubmenusForViewport, {
+        signal,
+      });
+      nav.dataset.submenuViewportInit = "true";
     }
 
     syncSubmenusForViewport();
@@ -681,31 +793,64 @@ const contactActive = pathname === '/contact/';
     syncActiveNavLink();
 
     if (burger) {
-      burger.setAttribute('aria-expanded', String(document.body.classList.contains('mobile-menu-active')));
+      burger.setAttribute(
+        "aria-expanded",
+        String(document.body.classList.contains("mobile-menu-active")),
+      );
       if (!burger.dataset.menuInit) {
-        burger.addEventListener('click', () => {
-          const isOpen = document.body.classList.toggle('mobile-menu-active');
-          burger.classList.toggle('active');
-          burger.setAttribute('aria-expanded', String(isOpen));
-          if (!isOpen) {
-            closeAllSubmenus();
-          }
-        });
-        burger.dataset.menuInit = 'true';
+        burger.addEventListener(
+          "click",
+          () => {
+            const isOpen = document.body.classList.toggle("mobile-menu-active");
+            burger.classList.toggle("active");
+            burger.setAttribute("aria-expanded", String(isOpen));
+            if (!isOpen) {
+              closeAllSubmenus();
+              unlockDocumentScroll();
+              document
+                .querySelectorAll<HTMLElement>("main, footer")
+                .forEach((element) => element.removeAttribute("inert"));
+            } else {
+              document.documentElement.style.overflow = "hidden";
+              document.body.style.overflow = "hidden";
+              document
+                .querySelectorAll<HTMLElement>("main, footer")
+                .forEach((element) => element.setAttribute("inert", ""));
+              nav?.querySelector<HTMLElement>("a")?.focus();
+            }
+          },
+          { signal },
+        );
+        burger.dataset.menuInit = "true";
       }
     }
+
+    document.addEventListener(
+      "keydown",
+      (event) => {
+        if (
+          event.key === "Escape" &&
+          document.body.classList.contains("mobile-menu-active")
+        ) {
+          closeMobileMenu();
+          burger?.focus();
+        }
+      },
+      { signal },
+    );
   };
 
-  document.addEventListener('astro:page-load', () => {
+  document.addEventListener("astro:page-load", () => {
     requestAnimationFrame(() => {
       unlockDocumentScroll();
       initHeader();
     });
   });
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initHeader, { once: true });
-  } else {
-    initHeader();
-  }
+  document.addEventListener("astro:before-swap", () => {
+    headerController?.abort();
+    activeHeadroom?.destroy();
+    activeHeadroom = null;
+    unlockDocumentScroll();
+  });
 </script>
