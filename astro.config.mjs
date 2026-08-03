@@ -22,7 +22,6 @@ export default defineConfig({
         "media-src 'self' data: https:",
         "object-src 'none'",
         "base-uri 'self'",
-        "frame-ancestors 'none'",
         "form-action 'self'",
         "upgrade-insecure-requests",
       ],
@@ -32,6 +31,7 @@ export default defineConfig({
       styleDirective: {
         resources: [
           { resource: "'self'", kind: "element" },
+          { resource: "'unsafe-inline'", kind: "element" },
           { resource: "'unsafe-inline'", kind: "attribute" },
         ],
       },
