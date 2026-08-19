@@ -13,7 +13,21 @@ const richContentTags = [
   "track",
 ];
 
-const sharedAttributes = ["class", "id", "title", "role", "aria-*", "data-*"];
+const sharedAttributes = [
+  "class",
+  "id",
+  "title",
+  "role",
+  "style",
+  "aria-*",
+  "data-*",
+];
+
+const cssColorValues = [
+  /^#(?:[\da-f]{3,4}|[\da-f]{6}|[\da-f]{8})$/i,
+  /^(?:rgb|rgba|hsl|hsla)\([\d\s.,%+-]+\)$/i,
+  /^(?:transparent|currentcolor|[a-z]+)$/i,
+];
 
 /** Sanitize rich HTML received from WordPress before passing it to set:html. */
 export function sanitizeHtml(input = "") {
@@ -61,6 +75,15 @@ export function sanitizeHtml(input = "") {
       td: ["colspan", "rowspan", "headers"],
       th: ["colspan", "rowspan", "headers", "scope"],
       time: ["datetime"],
+    },
+    // Gutenberg adds custom block colors inline alongside classes such as
+    // `has-background`. Keep only color declarations; all other inline CSS is
+    // still removed.
+    allowedStyles: {
+      "*": {
+        color: cssColorValues,
+        "background-color": cssColorValues,
+      },
     },
     allowedSchemes: ["http", "https", "mailto", "tel"],
     allowedSchemesByTag: {
