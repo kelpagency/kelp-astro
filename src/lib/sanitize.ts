@@ -118,6 +118,25 @@ export function sanitizeHtml(input = "") {
           referrerpolicy: "strict-origin-when-cross-origin",
         },
       }),
+      video: (_tagName, attributes) => {
+        if (!("autoplay" in attributes)) {
+          return { tagName: "video", attribs: attributes };
+        }
+
+        // Native autoplay can run while a reveal animation still hides the
+        // video. Let the site's visibility observer start it near the viewport
+        // instead, and ensure mobile browsers allow inline muted playback.
+        const { autoplay: _autoplay, ...videoAttributes } = attributes;
+        return {
+          tagName: "video",
+          attribs: {
+            ...videoAttributes,
+            "data-site-autoplay": "",
+            muted: "",
+            playsinline: "",
+          },
+        };
+      },
     },
   });
 }
