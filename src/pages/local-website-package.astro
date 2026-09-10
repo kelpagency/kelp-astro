@@ -1,0 +1,43 @@
+---
+import Layout from "../Base.astro";
+import Testimonials from "../components/Testimonials.astro";
+import { buildFaqSchema, buildServiceSchema } from "../lib/schema";
+import "../styles/pages/local-website-package.scss";
+
+const description = "A focused website package for Florida local businesses that need a clear path from search to call, form, booking, or visit—starting at $2,000.";
+const faqs = [
+  ["How do I know whether I need a single-page or CMS-based site?", "If you have one focused offer, service, or campaign, a single-page site is usually enough. If you have multiple services, locations, or content that will grow, a CMS gives you room to expand. We’ll confirm the right route in a short fit review."],
+  ["Can I update the website myself?", "Yes. When your package includes a CMS, we build reusable editing patterns and show your team how to manage the content you need to change."],
+  ["Does Kelp write the content?", "Every package includes content guidance and a clear page structure. Full copywriting can be included when you need finished website copy."],
+  ["Will my site work on phones and tablets?", "Yes. Every Kelp website is designed and tested for current desktop, tablet, and mobile screen sizes."],
+  ["Is SEO included?", "Foundational on-page SEO is included: page titles, descriptions, heading structure, indexability, performance-conscious development, and analytics. Ongoing SEO can be scoped separately."],
+  ["What happens if I need something custom?", "We’ll create a tailored scope for multiple pages, ecommerce, booking, integrations, expanded branding, photography, or other requirements."],
+  ["What happens after launch?", "We verify the live website, forms, and tracking. Hosting, maintenance, content, and growth retainers are available when you want ongoing help."],
+].map(([question, answer]) => ({ question, answer }));
+const included = ["Focused discovery and website brief", "Sitemap or single-page section plan", "Content guidance and structured drafting", "Responsive visual design", "Reusable components and page patterns", "CMS configuration when included", "Forms and conversion paths", "Foundational on-page SEO", "Analytics and conversion tracking", "Accessibility-conscious development", "Quality assurance and launch support", "Post-launch verification"];
+const schema = [buildServiceSchema({ name: "Local Business Website Package", description, url: "https://www.kelp.agency/local-website-package/", areaServed: "Florida" }), buildFaqSchema(faqs)];
+---
+<Layout title="Local Business Website Package | Kelp Creative Agency" description={description} schema={schema} canonicalUrl="/local-website-package/" bodyClass="local-package-page">
+  <article class="local-package">
+    <section class="lp-hero"><div class="wrapper wrapper--narrow lp-hero-grid">
+      <div><p class="lp-kicker">Websites for local businesses</p><h1>A local website <span>built to do its job.</span></h1><p class="lp-lead">A focused website package for local businesses that need a clear, credible path from search to call, form, booking, or visit—without a months-long custom build.</p><div class="lp-actions"><a href="#packages" class="button">Find Your Fit</a><a href="#included">See What’s Included</a></div><small>Thoughtfully scoped. Carefully built. Launched with confidence.</small></div>
+      <div class="lp-art" aria-hidden="true"><i></i><i></i><div class="lp-browser"><b><em></em><em></em><em></em></b><span></span><span></span><span></span><strong>Book now</strong></div><div class="lp-lead-card"><span></span><span></span><b>New lead</b></div></div>
+    </div></section>
+
+    <section class="lp-dark lp-wave"><div class="wrapper wrapper--narrow lp-split"><div><p class="lp-kicker lp-red">The problem</p><h2>Your website shouldn’t make people work to hire you.</h2><p>Many local-business websites make it hard to understand the service, establish trust, or take the next step. Attention slips away before anyone picks up the phone.</p></div><div class="lp-problems"><p>The offer is unclear.</p><p>The proof is buried.</p><p>The next step is hard to find.</p><strong>The Local Website Package fixes the path from attention to action.</strong></div></div></section>
+
+    <section class="lp-pricing lp-wave" id="packages"><div class="wrapper wrapper--narrow"><header class="lp-heading"><p class="lp-kicker">The packages</p><h2>Simple pricing. <span>No surprises.</span></h2></header><div class="lp-cards">
+      <article class="lp-card"><header><p class="lp-kicker">Kelp Starter</p><h3>$2,000 <small>starting at</small></h3><p>Everything a local business needs to show up, look credible, and get the phone ringing—in one focused bundle.</p></header><ul><li>Logo / brand refresh—2 concepts, 3 lockups</li><li>Brand sheet—single style guide</li><li>Single-page website</li><li>Photography—1 hour session, travel included</li><li>3 months free hosting</li></ul><footer><p>Need more? Add services to fit.</p><a href="/contact/" class="button">Build Your Quote</a></footer></article>
+      <article class="lp-card lp-card--dark"><header><p class="lp-kicker">Kelp Custom</p><h3>Custom</h3><p>A tailored scope built around your business: multiple pages, CMS, ecommerce, branding, photography, and more.</p></header><ul><li>Everything in Kelp Starter, scoped to fit</li><li>Multi-page or CMS-based website</li><li>Expanded brand and content work</li><li>Custom integrations, booking, or ecommerce</li><li>Ongoing support and growth retainer options</li></ul><footer><p>Scope and pricing confirmed after a short fit call.</p><a href="/contact/" class="button button--green">Book a Call</a></footer></article>
+    </div></div></section>
+
+    <section class="lp-process" id="how-it-works"><div class="wrapper wrapper--narrow"><header class="lp-heading"><p class="lp-kicker">What Kelp handles</p><h2>Everything needed to get from idea to launch.</h2></header><ol><li><span>01</span><h3>Clarify</h3><p>Define the business goal, audience, offer, and strongest conversion path.</p></li><li><span>02</span><h3>Structure</h3><p>Plan the page, sections, content, proof, and conversion points.</p></li><li><span>03</span><h3>Create</h3><p>Develop the content and visual direction using Kelp’s proven systems.</p></li><li><span>04</span><h3>Build</h3><p>Create the responsive site, forms, analytics, and SEO foundations.</p></li><li><span>05</span><h3>Launch</h3><p>Test, approve, publish, and confirm the important actions work.</p></li></ol></div></section>
+
+    <section class="lp-included" id="included"><div class="wrapper wrapper--narrow lp-split"><div><p class="lp-kicker">What’s included</p><h2>A complete path to launch.</h2><p>No mystery boxes. Here’s the work that’s actually included.</p></div><ol>{included.map((item, i) => <li><span>{String(i + 1).padStart(2, "0")}</span>{item}</li>)}</ol></div></section>
+
+    <section class="lp-dark lp-why"><div class="wrapper wrapper--narrow lp-split"><div><p class="lp-kicker">Why Kelp</p><h2>Built simply. Built carefully. Built to last.</h2><p>Kelp is a small senior team of designers, developers, strategists, and content creators. The people you meet are the people doing the work. We focus the scope, explain the decisions, and build a site your business can use with confidence.</p></div><aside><small>Florida-grown creative and development</small><strong>One team from first conversation through launch.</strong><a href="/work/">See our work</a></aside></div></section>
+    <Testimonials />
+    <section class="lp-faq" id="faq"><div class="wrapper wrapper--narrow lp-faq-grid"><div><p class="lp-kicker">FAQ</p><h2>Honest answers, <span>plainly put.</span></h2></div><div>{faqs.map((item, i) => <details open={i === 0}><summary>{item.question}</summary><p>{item.answer}</p></details>)}</div></div></section>
+    <section class="lp-cta lp-wave"><div class="wrapper wrapper--narrow"><p class="lp-kicker">Find your fit</p><h2>Let’s find the simplest website that will do the job.</h2><p>Tell us about your business, what customers need to do, and what you already have. We’ll recommend the right route.</p><div class="lp-actions"><a href="/contact/" class="button button--green">Schedule a Fit Call</a><a href="/contact/">Tell Us About Your Project</a></div></div></section>
+  </article>
+</Layout>

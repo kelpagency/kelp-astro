@@ -16,10 +16,10 @@
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.19",
-    "@astrojs/sitemap": "^3.7.3",
+    "@astrojs/sitemap": "^3.7.4",
     "@waaark/luge": "0.6.20-beta",
-    "astro": "^7.2.4",
-    "autoprefixer": "^10.5.4",
+    "astro": "^7.3.2",
+    "autoprefixer": "^10.5.6",
     "flickity": "^3.0.0",
     "flickity-fade": "^2.0.0",
     "headroom.js": "^0.12.0",
@@ -29,14 +29,14 @@
     "rough-notation": "^0.5.1",
     "sanitize-html": "^2.17.7",
     "sanitize.css": "^13.0.0",
-    "sharp": "^0.35.3"
+    "sharp": "^0.35.4"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
     "@types/sanitize-html": "^2.16.1",
     "prettier": "^3.9.6",
-    "prettier-plugin-astro": "^0.14.1",
-    "sass": "^1.102.0",
-    "typescript": "^6.0.0"
+    "prettier-plugin-astro": "^1.0.0",
+    "sass": "^1.104.0",
+    "typescript": "^6.0.2"
   }
 }
