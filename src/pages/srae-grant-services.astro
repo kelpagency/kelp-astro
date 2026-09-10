@@ -1,0 +1,228 @@
+---
+import Layout from "../Base.astro";
+import SimpleHero from "../components/SimpleHero.astro";
+import { buildFaqSchema, buildServiceSchema } from "../lib/schema";
+import "../styles/pages/_srae-grant-services.scss";
+
+const title = "SRAE Grant Marketing & Website Services in Florida | Kelp";
+const description =
+  "Florida SRAE grant marketing, websites, outreach campaigns, branding, video, paid media, and reporting from a local agency with relevant experience.";
+
+const faqItems = [
+  {
+    question: "What is an SRAE grant?",
+    answer:
+      "Sexual Risk Avoidance Education grants support age-appropriate programs that help youth avoid non-marital sexual activity and other risky behaviors while building skills such as personal responsibility, self-regulation, goal setting, and healthy decision-making.",
+  },
+  {
+    question: "Can SRAE grant funding pay for marketing or a website?",
+    answer:
+      "Communications, outreach, websites, creative production, and paid media may support an approved SRAE project when they are necessary, reasonable, allocable to the project, and included in the approved budget. Allowability depends on the specific notice of funding opportunity, award, budget, and grant administrator guidance.",
+  },
+  {
+    question: "When should an SRAE organization hire a marketing agency?",
+    answer:
+      "Kelp can help during application planning, immediately after an award, or while an active program is improving recruitment, outreach, creative consistency, digital performance, or reporting.",
+  },
+  {
+    question: "Does Kelp work with SRAE programs throughout Florida?",
+    answer:
+      "Yes. Kelp is based in Brooksville, Florida and supports organizations serving communities and counties across the state.",
+  },
+];
+
+const schema = [
+  buildServiceSchema({
+    name: "SRAE Grant Marketing and Website Services",
+    description,
+    url: "https://www.kelp.agency/srae-grant-services/",
+    areaServed: "Florida",
+  }),
+  buildFaqSchema(faqItems),
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  schema={schema}
+  canonicalUrl="/srae-grant-services/"
+>
+  <article class="srae-page">
+    <SimpleHero
+      tagline="Florida SRAE Grant Support"
+      title="SRAE Grant Marketing & Website Services"
+      description="Kelp helps Sexual Risk Avoidance Education organizations plan and produce the websites, outreach campaigns, branding, content, advertising, and reporting needed to move from a funded idea to a visible, working program."
+    />
+
+    <section class="srae-intro">
+      <div class="wrapper srae-intro-layout">
+        <div class="srae-intro-copy">
+          <p class="srae-kicker">A local partner who knows the work</p>
+          <h2>Your grant has goals. Your campaign needs a plan to reach them.</h2>
+          <p>
+            Winning or managing an SRAE grant creates a long list of communications needs. You may need to introduce a
+            new program, earn trust with schools and parents, recruit participants, coordinate messaging across counties,
+            and show that your outreach investment is working.
+          </p>
+          <p>
+            We bring those moving parts together. As a Florida creative agency, Kelp combines strategy, design,
+            development, media production, and campaign management under one roof. Our team has supported SRAE-funded
+            work for organizations including A New Generation and E3 Family Solutions.
+          </p>
+          <a href="/contact/" class="button">Schedule an SRAE Call</a>
+        </div>
+        <a class="srae-intro-visual" href="/work/a-new-generation/" aria-label="View the A New Generation case study">
+          <span class="srae-intro-label">Recent SRAE work</span>
+          <img
+            loading="eager"
+            fetchpriority="high"
+            src="https://i0.wp.com/admin.kelp.agency/wp-content/uploads/2026/09/a-new-generation-website-scaled.png?fit=1400%2C1043&quality=80&ssl=1"
+            srcset="https://i0.wp.com/admin.kelp.agency/wp-content/uploads/2026/09/a-new-generation-website-scaled.png?fit=768%2C572&quality=80&ssl=1 768w, https://i0.wp.com/admin.kelp.agency/wp-content/uploads/2026/09/a-new-generation-website-scaled.png?fit=1400%2C1043&quality=80&ssl=1 1400w, https://i0.wp.com/admin.kelp.agency/wp-content/uploads/2026/09/a-new-generation-website-scaled.png?fit=2048%2C1526&quality=80&ssl=1 2048w"
+            sizes="(max-width: 960px) 90vw, 56vw"
+            width="1400"
+            height="1043"
+            alt="A New Generation website shown across desktop, tablet, and mobile devices"
+          />
+          <span class="srae-intro-caption">A New Generation <span>View case study →</span></span>
+        </a>
+      </div>
+    </section>
+
+    <section class="srae-services" id="how-we-help">
+      <div class="wrapper">
+        <div class="srae-section-heading">
+          <p class="srae-kicker">SRAE marketing services</p>
+          <h2>Everything your outreach campaign needs to move together.</h2>
+          <p>
+            Start with a complete campaign or bring us in for the pieces your internal team cannot cover.
+          </p>
+        </div>
+        <div class="srae-service-grid">
+          <article>
+            <span>01</span>
+            <h3>Campaign strategy</h3>
+            <p>Audience planning, county-by-county rollout, messaging, timelines, budgets, and coordinated deliverables.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Websites & landing pages</h3>
+            <p>Fast, accessible websites that explain the program, build confidence, and make the next step clear.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Branding & creative</h3>
+            <p>Program identities and practical design systems for digital, print, presentation, and community outreach.</p>
+          </article>
+          <article>
+            <span>04</span>
+            <h3>Paid media</h3>
+            <p>Google PPC and social campaigns planned around geography, audience, measurable actions, and responsible spend.</p>
+          </article>
+          <article>
+            <span>05</span>
+            <h3>Video, photo & content</h3>
+            <p>Campaign-ready stories and assets designed for students, parents, schools, partners, and local communities.</p>
+          </article>
+          <article>
+            <span>06</span>
+            <h3>Measurement & reporting</h3>
+            <p>Clear performance reporting that connects reach, traffic, engagement, and conversions to campaign decisions.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="srae-audiences">
+      <div class="wrapper wrapper--narrow">
+        <div class="srae-section-heading">
+          <p class="srae-kicker">Meet us where you are</p>
+          <h2>Support before, after, or during your SRAE award.</h2>
+        </div>
+        <div class="srae-audience-list">
+          <article>
+            <h3>Applying for funding</h3>
+            <p>Define a realistic communications scope, delivery plan, timeline, and vendor budget for your proposed project.</p>
+          </article>
+          <article>
+            <h3>Recently awarded</h3>
+            <p>Move from award to launch with a focused plan for brand, web, content, outreach, and campaign production.</p>
+          </article>
+          <article>
+            <h3>Already serving youth</h3>
+            <p>Improve a campaign that needs stronger recruitment, clearer messaging, better creative, or more useful data.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="srae-proof">
+      <div class="wrapper wrapper--narrow srae-split">
+        <div>
+          <p class="srae-kicker">Relevant Florida experience</p>
+          <h2>Built from real SRAE campaign work.</h2>
+        </div>
+        <div>
+          <p>
+            We understand the practical side of turning a grant plan into public-facing work because we have done it.
+            Our experience includes coordinated strategy, websites, creative production, media, digital advertising, and
+            campaign reporting for Florida organizations doing SRAE-funded work.
+          </p>
+          <p>
+            For A New Generation, we planned every page in a visual sitemap, created website-specific brand assets,
+            designed a flexible block system in Figma, developed a custom WordPress theme, managed redirects, and
+            launched the new website with zero downtime. Our work also included digital design, paid social, hosting,
+            and ongoing web support.
+          </p>
+          <a href="/work/a-new-generation/" class="button button--green">View the A New Generation Case Study</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="srae-compliance">
+      <div class="wrapper wrapper--narrow">
+        <p class="srae-kicker">Grant-aware planning</p>
+        <h2>Build the right scope before you spend.</h2>
+        <p>
+          Federal awards generally require project costs to be necessary, reasonable, allocable, and consistent with the
+          approved project and budget. That means marketing is not a blank-check category. We help shape a defined scope,
+          tie deliverables to program outreach goals, and provide the documentation your team needs to evaluate with its
+          grant administrator.
+        </p>
+        <p class="srae-note">
+          Kelp does not provide legal or grant-compliance advice. Final cost allowability is determined by your specific
+          notice of funding opportunity, Notice of Award, approved budget, applicable regulations, and grant official.
+        </p>
+      </div>
+    </section>
+
+    <section class="srae-faq">
+      <div class="wrapper wrapper--narrow">
+        <div class="srae-section-heading">
+          <p class="srae-kicker">Common questions</p>
+          <h2>SRAE grant marketing FAQ</h2>
+        </div>
+        <div class="srae-faq-list">
+          {faqItems.map((item) => (
+            <details>
+              <summary>{item.question}</summary>
+              <p>{item.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="srae-cta">
+      <div class="wrapper wrapper--narrow">
+        <p class="srae-kicker">Let’s talk through the grant</p>
+        <h2>Give your SRAE program a campaign built to reach people.</h2>
+        <p>
+          Tell us where you are in the grant process, which Florida communities you serve, and what needs to launch.
+          We’ll help you identify the smartest place to start.
+        </p>
+        <a href="/contact/" class="button button--green">Schedule a Call</a>
+      </div>
+    </section>
+  </article>
+</Layout>
