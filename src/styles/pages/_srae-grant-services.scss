@@ -11,6 +11,14 @@
   }
 }
 
+.srae-grant-page .footer .top {
+  padding-top: 0;
+
+  .wrapper {
+    display: none;
+  }
+}
+
 .srae-kicker {
   margin: 0 0 0.75rem;
   color: var(--purple);
@@ -303,7 +311,8 @@
 }
 
 .srae-cta {
-  background: var(--black);
+  padding-bottom: 0;
+  background: var(--purple);
   color: white;
   text-align: center;
 
@@ -312,7 +321,7 @@
   }
 
   .srae-kicker {
-    color: var(--green);
+    color: var(--black);
   }
 
   h2 {
