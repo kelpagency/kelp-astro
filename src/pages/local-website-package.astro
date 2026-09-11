@@ -2,6 +2,8 @@
 import Layout from "../Base.astro";
 import anewgenLogo from "../assets/anewgen-logo.svg";
 import hartsLogo from "../assets/Harts-MM-Logo.svg";
+import m48Logo from "../assets/M48-Logo.png";
+import mountaineerLogo from "../assets/Mountaineer_Coffee.png";
 import whiteheadLogo from "../assets/Whitehead-Farms-Circle-Badge-DS.png.webp";
 import { buildFaqSchema, buildServiceSchema } from "../lib/schema";
 import "../styles/pages/local-website-package.scss";
@@ -28,8 +30,8 @@ const schema = [buildServiceSchema({ name: "Local Business Website Package", des
 
     <section class="lp-client-logos" aria-label="Selected clients"><div class="wrapper"><p class="lp-kicker">Trusted by businesses near and far</p><ul>
       <li><img loading="lazy" src={whiteheadLogo.src} srcset={`${whiteheadLogo.src} 600w`} sizes="auto" width="600" height="607" alt="Whitehead Farms"></li>
-      <li><img loading="lazy" src="https://admin.kelp.agency/wp-content/uploads/2018/03/mountaineer-coffee.png" srcset="https://i0.wp.com/admin.kelp.agency/wp-content/uploads/2018/03/mountaineer-coffee.png?resize=337%2C93&quality=80&ssl=1 337w, https://i0.wp.com/admin.kelp.agency/wp-content/uploads/2018/03/mountaineer-coffee.png?fit=674%2C185&quality=80&ssl=1 674w" sizes="auto" width="674" height="185" alt="Mountaineer Coffee"></li>
-      <li><img loading="lazy" src="https://www.marker48.com/wp-content/uploads/2023/06/cropped-markerlogo-512.png" srcset="https://www.marker48.com/wp-content/uploads/2023/06/cropped-markerlogo-512-192x192.png 192w, https://www.marker48.com/wp-content/uploads/2023/06/cropped-markerlogo-512-300x300.png 300w, https://www.marker48.com/wp-content/uploads/2023/06/cropped-markerlogo-512.png 512w" sizes="auto" width="512" height="512" alt="Marker 48 Brewing"></li>
+      <li><img loading="lazy" src={mountaineerLogo.src} srcset={`${mountaineerLogo.src} 1920w`} sizes="auto" width="1920" height="1044" alt="Mountaineer Coffee"></li>
+      <li><img loading="lazy" src={m48Logo.src} srcset={`${m48Logo.src} 300w`} sizes="auto" width="300" height="300" alt="Marker 48 Brewing"></li>
       <li><img loading="lazy" src="https://www.hivissupply.com/media/logo/stores/1/HiVis-Supply-Website-Logo.png" srcset="https://www.hivissupply.com/media/logo/stores/1/HiVis-Supply-Website-Logo.png 188w" sizes="auto" width="188" height="66" alt="HiVis Supply"></li>
       <li><img loading="lazy" src={hartsLogo.src} srcset={`${hartsLogo.src} 197w`} sizes="auto" width="197" height="138" alt="Hart’s Meat Market"></li>
     </ul></div></section>
@@ -54,7 +56,7 @@ const schema = [buildServiceSchema({ name: "Local Business Website Package", des
       height="1026"
       alt="Mountaineer Coffee branding and website case study"><span><small>Local website</small><strong>Mountaineer Coffee</strong><span>View case study →</span></span></a></aside></div></section>
     <section class="lp-testimonials"><div class="wrapper"><header class="lp-heading"><p class="lp-kicker">What local clients say</p><h2>Good work gets talked about.</h2></header><div class="lp-testimonial-grid">
-      <blockquote><p>“We love working with Kelp! They always deliver on our vision for our brand, and keep us relevant in the industry. Luke was attentive and persistent during the design process, making time to meet with us in person to make sure we were happy with every detail.”</p><footer><img loading="lazy" src="https://admin.kelp.agency/wp-content/uploads/2018/03/mountaineer-coffee.png" srcset="https://i0.wp.com/admin.kelp.agency/wp-content/uploads/2018/03/mountaineer-coffee.png?resize=337%2C93&quality=80&ssl=1 337w, https://i0.wp.com/admin.kelp.agency/wp-content/uploads/2018/03/mountaineer-coffee.png?fit=674%2C185&quality=80&ssl=1 674w" sizes="auto" width="674" height="185" alt="Mountaineer Coffee"><cite><strong>Daniel and Darby Pritz</strong><span>Owners, Mountaineer Coffee</span></cite></footer></blockquote>
+      <blockquote><p>“We love working with Kelp! They always deliver on our vision for our brand, and keep us relevant in the industry. Luke was attentive and persistent during the design process, making time to meet with us in person to make sure we were happy with every detail.”</p><footer><img loading="lazy" src={mountaineerLogo.src} srcset={`${mountaineerLogo.src} 1920w`} sizes="auto" width="1920" height="1044" alt="Mountaineer Coffee"><cite><strong>Daniel and Darby Pritz</strong><span>Owners, Mountaineer Coffee</span></cite></footer></blockquote>
       <blockquote><p>“The staff at Kelp Creative has been amazing to work with. From logo design to website development, they have gone above and beyond to help create our vision for the event venue we have started.”</p><footer><img loading="lazy" src={whiteheadLogo.src} srcset={`${whiteheadLogo.src} 600w`} sizes="auto" width="600" height="607" alt="Whitehead Farms"><cite><strong>Donnie Whitehead</strong><span>Owner and Operator, Whitehead Farms</span></cite></footer></blockquote>
       <blockquote><p>“Working with Kelp has been an absolute pleasure. Their support, creativity, and professionalism made a meaningful impact on our community, and I sincerely look forward to the opportunity to work together again in the future.”</p><footer><img loading="lazy" src={anewgenLogo.src} srcset={`${anewgenLogo.src} 167w`} sizes="auto" width="167" height="49" alt="A New Generation"><cite><strong>Cheryl Bennett</strong><span>Founder, A New Generation</span></cite></footer></blockquote>
     </div></div></section>
