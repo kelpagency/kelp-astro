@@ -20,6 +20,7 @@ const faqs = [
   ["What happens after launch?", "We verify the live website, forms, and tracking. Hosting, maintenance, content, and growth retainers are available when you want ongoing help."],
 ].map(([question, answer]) => ({ question, answer }));
 const included = ["Focused discovery and website brief", "Sitemap or single-page section plan", "Content guidance and structured drafting", "Responsive visual design", "Reusable components and page patterns", "CMS configuration when included", "Forms and conversion paths", "Foundational on-page SEO", "Analytics and conversion tracking", "Accessibility-conscious development", "Quality assurance and launch support", "Post-launch verification"];
+const netlifyFormAttributes: Record<string, string> = { netlify: "" };
 const schema = [buildServiceSchema({ name: "Local Business Website Package", description, url: "https://www.kelp.agency/local-website-package/", areaServed: "Florida" }), buildFaqSchema(faqs)];
 ---
 <Layout title="Local Business Website Package | Kelp Creative Agency" description={description} schema={schema} canonicalUrl="/local-website-package/" bodyClass="local-package-page">
@@ -80,7 +81,7 @@ const schema = [buildServiceSchema({ name: "Local Business Website Package", des
       <p class="lp-kicker">Book a call</p>
       <h2 id="booking-dialog-title">Tell us a little about you.</h2>
       <p>Share your details and any additions you have in mind. Then you’ll be able to choose a time for your call.</p>
-      <form name="local-business-booking" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field">
+      <form name="local-business-booking" method="POST" action="/" data-netlify="true" {...netlifyFormAttributes} netlify-honeypot="bot-field">
         <input type="hidden" name="form-name" value="local-business-booking">
         <input type="hidden" name="package" value="Kelp Starter — starting at $2,000">
         <input type="hidden" name="included" value="Logo / brand refresh—2 concepts, 3 lockups; Brand sheet—single style guide; Single-page website; Photography—1 hour session, travel included; 3 months free hosting">
@@ -154,7 +155,7 @@ const schema = [buildServiceSchema({ name: "Local Business Website Package", des
     if (errorMessage) errorMessage.hidden = true;
 
     try {
-      const response = await fetch(bookingForm.action, {
+      const response = await fetch("/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: body.toString(),
