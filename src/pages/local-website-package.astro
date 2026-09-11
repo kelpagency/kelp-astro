@@ -2,6 +2,7 @@
 import Layout from "../Base.astro";
 import anewgenLogo from "../assets/anewgen-logo.svg";
 import hartsLogo from "../assets/Harts-MM-Logo.svg";
+import kelpFounders from "../assets/images/kelp-founders.jpg";
 import m48Logo from "../assets/M48-Logo.png";
 import mountaineerLogo from "../assets/Mountaineer_Coffee.png";
 import whiteheadLogo from "../assets/Whitehead-Farms-Circle-Badge-DS.png.webp";
@@ -24,24 +25,32 @@ const schema = [buildServiceSchema({ name: "Local Business Website Package", des
 <Layout title="Local Business Website Package | Kelp Creative Agency" description={description} schema={schema} canonicalUrl="/local-website-package/" bodyClass="local-package-page">
   <article class="local-package">
     <section class="lp-hero"><div class="wrapper lp-hero-grid">
-      <div><p class="lp-kicker">Websites for local businesses</p><h1>A local website <span>built by locals.</span></h1><p class="lp-lead">A focused website package for local businesses that need a clear, credible path from search to call, form, booking, or visit—without a months-long custom build.</p><div class="lp-actions"><a href="#packages" class="button">Find Your Fit</a><a href="#included">See What’s Included</a></div><small>Thoughtfully scoped. Carefully built. Launched with confidence.</small></div>
-      <div class="lp-art" aria-hidden="true"><i></i><i></i><div class="lp-browser"><b><em></em><em></em><em></em></b><span></span><span></span><span></span><strong>Book now</strong></div><div class="lp-lead-card"><span></span><span></span><b>New lead</b></div></div>
+      <div><p class="lp-kicker">Websites for local businesses</p><h1>A local website <span>built by locals.</span></h1><p class="lp-lead">A focused website package for local businesses that need a clear, credible path from search to call, form, booking, or visit—without a months-long custom build.</p><div class="lp-actions"><a href="#packages" class="button">View Pricing</a><a href="#included">What’s Included</a></div><small>Thoughtfully scoped. Carefully built. Launched with confidence.</small></div>
+      <div class="lp-art"><img
+        loading="eager"
+        src={kelpFounders.src}
+        srcset={`${kelpFounders.src} 980w`}
+        sizes="(max-width: 960px) min(540px, calc(100vw - 2rem)), 40vw"
+        width="980"
+        height="1066"
+        alt="The Kelp Creative Agency team">
+      </div>
     </div></section>
 
     <section class="lp-client-logos" aria-label="Selected clients"><div class="wrapper"><p class="lp-kicker">Trusted by businesses near and far</p><ul>
       <li><img loading="lazy" src={whiteheadLogo.src} srcset={`${whiteheadLogo.src} 600w`} sizes="auto" width="600" height="607" alt="Whitehead Farms"></li>
       <li><img loading="lazy" src={mountaineerLogo.src} srcset={`${mountaineerLogo.src} 1920w`} sizes="auto" width="1920" height="1044" alt="Mountaineer Coffee"></li>
       <li><img loading="lazy" src={m48Logo.src} srcset={`${m48Logo.src} 300w`} sizes="auto" width="300" height="300" alt="Marker 48 Brewing"></li>
-      <li><img loading="lazy" src="https://www.hivissupply.com/media/logo/stores/1/HiVis-Supply-Website-Logo.png" srcset="https://www.hivissupply.com/media/logo/stores/1/HiVis-Supply-Website-Logo.png 188w" sizes="auto" width="188" height="66" alt="HiVis Supply"></li>
+      <li><img loading="lazy" src={anewgenLogo.src} srcset={`${anewgenLogo.src} 167w`} sizes="auto" width="167" height="49" alt="A New Generation"></li>
       <li><img loading="lazy" src={hartsLogo.src} srcset={`${hartsLogo.src} 197w`} sizes="auto" width="197" height="138" alt="Hart’s Meat Market"></li>
     </ul></div></section>
 
     <section class="lp-dark lp-wave"><div class="wrapper wrapper--narrow lp-split"><div><p class="lp-kicker lp-red">The problem</p><h2>Your website shouldn’t make people work to hire you.</h2><p>Many local-business websites make it hard to understand the service, establish trust, or take the next step. Attention slips away before anyone picks up the phone.</p></div><div class="lp-problems"><p>The offer is unclear.</p><p>The proof is buried.</p><p>The next step is hard to find.</p><strong>The Local Website Package fixes the path from attention to action.</strong></div></div></section>
 
     <section class="lp-pricing lp-wave" id="packages"><div class="wrapper wrapper--narrow"><header class="lp-heading"><p class="lp-kicker">The packages</p><h2>Simple pricing. <span>No surprises.</span></h2></header><div class="lp-cards">
-      <article class="lp-card"><header><p class="lp-kicker">Kelp Starter</p><h3>$2,000 <small>starting at</small></h3><p>Everything a local business needs to show up, look credible, and get the phone ringing—in one focused bundle.</p></header><ul><li>Logo / brand refresh—2 concepts, 3 lockups</li><li>Brand sheet—single style guide</li><li>Single-page website</li><li>Photography—1 hour session, travel included</li><li>3 months free hosting</li></ul><footer><p>Need more? Add services to fit.</p><a href="/contact/" class="button">Build Your Quote</a></footer></article>
-      <article class="lp-card lp-card--dark"><header><p class="lp-kicker">Kelp Custom</p><h3>Custom</h3><p>A tailored scope built around your business: multiple pages, CMS, ecommerce, branding, photography, and more.</p></header><ul><li>Everything in Kelp Starter, scoped to fit</li><li>Multi-page or CMS-based website</li><li>Expanded brand and content work</li><li>Custom integrations, booking, or ecommerce</li><li>Ongoing support and growth retainer options</li></ul><footer><p>Scope and pricing confirmed after a short fit call.</p><a href="/contact/" class="button button--green">Book a Call</a></footer></article>
-    </div></div></section>
+      <article class="lp-card"><header><p class="lp-kicker">Kelp Starter</p><h3>$2,000</h3><p>Everything a local business needs to show up, look credible, and get the phone ringing—in one focused bundle.</p></header><ul><li>Logo / brand refresh—2 concepts, 3 lockups</li><li>Brand sheet—single style guide</li><li>Single-page website</li><li>Photography—1 hour session, travel included</li><li>3 months free hosting</li></ul></article>
+      <article class="lp-card lp-card--secondary"><header><p class="lp-kicker">Need more?</p><h3>Kelp Custom</h3><p>A tailored scope for businesses that need more than the Starter package.</p></header><ul><li>Everything in Kelp Starter, scoped to fit</li><li>Multi-page or CMS-based website</li><li>Expanded brand and content work</li><li>Custom integrations, booking, or ecommerce</li><li>Ongoing support and growth retainer options</li></ul></article>
+    </div><div class="lp-pricing-action"><p>Not sure which fit is right? We’ll help you keep the scope simple.</p><button class="button lp-book-call" type="button">Book a Call</button></div></div></section>
 
     <section class="lp-process" id="how-it-works"><div class="wrapper wrapper--narrow"><header class="lp-heading"><p class="lp-kicker">What Kelp handles</p><h2>Everything needed to get from idea to launch.</h2></header><ol><li><span>01</span><h3>Clarify</h3><p>Define the business goal, audience, offer, and strongest conversion path.</p></li><li><span>02</span><h3>Structure</h3><p>Plan the page, sections, content, proof, and conversion points.</p></li><li><span>03</span><h3>Create</h3><p>Develop the content and visual direction using Kelp’s proven systems.</p></li><li><span>04</span><h3>Build</h3><p>Create the responsive site, forms, analytics, and SEO foundations.</p></li><li><span>05</span><h3>Launch</h3><p>Test, approve, publish, and confirm the important actions work.</p></li></ol></div></section>
 
@@ -61,6 +70,102 @@ const schema = [buildServiceSchema({ name: "Local Business Website Package", des
       <blockquote><p>“Working with Kelp has been an absolute pleasure. Their support, creativity, and professionalism made a meaningful impact on our community, and I sincerely look forward to the opportunity to work together again in the future.”</p><footer><img loading="lazy" src={anewgenLogo.src} srcset={`${anewgenLogo.src} 167w`} sizes="auto" width="167" height="49" alt="A New Generation"><cite><strong>Cheryl Bennett</strong><span>Founder, A New Generation</span></cite></footer></blockquote>
     </div></div></section>
     <section class="lp-faq" id="faq"><div class="wrapper wrapper--narrow lp-faq-grid"><div><p class="lp-kicker">FAQ</p><h2>Honest answers, <span>plainly put.</span></h2></div><div>{faqs.map((item, i) => <details name="local-package-faq" open={i === 0}><summary>{item.question}</summary><p>{item.answer}</p></details>)}</div></div></section>
-    <section class="lp-cta lp-wave"><div class="wrapper wrapper--narrow"><p class="lp-kicker">Find your fit</p><h2>Let’s find the simplest website that will do the job.</h2><p>Tell us about your business, what customers need to do, and what you already have. We’ll recommend the right route.</p><div class="lp-actions"><a href="/contact/" class="button button--green">Schedule a Fit Call</a><a href="/contact/">Tell Us About Your Project</a></div></div></section>
+    <section class="lp-cta lp-wave"><div class="wrapper wrapper--narrow"><p class="lp-kicker">Find your fit</p><h2>Let’s find the simplest website that will do the job.</h2><p>Tell us about your business, what customers need to do, and what you already have. We’ll recommend the right route.</p><div class="lp-actions"><button class="button button--green lp-book-call" type="button">Book a Call</button></div></div></section>
   </article>
+
+  <dialog class="lp-booking-dialog" id="local-business-booking" aria-labelledby="booking-dialog-title">
+    <button class="lp-dialog-close" type="button" aria-label="Close booking form">×</button>
+    <div class="lp-booking-step" data-booking-form-step>
+      <p class="lp-kicker">Book a call</p>
+      <h2 id="booking-dialog-title">Tell us a little about you.</h2>
+      <p>Share your details and any additions you have in mind. Then you’ll be able to choose a time for your call.</p>
+      <form name="local-business-booking" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="local-business-booking">
+        <input type="hidden" name="package" value="Kelp Starter — starting at $2,000">
+        <input type="hidden" name="included" value="Logo / brand refresh—2 concepts, 3 lockups; Brand sheet—single style guide; Single-page website; Photography—1 hour session, travel included; 3 months free hosting">
+        <p class="lp-honeypot"><label>Don’t fill this out: <input name="bot-field"></label></p>
+        <div class="lp-form-grid">
+          <label>Name<input type="text" name="name" autocomplete="name" required></label>
+          <label>Email<input type="email" name="email" autocomplete="email" required></label>
+        </div>
+        <fieldset>
+          <legend>What’s included</legend>
+          <ul>
+            <li>Logo / brand refresh—2 concepts, 3 lockups</li>
+            <li>Brand sheet—single style guide</li>
+            <li>Single-page website</li>
+            <li>Photography—1 hour session, travel included</li>
+            <li>3 months free hosting</li>
+          </ul>
+        </fieldset>
+        <label>What would you like to add?<textarea name="additions" rows="4" placeholder="Additional pages, ecommerce, booking, content, or anything else..."></textarea></label>
+        <p class="lp-form-error" role="alert" hidden>We couldn’t submit the form. Please try again.</p>
+        <button class="button" type="submit">Continue to Booking</button>
+      </form>
+    </div>
+    <div class="lp-booking-step lp-meetings-step" data-meetings-step hidden>
+      <p class="lp-kicker">Choose a time</p>
+      <h2>Your details are in. Let’s get your call scheduled.</h2>
+      <div class="meetings-iframe-container" data-src="https://store.kelp.agency/meetings/andrew1417?embed=true"></div>
+    </div>
+  </dialog>
 </Layout>
+
+<script>
+  const bookingDialog = document.querySelector<HTMLDialogElement>("#local-business-booking");
+  const bookingForm = bookingDialog?.querySelector<HTMLFormElement>("form");
+  const formStep = bookingDialog?.querySelector<HTMLElement>("[data-booking-form-step]");
+  const meetingsStep = bookingDialog?.querySelector<HTMLElement>("[data-meetings-step]");
+  const errorMessage = bookingDialog?.querySelector<HTMLElement>(".lp-form-error");
+  let bookingScrollPosition = 0;
+
+  const loadMeetingsEmbed = () => {
+    if (document.querySelector("script[data-local-meetings-embed]")) return;
+    const script = document.createElement("script");
+    script.src = "https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js";
+    script.async = true;
+    script.dataset.localMeetingsEmbed = "true";
+    document.body.appendChild(script);
+  };
+
+  document.querySelectorAll<HTMLButtonElement>(".lp-book-call").forEach((button) => {
+    button.addEventListener("click", () => {
+      if (!bookingDialog) return;
+      bookingScrollPosition = window.scrollY;
+      bookingDialog.showModal();
+      bookingDialog.querySelector<HTMLButtonElement>(".lp-dialog-close")?.focus({ preventScroll: true });
+      window.scrollTo({ top: bookingScrollPosition, behavior: "instant" });
+    });
+  });
+
+  bookingDialog?.querySelector<HTMLButtonElement>(".lp-dialog-close")?.addEventListener("click", () => bookingDialog.close());
+  bookingDialog?.addEventListener("close", () => window.scrollTo({ top: bookingScrollPosition, behavior: "instant" }));
+  bookingDialog?.addEventListener("click", (event) => {
+    if (event.target === bookingDialog) bookingDialog.close();
+  });
+
+  bookingForm?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const submitButton = bookingForm.querySelector<HTMLButtonElement>("button[type='submit']");
+    const body = new URLSearchParams();
+    new FormData(bookingForm).forEach((value, key) => body.append(key, String(value)));
+    if (submitButton) submitButton.disabled = true;
+    if (errorMessage) errorMessage.hidden = true;
+
+    try {
+      const response = await fetch(bookingForm.action, {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: body.toString(),
+      });
+      if (!response.ok) throw new Error("Form submission failed");
+      if (formStep) formStep.hidden = true;
+      if (meetingsStep) meetingsStep.hidden = false;
+      loadMeetingsEmbed();
+    } catch {
+      if (errorMessage) errorMessage.hidden = false;
+    } finally {
+      if (submitButton) submitButton.disabled = false;
+    }
+  });
+</script>

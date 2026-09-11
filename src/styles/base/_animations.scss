@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 .lg-reveal,
 [data-lg-reveal-stagger] > * {
   opacity: 0.0001;
