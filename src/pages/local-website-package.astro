@@ -1,6 +1,8 @@
 ---
 import Layout from "../Base.astro";
-import Testimonials from "../components/Testimonials.astro";
+import anewgenLogo from "../assets/anewgen-logo.svg";
+import hartsLogo from "../assets/Harts-MM-Logo.svg";
+import whiteheadLogo from "../assets/Whitehead-Farms-Circle-Badge-DS.png.webp";
 import { buildFaqSchema, buildServiceSchema } from "../lib/schema";
 import "../styles/pages/local-website-package.scss";
 
@@ -24,6 +26,14 @@ const schema = [buildServiceSchema({ name: "Local Business Website Package", des
       <div class="lp-art" aria-hidden="true"><i></i><i></i><div class="lp-browser"><b><em></em><em></em><em></em></b><span></span><span></span><span></span><strong>Book now</strong></div><div class="lp-lead-card"><span></span><span></span><b>New lead</b></div></div>
     </div></section>
 
+    <section class="lp-client-logos" aria-label="Selected clients"><div class="wrapper"><p class="lp-kicker">Trusted by businesses near and far</p><ul>
+      <li><img loading="lazy" src={whiteheadLogo.src} srcset={`${whiteheadLogo.src} 600w`} sizes="auto" width="600" height="607" alt="Whitehead Farms"></li>
+      <li><img loading="lazy" src="https://admin.kelp.agency/wp-content/uploads/2018/03/mountaineer-coffee.png" srcset="https://i0.wp.com/admin.kelp.agency/wp-content/uploads/2018/03/mountaineer-coffee.png?resize=337%2C93&quality=80&ssl=1 337w, https://i0.wp.com/admin.kelp.agency/wp-content/uploads/2018/03/mountaineer-coffee.png?fit=674%2C185&quality=80&ssl=1 674w" sizes="auto" width="674" height="185" alt="Mountaineer Coffee"></li>
+      <li><img loading="lazy" src="https://www.marker48.com/wp-content/uploads/2023/06/cropped-markerlogo-512.png" srcset="https://www.marker48.com/wp-content/uploads/2023/06/cropped-markerlogo-512-192x192.png 192w, https://www.marker48.com/wp-content/uploads/2023/06/cropped-markerlogo-512-300x300.png 300w, https://www.marker48.com/wp-content/uploads/2023/06/cropped-markerlogo-512.png 512w" sizes="auto" width="512" height="512" alt="Marker 48 Brewing"></li>
+      <li><img loading="lazy" src="https://www.hivissupply.com/media/logo/stores/1/HiVis-Supply-Website-Logo.png" srcset="https://www.hivissupply.com/media/logo/stores/1/HiVis-Supply-Website-Logo.png 188w" sizes="auto" width="188" height="66" alt="HiVis Supply"></li>
+      <li><img loading="lazy" src={hartsLogo.src} srcset={`${hartsLogo.src} 197w`} sizes="auto" width="197" height="138" alt="Hart’s Meat Market"></li>
+    </ul></div></section>
+
     <section class="lp-dark lp-wave"><div class="wrapper wrapper--narrow lp-split"><div><p class="lp-kicker lp-red">The problem</p><h2>Your website shouldn’t make people work to hire you.</h2><p>Many local-business websites make it hard to understand the service, establish trust, or take the next step. Attention slips away before anyone picks up the phone.</p></div><div class="lp-problems"><p>The offer is unclear.</p><p>The proof is buried.</p><p>The next step is hard to find.</p><strong>The Local Website Package fixes the path from attention to action.</strong></div></div></section>
 
     <section class="lp-pricing lp-wave" id="packages"><div class="wrapper wrapper--narrow"><header class="lp-heading"><p class="lp-kicker">The packages</p><h2>Simple pricing. <span>No surprises.</span></h2></header><div class="lp-cards">
@@ -33,9 +43,9 @@ const schema = [buildServiceSchema({ name: "Local Business Website Package", des
 
     <section class="lp-process" id="how-it-works"><div class="wrapper wrapper--narrow"><header class="lp-heading"><p class="lp-kicker">What Kelp handles</p><h2>Everything needed to get from idea to launch.</h2></header><ol><li><span>01</span><h3>Clarify</h3><p>Define the business goal, audience, offer, and strongest conversion path.</p></li><li><span>02</span><h3>Structure</h3><p>Plan the page, sections, content, proof, and conversion points.</p></li><li><span>03</span><h3>Create</h3><p>Develop the content and visual direction using Kelp’s proven systems.</p></li><li><span>04</span><h3>Build</h3><p>Create the responsive site, forms, analytics, and SEO foundations.</p></li><li><span>05</span><h3>Launch</h3><p>Test, approve, publish, and confirm the important actions work.</p></li></ol></div></section>
 
-    <section class="lp-included" id="included"><div class="wrapper wrapper--narrow lp-split"><div><p class="lp-kicker">What’s included</p><h2>A complete path to launch.</h2><p>No mystery boxes. Here’s the work that’s actually included.</p></div><ol>{included.map((item, i) => <li><span>{String(i + 1).padStart(2, "0")}</span>{item}</li>)}</ol></div></section>
+    <section class="lp-included" id="included"><div class="wrapper lp-split"><div><p class="lp-kicker">What’s included</p><h2>A complete path to launch.</h2><p>No mystery boxes. Here’s the work that’s actually included.</p></div><ol>{included.map((item, i) => <li><span>{String(i + 1).padStart(2, "0")}</span>{item}</li>)}</ol></div></section>
 
-    <section class="lp-dark lp-why"><div class="wrapper wrapper--narrow lp-split"><div><p class="lp-kicker">Why Kelp</p><h2>Built simply. Built carefully. Built to last.</h2><p>Kelp is a small senior team of designers, developers, strategists, and content creators. The people you meet are the people doing the work. We focus the scope, explain the decisions, and build a site your business can use with confidence.</p></div><aside><a class="lp-case-study" href="/work/mountaineer-coffee/" aria-label="View the Mountaineer Coffee case study"><img
+    <section class="lp-dark lp-why"><div class="wrapper lp-split"><div><p class="lp-kicker">Why Kelp</p><h2>Built simply. Built carefully. Built to last.</h2><p>Kelp is a small senior team of designers, developers, strategists, and content creators. The people you meet are the people doing the work. We focus the scope, explain the decisions, and build a site your business can use with confidence.</p></div><aside><a class="lp-case-study" href="/work/mountaineer-coffee/" aria-label="View the Mountaineer Coffee case study"><img
       loading="lazy"
       src="https://i0.wp.com/admin.kelp.agency/wp-content/uploads/2026/01/Mountaineer-Featured-Portrait-3.png?fit=848%2C1026&quality=80&ssl=1"
       srcset="https://i0.wp.com/admin.kelp.agency/wp-content/uploads/2026/01/Mountaineer-Featured-Portrait-3.png?fit=198%2C240&quality=80&ssl=1 198w, https://i0.wp.com/admin.kelp.agency/wp-content/uploads/2026/01/Mountaineer-Featured-Portrait-3.png?fit=661%2C800&quality=80&ssl=1 661w, https://i0.wp.com/admin.kelp.agency/wp-content/uploads/2026/01/Mountaineer-Featured-Portrait-3.png?fit=768%2C929&quality=80&ssl=1 768w, https://i0.wp.com/admin.kelp.agency/wp-content/uploads/2026/01/Mountaineer-Featured-Portrait-3.png?fit=848%2C1026&quality=80&ssl=1 848w"
@@ -43,7 +53,11 @@ const schema = [buildServiceSchema({ name: "Local Business Website Package", des
       width="848"
       height="1026"
       alt="Mountaineer Coffee branding and website case study"><span><small>Local website</small><strong>Mountaineer Coffee</strong><span>View case study →</span></span></a></aside></div></section>
-    <Testimonials />
+    <section class="lp-testimonials"><div class="wrapper"><header class="lp-heading"><p class="lp-kicker">What local clients say</p><h2>Good work gets talked about.</h2></header><div class="lp-testimonial-grid">
+      <blockquote><p>“We love working with Kelp! They always deliver on our vision for our brand, and keep us relevant in the industry. Luke was attentive and persistent during the design process, making time to meet with us in person to make sure we were happy with every detail.”</p><footer><img loading="lazy" src="https://admin.kelp.agency/wp-content/uploads/2018/03/mountaineer-coffee.png" srcset="https://i0.wp.com/admin.kelp.agency/wp-content/uploads/2018/03/mountaineer-coffee.png?resize=337%2C93&quality=80&ssl=1 337w, https://i0.wp.com/admin.kelp.agency/wp-content/uploads/2018/03/mountaineer-coffee.png?fit=674%2C185&quality=80&ssl=1 674w" sizes="auto" width="674" height="185" alt="Mountaineer Coffee"><cite><strong>Daniel and Darby Pritz</strong><span>Owners, Mountaineer Coffee</span></cite></footer></blockquote>
+      <blockquote><p>“The staff at Kelp Creative has been amazing to work with. From logo design to website development, they have gone above and beyond to help create our vision for the event venue we have started.”</p><footer><img loading="lazy" src={whiteheadLogo.src} srcset={`${whiteheadLogo.src} 600w`} sizes="auto" width="600" height="607" alt="Whitehead Farms"><cite><strong>Donnie Whitehead</strong><span>Owner and Operator, Whitehead Farms</span></cite></footer></blockquote>
+      <blockquote><p>“Working with Kelp has been an absolute pleasure. Their support, creativity, and professionalism made a meaningful impact on our community, and I sincerely look forward to the opportunity to work together again in the future.”</p><footer><img loading="lazy" src={anewgenLogo.src} srcset={`${anewgenLogo.src} 167w`} sizes="auto" width="167" height="49" alt="A New Generation"><cite><strong>Cheryl Bennett</strong><span>Founder, A New Generation</span></cite></footer></blockquote>
+    </div></div></section>
     <section class="lp-faq" id="faq"><div class="wrapper wrapper--narrow lp-faq-grid"><div><p class="lp-kicker">FAQ</p><h2>Honest answers, <span>plainly put.</span></h2></div><div>{faqs.map((item, i) => <details open={i === 0}><summary>{item.question}</summary><p>{item.answer}</p></details>)}</div></div></section>
     <section class="lp-cta lp-wave"><div class="wrapper wrapper--narrow"><p class="lp-kicker">Find your fit</p><h2>Let’s find the simplest website that will do the job.</h2><p>Tell us about your business, what customers need to do, and what you already have. We’ll recommend the right route.</p><div class="lp-actions"><a href="/contact/" class="button button--green">Schedule a Fit Call</a><a href="/contact/">Tell Us About Your Project</a></div></div></section>
   </article>
