@@ -20,6 +20,15 @@ const faqs = [
   ["What happens after launch?", "We verify the live website, forms, and tracking. Hosting, maintenance, content, and growth retainers are available when you want ongoing help."],
 ].map(([question, answer]) => ({ question, answer }));
 const included = ["Focused discovery and website brief", "Sitemap or single-page section plan", "Content guidance and structured drafting", "Responsive visual design", "Reusable components and page patterns", "CMS configuration when included", "Forms and conversion paths", "Foundational on-page SEO", "Analytics and conversion tracking", "Accessibility-conscious development", "Quality assurance and launch support", "Post-launch verification"];
+const starterIncluded = [
+  { title: "Logo + Brand Style Sheet", detail: "custom logo, colors, fonts, on a single sheet guide" },
+  { title: "One-Page Website", detail: "a professional website with your business info, services, photos, contact details, and mobile-friendly design" },
+  { title: "Brand Photo Session", detail: "1-hour shoot for professional photos to use on your website and social media" },
+  { title: "Website Setup + Launch", detail: "we handle getting everything online and ready to use" },
+  { title: "3 Months Free Website Hosting", detail: "valued at $100*" },
+  { title: "Basic Contact Form", detail: "so customers can easily reach you from the website." },
+];
+const starterIncludedFormValue = starterIncluded.map(({ title, detail }) => `${title} — ${detail}`).join("; ");
 const netlifyFormAttributes: Record<string, string> = { netlify: "" };
 const schema = [buildServiceSchema({ name: "Local Business Website Package", description, url: "https://www.kelp.agency/local-website-package/", areaServed: "Florida" }), buildFaqSchema(faqs)];
 ---
@@ -49,7 +58,7 @@ const schema = [buildServiceSchema({ name: "Local Business Website Package", des
     <section class="lp-dark lp-wave"><div class="wrapper wrapper--narrow lp-split"><div><p class="lp-kicker lp-red">The problem</p><h2>Your website shouldn’t make people work to hire you.</h2><p>Many local-business websites make it hard to understand the service, establish trust, or take the next step. Attention slips away before anyone picks up the phone.</p></div><div class="lp-problems"><p>The offer is unclear.</p><p>The proof is buried.</p><p>The next step is hard to find.</p><strong>The Local Website Package fixes the path from attention to action.</strong></div></div></section>
 
     <section class="lp-pricing lp-wave" id="packages"><div class="wrapper wrapper--narrow"><header class="lp-heading"><p class="lp-kicker">The packages</p><h2>Simple pricing. <span>No surprises.</span></h2></header><div class="lp-cards">
-      <article class="lp-card"><header><p class="lp-kicker">Kelp Starter</p><h3>$2,000</h3><p>Everything a local business needs to show up, look credible, and get the phone ringing—in one focused bundle.</p></header><ul><li>Logo / brand refresh—2 concepts, 3 lockups</li><li>Brand sheet—single style guide</li><li>Single-page website</li><li>Photography—1 hour session, travel included</li><li>3 months free hosting</li></ul></article>
+      <article class="lp-card"><header><p class="lp-kicker">Kelp Starter</p><h3>$2,000</h3><p>Everything a local business needs to show up, look credible, and get the phone ringing—in one focused bundle.</p></header><ul>{starterIncluded.map(({ title, detail }) => <li><strong>{title}</strong><span>{detail}</span></li>)}</ul></article>
       <article class="lp-card lp-card--secondary"><header><p class="lp-kicker">Need more?</p><h3>Kelp Custom</h3><p>A tailored scope for businesses that need more than the Starter package.</p></header><ul><li>Everything in Kelp Starter, scoped to fit</li><li>Multi-page or CMS-based website</li><li>Expanded brand and content work</li><li>Custom integrations, booking, or ecommerce</li><li>Ongoing support and growth retainer options</li></ul></article>
     </div><div class="lp-pricing-action"><p>Not sure which fit is right? We’ll help you keep the scope simple.</p><button class="button lp-book-call" type="button">Book a Call</button></div></div></section>
 
@@ -84,23 +93,19 @@ const schema = [buildServiceSchema({ name: "Local Business Website Package", des
       <form name="local-business-booking" method="POST" action="/" data-netlify="true" {...netlifyFormAttributes} netlify-honeypot="bot-field">
         <input type="hidden" name="form-name" value="local-business-booking">
         <input type="hidden" name="package" value="Kelp Starter — starting at $2,000">
-        <input type="hidden" name="included" value="Logo / brand refresh—2 concepts, 3 lockups; Brand sheet—single style guide; Single-page website; Photography—1 hour session, travel included; 3 months free hosting">
+        <input type="hidden" name="included" value={starterIncludedFormValue}>
         <p class="lp-honeypot"><label>Don’t fill this out: <input name="bot-field"></label></p>
         <div class="lp-form-grid">
-          <label>Name<input type="text" name="name" autocomplete="name" required></label>
-          <label>Email<input type="email" name="email" autocomplete="email" required></label>
+          <label>Name<input type="text" name="name" autocomplete="name" placeholder="Your name" required></label>
+          <label>Email<input type="email" name="email" autocomplete="email" placeholder="you@example.com" required></label>
         </div>
-        <fieldset>
-          <legend>What’s included</legend>
-          <ul>
-            <li>Logo / brand refresh—2 concepts, 3 lockups</li>
-            <li>Brand sheet—single style guide</li>
-            <li>Single-page website</li>
-            <li>Photography—1 hour session, travel included</li>
-            <li>3 months free hosting</li>
-          </ul>
-        </fieldset>
-        <label>What would you like to add?<textarea name="additions" rows="4" placeholder="Additional pages, ecommerce, booking, content, or anything else..."></textarea></label>
+        <div class="lp-form-details">
+          <div class="lp-included-field">
+            <p>What’s included:</p>
+            <ul>{starterIncluded.map(({ title }) => <li>{title}</li>)}</ul>
+          </div>
+          <label>What would you like to add?<textarea name="additions" rows="8" placeholder="Additional pages, ecommerce, booking, content, or anything else..."></textarea></label>
+        </div>
         <p class="lp-form-error" role="alert" hidden>We couldn’t submit the form. Please try again.</p>
         <button class="button" type="submit">Continue to Booking</button>
       </form>
