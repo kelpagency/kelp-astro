@@ -8,6 +8,11 @@ export default defineConfig({
   compressHTML: true,
   integrations: [sitemap()],
   prefetch: true,
+  vite: {
+    optimizeDeps: {
+      include: ["rough-notation"],
+    },
+  },
   markdown: {
     syntaxHighlight: false,
   },

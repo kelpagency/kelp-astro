@@ -277,6 +277,7 @@ const schemaJson = JSON.stringify({
     <script>
       import luge from "@waaark/luge";
       import lottie from "lottie-web/build/player/lottie_light";
+      import { annotate } from "rough-notation";
 
       window.lottie = lottie;
       window.luge = luge;
@@ -307,33 +308,58 @@ const schemaJson = JSON.stringify({
         document.body.style.removeProperty("overflow");
       };
 
-      const initEmphasis = async () => {
-        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches)
-          return;
+      const initEmphasis = () => {
+        const prefersReducedMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
         const emphasisElements =
-          document.querySelectorAll<HTMLElement>("main em");
+          document.querySelectorAll<HTMLElement>(
+            "main em:not([data-emphasis-initialized])",
+          );
         if (emphasisElements.length === 0) {
           return;
         }
 
-        const { annotate } = await import("rough-notation");
         function handleIntersection(entries: IntersectionObserverEntry[]) {
           entries.map((entry) => {
             if (entry.isIntersecting) {
-              const annotation = annotate(entry.target as HTMLElement, {
-                type: "underline",
+              const target = entry.target as HTMLElement;
+              const isSecondary =
+                target.dataset.emphasisVariant === "secondary";
+              const duration = prefersReducedMotion
+                ? 0
+                : Number(target.dataset.emphasisDuration ?? 300);
+              const delay = prefersReducedMotion
+                ? 0
+                : Number(target.dataset.emphasisDelay ?? 0);
+              const annotation = annotate(target, {
+                type:
+                  target.dataset.emphasisType === "circle"
+                    ? "circle"
+                    : "underline",
+                color: target.dataset.emphasisColor,
                 multiline: true,
-                padding: 0,
-                animationDuration: 300,
+                padding: Number(target.dataset.emphasisPadding ?? 0),
+                animationDuration: duration,
+                iterations: Number(
+                  target.dataset.emphasisIterations ?? (isSecondary ? 1 : 2),
+                ),
+                strokeWidth: 2,
               });
-              annotation.show();
+              if (delay > 0) setTimeout(() => annotation.show(), delay);
+              else annotation.show();
               observer.unobserve(entry.target);
             }
           });
         }
         const observer = new IntersectionObserver(handleIntersection);
-        emphasisElements.forEach((item) => observer.observe(item));
+        emphasisElements.forEach((item) => {
+          item.dataset.emphasisInitialized = "true";
+          observer.observe(item);
+        });
       };
+
+      initEmphasis();
 
       const initAutoplayMedia = () => {
         const videos = document.querySelectorAll<HTMLVideoElement>(
@@ -363,11 +389,11 @@ const schemaJson = JSON.stringify({
         );
       };
 
-      document.addEventListener("astro:page-load", async () => {
+      document.addEventListener("astro:page-load", () => {
         restoreScrollState();
         applyReducedMotionPreference();
         initAutoplayMedia();
-        await initEmphasis();
+        initEmphasis();
       });
 
       document.addEventListener("astro:after-swap", () => {
