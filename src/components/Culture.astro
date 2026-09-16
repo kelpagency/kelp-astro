@@ -1,8 +1,10 @@
 ---
 import { Picture } from 'astro:assets';
-import cultureOfficeIntro from '../assets/images/services/content-creation-office-photo.jpg';
+import cultureIntroBack from '../assets/kelp-09-16-2026-12.jpg';
+import cultureIntroMiddle from '../assets/kelp-09-16-2026-13.jpg';
+import cultureIntroFront from '../assets/kelp-09-16-2026-14.jpg';
 import cultureOfficeBalance from '../assets/images/culture/family.jpeg';
-import cultureOfficeHonest from '../assets/images/services/digital-marketing-office-photo.jpg';
+import cultureOfficeHonest from '../assets/kelp-09-16-2026-8.jpg';
 import cultureCollaboration from '../assets/images/culture/culture-collaboration.jpg';
 import cultureTools from '../assets/images/culture/innovator-award.jpeg';
 import cultureOpenWeb from '../assets/images/culture/culture-tools.jpg';
@@ -29,16 +31,42 @@ import cultureClient from '../assets/images/culture/stefen-luke-kelp-posters.jpg
     </p>
   </div>
 
-  <div class="culture-media" data-lg-reveal="layer-to-right">
-    <Picture
-      src={cultureOfficeIntro}
-      alt="Kelp team collaborating in the office"
-      loading="lazy"
-      decoding="async"
-      widths={[480, 720, 960]}
-      sizes="(max-width: 900px) 100vw, 50vw"
-      inferSize
-    />
+  <div class="culture-media culture-media--stack">
+    <div class="culture-stack">
+      <div class="culture-stack-item" data-stack-position="back">
+        <Picture
+          src={cultureIntroBack}
+          alt=""
+          loading="lazy"
+          decoding="async"
+          widths={[480, 720, 960]}
+          sizes="(max-width: 900px) 100vw, 50vw"
+          inferSize
+        />
+      </div>
+      <div class="culture-stack-item" data-stack-position="middle">
+        <Picture
+          src={cultureIntroMiddle}
+          alt=""
+          loading="lazy"
+          decoding="async"
+          widths={[480, 720, 960]}
+          sizes="(max-width: 900px) 100vw, 50vw"
+          inferSize
+        />
+      </div>
+      <div class="culture-stack-item" data-stack-position="front">
+        <Picture
+          src={cultureIntroFront}
+          alt="The Kelp Creative Agency team together outdoors"
+          loading="lazy"
+          decoding="async"
+          widths={[480, 720, 960]}
+          sizes="(max-width: 900px) 100vw, 50vw"
+          inferSize
+        />
+      </div>
+    </div>
   </div>
 
   <div class="culture-text">
@@ -58,7 +86,7 @@ import cultureClient from '../assets/images/culture/stefen-luke-kelp-posters.jpg
     </p>
   </div>
 
-  <div class="culture-media" data-lg-reveal="layer-to-left">
+  <div class="culture-media">
     <Picture
       src={cultureOfficeBalance}
       alt="Kelp office space for focused work"
@@ -84,10 +112,10 @@ import cultureClient from '../assets/images/culture/stefen-luke-kelp-posters.jpg
     <p>We’d rather be transparent than impressive. Trust lasts longer that way.</p>
   </div>
 
-  <div class="culture-media" data-lg-reveal="layer-to-right">
+  <div class="culture-media">
     <Picture
       src={cultureOfficeHonest}
-      alt="Team reviewing work together"
+      alt="Kelp team member outdoors"
       loading="lazy"
       decoding="async"
       widths={[480, 720, 960]}
@@ -107,7 +135,7 @@ import cultureClient from '../assets/images/culture/stefen-luke-kelp-posters.jpg
     </p>
   </div>
 
-  <div class="culture-media" data-lg-reveal="layer-to-left">
+  <div class="culture-media">
     <Picture
       src={cultureCollaboration}
       alt="Team collaborating around a desk"
@@ -133,7 +161,7 @@ import cultureClient from '../assets/images/culture/stefen-luke-kelp-posters.jpg
     <p>Good tools should make the work easier, not replace understanding.</p>
   </div>
 
-  <div class="culture-media" data-lg-reveal="layer-to-right">
+  <div class="culture-media">
     <Picture
       src={cultureOpenWeb}
       alt="Work tools laid out on a desk"
@@ -160,7 +188,7 @@ import cultureClient from '../assets/images/culture/stefen-luke-kelp-posters.jpg
     <p>When you build something solid, discoverability tends to follow.</p>
   </div>
 
-  <div class="culture-media" data-lg-reveal="layer-to-left">
+  <div class="culture-media">
     <Picture
       src={cultureTools}
       alt="Developer workspace with laptop and code"
@@ -188,7 +216,7 @@ import cultureClient from '../assets/images/culture/stefen-luke-kelp-posters.jpg
     </p>
   </div>
 
-  <div class="culture-media" data-lg-reveal="layer-to-right">
+  <div class="culture-media">
     <Picture
       src={cultureFun}
       alt="Colleagues sharing a light moment at work"
@@ -214,7 +242,7 @@ import cultureClient from '../assets/images/culture/stefen-luke-kelp-posters.jpg
     </p>
   </div>
 
-  <div class="culture-media" data-lg-reveal="layer-to-left">
+  <div class="culture-media">
     <Picture
       src={cultureWorkspace}
       alt="Bright office workspace with desk and chair"
@@ -239,7 +267,7 @@ import cultureClient from '../assets/images/culture/stefen-luke-kelp-posters.jpg
     <p>Just a thoughtful team doing careful work&thinsp;—&thinsp;one good hour at a time.</p>
   </div>
 
-  <div class="culture-media" data-lg-reveal="layer-to-right">
+  <div class="culture-media">
     <Picture
       src={cultureClient}
       alt="Meeting table set for client collaboration"
@@ -264,7 +292,6 @@ import cultureClient from '../assets/images/culture/stefen-luke-kelp-posters.jpg
     @media (max-width: 767px) {
       grid-template-columns: 1fr;
       gap: 3rem;
-      overflow: hidden;
     }
     &::after {
       content: '';
@@ -294,13 +321,107 @@ import cultureClient from '../assets/images/culture/stefen-luke-kelp-posters.jpg
 
     &-media {
       text-align: center;
+
+      > :global(picture) {
+        display: block;
+        overflow: hidden;
+        border: 2px solid var(--black);
+        background: var(--white);
+        box-shadow: 8px 8px 0 rgba(13, 23, 38, 0.25);
+        transform: rotate(-1deg);
+        transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 400ms ease;
+
+        &:hover {
+          box-shadow: 14px 14px 0 rgba(13, 23, 38, 0.35);
+          transform: rotate(0) translateY(-0.35rem);
+        }
+
+        :global(img) {
+          display: block;
+          width: 100%;
+          height: auto;
+        }
+      }
+
       @media (min-width: 768px) {
         grid-column: 2;
       }
       /* Flip media on alternating rows */
       &:nth-child(4n) {
         grid-column: 1;
+
+        > :global(picture) {
+          transform: rotate(1deg);
+
+          &:hover {
+            transform: rotate(0) translateY(-0.35rem);
+          }
+        }
       }
+    }
+  }
+
+  .culture-stack {
+    display: grid;
+    isolation: isolate;
+    padding-bottom: clamp(9rem, 18vw, 13rem);
+
+    .culture-media--stack & {
+      overflow: visible;
+    }
+
+    &-item {
+      grid-area: 1 / 1;
+      width: 84%;
+      overflow: hidden;
+      border: 2px solid var(--black);
+      background: var(--white);
+      box-shadow: 8px 8px 0 rgba(13, 23, 38, 0.25);
+      transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 400ms ease;
+
+      :global(picture),
+      :global(img) {
+        display: block;
+        width: 100%;
+      }
+
+      :global(img) {
+        height: auto;
+      }
+
+      &[data-stack-position='back'] {
+        z-index: 1;
+        justify-self: start;
+        transform: translateY(0) rotate(-3deg);
+      }
+
+      &[data-stack-position='middle'] {
+        z-index: 2;
+        justify-self: center;
+        transform: translateY(clamp(4rem, 8vw, 6rem)) rotate(2.5deg);
+      }
+
+      &[data-stack-position='front'] {
+        z-index: 3;
+        justify-self: end;
+        transform: translateY(clamp(8rem, 16vw, 12rem)) rotate(-1deg);
+        box-shadow: 12px 12px 0 rgba(13, 23, 38, 0.3);
+      }
+
+      &:hover {
+        z-index: 10;
+        box-shadow: 14px 14px 0 rgba(13, 23, 38, 0.35);
+      }
+    }
+  }
+
+  .culture-media--stack {
+    overflow: visible;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .culture-stack-item {
+      transition: none;
     }
   }
 </style>
