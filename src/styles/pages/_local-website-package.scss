@@ -19,6 +19,7 @@
 .lp-kicker { margin: 0 0 1rem; color: var(--purple); font-family: var(--sans-serif); font-size: var(--step--2); font-weight: 600; letter-spacing: .18em; text-transform: uppercase; }
 .lp-red { color: var(--red); }
 .lp-hero,.lp-dark,.lp-pricing,.lp-process,.lp-included,.lp-why,.lp-testimonials,.lp-faq,.lp-cta { padding: clamp(5rem,10vw,9rem) 0; }
+.lp-hero { padding-top: clamp(2.5rem,5vw,4.5rem); }
 .lp-hero-grid,.lp-split,.lp-faq-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(3rem,6vw,6rem); align-items: center; }
 .lp-split { align-items: start; }
 .lp-hero h1 { margin: 0 0 1.5rem; font-size: clamp(2.5rem,5vw,5.3644rem); line-height: .98; }

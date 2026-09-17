@@ -43,24 +43,7 @@
       </div>
     </div>
     <div class="hero-squid-wrapper">
-      <!-- <div data-lg-lottie='/animations/squid.json' data-lg-lottie-autoplay='true' data-lg-lottie-loop='true'></div> -->
-      <video
-        data-site-autoplay
-        loop
-        muted
-        playsinline
-        preload="metadata"
-        width="1080"
-        height="1080"
-        id="squid"
-        poster="/videos/squid-squidly.webp"
-      >
-        <source
-          src="/videos/squid-squidly.mov"
-          type='video/mp4; codecs="hvc1"'
-        />
-        <source src="/videos/squid-squidly.webm" type="video/webm" />
-      </video>
+      <div data-lg-lottie="/animations/squid.json" data-lg-lottie-autoplay="true" data-lg-lottie-loop="true"></div>
     </div>
   </div>
   <svg
@@ -118,7 +101,7 @@
     overflow: hidden;
     min-height: 720px;
     @media (min-width: 1400px) {
-      min-height: 750px;
+      min-height: 1000px;
       padding-left: 70px;
     }
     .wrapper {
@@ -127,11 +110,11 @@
     &-squid-wrapper {
       position: absolute;
       right: -8rem;
-      top: 0;
+      top: -8rem;
       z-index: -1;
-      width: 918px;
+      width: 1018px;
       @media (max-width: 1400px) {
-        width: 650px;
+        width: 750px;
         top: unset;
         bottom: -5rem;
       }
@@ -139,15 +122,16 @@
         width: 500px;
         bottom: -3rem;
       }
-      @media (max-width: 900px) {
+      @media (max-width: 600px) {
         width: 350px;
         right: -5rem;
       }
-      video {
-        height: 100%;
-      }
     }
     &-content {
+      @media (min-width: 1400px) {
+        transform: translateY(6rem);
+      }
+
       h1 {
         margin-bottom: 2rem;
         max-width: 25ch;
