@@ -10,9 +10,13 @@ const {
   limit = 3,
 } = Astro.props;
 
+const hasTagFilter = Array.isArray(tag)
+  ? tag.length > 0
+  : tag !== null && tag !== undefined && String(tag).trim().length > 0;
+
 // Decide taxonomy (backward compatible)
-const taxonomyType = tag ? "tags" : "categories";
-const taxonomyInput = tag ?? category ?? "17";
+const taxonomyType = hasTagFilter ? "tags" : "categories";
+const taxonomyInput = hasTagFilter ? tag : category ?? "17";
 
 // Normalize input:
 // - "17"
@@ -27,12 +31,24 @@ const normalizedIds = Array.isArray(taxonomyInput)
       .filter(Boolean);
 
 const taxonomyParam = normalizedIds.join(",");
+const candidateLimit = hasTagFilter ? 50 : limit * 2;
 
 const posts = await fetchWpJson(
-  `/posts?per_page=${limit * 2}&${taxonomyType}=${taxonomyParam}&_embed`,
+  `/posts?per_page=${candidateLimit}&${taxonomyType}=${taxonomyParam}&_embed`,
   [] as Record<string, any>[],
 );
-const shuffledPosts = posts.slice(0, limit);
+const requestedTagIds = new Set(normalizedIds.map(String));
+const rankedPosts = hasTagFilter
+  ? posts.toSorted((a, b) => {
+      const getSharedTagCount = (post: Record<string, any>) =>
+        (post.tags ?? []).filter((tagId: number | string) =>
+          requestedTagIds.has(String(tagId)),
+        ).length;
+
+      return getSharedTagCount(b) - getSharedTagCount(a);
+    })
+  : posts;
+const shuffledPosts = rankedPosts.slice(0, limit);
 const getTerms = (post: Record<string, any>) =>
   (post._embedded?.["wp:term"]?.[0] ?? []) as Array<Record<string, any>>;
 ---
