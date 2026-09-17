@@ -87,6 +87,12 @@ export function fetchWpJsonCached<T>(
   init?: RequestInit,
   options: FetchWpOptions = {},
 ): Promise<T> {
+  // During local development, always re-fetch WordPress content so edits made
+  // in the CMS appear on the next page load without restarting Astro.
+  if (import.meta.env.DEV) {
+    return fetchWpJson(path, fallback, init, options);
+  }
+
   const cacheKey = `${path}:${JSON.stringify(init ?? {})}:${JSON.stringify(options)}`;
   if (!wpCache.has(cacheKey)) {
     wpCache.set(cacheKey, fetchWpJson(path, fallback, init, options));

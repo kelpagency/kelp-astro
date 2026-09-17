@@ -36,7 +36,7 @@ const stripHTML = (html = "") =>
   decodeEntities(html.replace(/<[^>]*>/g, "").trim());
 
 // Build query params dynamically
-let queryParams = `per_page=${limit}`;
+let queryParams = `per_page=${limit}&orderby=date&order=desc`;
 
 if (tag) {
   queryParams += `&tags=${tag}`; // use tag slug

@@ -20,7 +20,7 @@ type WorkPost = Record<string, any> & {
 };
 
 const posts = await fetchWpJsonRequired(
-  "/work?per_page=100&_embed=wp:featuredmedia",
+  "/work?per_page=100&orderby=date&order=desc&_embed=wp:featuredmedia",
   [] as WorkPost[],
 );
 const tags = (await getWpTags()) as Record<string, any>[];

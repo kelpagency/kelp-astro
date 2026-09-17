@@ -21,7 +21,7 @@ export async function getStaticPaths() {
 const { title, id } = Astro.props;
 
 const posts = await fetchWpJsonRequired(
-  `/work?per_page=100&tags=${id}`,
+  `/work?per_page=100&tags=${id}&orderby=date&order=desc`,
   [] as Record<string, any>[],
 );
 const tags = (await getWpTags()) as Record<string, any>[];
