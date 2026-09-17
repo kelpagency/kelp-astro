@@ -80,7 +80,8 @@ const postsWithImages = resolvedPosts.filter(
   (
     post,
   ): post is WorkPost & { heroImageUrl: string | null } & (
-      { heroImageUrl: string } | { fimg_url: string }
+      | { heroImageUrl: string }
+      | { fimg_url: string }
     ) => Boolean(post.heroImageUrl || post.fimg_url),
 );
 const hasPosts = postsWithImages.length > 0;
@@ -282,7 +283,7 @@ const hasPosts = postsWithImages.length > 0;
     const flkty = new Flickity(slider, {
       cellSelector: ".recent-work-slider-item",
       prevNextButtons: false,
-      wrapAround: true,
+      wrapAround: false,
       pageDots: false,
       fade: true,
       imagesLoaded: true,
