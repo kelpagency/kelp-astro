@@ -1,10 +1,45 @@
 ---
+import anewgenLogo from '../assets/anewgen-logo.svg';
+import mountaineerLogo from '../assets/Mountaineer_Coffee.png';
+import whiteheadLogo from '../assets/Whitehead-Farms-Circle-Badge-DS.png.webp';
+import 'flickity/css/flickity.css';
 
+const additionalTestimonials = [
+  {
+    quote: 'We love working with Kelp! They always deliver on our vision for our brand, and keep us relevant in the industry. Luke was attentive and persistent during the design process, making time to meet with us in person to make sure we were happy with every detail.',
+    name: 'Daniel and Darby Pritz',
+    role: 'Owners, Mountaineer Coffee',
+    logo: mountaineerLogo,
+    logoAlt: 'Mountaineer Coffee',
+    constrainLogo: true,
+  },
+  {
+    quote: 'The staff at Kelp Creative has been amazing to work with. From logo design to website development, they have gone above and beyond to help create our vision for the event venue we have started.',
+    name: 'Donnie Whitehead',
+    role: 'Owner and Operator, Whitehead Farms',
+    logo: whiteheadLogo,
+    logoAlt: 'Whitehead Farms',
+    constrainLogo: true,
+  },
+  {
+    quote: 'Kelp understands our mission and knows how to turn it into outreach that connects with our community. Their creativity and professionalism have made a real difference, and their marketing campaigns and PPC optimizations help us reach more people every month.',
+    name: 'Cheryl Bennett',
+    role: 'Founder, A New Generation',
+    logo: anewgenLogo,
+    logoAlt: 'A New Generation',
+    constrainLogo: false,
+  },
+];
+
+const openingQuotePath = 'M42.1 9.6q-12.4 5.5-16.7 10.5A16 16 0 0 0 21 30.7a8.9 8.9 0 0 0 2.6 6.5 30 30 0 0 0 6 4.7q3.5 2.1 6.1 4t2.7 3.7a17.1 17.1 0 0 1-5 12.6q-5 5-13.5 5-8.9 0-14.4-5.6T0 46a45.2 45.2 0 0 1 3.5-18.2 40 40 0 0 1 11.7-14.8Q23.4 6 37.4 0Zm48.6 0Q78.5 15.1 74 20.1a16 16 0 0 0-4.4 10.6 8.9 8.9 0 0 0 2.7 6.5 30 30 0 0 0 6 4.7q3.5 2.1 6 4t2.7 3.7a17.1 17.1 0 0 1-5 12.6q-5 5-13.5 5-8.9 0-14.4-5.6T48.6 46a45.2 45.2 0 0 1 3.5-18.2 40 40 0 0 1 11.7-14.8Q72 6 86 0Z';
+const closingQuotePath = 'M48.6 57.6Q61 52.1 65.4 47.1a16 16 0 0 0 4.3-10.6 8.9 8.9 0 0 0-2.6-6.4 30 30 0 0 0-6-4.8q-3.5-2-6.1-3.9t-2.6-3.8a17.1 17.1 0 0 1 5-12.6q5-5 13.5-5 8.8 0 14.3 5.6t5.5 15.8a45.2 45.2 0 0 1-3.5 18.2 40 40 0 0 1-11.6 14.8Q67.4 61 53.4 67.3ZM0 57.6q12.4-5.5 16.8-10.5A16 16 0 0 0 21 36.5a8.9 8.9 0 0 0-2.6-6.4 30 30 0 0 0-6-4.8q-3.5-2-6.1-3.9t-2.7-3.8A17.1 17.1 0 0 1 8.7 5q5-5 13.5-5 9 0 14.4 5.6t5.5 15.8a45.2 45.2 0 0 1-3.5 18.2A40 40 0 0 1 27 54.4Q18.7 61 4.7 67.3Z';
 ---
 
 <section class="testimonials">
   <div class="wrapper">
     <h2>What Our Clients Say</h2>
+    <div class="testimonials-carousel" data-testimonials-carousel>
+      <div class="testimonials-track" data-testimonials-track>
     <blockquote>
       <div class="testimonials-content" data-lg-reveal="layer-to-right">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90.8 67.3" width="90.8" height="67.3">
@@ -122,8 +157,67 @@
         </cite>
       </div>
     </blockquote>
+      {additionalTestimonials.map((testimonial, index) => (
+        <blockquote>
+          <div class="testimonials-content" data-lg-reveal="layer-to-right" data-lg-reveal-delay={String(index * 0.1)}>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90.8 67.3" width="90.8" height="67.3" aria-hidden="true">
+              <path d={openingQuotePath} fill="#a1e39a"></path>
+            </svg>
+            <p>{testimonial.quote}</p>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90.8 67.3" width="90.8" height="67.3" aria-hidden="true">
+              <path d={closingQuotePath} fill="#a1e39a"></path>
+            </svg>
+          </div>
+          <div class="testimonials-meta" data-lg-reveal="layer-to-left" data-lg-reveal-delay={String(0.2 + index * 0.1)}>
+            <img
+              class:list={{ 'testimonials-logo--constrained': testimonial.constrainLogo }}
+              loading="lazy"
+              src={testimonial.logo.src}
+              srcset={`${testimonial.logo.src} ${testimonial.logo.width}w`}
+              sizes="auto"
+              width={testimonial.logo.width}
+              height={testimonial.logo.height}
+              alt={testimonial.logoAlt}>
+            <cite>
+              <strong>{testimonial.name}</strong>
+              <span>{testimonial.role}</span>
+            </cite>
+          </div>
+        </blockquote>
+      ))}
+      </div>
+    </div>
   </div>
 </section>
+
+<script>
+  import Flickity from 'flickity';
+
+  const initializeTestimonialCarousels = () => {
+    document.querySelectorAll<HTMLElement>('[data-testimonials-carousel]').forEach((carousel) => {
+      if (carousel.dataset.initialized === 'true') return;
+
+      const track = carousel.querySelector<HTMLElement>('[data-testimonials-track]');
+      if (!track) return;
+
+      carousel.dataset.initialized = 'true';
+      new Flickity(track, {
+        adaptiveHeight: true,
+        autoPlay: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? false : 6000,
+        cellSelector: 'blockquote',
+        pageDots: true,
+        pauseAutoPlayOnHover: true,
+        prevNextButtons: false,
+        wrapAround: true,
+      });
+
+      window.luge?.emitter?.emit('resize');
+    });
+  };
+
+  initializeTestimonialCarousels();
+  document.addEventListener('astro:page-load', initializeTestimonialCarousels);
+</script>
 
 <style lang="scss">
   .testimonials {
@@ -146,9 +240,15 @@
       margin: auto;
     }
     blockquote {
-      margin: 3rem auto;
+      width: 100%;
+      margin: 3rem 0;
       &::before,
       &::after {
+        display: none;
+      }
+    }
+    &-track {
+      &:not(.flickity-enabled) > blockquote:not(:first-child) {
         display: none;
       }
     }
@@ -182,8 +282,12 @@
       align-items: center;
       justify-content: center;
       margin-top: 2rem;
-      img {
-        flex: 0 1 150px;
+      .testimonials-logo--constrained {
+        flex: 0 0 175px;
+        width: 175px;
+        height: 50px;
+        object-fit: contain;
+        object-position: right center;
       }
       cite {
         flex: 0 1 auto;
