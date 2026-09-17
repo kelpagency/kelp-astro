@@ -2,7 +2,7 @@
 import Layout from "../Base.astro";
 import anewgenLogo from "../assets/anewgen-logo.svg";
 import hartsLogo from "../assets/Harts-MM-Logo.svg";
-import kelpFounders from "../assets/kelpers-brooksville.jpg";
+import kelpTeam from "../assets/kelpers-brooksville.jpg";
 import m48Logo from "../assets/M48-Logo.png";
 import mountaineerLogo from "../assets/Mountaineer_Coffee.png";
 import whiteheadLogo from "../assets/Whitehead-Farms-Circle-Badge-DS.png.webp";
@@ -32,14 +32,14 @@ const starterIncludedFormValue = starterIncluded.map(({ title, detail }) => `${t
 const netlifyFormAttributes: Record<string, string> = { netlify: "" };
 const schema = [buildServiceSchema({ name: "Local Business Website Package", description, url: "https://www.kelp.agency/local-website-package/", areaServed: "Florida" }), buildFaqSchema(faqs)];
 ---
-<Layout title="Local Business Website Package | Kelp Creative Agency" description={description} schema={schema} canonicalUrl="/local-website-package/" bodyClass="local-package-page">
+<Layout title="Local Business Website Package | Kelp Creative Agency" description={description} image={kelpTeam.src} schema={schema} canonicalUrl="/local-website-package/" bodyClass="local-package-page">
   <article class="local-package">
     <section class="lp-hero"><div class="wrapper lp-hero-grid">
       <div data-lg-reveal="fade" data-lg-reveal-stagger=".12"><p class="lp-kicker">Websites for local businesses</p><h1>A <em data-emphasis-color="#42c634" data-emphasis-delay="1000" data-emphasis-duration="900" data-emphasis-iterations="3" data-emphasis-padding="10" data-emphasis-type="circle">great</em> website <span>built by <em data-emphasis-color="#5544f8" data-emphasis-delay="1700" data-emphasis-duration="550" data-emphasis-iterations="4" data-emphasis-variant="secondary">locals.</em></span></h1><p class="lp-lead">A focused website package for local businesses that need a clear, credible path from search to call, form, booking, or visit—without a months-long custom build.</p><div class="lp-actions"><a href="#packages" class="button">View Pricing</a></div><small>Thoughtfully scoped. Carefully built. Launched with confidence.</small></div>
       <div class="lp-art-reveal" data-lg-reveal="layer-to-left" data-lg-reveal-delay=".25"><div class="lp-art"><img
         loading="eager"
-        src={kelpFounders.src}
-        srcset={`${kelpFounders.src} 1679w`}
+        src={kelpTeam.src}
+        srcset={`${kelpTeam.src} 1679w`}
         sizes="(max-width: 960px) min(540px, calc(100vw - 2rem)), 40vw"
         width="1679"
         height="1845"
