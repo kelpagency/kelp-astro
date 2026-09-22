@@ -1,3 +1,8 @@
+---
+import { Picture } from "astro:assets";
+import heroSquid from "../assets/hero-squid.png";
+---
+
 <section class="hero">
   <div class="wrapper" data-lg-reveal="fade" data-lg-reveal-stagger="0.25">
     <div class="hero-content">
@@ -42,9 +47,16 @@
         </svg>
       </div>
     </div>
-    <div class="hero-squid-wrapper">
-      <div data-lg-lottie="/animations/squid.json" data-lg-lottie-autoplay="true" data-lg-lottie-loop="true"></div>
-    </div>
+  </div>
+  <div class="hero-squid-wrapper">
+    <Picture
+      src={heroSquid}
+      formats={["avif", "webp"]}
+      widths={[350, 500, 700, 750, 1000, 1018, 1491]}
+      sizes="(max-width: 600px) 350px, (max-width: 1100px) 500px, (max-width: 1400px) 750px, 1018px"
+      alt="A smiling squid using a camera, megaphone, laptop, and video player"
+      priority
+    />
   </div>
   <svg
     preserveAspectRatio="none"
@@ -97,7 +109,7 @@
 <style lang="scss">
   .hero {
     position: relative;
-    padding-top: 2rem;
+    padding-top: 1rem;
     overflow: hidden;
     min-height: 720px;
     @media (min-width: 1400px) {
@@ -109,22 +121,26 @@
     }
     &-squid-wrapper {
       position: absolute;
-      right: -8rem;
-      top: -8rem;
+      right: 0;
+      bottom: 0;
       z-index: -1;
       width: 1018px;
+      picture {
+        display: block;
+      }
+      img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
       @media (max-width: 1400px) {
         width: 750px;
-        top: unset;
-        bottom: -5rem;
       }
       @media (max-width: 1100px) {
         width: 500px;
-        bottom: -3rem;
       }
       @media (max-width: 600px) {
         width: 350px;
-        right: -5rem;
       }
     }
     &-content {
@@ -133,6 +149,7 @@
       }
 
       h1 {
+        margin-top: 0;
         margin-bottom: 2rem;
         max-width: 25ch;
         @media (max-width: 480px) {
