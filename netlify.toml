@@ -28,7 +28,12 @@ for = "/fonts/*"
 Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
-for = "/videos/squid.bf5c50cb.webm"
+for = "/videos/squid.037531b0.mov"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "/videos/squid.2dd95d08.webm"
 [headers.values]
 Cache-Control = "public, max-age=31536000, immutable"
 
