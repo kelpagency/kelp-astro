@@ -56,7 +56,11 @@ const heroPoster = await getImage({
       </div>
     </div>
   </div>
-  <div class="hero-squid-wrapper">
+  <div
+    class="hero-squid-wrapper"
+    role="img"
+    aria-label="A smiling squid using a camera, megaphone, laptop, and video player"
+  >
     <video
       autoplay
       muted
@@ -64,8 +68,7 @@ const heroPoster = await getImage({
       playsinline
       preload="auto"
       poster={heroPoster.src}
-      role="img"
-      aria-label="A smiling squid using a camera, megaphone, laptop, and video player"
+      aria-hidden="true"
     >
       <source src="/videos/squid.mov" type='video/quicktime; codecs="hvc1"' />
       <source src="/videos/squid.webm" type="video/webm" />

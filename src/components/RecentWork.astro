@@ -289,6 +289,16 @@ const hasPosts = postsWithImages.length > 0;
       imagesLoaded: true,
     });
 
+    const syncSlideFocus = () => {
+      slider
+        .querySelectorAll<HTMLElement>(".recent-work-slider-item")
+        .forEach((item) => {
+          item.inert = !item.classList.contains("is-selected");
+        });
+    };
+    flkty.on("select", syncSlideFocus);
+    syncSlideFocus();
+
     next.forEach((button) => {
       button.addEventListener("click", () => {
         flkty.next();
