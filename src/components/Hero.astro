@@ -2,12 +2,15 @@
 import { getImage } from "astro:assets";
 import heroSquid from "../assets/hero-squid.png";
 
-const heroPoster = await getImage({
-  src: heroSquid,
-  width: 1018,
-  format: "webp",
-  quality: 75,
-});
+const posterWidths = [350, 500, 640, 750, 1018];
+const heroPosters = await Promise.all(
+  posterWidths.map((width) =>
+    getImage({ src: heroSquid, width, format: "webp", quality: 75 }),
+  ),
+);
+const posterSrcSet = heroPosters
+  .map((poster, index) => `${poster.src} ${posterWidths[index]}w`)
+  .join(", ");
 ---
 
 <section class="hero">
@@ -61,17 +64,26 @@ const heroPoster = await getImage({
     role="img"
     aria-label="A smiling squid using a camera, megaphone, laptop, and video player"
   >
+    <img
+      loading="eager"
+      fetchpriority="high"
+      src={heroPosters[heroPosters.length - 1].src}
+      srcset={posterSrcSet}
+      sizes="(max-width: 600px) 350px, (max-width: 1100px) 500px, (max-width: 1400px) 750px, 1018px"
+      width="1018"
+      height="720"
+      alt=""
+    />
     <video
       autoplay
       muted
       loop
       playsinline
       preload="auto"
-      poster={heroPoster.src}
       aria-hidden="true"
     >
       <source src="/videos/squid.mov" type='video/quicktime; codecs="hvc1"' />
-      <source src="/videos/squid.webm" type="video/webm" />
+      <source src="/videos/squid.bf5c50cb.webm" type="video/webm" />
     </video>
   </div>
   <svg
@@ -122,11 +134,33 @@ const heroPoster = await getImage({
   </svg>
 </section>
 
+<script>
+  const initHeroVideo = () => {
+    const video = document.querySelector<HTMLVideoElement>(
+      ".hero-squid-wrapper video",
+    );
+    if (!video || video.dataset.posterInit === "true") return;
+
+    video.dataset.posterInit = "true";
+    const revealVideo = () => {
+      video.classList.add("is-ready");
+      video.previousElementSibling?.classList.add("is-hidden");
+    };
+    if (video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
+      revealVideo();
+    } else {
+      video.addEventListener("loadeddata", revealVideo, { once: true });
+    }
+  };
+
+  initHeroVideo();
+  document.addEventListener("astro:page-load", initHeroVideo);
+</script>
+
 <style lang="scss">
   .hero {
     position: relative;
     padding-top: 1rem;
-    overflow: hidden;
     min-height: 720px;
     @media (min-width: 1400px) {
       min-height: 1000px;
@@ -139,12 +173,25 @@ const heroPoster = await getImage({
       position: absolute;
       right: 0;
       bottom: 0;
-      z-index: -1;
+      z-index: 1;
       width: 1018px;
-      video {
+      > img {
         display: block;
         width: 100%;
         height: auto;
+        &.is-hidden {
+          opacity: 0;
+        }
+      }
+      video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: auto;
+        opacity: 0;
+        &.is-ready {
+          opacity: 1;
+        }
       }
       @media (max-width: 1400px) {
         width: 750px;
@@ -153,10 +200,9 @@ const heroPoster = await getImage({
         width: 500px;
       }
       @media (max-width: 600px) {
-        width: 350px;
+        width: min(350px, 100%);
       }
       @media (max-width: 430px) {
-        right: -3rem;
         bottom: 8rem;
       }
     }
@@ -211,7 +257,7 @@ const heroPoster = await getImage({
     }
     &-water {
       position: absolute;
-      bottom: 0;
+      bottom: -1px;
       left: 0;
       width: 100%;
       z-index: -2;

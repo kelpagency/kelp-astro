@@ -21,15 +21,26 @@ for = "/_astro/*"
 [headers.values]
 Cache-Control = "public, max-age=31536000, immutable"
 
+# Change the filename when updating an asset covered by a year-long cache rule.
 [[headers]]
 for = "/fonts/*"
 [headers.values]
-Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "/videos/squid.bf5c50cb.webm"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
 for = "/videos/*"
 [headers.values]
 Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
+
+[[headers]]
+for = "/images/squiggle.25832e5b.svg"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
 for = "/images/*"
