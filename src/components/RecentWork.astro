@@ -135,8 +135,12 @@ const hasPosts = postsWithImages.length > 0;
           ))}
           {posts.length > 1 && (
             <nav class="recent-work-slider-nav">
-              <button class="button button--link button--prev">← Prev</button>
-              <button class="button button--link button--next">Next →</button>
+              <button type="button" class="button button--link button--prev" aria-label="Previous work">
+                <span aria-hidden="true">←</span> <span class="recent-work-slider-nav-label">Prev</span>
+              </button>
+              <button type="button" class="button button--link button--next" aria-label="Next work">
+                <span class="recent-work-slider-nav-label">Next</span> <span aria-hidden="true">→</span>
+              </button>
             </nav>
           )}
         </div>
@@ -247,6 +251,16 @@ const hasPosts = postsWithImages.length > 0;
         z-index: 1;
         @media (min-width: 767px) {
           top: 70%;
+        }
+        @media (max-width: 767px) {
+          .button {
+            min-width: 44px;
+            min-height: 44px;
+            padding: 0.5rem 0.75rem;
+          }
+          &-label {
+            display: none;
+          }
         }
       }
     }
