@@ -1,5 +1,4 @@
 ---
-import { Picture } from "astro:assets";
 import { fetchWpJson } from "../lib/wp";
 import { sanitizeTitleHtml, toPlainText } from "../lib/sanitize";
 
@@ -51,6 +50,23 @@ const rankedPosts = hasTagFilter
 const shuffledPosts = rankedPosts.slice(0, limit);
 const getTerms = (post: Record<string, any>) =>
   (post._embedded?.["wp:term"]?.[0] ?? []) as Array<Record<string, any>>;
+const getFeaturedImage = (post: Record<string, any>) => {
+  const details = post._embedded?.["wp:featuredmedia"]?.[0]?.media_details;
+  const sources = Object.values(details?.sizes ?? {}) as Array<{
+    source_url?: string;
+    width?: number;
+  }>;
+  const srcset = sources
+    .filter((source) => source.source_url && source.width)
+    .map((source) => `${source.source_url} ${source.width}w`)
+    .join(", ");
+
+  return {
+    width: details?.width ?? 900,
+    height: details?.height ?? 600,
+    srcset: srcset || `${post.fimg_url} ${details?.width ?? 900}w`,
+  };
+};
 ---
 
 {
@@ -63,15 +79,14 @@ const getTerms = (post: Record<string, any>) =>
           {shuffledPosts.map((post) => (
             <article>
               {post.fimg_url && (
-                <Picture
-                  src={post.fimg_url}
+                <img
                   loading="lazy"
+                  src={post.fimg_url}
+                  srcset={getFeaturedImage(post).srcset}
+                  sizes="auto"
+                  width={getFeaturedImage(post).width}
+                  height={getFeaturedImage(post).height}
                   alt={toPlainText(post.title?.rendered ?? "")}
-                  width={900}
-                  height={600}
-                  widths={[400, 650, 900]}
-                  sizes="(max-width: 900px) 100vw, 33vw"
-                  inferSize
                 />
               )}
 
