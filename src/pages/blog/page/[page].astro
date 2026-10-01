@@ -1,0 +1,16 @@
+---
+import BlogArchive from "../../../components/BlogArchive.astro";
+import { getBlogPosts, getBlogPageNumbers } from "../../../lib/blog";
+
+export async function getStaticPaths() {
+  const posts = await getBlogPosts();
+  return getBlogPageNumbers(posts.length).map((page) => ({
+    params: { page },
+    props: { posts },
+  }));
+}
+
+const { posts } = Astro.props;
+---
+
+<BlogArchive posts={posts} currentPage={Number(Astro.params.page)} />

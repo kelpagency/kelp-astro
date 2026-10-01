@@ -1,0 +1,34 @@
+---
+import BlogArchive from "../../../../components/BlogArchive.astro";
+import {
+  getBlogPosts,
+  getCategoryPosts,
+  getBlogPageNumbers,
+} from "../../../../lib/blog";
+import { getWpCategories } from "../../../../lib/wp";
+
+export async function getStaticPaths() {
+  const [categories, posts] = await Promise.all([
+    getWpCategories(),
+    getBlogPosts(),
+  ]);
+  return categories.flatMap((category) => {
+    const categoryPosts = getCategoryPosts(posts, Number(category.id));
+    return getBlogPageNumbers(categoryPosts.length).map((page) => ({
+      params: { category: String(category.slug), page },
+      props: {
+        category: { name: String(category.name), slug: String(category.slug) },
+        posts: categoryPosts,
+      },
+    }));
+  });
+}
+
+const { category, posts } = Astro.props;
+---
+
+<BlogArchive
+  posts={posts}
+  category={category}
+  currentPage={Number(Astro.params.page)}
+/>

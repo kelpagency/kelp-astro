@@ -1,0 +1,39 @@
+---
+import readingTime from "reading-time";
+
+interface Props {
+  date: string;
+  content: string;
+  categoryName?: string;
+}
+
+const { date, content, categoryName } = Astro.props;
+---
+
+<p class="text-meta">
+  <time datetime={date}>
+    {new Date(date).toLocaleDateString("en-us", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    })}
+  </time>
+  <span>{readingTime(content).text}</span>
+  {categoryName && <span>{categoryName}</span>}
+</p>
+
+<style lang="scss">
+  .text-meta {
+    text-transform: uppercase;
+    font-family: var(--sans-serif);
+    font-size: 14px;
+    line-height: 1.2;
+    opacity: 0.5;
+    margin-top: 1.5rem;
+    > * + * {
+      border-left: 1px solid;
+      margin-left: 0.5rem;
+      padding-left: 0.7rem;
+    }
+  }
+</style>

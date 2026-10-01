@@ -1,7 +1,8 @@
 ---
 import { Picture } from "astro:assets";
-import readingTime from "reading-time";
+import BlogPostMeta from "./BlogPostMeta.astro";
 import { getWpCategories } from "../lib/wp";
+import { isVisibleBlogCategory } from "../lib/blog";
 import { sanitizeHtml, sanitizeTitleHtml, toPlainText } from "../lib/sanitize";
 
 export interface Props {
@@ -20,9 +21,9 @@ export type BlogTeasePost = Props["post"];
 
 const { post } = Astro.props as Props;
 const categories = (await getWpCategories()) as Record<string, any>[];
-const categoryName = categories.find(
-  (cat) => cat.id === post.categories?.[0],
-)?.name;
+const categoryName = post.categories
+  ?.map((id) => categories.find((cat) => cat.id === id))
+  .find((cat) => cat && isVisibleBlogCategory(cat))?.name;
 ---
 
 <article class="archive-tease">
@@ -44,19 +45,11 @@ const categoryName = categories.find(
     />
   </a>
   <div class="text">
-    <p class="text-meta">
-      <span>
-        {
-          new Date(post.date).toLocaleDateString("en-us", {
-            year: "numeric",
-            month: "short",
-            day: "numeric",
-          })
-        }
-      </span>
-      <span>{readingTime(post.content.rendered).text}</span>
-      {categoryName && <span>{categoryName}</span>}
-    </p>
+    <BlogPostMeta
+      date={post.date}
+      content={post.content.rendered}
+      categoryName={categoryName}
+    />
     <h2 class="h5" transition:name={`heading-${post.id}`}>
       <a
         href={`/blog/${post.slug}/`}

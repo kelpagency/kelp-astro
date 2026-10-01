@@ -7,6 +7,7 @@ interface FetchWpOptions {
   required?: boolean;
   retries?: number;
   timeoutMs?: number;
+  onResponse?: (response: Response) => void;
 }
 
 const normalizeEnvUrl = (value?: string) =>
@@ -64,6 +65,7 @@ export async function fetchWpJson<T>(
         lastError = new Error(`HTTP ${response.status}`);
         if (response.status < 500 && response.status !== 429) break;
       } else {
+        options.onResponse?.(response);
         return (await response.json()) as T;
       }
     } catch (error) {
@@ -106,6 +108,44 @@ export const fetchWpJsonRequired = <T>(
   fallback: T,
   init?: RequestInit,
 ) => fetchWpJsonCached(path, fallback, init, { required: true });
+
+// WordPress caps REST collections at 100 items per request. Read the total
+// page count so archive links and article routes include the entire collection.
+export function fetchWpCollectionRequired<T>(path: string): Promise<T[]> {
+  const cacheKey = `collection:${path}`;
+  const fetchCollection = async () => {
+    const [pathname, query = ""] = path.split("?");
+    const params = new URLSearchParams(query);
+    params.set("per_page", "100");
+    params.set("page", "1");
+    let totalPages = 1;
+    const firstPage = await fetchWpJson<T[]>(
+      `${pathname}?${params}`,
+      [],
+      undefined,
+      {
+        required: true,
+        onResponse: (response) => {
+          totalPages = Number(response.headers.get("X-WP-TotalPages")) || 1;
+        },
+      },
+    );
+    const results = [...firstPage];
+    for (let page = 2; page <= totalPages; page += 1) {
+      params.set("page", String(page));
+      results.push(
+        ...(await fetchWpJson<T[]>(`${pathname}?${params}`, [], undefined, {
+          required: true,
+        })),
+      );
+    }
+    return results;
+  };
+
+  if (import.meta.env.DEV) return fetchCollection();
+  if (!wpCache.has(cacheKey)) wpCache.set(cacheKey, fetchCollection());
+  return wpCache.get(cacheKey) as Promise<T[]>;
+}
 
 export const getWpCategories = () =>
   fetchWpJsonRequired(

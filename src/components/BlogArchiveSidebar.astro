@@ -1,7 +1,8 @@
 ---
 import { getWpCategories } from "../lib/wp";
+import { isVisibleBlogCategory } from "../lib/blog";
 
-const categories = (await getWpCategories()) as Record<string, any>[];
+const categories = (await getWpCategories()).filter(isVisibleBlogCategory) as Record<string, any>[];
 ---
 
 <aside class="archive-sidebar">
@@ -37,14 +38,14 @@ const categories = (await getWpCategories()) as Record<string, any>[];
   <ul data-lg-reveal="fade" data-lg-reveal-stagger="0.15">
     <li>
       <a
-        class={`h6 ${Astro.url.pathname === "/blog/" && "active"}`}
+        class:list={["h6", { active: Astro.url.pathname === "/blog/" || Astro.url.pathname.startsWith("/blog/page/") }]}
         href="/blog/">All Articles</a>
     </li>
     {
       categories.map((cat) => (
         <li>
           <a
-            class={`h6 ${Astro.url.pathname.split("/")[2] === cat.slug && "active"}`}
+            class:list={["h6", { active: Astro.url.pathname.split("/")[2] === cat.slug }]}
             href={`/blog/${cat.slug}/`}
           >
             {cat.name}

@@ -11,15 +11,14 @@ import {
   toPlainText,
 } from "../../lib/sanitize";
 import { toJetpackImageUrl } from "../../lib/jetpack";
-import { fetchWpJson, fetchWpJsonRequired } from "../../lib/wp";
+import { fetchWpJson, fetchWpJsonRequired, fetchWpCollectionRequired } from "../../lib/wp";
 
 import "../../styles/pages/_wordpress.scss";
 import "highlight.js/styles/monokai-sublime.css";
 
 export async function getStaticPaths() {
-  const posts = await fetchWpJsonRequired(
-    "/posts?per_page=100&_embed",
-    [] as Record<string, any>[],
+  const posts = await fetchWpCollectionRequired<Record<string, any>>(
+    "/posts?_embed&orderby=date&order=desc",
   );
   const categories = await fetchWpJsonRequired(
     "/categories?per_page=100",

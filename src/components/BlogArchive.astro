@@ -1,0 +1,165 @@
+---
+import Layout from "../Base.astro";
+import Tease, { type BlogTeasePost } from "./Tease.astro";
+import BlogArchiveSidebar from "./BlogArchiveSidebar.astro";
+import Pagination from "./Pagination.astro";
+import { BLOG_PAGE_SIZE } from "../lib/blog";
+import { buildCollectionPageSchema, buildItemList } from "../lib/schema";
+import { toPlainText } from "../lib/sanitize";
+
+interface Props {
+  posts: BlogTeasePost[];
+  currentPage?: number;
+  category?: { name: string; slug: string };
+}
+
+const { posts, currentPage = 1, category } = Astro.props;
+const totalPages = Math.max(1, Math.ceil(posts.length / BLOG_PAGE_SIZE));
+const pagePosts = posts.slice(
+  (currentPage - 1) * BLOG_PAGE_SIZE,
+  currentPage * BLOG_PAGE_SIZE,
+);
+const archiveTitle = category
+  ? `The Kelp Blog: ${category.name}`
+  : "The Kelp Blog";
+const title =
+  currentPage > 1 ? `${archiveTitle} — Page ${currentPage}` : archiveTitle;
+const description = category
+  ? `Helpful resources about ${category.name}`
+  : "Helpful resources. Creative insight. Join us on a journey where creativity meets problem-solving and success. Be inspired, educated, and harness the power of creativity to reach your goals.";
+const baseUrl = category ? `/blog/${category.slug}/` : "/blog/";
+const schema = buildCollectionPageSchema(
+  title,
+  description,
+  buildItemList(
+    pagePosts.map((post) => ({
+      name: toPlainText(post.title.rendered),
+      url: `/blog/${post.slug}/`,
+    })),
+  ),
+);
+---
+
+<Layout
+  title={title}
+  description={description}
+  darkHeader={true}
+  bodyClass="blog-archive"
+  schema={schema}
+>
+  <article class="wrapper archive">
+    <BlogArchiveSidebar />
+    {pagePosts.map((post) => (
+      <Tease post={post} />
+    ))}
+    {pagePosts.length === 0 && <p>No articles in this topic yet.</p>}
+    <Pagination
+      currentPage={currentPage}
+      totalPages={totalPages}
+      baseUrl={baseUrl}
+    />
+  </article>
+</Layout>
+
+<style lang="scss" is:global>
+  .archive {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 3rem;
+    padding-bottom: 5rem;
+    margin-top: 5rem !important;
+    @media (max-width: 1300px) {
+      grid-template-columns: 1fr 1fr;
+    }
+    @media (max-width: 890px) {
+      grid-template-columns: 1fr;
+    }
+    &-sidebar {
+      padding-top: 2rem;
+      @media (min-width: 891px) {
+        grid-row: 1 / span 2;
+      }
+      svg {
+        max-width: 100%;
+        height: auto;
+      }
+      h3 {
+        border-top: 2px solid var(--green);
+        padding-top: 2rem;
+        margin-top: 2rem;
+      }
+      ul {
+        position: sticky;
+        top: 2rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        a {
+          text-decoration: none;
+          text-decoration-thickness: 3px;
+          &.active {
+            color: var(--purple);
+          }
+          &:hover,
+          &:focus {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+    &-tease {
+      position: relative;
+      .media {
+        aspect-ratio: 4 / 2.2;
+        overflow: hidden;
+        display: block;
+        picture,
+        img {
+          height: 100% !important;
+          width: 100% !important;
+          object-fit: cover;
+          max-width: none !important;
+        }
+      }
+      .text {
+        a {
+          text-decoration: none;
+          &:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+          }
+        }
+      }
+      &:first-of-type {
+        @media (min-width: 1301px) {
+          grid-column: 2 / span 2;
+        }
+      }
+      &:nth-of-type(4n + 1) {
+        .lg-reveal--layer-to-right:after {
+          background-color: var(--light-purple);
+        }
+      }
+      &:nth-of-type(4n + 2) {
+        .lg-reveal--layer-to-right:after {
+          background-color: var(--green);
+        }
+      }
+      &:nth-of-type(4n + 3) {
+        .lg-reveal--layer-to-right:after {
+          background-color: var(--purple);
+        }
+      }
+      &:nth-of-type(4n + 4) {
+        .lg-reveal--layer-to-right:after {
+          background-color: var(--red);
+        }
+      }
+    }
+  }
+</style>
