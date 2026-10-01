@@ -195,6 +195,24 @@ const schemaJson = JSON.stringify({
     <link rel="sitemap" href="/sitemap-index.xml" />
     <ClientRouter />
 
+    <!-- Google tag (GA4). Enhanced Measurement tracks client-side history changes. -->
+    <script
+      is:inline
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-VLVG9CQ76D"
+    ></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function () {
+        window.dataLayer.push(arguments);
+      };
+      if (!window.kelpGaInitialized) {
+        window.kelpGaInitialized = true;
+        window.gtag("js", new Date());
+        window.gtag("config", "G-VLVG9CQ76D");
+      }
+    </script>
+
     <!-- Meta -->
     <title>{cleanTitle}</title>
     <meta name="description" content={cleanDescription} />
