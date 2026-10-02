@@ -3,7 +3,11 @@ const json = (data, status = 200) => Response.json(data, { status, headers: { 'C
 
 export default async function handler(request) {
   const incoming = new URL(request.url);
-  const route = incoming.searchParams.get('route') || '';
+  // Netlify's Request URL can retain the original path without rewrite query parameters.
+  const prefix = '/api/website-checker';
+  const route = incoming.pathname.startsWith(`${prefix}/`) && incoming.pathname !== `${prefix}/`
+    ? incoming.pathname.slice(prefix.length + 1)
+    : incoming.searchParams.get('route') || '';
   if (!/^(?:[a-f0-9-]{36}(?:\/share)?)?$/i.test(route)) return json({ error: 'Not found.' }, 404);
   const allowedMethod = route.endsWith('/share') ? ['POST'] : route ? ['GET'] : ['GET', 'POST'];
   if (!allowedMethod.includes(request.method)) return json({ error: 'Method not allowed.' }, 405);

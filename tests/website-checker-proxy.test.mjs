@@ -65,3 +65,37 @@ test('upstream failures return safe messages', async () => {
   assert.equal(response.status, 502);
   assert.doesNotMatch(JSON.stringify(await response.json()), /credential|Private upstream/);
 });
+
+test('report paths reach the report endpoint without rewrite query parameters', async () => {
+  configure();
+  const id = '550e8400-e29b-41d4-a716-446655440000';
+  globalThis.fetch = async (url, options) => {
+    assert.equal(String(url), `${process.env.WEBSITE_CHECKER_API_URL}/${id}`);
+    assert.equal(options.method, 'GET');
+    return Response.json({ id, status: 'crawling', progress: 20 });
+  };
+  const response = await handler(new Request(`https://kelp.example/api/website-checker/${id}?route=ignored`));
+  assert.deepEqual(await response.json(), { id, status: 'crawling', progress: 20 });
+});
+
+test('share paths reach sharing instead of creating a new scan', async () => {
+  configure();
+  const id = '550e8400-e29b-41d4-a716-446655440000';
+  globalThis.fetch = async (url, options) => {
+    assert.equal(String(url), `${process.env.WEBSITE_CHECKER_API_URL}/${id}/share`);
+    assert.equal(options.method, 'POST');
+    return Response.json({ sharedAt: '2026-10-02T12:00:00Z' });
+  };
+  const response = await handler(new Request(`https://kelp.example/api/website-checker/${id}/share`, {
+    method: 'POST', headers: { origin: 'https://kelp.example' },
+  }));
+  assert.equal(response.status, 200);
+  assert.equal((await response.json()).sharedAt, '2026-10-02T12:00:00Z');
+});
+
+test('invalid original paths are rejected before forwarding', async () => {
+  configure();
+  globalThis.fetch = () => assert.fail('must not fetch');
+  const response = await handler(new Request('https://kelp.example/api/website-checker/not-a-report'));
+  assert.equal(response.status, 404);
+});

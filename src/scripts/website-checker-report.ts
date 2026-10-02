@@ -98,9 +98,12 @@ function initReport() {
         throw new Error(data.error || 'Could not load this report.');
       }
       const audit = data as PublicAuditRecord;
-      errors = 0;
+      if (audit.id !== id || !['queued', 'crawling', 'analyzing', 'complete', 'failed'].includes(audit.status)
+        || typeof audit.progress !== 'number' || !Number.isFinite(audit.progress)) {
+        throw new Error('The checker returned an invalid report response. Please reload this page shortly.');
+      }
       message.textContent = audit.progressMessage;
-      progress.value = audit.progress;
+      progress.value = Math.max(0, Math.min(100, audit.progress));
       if (audit.status === 'failed') { message.textContent = audit.error || 'The scan stopped before it finished. Please try another website.'; progress.hidden = true; return; }
       if (audit.status === 'complete' && audit.crawl && audit.analysis) {
         results.innerHTML = renderReport(audit);
@@ -123,6 +126,7 @@ function initReport() {
         });
         return;
       }
+      errors = 0;
     } catch (error) {
       if (controller.signal.aborted) return;
       errors += 1;
