@@ -52,10 +52,11 @@ function renderReport(audit: PublicAuditRecord) {
     { id: 'services', label: 'Service explanation', status: service.score >= 66 ? 'pass' : 'warning', detail: service.summary },
     { id: 'trust', label: 'Trust signals', status: trust ? 'pass' : 'warning', detail: `${trust} pages contain proof or trust language.` },
   ];
-  return `<div class="checker-report-header"><div><h1 class="h2">${escape(audit.lead.company || new URL(crawl.finalRootUrl).hostname)}</h1><p>${link(crawl.finalRootUrl)}</p></div><div><strong class="checker-score">${overall}/100</strong><p>Overall readiness</p><button class="button" data-save-report>Save report</button></div></div>
+  return `<div class="checker-report-header"><div><p class="checker-eyebrow">Your website / The findings</p><h1>${escape(audit.lead.company || new URL(crawl.finalRootUrl).hostname)}</h1><p>${link(crawl.finalRootUrl)}</p><button class="checker-save" data-save-report>Save report as PDF</button></div><div class="checker-overall"><strong class="checker-score">${overall}<small>/100</small></strong><p>Overall readiness</p></div></div>
     <div class="checker-stats">${[[analysis.summary.pagesCrawled, 'Pages crawled'], [analysis.summary.linksChecked, 'Links checked'], [broken.length, 'Confirmed 404s'], [redirected.length, 'Redirects'], [review.length, 'Need review']].map(([value, label]) => `<div><strong>${value}</strong>${label}</div>`).join('')}</div>
     <h2>Our findings.</h2><div class="checker-report-grid">${cards.map(([title, score, detail]) => `<article><h3 class="h5">${title}</h3><strong class="checker-score">${score}</strong><p>${escape(detail)}</p></article>`).join('')}</div>
     <h2 class="h4">Where to focus first</h2>${analysis.recommendations.length ? `<ol>${analysis.recommendations.map((item) => `<li><strong>${escape(item.title)}</strong> <small>(${escape(item.priority)} priority · ${escape(item.source)})</small><p>${escape(item.detail)}</p></li>`).join('')}</ol>` : '<p>No additional recommendations from the pages checked.</p>'}
+    <section class="checker-cta"><div><p class="checker-eyebrow">Your next step</p><h2>Let’s turn the findings<br /><em>into a plan.</em></h2><p>We’ll walk through your report together and help you decide what to tackle first.</p></div><div><button class="button button--green" data-share-report>Schedule a meeting with Kelp</button><p class="checker-small">Bring your findings. We’ll help you prioritize the next steps.</p><p data-share-message role="status"></p></div></section>
     <h2 class="h4">The evidence behind the checks</h2>
     ${links('Confirmed 404s', broken)}${links('Redirected links', redirected)}${links('Links needing manual review', review)}
     <details><summary>AI search · ${aiScore}/100</summary><p>${escape(analysis.ai.note)}</p>${ai.map(category).join('')}</details>
@@ -64,7 +65,6 @@ function renderReport(audit: PublicAuditRecord) {
     ].map(([label, count]) => ({ id: String(label), label: String(label), status: (count === pages.length ? 'pass' : 'warning') as Check['status'], detail: `${count} of ${pages.length} pages.` }))] })}
     ${category(local)}<details><summary>Conversion · ${conversion}/100</summary>${checks(conversionChecks)}</details>${category(schema)}
     <details><summary>Crawl details · ${crawl.pages.length} pages</summary><p>robots.txt: ${crawl.robots.found ? 'found' : 'not found'} · sitemap: ${crawl.sitemap.found ? 'found' : 'not found'} · 50-page limit: ${crawl.limitReached ? 'reached' : 'not reached'}</p><div class="checker-table-wrap"><table><thead><tr><th>Page</th><th>Status</th><th>Title</th><th>Words</th><th>Schema</th></tr></thead><tbody>${crawl.pages.map((page) => `<tr><td>${link(page.url)}</td><td>${page.status}</td><td>${escape(page.title)}</td><td>${page.wordCount}</td><td>${escape(page.schemaTypes.join(', ') || 'None found')}</td></tr>`).join('')}</tbody></table></div>${crawl.errors.length ? `<ul>${crawl.errors.map((error) => `<li>${escape(error)}</li>`).join('')}</ul>` : ''}</details>
-    <section class="checker-cta"><h2 class="h3">Let’s talk it through.</h2><p>Share your report with Kelp and book a time to decide what to tackle first.</p><button class="button button--green" data-share-report>Share with Kelp + schedule a meeting ↗</button><p data-share-message role="status"></p></section>
     <p class="checker-small">Scores are a starting point based on the public pages we reached. Objective checks and AI interpretation are labeled separately. ${escape(analysis.ai.note)}</p>`;
 }
 
@@ -121,7 +121,7 @@ function initReport() {
           try {
             const response = await fetch(`/api/website-checker/${id}/share`, { method: 'POST', signal: controller.signal });
             if (!response.ok) throw new Error('Your report could not be shared. Please try again.');
-            window.location.assign('/contact/#meetings-embed');
+            window.location.assign('https://store.kelp.agency/meetings/andrew1417');
           } catch (error) { feedback.textContent = error instanceof Error ? error.message : 'Could not share your report.'; button.disabled = false; }
         });
         return;
@@ -139,3 +139,4 @@ function initReport() {
   void poll();
 }
 document.addEventListener('astro:page-load', initReport);
+initReport();

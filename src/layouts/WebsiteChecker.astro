@@ -1,8 +1,16 @@
 ---
 import '../styles/global.scss';
-const title = 'Free Website Checker | Kelp Creative Agency';
-const description = 'Find broken links and check your website’s AI search readiness, SEO, conversion signals, and schema.';
-const canonical = new URL('/website-checker/', 'https://www.kelp.agency');
+interface Props {
+  title?: string;
+  description?: string;
+  robots?: string;
+}
+const {
+  title = 'Free Website Checker | Kelp Creative Agency',
+  description = 'Find broken links and check your website’s AI search readiness, SEO, conversion signals, and schema.',
+  robots,
+} = Astro.props;
+const canonical = new URL(Astro.url.pathname, 'https://www.kelp.agency');
 ---
 <!doctype html>
 <html lang="en">
@@ -11,6 +19,7 @@ const canonical = new URL('/website-checker/', 'https://www.kelp.agency');
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {robots && <meta name="robots" content={robots} />}
     <link rel="canonical" href={canonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />

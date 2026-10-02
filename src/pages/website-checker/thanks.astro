@@ -1,10 +1,19 @@
 ---
-import Layout from '../../Base.astro';
+import Layout from '../../layouts/WebsiteChecker.astro';
+import Logo from '../../assets/website-checker-logo.svg';
+import '../../styles/pages/website-checker-landing.scss';
+import '../../styles/pages/website-checker.scss';
 ---
-<Layout title="Website Review Request Received | Kelp" darkHeader={true} robots="noindex, nofollow">
-  <section class="wrapper wrapper--narrow" style="padding-block: 5rem;">
-    <h1>Thanks for sharing your website.</h1>
-    <p>Kelp has received your review request. To talk through your website with us, book a time that works for you.</p>
-    <a class="button button--green" href="/contact/#meetings-embed">Book a meeting ↗</a>
-  </section>
+<Layout title="Website Review Request Received | Kelp" description="Your website review request is with Kelp. Schedule a meeting to talk through your website." robots="noindex, nofollow">
+  <main id="main" class="website-checker wrapper checker-report checker-thanks">
+    <div class="checker-result-brand"><a href="/website-checker/" aria-label="Kelp Website Checker"><Logo /></a><span>Website Checker / Request received</span></div>
+    <section class="checker-status-card">
+      <p class="checker-eyebrow">You’re on our list</p>
+      <h1>Thanks for sharing<br /><em>your website.</em></h1>
+      <p>Kelp has received your review request. Let’s talk through what’s working, where visitors get stuck, and what to improve next.</p>
+      <a class="button button--green" href="https://store.kelp.agency/meetings/andrew1417">Schedule a meeting</a>
+      <p class="checker-small">Choose a time that works for you to discuss your website with Kelp.</p>
+    </section>
+    <p class="checker-another"><a href="/website-checker/">Check another website</a></p>
+  </main>
 </Layout>

@@ -1,18 +1,22 @@
 ---
-import Layout from '../../Base.astro';
+import Layout from '../../layouts/WebsiteChecker.astro';
+import Logo from '../../assets/website-checker-logo.svg';
+import '../../styles/pages/website-checker-landing.scss';
 import '../../styles/pages/website-checker.scss';
 ---
-<Layout title="Your Website Checker Report | Kelp" description="Your website findings and next steps from Kelp Website Checker." darkHeader={true} robots="noindex, nofollow">
-  <div class="website-checker wrapper checker-report" data-checker-report>
-    <p class="checker-eyebrow">Kelp Website Checker</p>
-    <div data-report-status role="status" aria-live="polite">
-      <h1 class="h2">We’re reading your website.</h1>
+<Layout title="Your Website Checker Report | Kelp" description="Your website findings and next steps from Kelp Website Checker." robots="noindex, nofollow">
+  <main id="main" class="website-checker wrapper checker-report" data-checker-report>
+    <div class="checker-result-brand"><a href="/website-checker/" aria-label="Kelp Website Checker"><Logo /></a><span>Website Checker / Your report</span></div>
+    <div class="checker-status-card" data-report-status role="status" aria-live="polite">
+      <p class="checker-eyebrow">Your website check</p>
+      <h1>We’re reading<br /><em>your website.</em></h1>
       <p data-report-message>Loading your report…</p>
       <progress max="100" value="0" data-report-progress aria-label="Website scan progress"></progress>
+      <p class="checker-small">You can leave this page and return to this link when your report is ready.</p>
     </div>
     <div data-report-results></div>
     <noscript><p>Enable JavaScript to view your report.</p></noscript>
-    <p><a class="button" href="/website-checker/">Check another website</a></p>
-  </div>
+    <p class="checker-another"><a href="/website-checker/">Check another website</a></p>
+  </main>
   <script>import '../../scripts/website-checker-report';</script>
 </Layout>
