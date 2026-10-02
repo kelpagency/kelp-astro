@@ -11,8 +11,14 @@ function link(url: string, label = url) {
 function checks(items: Check[]) {
   return `<ul class="checker-findings">${items.map((item) => `<li><small>${escape(item.status)}</small><strong>${escape(item.label)}</strong>${escape(item.detail)}${item.evidence?.length ? `<ul>${item.evidence.map((text) => `<li>${escape(text)}</li>`).join('')}</ul>` : ''}</li>`).join('')}</ul>`;
 }
+function scoreTone(score: number) {
+  return score >= 80 ? 'good' : score >= 60 ? 'watch' : 'poor';
+}
+function scoreLabel(score: number) {
+  return `<span class="checker-score-label" data-score-tone="${scoreTone(score)}">${score}/100</span>`;
+}
 function category(item: CategoryResult) {
-  return `<details><summary>${escape(item.label)} · ${item.score}/100</summary><p>${escape(item.summary)}</p><p class="checker-small">${item.source === 'ai' ? 'AI interpretation' : 'Objective / heuristic checks'}</p><ul>${item.evidence.map((text) => `<li>${escape(text)}</li>`).join('')}</ul>${checks(item.checks)}</details>`;
+  return `<details><summary>${escape(item.label)} · ${scoreLabel(item.score)}</summary><p>${escape(item.summary)}</p><p class="checker-small">${item.source === 'ai' ? 'AI interpretation' : 'Objective / heuristic checks'}</p><ul>${item.evidence.map((text) => `<li>${escape(text)}</li>`).join('')}</ul>${checks(item.checks)}</details>`;
 }
 function links(title: string, items: LinkResult[]) {
   return `<details><summary>${escape(title)} · ${items.length}</summary>${items.length ? `<ul class="checker-findings">${items.map((item) => `<li><strong>${link(item.url)}</strong><small>${escape(item.kind)} · HTTP ${item.status ?? 'Unavailable'}</small>${item.redirects.length ? `<p>${item.redirects.length} redirect hop(s) → ${link(item.finalUrl)}</p>` : ''}${item.error ? `<p>${escape(item.error)}</p>` : ''}<p>Found on:</p><ul>${item.sourceUrls.map((url) => `<li>${link(url)}</li>`).join('')}</ul></li>`).join('')}</ul>` : '<p>No destinations in this group were found in the links checked.</p>'}</details>`;
@@ -52,18 +58,18 @@ function renderReport(audit: PublicAuditRecord) {
     { id: 'services', label: 'Service explanation', status: service.score >= 66 ? 'pass' : 'warning', detail: service.summary },
     { id: 'trust', label: 'Trust signals', status: trust ? 'pass' : 'warning', detail: `${trust} pages contain proof or trust language.` },
   ];
-  return `<div class="checker-report-header"><div><p class="checker-eyebrow">Your website / The findings</p><h1>${escape(audit.lead.company || new URL(crawl.finalRootUrl).hostname)}</h1><p>${link(crawl.finalRootUrl)}</p><button class="checker-save" data-save-report>Save report as PDF</button></div><div class="checker-overall"><strong class="checker-score">${overall}<small>/100</small></strong><p>Overall readiness</p></div></div>
+  return `<div class="checker-report-header"><div><p class="checker-eyebrow">Your website / The findings</p><h1>${escape(audit.lead.company || new URL(crawl.finalRootUrl).hostname)}</h1><p>${link(crawl.finalRootUrl)}</p><button class="button checker-save" data-save-report>Save report as PDF</button></div><div class="checker-overall" data-score-tone="${scoreTone(overall)}"><strong class="checker-score">${overall}<small>/100</small></strong><p>Overall readiness</p></div></div>
     <div class="checker-stats">${[[analysis.summary.pagesCrawled, 'Pages crawled'], [analysis.summary.linksChecked, 'Links checked'], [broken.length, 'Confirmed 404s'], [redirected.length, 'Redirects'], [review.length, 'Need review']].map(([value, label]) => `<div><strong>${value}</strong>${label}</div>`).join('')}</div>
-    <h2>Our findings.</h2><div class="checker-report-grid">${cards.map(([title, score, detail]) => `<article><h3 class="h5">${title}</h3><strong class="checker-score">${score}</strong><p>${escape(detail)}</p></article>`).join('')}</div>
+    <h2>Our findings.</h2><div class="checker-report-grid">${cards.map(([title, score, detail]) => `<article data-score-tone="${scoreTone(Number(score))}"><h3 class="h5">${title}</h3><strong class="checker-score">${score}</strong><p>${escape(detail)}</p></article>`).join('')}</div>
     <h2 class="h4">Where to focus first</h2>${analysis.recommendations.length ? `<ol>${analysis.recommendations.map((item) => `<li><strong>${escape(item.title)}</strong> <small>(${escape(item.priority)} priority · ${escape(item.source)})</small><p>${escape(item.detail)}</p></li>`).join('')}</ol>` : '<p>No additional recommendations from the pages checked.</p>'}
     <section class="checker-cta"><div><p class="checker-eyebrow">Your next step</p><h2>Let’s turn the findings<br /><em>into a plan.</em></h2><p>We’ll walk through your report together and help you decide what to tackle first.</p></div><div><button class="button button--green" data-share-report>Schedule a meeting with Kelp</button><p class="checker-small">Bring your findings. We’ll help you prioritize the next steps.</p><p data-share-message role="status"></p></div></section>
     <h2 class="h4">The evidence behind the checks</h2>
     ${links('Confirmed 404s', broken)}${links('Redirected links', redirected)}${links('Links needing manual review', review)}
-    <details><summary>AI search · ${aiScore}/100</summary><p>${escape(analysis.ai.note)}</p>${ai.map(category).join('')}</details>
+    <details><summary>AI search · ${scoreLabel(aiScore)}</summary><p>${escape(analysis.ai.note)}</p>${ai.map(category).join('')}</details>
     ${category({ ...technical, checks: [...technical.checks, ...[
       ['Page titles', pages.filter((page) => page.title).length], ['Meta descriptions', pages.filter((page) => page.description).length], ['One clear H1', pages.filter((page) => page.h1.length === 1).length],
     ].map(([label, count]) => ({ id: String(label), label: String(label), status: (count === pages.length ? 'pass' : 'warning') as Check['status'], detail: `${count} of ${pages.length} pages.` }))] })}
-    ${category(local)}<details><summary>Conversion · ${conversion}/100</summary>${checks(conversionChecks)}</details>${category(schema)}
+    ${category(local)}<details><summary>Conversion · ${scoreLabel(conversion)}</summary>${checks(conversionChecks)}</details>${category(schema)}
     <details><summary>Crawl details · ${crawl.pages.length} pages</summary><p>robots.txt: ${crawl.robots.found ? 'found' : 'not found'} · sitemap: ${crawl.sitemap.found ? 'found' : 'not found'} · 50-page limit: ${crawl.limitReached ? 'reached' : 'not reached'}</p><div class="checker-table-wrap"><table><thead><tr><th>Page</th><th>Status</th><th>Title</th><th>Words</th><th>Schema</th></tr></thead><tbody>${crawl.pages.map((page) => `<tr><td>${link(page.url)}</td><td>${page.status}</td><td>${escape(page.title)}</td><td>${page.wordCount}</td><td>${escape(page.schemaTypes.join(', ') || 'None found')}</td></tr>`).join('')}</tbody></table></div>${crawl.errors.length ? `<ul>${crawl.errors.map((error) => `<li>${escape(error)}</li>`).join('')}</ul>` : ''}</details>
     <p class="checker-small">Scores are a starting point based on the public pages we reached. Objective checks and AI interpretation are labeled separately. ${escape(analysis.ai.note)}</p>`;
 }
@@ -92,6 +98,11 @@ function initReport() {
   async function poll() {
     try {
       const response = await fetch(`/api/website-checker/${id}`, { cache: 'no-store', signal: controller.signal });
+      if (!(response.headers.get('content-type') || '').includes('application/json')) {
+        throw new Error(['localhost', '127.0.0.1', '[::1]'].includes(window.location.hostname)
+          ? 'The local checker API is not running. Start npx netlify dev and open the URL it prints (usually port 8888).'
+          : 'The checker API returned an unexpected response. Please try again shortly.');
+      }
       const data = await response.json();
       if (!response.ok) {
         if (response.status === 404) { message.textContent = 'This report could not be found. Start a new check below.'; progress.hidden = true; return; }

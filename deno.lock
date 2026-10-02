@@ -1,0 +1,38 @@
+{
+  "version": "5",
+  "remote": {
+    "https://edge.netlify.com/": "fd941d61d88673d5f28aab283fb86fcc50f08a3bc80ee5470498fcfa88c65cfb",
+    "https://edge.netlify.com/bootstrap/config.ts": "6a2ce0e544e15e8f8883a5c18da5948e37fd0f2619f68cb31f3af53c51817025",
+    "https://edge.netlify.com/bootstrap/context.ts": "2260177df4a7d692f31177ccbf2de969cd8db1269c564a45517d6e47fd7d248f",
+    "https://edge.netlify.com/bootstrap/cookie.ts": "8b0baae708989ca183c6f3b4ab3d029e6abcbc2e43f93edeb0ff447b3bbc3a05",
+    "https://edge.netlify.com/bootstrap/edge_function.ts": "b8253e86aa83c67341f5cfedeba5049d77fbf84dcab7eceff7566b7728ae9b39",
+    "https://edge.netlify.com/bootstrap/globals/types.ts": "eaa6148ded3121d8dee62dd91c86e7fe76601df0f3ca8d7962243a30f4c8935f"
+  },
+  "workspace": {
+    "packageJson": {
+      "dependencies": [
+        "npm:@astrojs/check@~0.9.10",
+        "npm:@astrojs/rss@^4.0.19",
+        "npm:@astrojs/sitemap@^3.7.4",
+        "npm:@types/sanitize-html@^2.16.2",
+        "npm:@waaark/luge@0.6.20-beta",
+        "npm:astro@^7.3.5",
+        "npm:autoprefixer@^10.6.1",
+        "npm:flickity-fade@2",
+        "npm:flickity@3",
+        "npm:headroom.js@0.12",
+        "npm:highlight.js@^11.12.0",
+        "npm:lottie-web@^5.13.0",
+        "npm:prettier-plugin-astro@^1.1.0",
+        "npm:prettier@^3.9.9",
+        "npm:reading-time@^1.5.0",
+        "npm:rough-notation@~0.5.1",
+        "npm:sanitize-html@^2.18.0",
+        "npm:sanitize.css@13",
+        "npm:sass@^1.105.1",
+        "npm:sharp@~0.35.5",
+        "npm:typescript@^6.0.2"
+      ]
+    }
+  }
+}

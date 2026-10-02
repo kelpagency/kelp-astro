@@ -4,29 +4,36 @@
   .checker-result-brand svg { display: block; width: 100px; height: auto; }
   .checker-result-brand span { padding-left: 1.5rem; border-left: 1px solid var(--checker-line); font-size: .75rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
   h1 { font-size: clamp(2.5rem, 5vw, 5rem); line-height: 1; letter-spacing: -.06em; margin-block: .75rem 1.5rem; overflow-wrap: anywhere; }
-  h1 em, .checker-cta h2 em { font-family: Georgia, serif; font-weight: 400; color: #2dab22; }
+  h1 em, .checker-cta h2 em { font-family: var(--serif); font-weight: 400; font-style: italic; color: #2dab22; }
   h2 { font-size: clamp(1.7rem, 2.8vw, 2.5rem); line-height: 1.1; letter-spacing: -.04em; margin-top: 2.5rem; }
   .checker-report-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 2rem; }
   .checker-report-header > div:first-child { flex: 1; min-width: 0; }
   .checker-report-header a { overflow-wrap: anywhere; }
-  .checker-save { font-size: .8rem; text-decoration: underline; padding: 0; }
-  .checker-overall { padding: 1.5rem 2.5rem; background: var(--black); color: white; text-align: center; border-bottom: 5px solid var(--green); }
+  .checker-save { font-size: .85rem; background: white; color: var(--black); }
+  .checker-save:hover, .checker-save:focus { background: var(--purple); color: white; }
+  .checker-overall { padding: 1.5rem 2.5rem; background: var(--black); color: white; text-align: center; border-bottom: 5px solid var(--score-color); }
   .checker-overall p { margin-bottom: 0; font-size: .85rem; }
-  .checker-score { display: block; font-family: Arial, sans-serif; font-size: 3.5rem; font-weight: 700; line-height: 1.1; letter-spacing: -.06em; color: var(--purple); }
+  .checker-score { display: block; font-family: var(--sans-serif); font-size: 3.5rem; font-weight: 700; line-height: 1.1; letter-spacing: -.06em; color: var(--score-color); }
   .checker-score small { font-size: 1.25rem; letter-spacing: 0; }
-  .checker-overall .checker-score { color: var(--green); }
+  [data-score-tone="good"] { --score-color: #218018; }
+  [data-score-tone="watch"] { --score-color: #9a7000; }
+  [data-score-tone="poor"] { --score-color: #c13434; }
+  .checker-overall[data-score-tone="good"] { --score-color: var(--green); }
+  .checker-overall[data-score-tone="watch"] { --score-color: #f5cc4f; }
+  .checker-overall[data-score-tone="poor"] { --score-color: #ff8585; }
+  .checker-score-label { color: var(--score-color); }
   .checker-stats { display: grid; grid-template-columns: repeat(5, 1fr); margin-block: 2.5rem; border-block: 1px solid var(--checker-line); }
   .checker-stats > div { padding: 1.5rem 1rem; font-size: .8rem; color: var(--checker-muted); }
   .checker-stats strong { display: block; font-size: 2rem; color: var(--black); }
   .checker-report-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-block: 1.5rem 3rem; }
-  .checker-report-grid article { background: white; border: 1px solid var(--checker-line); border-top: 4px solid var(--green); padding: 1.5rem; }
+  .checker-report-grid article { background: white; border: 1px solid var(--checker-line); border-top: 4px solid var(--score-color); padding: 1.5rem; }
   .checker-report-grid h3 { font-size: 1.15rem; margin-top: 0; }
   .checker-report-grid p { color: var(--checker-muted); font-size: .9rem; margin-bottom: 0; }
   ol { padding-left: 1.5rem; }
   ol > li { padding: 1rem .5rem; border-bottom: 1px solid var(--checker-line); }
   ol > li::marker { color: var(--purple); font-weight: 700; }
   ol small { display: block; margin-top: .4rem; color: var(--checker-muted); }
-  ol p { font-family: Georgia, serif; margin-bottom: 0; }
+  ol p { font-family: var(--serif); margin-bottom: 0; }
   details { margin-block: .75rem; padding: 1.25rem; background: white; border: 1px solid var(--checker-line); overflow-wrap: anywhere; }
   summary { cursor: pointer; font-weight: 700; }
   details > p, details > ul { font-size: .9rem; }
@@ -46,7 +53,7 @@
   .checker-cta .button:hover { background: white; border-color: white; }
   .checker-another { margin-top: 3rem; text-align: center; font-size: .85rem; }
   .checker-status-card { max-width: 900px; margin-inline: auto; background: white; padding: clamp(1.5rem, 5vw, 4rem); border: 1px solid var(--black); box-shadow: 10px 10px 0 var(--black); }
-  .checker-status-card > p:not(.checker-eyebrow):not(.checker-small) { max-width: 52ch; font-family: Georgia, serif; font-size: 1.2rem; color: #3d444c; }
+  .checker-status-card > p:not(.checker-eyebrow):not(.checker-small) { max-width: 52ch; font-family: var(--serif); font-size: 1.2rem; color: #3d444c; }
   .checker-status-card progress { display: block; width: 100%; height: 12px; margin-block: 2rem; accent-color: var(--purple); }
   .checker-status-card .button { margin-block: 1.5rem .5rem; }
   @media (max-width: 850px) {

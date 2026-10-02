@@ -9,7 +9,7 @@ const script = ts.transpileModule(readFileSync(new URL('../src/scripts/website-c
 }).outputText;
 const id = '550e8400-e29b-41d4-a716-446655440000';
 
-async function preview(data) {
+async function preview(data, response = Response.json(data)) {
   const message = { textContent: '' };
   let value = 0;
   let assignments = 0;
@@ -32,12 +32,12 @@ async function preview(data) {
   let initialize;
   vm.runInNewContext(script, {
     exports: {}, URLSearchParams, AbortController,
-    window: { location: { search: `?id=${id}` } },
+    window: { location: { search: `?id=${id}`, hostname: 'localhost' } },
     document: {
       querySelector: () => root,
       addEventListener: (event, handler) => { if (event === 'astro:page-load') initialize = handler; },
     },
-    fetch: async () => Response.json(data),
+    fetch: async () => response.clone(),
     setTimeout: (handler) => { timers.push(handler); return timers.length; },
     clearTimeout: () => {},
   });
@@ -65,4 +65,14 @@ test('valid report progress is clamped to the progress bar range', async () => {
   assert.equal(result.value, 100);
   assert.equal(result.message.textContent, 'Checking links');
   assert.equal(result.progress.hidden, false);
+});
+
+test('local HTML 404 responses explain how to run the checker API', async () => {
+  const result = await preview(null, new Response('<html>Not found</html>', {
+    status: 404, headers: { 'Content-Type': 'text/html' },
+  }));
+  assert.match(result.message.textContent, /npx netlify dev/);
+  assert.equal(result.assignments, 0);
+  assert.equal(result.progress.hidden, true);
+  assert.equal(result.timers.length, 0);
 });

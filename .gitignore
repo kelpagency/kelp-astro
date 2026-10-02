@@ -21,3 +21,6 @@ pnpm-debug.log*
 .unlighthouse*
 
 /kelp-website-checker
+
+# Local Netlify folder
+.netlify

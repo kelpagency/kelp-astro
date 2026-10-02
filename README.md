@@ -35,7 +35,12 @@ Starter Legacy form and synchronous function allowances still apply; check
 Usage & billing for the account's current usage. Without the API URL the page
 offers a manual review request. HubSpot is not connected. Plain `astro dev`
 previews the page but does not run Netlify Functions or process Netlify Forms.
-Use `netlify dev` for functions and a Deploy Preview to verify form capture.
+Use `npx netlify dev` for functions, then open the Netlify proxy URL on port
+8888 (not Astro's port 4321).
+Add `WEBSITE_CHECKER_API_URL` and `WEBSITE_CHECKER_API_TOKEN` to the root `.env`
+file, and restart Netlify Dev after changing them. The token must match
+Pressable's `KELP_WEBSITE_CHECKER_SECRET`. Use a Deploy Preview to verify form
+capture.
 
 Run `npm run test:checker` for authenticated proxy, privacy, cookie, and quota
 response tests; run `npm run build` for Astro validation. Crawler tests live in
