@@ -1,0 +1,93 @@
+.checker-standalone {
+  --checker-paper: #fffef9;
+  --checker-line: #d8dcd4;
+  --checker-muted: #69717b;
+  background: var(--checker-paper);
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+  h1, h2, h3 { font-family: Arial, sans-serif; max-width: none; }
+  [hidden] { display: none !important; }
+  .checker-eyebrow { font-size: .72rem; font-weight: 800; letter-spacing: .15em; text-transform: uppercase; color: var(--purple); }
+  .checker-small { font-size: .75rem; color: var(--checker-muted); }
+  .button { font-family: inherit; font-weight: 700; border: 1px solid var(--black); min-height: 48px; padding: .75rem 1.5rem; }
+  .button--green { background: var(--black); color: white; }
+  .button:hover { background: var(--purple); }
+  .checker-message { color: var(--purple); font-size: .85rem; }
+  button:disabled { opacity: .6; cursor: wait; }
+}
+.checker-header {
+  border-bottom: 1px solid var(--checker-line);
+  .wrapper { min-height: 88px; display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; }
+  p { font-size: .78rem; color: var(--checker-muted); display: flex; align-items: center; gap: .75rem; }
+  p > span { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 5px #e2fbdc; }
+}
+.checker-brand { display: flex; align-items: center; gap: 1.5rem; text-decoration: none; }
+.checker-brand svg { width: 100px; height: auto; }
+.checker-brand > span { padding-left: 1.5rem; border-left: 1px solid var(--checker-line); font-size: .8rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.checker-landing {
+  padding-top: 0;
+  .checker-landing-hero { padding-block: clamp(3rem, 6vw, 6rem) 4rem; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 2.5rem 4vw; align-items: center; }
+  h1 { font-size: clamp(3.4rem, 6.6vw, 7.4rem); line-height: .88; letter-spacing: -.075em; margin: 0 0 1.75rem; }
+  h1 span { display: block; }
+  h1 em { color: #2dab22; font-family: Georgia, serif; font-weight: 400; font-style: italic; letter-spacing: -.045em; }
+  .checker-lede { font-family: Georgia, serif; font-size: clamp(1.22rem, 2vw, 1.58rem); color: #3d444c; max-width: 42ch; }
+  .checker-hero-art picture, .checker-hero-art img { display: block; width: 100%; height: auto; }
+  .checker-promises { display: flex; flex-wrap: wrap; gap: 1rem 1.75rem; margin-top: 2rem; }
+  .checker-promises p { display: grid; grid-template-columns: 32px auto; column-gap: .6rem; font-size: .78rem; color: var(--checker-muted); }
+  .checker-promises strong { font-size: .95rem; color: var(--black); }
+  .checker-promises p > span { grid-row: span 2; display: grid; place-items: center; border-radius: 50%; background: #2dab22; color: white; width: 32px; height: 32px; }
+  .checker-promises p:nth-child(2) > span { background: var(--purple); }
+  .checker-promises p:nth-child(3) > span { background: #a96b05; }
+  .checker-form-section { grid-column: 1 / -1; scroll-margin-top: 2rem; }
+  form { background: white; border: 1px solid var(--black); box-shadow: 12px 12px 0 var(--black); padding: 1.75rem; }
+  form h2 { font-size: 1.5rem; margin-top: 0; }
+  label { display: grid; gap: .5rem; font-size: .75rem; font-weight: 700; }
+  input { min-height: 3rem; border: 1px solid #aeb4b5; padding: .75rem; background: white; font-size: 1rem; font-weight: 400; }
+  .checker-url-row, .checker-lead-grid { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 1rem; margin-block: 1.5rem; }
+  .checker-lead-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) auto; }
+  .checker-url-row input, .checker-url-row .button { min-height: 64px; }
+  .checker-url-row input { font-size: 1.2rem; }
+  .checker-form-actions { display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center; }
+  .checker-form-actions .link { text-decoration: underline; font-size: .85rem; }
+}
+.checker-how {
+  padding-block: 6rem;
+  background: var(--black);
+  color: white;
+  .wrapper { display: grid; grid-template-columns: .72fr 1.28fr; gap: 4rem; }
+  .checker-eyebrow { color: var(--light-purple); }
+  h2 { font-size: clamp(3rem, 5vw, 5.7rem); line-height: .95; letter-spacing: -.065em; margin: 0; }
+  h2 em { color: var(--green); font-family: Georgia, serif; font-style: italic; font-weight: 400; }
+}
+.checker-steps { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid #46505c; }
+.checker-steps article { min-height: 300px; padding: 1.5rem; border-right: 1px solid #46505c; display: flex; flex-direction: column; }
+.checker-steps article:first-child { border-left: 1px solid #46505c; }
+.checker-steps article > span { color: var(--green); font-size: .7rem; font-weight: 700; }
+.checker-steps h3 { margin: auto 0 .85rem; font-size: 1.5rem; line-height: 1.1; }
+.checker-steps p { font-family: Georgia, serif; color: #bfc5cc; margin: 0; }
+.checker-strip { background: var(--green); padding-block: 2rem; }
+.checker-strip > div { display: grid; grid-template-columns: repeat(6, 1fr); }
+.checker-strip span { min-height: 120px; padding: 1rem; border-left: 1px solid #0d172640; display: flex; flex-direction: column; justify-content: space-between; font-weight: 700; }
+.checker-strip span:last-child { border-right: 1px solid #0d172640; }
+.checker-strip b { font-size: .72rem; }
+.checker-footer { padding-block: 2.5rem; display: flex; justify-content: space-between; align-items: center; gap: 2rem; font-size: .8rem; }
+.checker-footer svg { width: 90px; height: auto; }
+.checker-footer p { color: var(--checker-muted); }
+@media (max-width: 1050px) {
+  .checker-landing .checker-landing-hero, .checker-how .wrapper { grid-template-columns: 1fr; }
+  .checker-landing .checker-hero-art { max-width: 650px; margin-inline: auto; }
+}
+@media (max-width: 760px) {
+  .checker-header p { display: none; }
+  .checker-brand { gap: .75rem; }
+  .checker-brand > span { padding-left: .75rem; font-size: .67rem; }
+  .checker-landing h1 { font-size: clamp(2.75rem, 13vw, 4.6rem); }
+  .checker-landing .checker-url-row, .checker-landing .checker-lead-grid, .checker-steps { grid-template-columns: 1fr; }
+  .checker-landing form { padding: 1.25rem; box-shadow: 7px 7px 0 var(--black); }
+  .checker-how { padding-block: 4rem; }
+  .checker-steps article { min-height: 200px; border-left: 1px solid #46505c; border-bottom: 1px solid #46505c; }
+  .checker-strip > div { grid-template-columns: repeat(2, 1fr); }
+  .checker-footer { flex-wrap: wrap; }
+  .checker-footer p { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .checker-standalone *, .checker-standalone *::after { transition: none; } }

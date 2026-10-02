@@ -5,6 +5,18 @@ publish = "dist"
 [build.environment]
 NODE_VERSION = "22.12.0"
 
+[[redirects]]
+from = "/api/website-checker"
+to = "/.netlify/functions/website-checker"
+status = 200
+force = true
+
+[[redirects]]
+from = "/api/website-checker/*"
+to = "/.netlify/functions/website-checker?route=:splat"
+status = 200
+force = true
+
 [[headers]]
 for = "/*"
 [headers.values]

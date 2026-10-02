@@ -1,0 +1,38 @@
+---
+import '../styles/global.scss';
+const title = 'Free Website Checker | Kelp Creative Agency';
+const description = 'Find broken links and check your website’s AI search readiness, SEO, conversion signals, and schema.';
+const canonical = new URL('/website-checker/', 'https://www.kelp.agency');
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content="https://www.kelp.agency/images/kelp-logo.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="preload" href="/fonts/poppins-v24-latin-700.woff2" as="font" type="font/woff2" crossorigin />
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-VLVG9CQ76D"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+      if (!window.kelpGaInitialized) {
+        window.kelpGaInitialized = true;
+        window.gtag('js', new Date());
+        window.gtag('config', 'G-VLVG9CQ76D');
+      }
+    </script>
+  </head>
+  <body class="checker-standalone">
+    <a href="#main" class="screen-reader-text">Skip to content</a>
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,75 @@
+---
+import Layout from '../layouts/WebsiteChecker.astro';
+import { Picture } from 'astro:assets';
+import Logo from '../assets/website-checker-logo.svg';
+import hero from '../assets/images/resources/website-checker.png';
+import '../styles/pages/website-checker-landing.scss';
+const checks = ['Link Health', 'AI Search', 'Technical SEO', 'Local SEO', 'Conversion', 'Schema'];
+---
+<Layout>
+  <header class="checker-header">
+    <div class="wrapper">
+      <a href="/" class="checker-brand" aria-label="Kelp Creative Agency home"><Logo /><span>Website Checker</span></a>
+      <p><span aria-hidden="true"></span>One crawl. Six useful checks.</p>
+    </div>
+  </header>
+  <main id="main" class="checker-landing">
+    <section class="wrapper checker-landing-hero">
+      <div class="checker-hero-copy">
+        <p class="checker-eyebrow">Kelp Website Checker / Free website check</p>
+        <h1><span>Your website has</span><span><em>two stories.</em></span></h1>
+        <p class="checker-lede">One is what people see. The other is what links, crawlers, and answer engines can understand. Let’s check both.</p>
+        <div class="checker-promises">
+          <p><span aria-hidden="true">↗</span><strong>Broken links</strong>Find dead ends and detours.</p>
+          <p><span aria-hidden="true">✦</span><strong>AI search readiness</strong>See what machines can understand.</p>
+          <p><span aria-hidden="true">▦</span><strong>Four more checkers</strong>Technical, local, conversion, and schema.</p>
+        </div>
+      </div>
+      <div class="checker-hero-art"><Picture src={hero} widths={[480, 800, 1254]} sizes="(max-width: 1050px) 90vw, (max-width: 1555px) 43vw, 670px" loading="eager" fetchpriority="high" width={1254} height={1254} alt="An illustration of Kelp’s broken link, AI search, and supporting website checkers" /></div>
+    <section class="checker-form-section" id="check-your-website" aria-labelledby="checker-form-title">
+      <form name="website-checker" method="POST" action="/website-checker/thanks/" data-netlify="true" netlify-honeypot="bot-field" data-checker-form>
+        <input type="hidden" name="form-name" value="website-checker" />
+        <input type="hidden" name="audit-id" value="" />
+        <input type="hidden" name="report-url" value="" />
+        <p class="hidden"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+        <h2 class="h3" id="checker-form-title">Let’s take a look.</h2>
+        <p class="checker-small" data-checker-step-label aria-live="polite" hidden></p>
+        <p data-checker-intro>Enter your website and a few details to get started.</p>
+        <div class="checker-url-row" data-checker-url-step>
+          <label>Website URL <input name="url" type="text" inputmode="url" autocomplete="url" placeholder="yourwebsite.com" maxlength="2048" required /></label>
+        </div>
+        <div data-checker-lead-step>
+        <p class="checker-small" data-checker-selected-url hidden></p>
+        <div class="checker-lead-grid">
+          <label>Your name <input name="name" type="text" autocomplete="name" placeholder="Jamie Smith" minlength="2" maxlength="100" required /></label>
+          <label>Work email <input name="email" type="email" autocomplete="email" placeholder="jamie@company.com" maxlength="254" required /></label>
+          <button class="button button--green" type="submit" data-scan-button>Check my website</button>
+        </div>
+        <p class="checker-small">We’ll save your details and website report so Kelp can help with your findings. <a href="/privacy-policy/">Privacy policy</a>.</p>
+        </div>
+        <div class="checker-form-actions">
+          <button class="link" type="button" data-checker-back hidden>Back</button>
+          <p class="checker-small">Up to 50 public pages per check. <span data-checker-usage></span></p>
+        </div>
+        <p class="checker-message" role="status" aria-live="polite" data-checker-message></p>
+        <a class="button button--green" href="/contact/#meetings-embed" data-checker-booking hidden>Book a meeting with Kelp ↗</a>
+        <noscript><p>Submit your website for Kelp to review, or enable JavaScript to run an automated check.</p></noscript>
+      </form>
+    </section>
+
+    </section>
+    <section class="checker-how">
+      <div class="wrapper">
+        <div><p class="checker-eyebrow">How it works</p><h2>A clear read,<br /><em>without the jargon.</em></h2></div>
+        <div class="checker-steps">
+          <article><span>01</span><h3>We scan the site</h3><p>We look through up to 50 public pages and follow the links visitors and search engines can reach.</p></article>
+          <article><span>02</span><h3>We check the basics</h3><p>Broken links, redirects, page titles, crawl access, and structured data get a straightforward review.</p></article>
+          <article><span>03</span><h3>We connect the dots</h3><p>Your report checks how clearly the site explains your business, services, and why people should trust you.</p></article>
+        </div>
+      </div>
+    </section>
+    <section class="checker-strip" aria-label="Six website checks"><div class="wrapper">{checks.map((label, index) => <span><b>0{index + 1}</b>{label}</span>)}</div></section>
+  </main>
+  <footer class="checker-footer wrapper"><Logo aria-label="Kelp" /><p>Built to turn website evidence into a clear action plan.</p><a href="/resources/">More Kelp resources</a></footer>
+  <script>import '../scripts/website-checker';</script>
+</Layout>

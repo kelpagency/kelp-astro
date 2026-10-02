@@ -7,6 +7,7 @@
     "node": ">=22.12 <25"
   },
   "scripts": {
+    "test:checker": "node --test tests/website-checker*.test.mjs",
     "dev": "astro dev",
     "start": "astro dev",
     "check": "astro check",

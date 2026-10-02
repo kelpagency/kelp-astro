@@ -11,12 +11,14 @@ import redFlagFont from '../assets/images/resources/red-flag-font.jpg';
 import blackFlagFont from '../assets/images/resources/black-flag-font.jpg';
 import seaweedBrush from '../assets/images/resources/seaweed-brush.png';
 import ropeBrush from '../assets/images/resources/rope-brush.jpg';
+import websiteChecker from '../assets/images/resources/website-checker.png';
 import { buildCollectionPageSchema, buildItemList } from '../lib/schema';
 
 const schema = buildCollectionPageSchema(
   'Kelp Resources',
   "A collection of digital assets, downloadable resources, and creative tools from Kelp Creative Agency.",
   buildItemList([
+    { name: 'Kelp Website Checker', url: '/website-checker/' },
     { name: 'Modern Pro', url: 'https://ecosystem.hubspot.com/marketplace/website/modern-pro-theme-by-kelp-creative-agency' },
     { name: 'Restaurant Pro', url: 'https://ecosystem.hubspot.com/marketplace/website/restaurant-pro-theme-by-kelp-creative-agency' },
     { name: 'Simple Social Sharing', url: 'https://wordpress.org/plugins/simple-social-sharing-kelp/' },
@@ -51,6 +53,16 @@ const schema = buildCollectionPageSchema(
     </p>
   </div>
   <div class="wrapper archive">
+    <article class="archive-tease" data-lg-reveal="layer-to-right" data-lg-reveal-stagger="0.15">
+      <a href="/website-checker/" class="media">
+        <Picture src={websiteChecker} alt="Kelp Website Checker" loading="eager" width={1254} height={1254} widths={[360, 720, 1254]} sizes="(max-width: 890px) 90vw, (max-width: 1300px) 45vw, 30vw" />
+      </a>
+      <div class="text">
+        <p class="text-meta">Website Tool</p>
+        <h2 class="h5"><a href="/website-checker/">Kelp Website Checker</a></h2>
+        <p>Get a clearer picture of your website’s link health, AI search readiness, technical SEO, local signals, conversion paths, and structured data.</p>
+      </div>
+    </article>
     <article class="archive-tease" data-lg-reveal="layer-to-right" data-lg-reveal-stagger="0.15">
       <AwardBadge title="Winner of the 2021 HubSpot Themes Challenge" />
       <a

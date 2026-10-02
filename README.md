@@ -2,6 +2,46 @@
 
 Built with [Astro](https://docs.astro.build).
 
+## Website checker
+
+`/website-checker/` is a standalone Astro landing page based on the prototype,
+linked from Resources. The form asks for the URL first, then name and email.
+Reports live at `/website-checker/report/?id=<UUID>`.
+
+The synchronous Netlify function securely proxies requests to WordPress on
+Pressable. WordPress stores leads and reports and runs the crawler through its
+scheduled WP-CLI worker. This supports our **Starter Legacy** Netlify plan,
+which does not support Background Functions. No crawler runs inside a Netlify
+request, and the page itself is served by Astro.
+
+The existing WordPress implementation needs company validation removed and its
+Pressable worker scheduled before scans can run. A ready-to-paste prompt and
+configuration are in [the WordPress handoff](docs/website-checker-wordpress.md).
+
+Configure these Netlify **Functions-scope** environment variables:
+
+- `WEBSITE_CHECKER_API_URL=https://admin.kelp.agency/wp-json/kelp/v1/audits`
+- `WEBSITE_CHECKER_API_TOKEN=<same WordPress shared secret, at least 32 characters>`
+
+The WordPress crawler handles bounded public-page scans, DNS/redirect safety,
+robots rules, progress, leases, quotas, and retention. Its current analysis is
+objective and deterministic; OpenAI interpretation is not enabled. The landing
+page describes AI search readiness as a website check, rather than claiming
+that scans use generative AI.
+
+Enable Netlify form detection and deploy to register the static `website-checker`
+form. It captures URL, name, email, audit ID, and report URL with a honeypot.
+Starter Legacy form and synchronous function allowances still apply; check
+Usage & billing for the account's current usage. Without the API URL the page
+offers a manual review request. HubSpot is not connected. Plain `astro dev`
+previews the page but does not run Netlify Functions or process Netlify Forms.
+Use `netlify dev` for functions and a Deploy Preview to verify form capture.
+
+Run `npm run test:checker` for authenticated proxy, privacy, cookie, and quota
+response tests; run `npm run build` for Astro validation. Crawler tests live in
+the WordPress repo. The prototype folder remains a reference and is excluded
+from Astro type checking.
+
 ## 🚀 Project Structure
 
 Inside of your Astro project, you'll see the following folders and files:

@@ -1,0 +1,18 @@
+---
+import Layout from '../../Base.astro';
+import '../../styles/pages/website-checker.scss';
+---
+<Layout title="Your Website Checker Report | Kelp" description="Your website findings and next steps from Kelp Website Checker." darkHeader={true} robots="noindex, nofollow">
+  <div class="website-checker wrapper checker-report" data-checker-report>
+    <p class="checker-eyebrow">Kelp Website Checker</p>
+    <div data-report-status role="status" aria-live="polite">
+      <h1 class="h2">We’re reading your website.</h1>
+      <p data-report-message>Loading your report…</p>
+      <progress max="100" value="0" data-report-progress aria-label="Website scan progress"></progress>
+    </div>
+    <div data-report-results></div>
+    <noscript><p>Enable JavaScript to view your report.</p></noscript>
+    <p><a class="button" href="/website-checker/">Check another website</a></p>
+  </div>
+  <script>import '../../scripts/website-checker-report';</script>
+</Layout>
