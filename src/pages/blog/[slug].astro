@@ -12,7 +12,11 @@ import {
 } from "../../lib/sanitize";
 import { toJetpackImageUrl } from "../../lib/jetpack";
 import { getTeamMemberUrl } from "../../lib/team";
-import { fetchWpJson, fetchWpJsonRequired, fetchWpCollectionRequired } from "../../lib/wp";
+import {
+  fetchWpJson,
+  fetchWpJsonRequired,
+  fetchWpCollectionRequired,
+} from "../../lib/wp";
 
 import "../../styles/pages/_wordpress.scss";
 import "highlight.js/styles/monokai-sublime.css";
@@ -122,15 +126,13 @@ const safeContent = sanitizeHtml(content);
     <div class="single-article">
       <h1 transition:name={`heading-${id}`} set:html={safeTitle} />
       <p class="single-article-meta">
-        <time datetime={datePublished}
-          >{
-            new Date(datePublished).toLocaleDateString("en-us", {
-              year: "numeric",
-              month: "short",
-              day: "numeric",
-            })
-          }</time
-        >
+        <time datetime={datePublished}>
+          {new Date(datePublished).toLocaleDateString("en-us", {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          })}
+        </time>
         <span>{readingTime(content).text}</span>
       </p>
       <div transition:name={`hero-${id}`}>
@@ -146,82 +148,78 @@ const safeContent = sanitizeHtml(content);
         />
       </div>
       <div class="single-article-content" set:html={safeContent} />
-      {
-        jsonComments.length > 0 && (
-          <section class="single-article-comments">
-            <h4>Comments</h4>
-            {jsonComments.map(
-              (comment) =>
-                comment.parent == 0 && (
-                  <div class="single-article-comments-item">
-                    <img
-                      class="single-article-comments-item-img"
-                      src={comment.author_avatar_urls["96"]}
-                      alt={`Avatar for ${comment.author_name}`}
-                      width="48"
-                      height="48"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                    <h4 class="single-article-comments-item-name h6">
-                      {comment.author_name} says
-                    </h4>
-                    <time datetime={comment.date}>
-                      {new Date(comment.date).toLocaleDateString("en-us", {
-                        year: "numeric",
-                        month: "short",
-                        day: "numeric",
-                      })}
-                    </time>
-                    <div
-                      class="single-article-comments-item-body"
-                      set:html={sanitizeHtml(comment.content.rendered)}
-                    />
-                    {jsonComments.map(
-                      (reply) =>
-                        reply.parent == comment.id && (
-                          <div class="single-article-comments-item single-article-comments-item--reply">
-                            <img
-                              class="single-article-comments-item-img"
-                              src={reply.author_avatar_urls["96"]}
-                              alt={`Avatar for ${reply.author_name}`}
-                              width="48"
-                              height="48"
-                              loading="lazy"
-                              decoding="async"
-                            />
-                            <h4 class="single-article-comments-item-name h6">
-                              {reply.author_name} says
-                            </h4>
-                            <time datetime={reply.date}>
-                              {new Date(reply.date).toLocaleDateString(
-                                "en-us",
-                                {
-                                  year: "numeric",
-                                  month: "short",
-                                  day: "numeric",
-                                },
-                              )}
-                            </time>
-                            <div
-                              class="single-article-comments-item-body"
-                              set:html={sanitizeHtml(reply.content.rendered)}
-                            />
-                          </div>
-                        ),
-                    )}
-                  </div>
-                ),
-            )}
-          </section>
-        )
-      }
+      {jsonComments.length > 0 && (
+        <section class="single-article-comments">
+          <h4>Comments</h4>
+          {jsonComments.map(
+            (comment) =>
+              comment.parent == 0 && (
+                <div class="single-article-comments-item">
+                  <img
+                    class="single-article-comments-item-img"
+                    src={comment.author_avatar_urls["96"]}
+                    alt={`Avatar for ${comment.author_name}`}
+                    width="48"
+                    height="48"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <h4 class="single-article-comments-item-name h6">
+                    {comment.author_name} says
+                  </h4>
+                  <time datetime={comment.date}>
+                    {new Date(comment.date).toLocaleDateString("en-us", {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    })}
+                  </time>
+                  <div
+                    class="single-article-comments-item-body"
+                    set:html={sanitizeHtml(comment.content.rendered)}
+                  />
+                  {jsonComments.map(
+                    (reply) =>
+                      reply.parent == comment.id && (
+                        <div class="single-article-comments-item single-article-comments-item--reply">
+                          <img
+                            class="single-article-comments-item-img"
+                            src={reply.author_avatar_urls["96"]}
+                            alt={`Avatar for ${reply.author_name}`}
+                            width="48"
+                            height="48"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <h4 class="single-article-comments-item-name h6">
+                            {reply.author_name} says
+                          </h4>
+                          <time datetime={reply.date}>
+                            {new Date(reply.date).toLocaleDateString("en-us", {
+                              year: "numeric",
+                              month: "short",
+                              day: "numeric",
+                            })}
+                          </time>
+                          <div
+                            class="single-article-comments-item-body"
+                            set:html={sanitizeHtml(reply.content.rendered)}
+                          />
+                        </div>
+                      ),
+                  )}
+                </div>
+              ),
+          )}
+        </section>
+      )}
       <section class="single-article-leave-a-comment">
         <h4>Leave a Comment</h4>
         <hr />
         <form>
-          <label
-            >Your Name<br />
+          <label>
+            Your Name
+            <br />
             <input
               type="text"
               name="author_name"
@@ -230,8 +228,9 @@ const safeContent = sanitizeHtml(content);
               required
             />
           </label>
-          <label
-            >Your Email<br />
+          <label>
+            Your Email
+            <br />
             <input
               type="email"
               name="author_email"
@@ -240,26 +239,28 @@ const safeContent = sanitizeHtml(content);
               required
             />
           </label>
-          <label
-            >Your Comment<br />
+          <label>
+            Your Comment
+            <br />
             <textarea
               name="content"
               placeholder="whats with the squid 🦑"
-              required></textarea>
+              required
+            ></textarea>
           </label>
           <input type="hidden" name="post" value={id} />
-          <button class="button" type="submit">Post Comment</button>
+          <button class="button" type="submit">
+            Post Comment
+          </button>
           <p class="comment-form-status" role="status" aria-live="polite"></p>
         </form>
       </section>
     </div>
     <BlogSingleSidebar author={authorEntry} category={category} postId={id} />
   </article>
-  {
-    categories?.length > 0 && (
-      <FeaturedArticles category={categories} heading="Related Articles" />
-    )
-  }
+  {categories?.length > 0 && (
+    <FeaturedArticles category={categories} heading="Related Articles" />
+  )}
 
   <style lang="scss" is:global>
     .single {
@@ -356,6 +357,13 @@ const safeContent = sanitizeHtml(content);
         min-width: 0;
         h1 {
           margin-bottom: 1.5rem;
+        }
+        figure {
+          margin: 2rem 0;
+          figcaption {
+            padding: 0.5rem 1rem;
+            font-style: italic;
+          }
         }
         &-meta {
           display: flex;
