@@ -7,7 +7,7 @@ const isActivePath = (paths: string[]) =>
 const servicesActive = isActivePath(["/services/"]);
 const workActive = isActivePath(["/work/"]);
 const platformsActive = isActivePath(["/platforms/"]);
-const resourcesActive = isActivePath(["/resources/", "/blog/"]);
+const resourcesActive = isActivePath(["/resources/", "/blog/", "/website-checker/"]);
 const aboutActive = isActivePath(["/about/"]);
 const contactActive = pathname === "/contact/";
 ---
@@ -184,11 +184,15 @@ const contactActive = pathname === "/contact/";
           </a>
           <ul>
             <li>
+              <a data-astro-prefetch href="/blog/" aria-label="Blog">Blog</a>
+            </li>
+            <li>
               <a data-astro-prefetch href="/resources/" aria-label="Downloads"
                 >Downloads</a>
             </li>
             <li>
-              <a data-astro-prefetch href="/blog/" aria-label="Blog">Blog</a>
+              <a data-astro-prefetch href="/website-checker/" aria-label="Website Checker"
+                >Website Checker</a>
             </li>
           </ul>
         </li>
@@ -593,7 +597,9 @@ const contactActive = pathname === "/contact/";
     {
       route: "resources",
       matches: (pathname: string) =>
-        pathname.startsWith("/resources/") || pathname.startsWith("/blog/"),
+        pathname.startsWith("/resources/") ||
+        pathname.startsWith("/blog/") ||
+        pathname.startsWith("/website-checker/"),
     },
     {
       route: "about",
