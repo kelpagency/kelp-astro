@@ -4,88 +4,177 @@ import Layout from "../Base.astro";
 
 <Layout
   title="Privacy Policy"
-  description="Read how Kelp Creative Agency collects, uses, and retains information when you visit this website or contact the team."
+  description="How Kelp Creative Agency handles website visits, Netlify form submissions, meeting bookings, blog comments, and website checker information."
 >
-  <div class="wrapper wrapper--narrow">
+  <article class="wrapper wrapper--narrow privacy-policy">
     <h1>Privacy Policy</h1>
-    <h2>PERSONAL INFORMATION WE COLLECT</h2>
+    <p>Last updated: <time datetime="2026-10-05">October 5, 2026</time></p>
     <p>
-      When you visit the Site, we automatically collect certain information
-      about your device, including information about your web browser, IP
-      address, time zone, and some of the cookies that are installed on your
-      device. Additionally, as you browse the Site, we collect information about
-      the individual web pages or products that you view, what websites or
-      search terms referred you to the Site, and information about how you
-      interact with the Site. We refer to this automatically-collected
-      information as “Device Information.”
+      Kelp Creative Agency ("Kelp," "we," "us," or "our") operates
+      <a href="https://www.kelp.agency/">www.kelp.agency</a>. This policy explains
+      what information we collect through this website, why we use it, and how
+      you can contact us about your privacy. It covers our website and related
+      inquiries, bookings, comments, and website checks.
     </p>
-    <h3>We collect Device Information using the following technologies:</h3>
+
+    <h2>Information you provide</h2>
     <ul>
-      <li>
-        “Cookies” are data files that are placed on your device or computer and
-        often include an anonymous unique identifier. For more information about
-        cookies, and how to disable cookies, visit
-        http://www.allaboutcookies.org.
-      </li>
-      <li>
-        “Log files” track actions occurring on the Site, and collect data
-        including your IP address, browser type, Internet service provider,
-        referring/exit pages, and date/time stamps.
-      </li>
-      <li>
-        “Web beacons,” “tags,” and “pixels” are electronic files used to record
-        information about how you browse the Site.
-      </li>
-      <li>
-        This site is protected by reCAPTCHA and the Google
-        <a href="https://policies.google.com/privacy" rel="nofollow"
-          >Privacy Policy</a
-        > and
-        <a href="https://policies.google.com/terms" rel="nofollow"
-          >Terms of Service</a
-        > apply.
-      </li>
+      <li><strong>Website package inquiries:</strong> your name, email address,
+        requested additions, and the package and included services associated with your request.</li>
+      <li><strong>Website checker requests:</strong> your name, work email address,
+        website URL, and, when an automated check runs, its report ID and report URL.</li>
+      <li><strong>Meeting bookings:</strong> the contact information, meeting time,
+        and any answers or details you provide through our HubSpot booking tool.</li>
+      <li><strong>Blog comments:</strong> your name, email address, comment, and the
+        article you comment on. Comments are submitted to our WordPress system.
+        Your display name and comment may appear publicly with a date and avatar;
+        your email address is not displayed in the comment listing.</li>
+      <li><strong>Direct communications:</strong> information you choose to share
+        when you email, call, or otherwise contact us.</li>
     </ul>
-    <h2>HOW DO WE USE YOUR PERSONAL INFORMATION?</h2>
+    <p>Please avoid including passwords, payment card details, or sensitive
+      personal information in forms, comments, or website checker requests.</p>
+
+    <h2>Hosting and form submissions</h2>
     <p>
-      We use the Device Information that we collect to help us screen for
-      potential risk and fraud (in particular, your IP address), and more
-      generally to improve and optimize our Site (for example, by generating
-      analytics about how our customers browse and interact with the Site, and
-      to assess the success of our marketing and advertising campaigns).
+      Netlify hosts this website and processes our website package and website
+      checker forms through Netlify Forms. Submitted fields are stored in our
+      Netlify account so our team can review and respond to your request.
+      Netlify also processes technical information, such as IP addresses and
+      request information, to deliver the site, operate its services, and detect
+      abuse. Our forms include a hidden spam detection field. See
+      <a href="https://www.netlify.com/privacy/">Netlify’s Privacy Statement</a>
+      for more about its practices.
     </p>
-    <h2>SHARING YOUR PERSONAL INFORMATION</h2>
+
+    <h2>Website checker information</h2>
     <p>
-      We share your Personal Information with third parties to help us use your
-      Personal Information, as described above. For example, we use Google
-      Analytics to help us understand how our customers use the Site–you can
-      read more about how Google uses your Personal Information here:
-      https://www.google.com/intl/en/policies/privacy/. You can also opt-out of
-      Google Analytics here: https://tools.google.com/dlpage/gaoptout.
+      When automated checks are available, your name, email address, and website
+      URL are also sent through a Netlify function to our website checker backend.
+      The checker scans public website pages and generates findings about links,
+      search visibility, content, and other website features. The resulting
+      report contains information derived from that public website.
     </p>
     <p>
-      Finally, we may also share your Personal Information to comply with
-      applicable laws and regulations, to respond to a subpoena, search warrant
-      or other lawful request for information we receive, or to otherwise
-      protect our rights.
+      The checker uses a cookie named <code>kelp_website_checks</code> to track
+      free-check usage. Our proxy also forwards your IP address to the checker
+      backend to help enforce usage limits and prevent abuse. We save your
+      request and report information so we can help you with the findings.
+      The report response excludes your submitted name and email address.
+      Treat your report link as private: anyone you give the link to may be able
+      to view the website findings. The report’s sharing button sends a request
+      to share the report with Kelp before opening meeting booking.
     </p>
-    <h2>DATA RETENTION</h2>
+
+    <h2>Analytics and cookies</h2>
     <p>
-      When you place an order through the Site, we will maintain your Order
-      Information for our records unless and until you ask us to delete this
-      information.
+      We use Google Analytics 4 to understand how visitors use this website and
+      improve its content and performance. It uses cookies, including
+      <code>_ga</code> cookies, and collects information about pages viewed,
+      interactions, referring sources, browser and device characteristics, and
+      approximate location. Google processes IP addresses to derive location
+      information; Google Analytics 4 does not log or store individual IP addresses.
     </p>
-    <h2>CHANGES</h2>
     <p>
-      We may update this privacy policy from time to time in order to reflect,
-      for example, changes to our practices or for other operational, legal or
-      regulatory reasons.
+      You can read about
+      <a href="https://support.google.com/analytics/answer/6004245">Google Analytics data practices</a>
+      and <a href="https://policies.google.com/privacy">Google’s Privacy Policy</a>.
+      You can block or delete cookies in your browser and use the
+      <a href="https://tools.google.com/dlpage/gaoptout">Google Analytics opt-out browser add-on</a>.
+      Blocking cookies may affect features such as website checker usage tracking or meeting booking.
     </p>
-    <h2>CONTACT US</h2>
+
+    <h2>Meeting booking and embedded content</h2>
     <p>
-      For more information about our privacy practices, if you have questions,
-      or if you would like to make a complaint, please contact us by e-mail at
-      info@kelp.agency
+      Our scheduling tool is provided by HubSpot. When it loads or you book a
+      meeting, HubSpot processes the information you submit and may collect
+      technical information or use cookies to operate the booking experience.
+      See <a href="https://legal.hubspot.com/privacy-policy">HubSpot’s Privacy Policy</a>.
     </p>
-  </div>
+    <p>
+      Some pages include content or media delivered by other providers, such as
+      WordPress.com image and video services, Gravatar comment avatars, YouTube,
+      or Vimeo. When your browser requests that content, the provider receives
+      technical information such as your IP address and browser information,
+      and may use cookies according to its own privacy policy. Links to other
+      websites take you to services governed by their own privacy policies.
+    </p>
+
+    <h2>How we use information</h2>
+    <p>
+      We use information to respond to inquiries, discuss and provide requested
+      services, schedule meetings, generate website reports, follow up on your
+      requests and findings, and manage blog comments. We also use technical
+      information to operate and improve the site, understand visitor activity,
+      prevent spam and misuse, and meet applicable legal obligations.
+    </p>
+
+    <h2>Who receives information</h2>
+    <p>
+      Our team and service providers receive information needed for their roles.
+      These include Netlify for hosting and forms, Google for analytics, HubSpot
+      for scheduling, our WordPress and website checker systems, and providers
+      that support our communications and website content. Public comments and
+      report links you share can also make information available to others as described above.
+    </p>
+    <p>We may disclose information when required by law or a valid legal request,
+      or when necessary to protect our rights, visitors, or services.</p>
+
+    <h2>Retention and security</h2>
+    <p>
+      Retention varies by record type and service. Form submissions, booking
+      records, communications, and website reports may remain in the systems
+      used to handle them. Public comments may remain with the associated article.
+      Contact us to ask about a particular record or request its deletion;
+      some information may need to be kept for legal obligations or ongoing services.
+    </p>
+    <p>
+      We use safeguards to protect information, but no website, transmission,
+      or storage system can guarantee complete security. Our providers may
+      process information in the United States or other countries where they
+      operate, which may have different privacy laws from your location.
+    </p>
+
+    <h2>Your choices and requests</h2>
+    <p>
+      You can choose whether to submit forms, book a meeting, post a comment, or
+      request a website check. Depending on where you live and the laws that
+      apply, you may have rights to access, correct, delete, or obtain a copy
+      of your personal information, or to object to or restrict certain uses.
+      To make a request, email <a href="mailto:info@kelp.agency">info@kelp.agency</a>.
+      We may need to verify your identity before handling it. You may also have
+      the right to raise a concern with your local privacy authority.
+    </p>
+
+    <h2>Children’s privacy</h2>
+    <p>This website is intended for businesses and people seeking creative
+      services, rather than children under 13. If you believe a child has
+      provided personal information, contact us so we can address it.</p>
+
+    <h2>Policy updates</h2>
+    <p>We may update this policy as our website or practices change. The date
+      above identifies the latest revision.</p>
+
+    <h2>Contact Kelp</h2>
+    <p>For privacy questions or requests, email
+      <a href="mailto:info@kelp.agency">info@kelp.agency</a>, call
+      <a href="tel:+13523257688">352-325-7688</a>, or write to:</p>
+    <address>Kelp Creative Agency<br />P.O. Box 116<br />Brooksville, FL 34605<br />United States</address>
+  </article>
 </Layout>
+
+<style lang="scss">
+  .privacy-policy {
+    max-width: 1000px;
+    padding-top: 3rem;
+    padding-bottom: 6rem;
+    h1 { margin-bottom: 1.5rem; }
+    h2 {
+      font-size: var(--step-3);
+      max-width: none;
+      margin-top: 3rem;
+    }
+    li + li { margin-top: 0.75rem; }
+    a { text-underline-offset: 0.2em; }
+  }
+</style>

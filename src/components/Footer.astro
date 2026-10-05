@@ -138,6 +138,7 @@
     </div>
     <p class="copyright">
       &copy; {new Date().getFullYear()} Kelp Agency. All rights reserved. Designed by humans and coded with ❤️ in Florida.
+      <a href="/privacy-policy/">Privacy Policy</a>
     </p>
   </div>
 </footer>
@@ -260,6 +261,16 @@
       font-size: var(--step--1);
       text-align: center;
       margin: 4rem 0 0;
+      a {
+        display: inline-block;
+        margin-left: 1rem;
+        color: inherit;
+        text-underline-offset: 3px;
+        &:hover,
+        &:focus {
+          color: var(--green);
+        }
+      }
     }
   }
 </style>
