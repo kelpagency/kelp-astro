@@ -1,5 +1,6 @@
 ---
 import { sanitizeHtml } from "../lib/sanitize";
+import FeaturedArticles from "./FeaturedArticles.astro";
 
 interface Props {
   name: string;
@@ -8,6 +9,7 @@ interface Props {
   description: string;
   transitionName?: string;
   mirror?: boolean;
+  authorId?: number;
 }
 
 const {
@@ -17,6 +19,7 @@ const {
   description,
   transitionName,
   mirror = false,
+  authorId,
 } = Astro.props;
 const transitionVideo = transitionName ? `video-${transitionName}` : undefined;
 const transitionTitle = transitionName ? `name-${transitionName}` : undefined;
@@ -64,6 +67,13 @@ const webmSrc = videoSrc.replace(/\.[^.]+$/, ".webm");
     </div>
   </div>
 </div>
+{authorId && (
+  <FeaturedArticles
+    author={authorId}
+    heading={`Posts by ${name}`}
+    showAll={true}
+  />
+)}
 
 <style lang="scss">
   .team {

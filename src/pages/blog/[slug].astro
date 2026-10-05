@@ -11,6 +11,7 @@ import {
   toPlainText,
 } from "../../lib/sanitize";
 import { toJetpackImageUrl } from "../../lib/jetpack";
+import { getTeamMemberUrl } from "../../lib/team";
 import { fetchWpJson, fetchWpJsonRequired, fetchWpCollectionRequired } from "../../lib/wp";
 
 import "../../styles/pages/_wordpress.scss";
@@ -78,6 +79,7 @@ const safeDateModified =
     ? datePublished
     : dateModified || datePublished;
 const authorEntry = Array.isArray(author) ? author[0] : author;
+const authorUrl = getTeamMemberUrl(authorEntry);
 const schema = {
   "@type": "BlogPosting",
   headline: cleanTitle,
@@ -89,7 +91,9 @@ const schema = {
     {
       "@type": "Person",
       name: authorEntry?.name,
-      url: authorEntry?.url,
+      url: authorUrl
+        ? new URL(authorUrl, Astro.site ?? Astro.url.origin).href
+        : authorEntry?.url,
     },
   ],
   publisher: {

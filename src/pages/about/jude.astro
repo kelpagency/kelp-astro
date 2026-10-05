@@ -2,6 +2,7 @@
 import Layout from '../../Base.astro';
 import TeamMemberProfile from '../../components/TeamMemberProfile.astro';
 import { buildPersonSchema } from '../../lib/schema';
+import { TEAM_MEMBERS } from '../../lib/team';
 
 const description = `Jude is our marketing specialist, and one of the few people in the world that understands how Google Tag
 Manager works. With a skill set that stretches well beyond strategy and analytics. He’s equally at home behind
@@ -29,5 +30,6 @@ const schema = buildPersonSchema({
     videoSrc="/videos/team/jude.mp4"
     description={description}
     transitionName="jude"
+    authorId={TEAM_MEMBERS.jude.authorId}
   />
 </Layout>

@@ -1,5 +1,5 @@
 ---
-import { fetchWpJson } from "../lib/wp";
+import { fetchWpCollectionRequired, fetchWpJson } from "../lib/wp";
 import { isVisibleBlogCategory } from "../lib/blog";
 import BlogPostMeta from "./BlogPostMeta.astro";
 import { sanitizeTitleHtml, toPlainText } from "../lib/sanitize";
@@ -7,13 +7,17 @@ import { sanitizeTitleHtml, toPlainText } from "../lib/sanitize";
 const {
   category = null,
   tag = null,
+  author = null,
   heading = "Featured Articles",
   limit = 3,
+  showAll = false,
 } = Astro.props;
 
 const hasTagFilter = Array.isArray(tag)
   ? tag.length > 0
   : tag !== null && tag !== undefined && String(tag).trim().length > 0;
+const hasAuthorFilter =
+  author !== null && author !== undefined && String(author).trim().length > 0;
 
 // Decide taxonomy (backward compatible)
 const taxonomyType = hasTagFilter ? "tags" : "categories";
@@ -34,10 +38,17 @@ const normalizedIds = Array.isArray(taxonomyInput)
 const taxonomyParam = normalizedIds.join(",");
 const candidateLimit = hasTagFilter ? 50 : limit * 2;
 
-const posts = await fetchWpJson(
-  `/posts?per_page=${candidateLimit}&${taxonomyType}=${taxonomyParam}&_embed`,
-  [] as Record<string, any>[],
-);
+const filterParam = hasAuthorFilter
+  ? `author=${encodeURIComponent(String(author))}`
+  : `${taxonomyType}=${taxonomyParam}`;
+
+const postsPath = `/posts?${filterParam}&_embed`;
+const posts = showAll
+  ? await fetchWpCollectionRequired<Record<string, any>>(postsPath)
+  : await fetchWpJson(
+      `${postsPath}&per_page=${candidateLimit}`,
+      [] as Record<string, any>[],
+    );
 const requestedTagIds = new Set(normalizedIds.map(String));
 const rankedPosts = hasTagFilter
   ? posts.toSorted((a, b) => {
@@ -49,7 +60,7 @@ const rankedPosts = hasTagFilter
       return getSharedTagCount(b) - getSharedTagCount(a);
     })
   : posts;
-const shuffledPosts = rankedPosts.slice(0, limit);
+const displayedPosts = showAll ? rankedPosts : rankedPosts.slice(0, limit);
 const getMainCategoryName = (post: Record<string, any>) => {
   const terms = (post._embedded?.["wp:term"]?.[0] ?? []) as Array<
     Record<string, any>
@@ -86,7 +97,7 @@ const getFeaturedImage = (post: Record<string, any>) => {
       <h3>{heading}</h3>
 
       <div class="grid">
-        {shuffledPosts.map((post) => (
+        {displayedPosts.map((post) => (
           <article>
             {post.fimg_url && (
               <img
@@ -129,12 +140,19 @@ const getFeaturedImage = (post: Record<string, any>) => {
 
     .grid {
       margin-top: 2rem;
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 1rem;
 
+      @media (max-width: 900px) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      @media (max-width: 600px) {
+        grid-template-columns: 1fr;
+      }
+
       article {
-        flex: 1 1 250px;
         display: flex;
         flex-direction: column;
         position: relative;

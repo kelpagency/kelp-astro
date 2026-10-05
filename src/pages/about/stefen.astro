@@ -2,6 +2,7 @@
 import Layout from '../../Base.astro';
 import TeamMemberProfile from '../../components/TeamMemberProfile.astro';
 import { buildPersonSchema } from '../../lib/schema';
+import { TEAM_MEMBERS } from '../../lib/team';
 
 const description = `Stefen is our other co-founder and resident code expert&thinsp;—&thinsp;the one who learned to write software back when you
 couldn’t just ask an AI nicely and get an answer. He comes from the era of reading questionable documentation,
@@ -29,5 +30,6 @@ const schema = buildPersonSchema({
     videoSrc="/videos/team/stefen.mp4"
     description={description}
     transitionName="stefen"
+    authorId={TEAM_MEMBERS.stefen.authorId}
   />
 </Layout>

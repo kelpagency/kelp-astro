@@ -1,10 +1,13 @@
 ---
 import { sanitizeTitleHtml } from "../lib/sanitize";
+import { getTeamMemberUrl } from "../lib/team";
 import { fetchWpJson } from "../lib/wp";
 
 export interface Props {
   author?: {
+    id?: number;
     name?: string;
+    slug?: string;
     description?: string;
     url?: string;
     avatar_urls?: Record<string, string>;
@@ -19,6 +22,7 @@ export interface Props {
 
 const { author = {}, category = {}, postId = 0 } = Astro.props;
 const shareUrl = encodeURIComponent(Astro.url.href);
+const authorUrl = getTeamMemberUrl(author);
 
 const posts = category?.id
   ? await fetchWpJson(
@@ -32,16 +36,30 @@ const posts = category?.id
   <div class="single-sidebar-author">
     {
       author?.avatar_urls?.["96"] && (
-        <img
-          src={author.avatar_urls["96"]}
-          alt={`Portrait photo of ${author.name}`}
-          width="64"
-          height="64"
-          loading="lazy"
-        />
+        authorUrl ? (
+          <a href={authorUrl} aria-label={`View ${author.name}'s team profile`}>
+            <img
+              src={author.avatar_urls["96"]}
+              alt={`Portrait photo of ${author.name}`}
+              width="64"
+              height="64"
+              loading="lazy"
+            />
+          </a>
+        ) : (
+          <img
+            src={author.avatar_urls["96"]}
+            alt={`Portrait photo of ${author.name}`}
+            width="64"
+            height="64"
+            loading="lazy"
+          />
+        )
       )
     }
-    <h5 class="h6">{author?.name}</h5>
+    <h5 class="h6">
+      {authorUrl ? <a href={authorUrl}>{author?.name}</a> : author?.name}
+    </h5>
     <p>{author?.description}</p>
   </div>
   {

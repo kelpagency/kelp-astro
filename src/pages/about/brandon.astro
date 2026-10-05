@@ -2,6 +2,7 @@
 import Layout from '../../Base.astro';
 import TeamMemberProfile from '../../components/TeamMemberProfile.astro';
 import { buildPersonSchema } from '../../lib/schema';
+import { TEAM_MEMBERS } from '../../lib/team';
 
 const description = `Brandon is our creative producer and motion wizard&thinsp;—&thinsp;the person responsible for making things move, feel alive,
 and look effortlessly polished. He’s a master of video, After Effects, motion graphics, visual storytelling,
@@ -29,5 +30,6 @@ const schema = buildPersonSchema({
     videoSrc="/videos/team/brandon.mp4"
     description={description}
     transitionName="brandon"
+    authorId={TEAM_MEMBERS.brandon.authorId}
   />
 </Layout>
