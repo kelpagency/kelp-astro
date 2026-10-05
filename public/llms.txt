@@ -1,0 +1,63 @@
+# Kelp Creative Agency
+
+> Kelp is a creative and digital agency based in Brooksville, Florida, working with businesses across Florida and beyond. We provide branding, design, website and application development, ecommerce, digital marketing, content creation, and ongoing support.
+
+Founded in 2018, Kelp is a small, senior team focused on thoughtful design, strong engineering, and durable digital products. Our work includes WordPress and WooCommerce, Shopify, HubSpot, and headless websites.
+
+The links below point to the official site's HTML pages. Use the relevant pages for current service details, project examples, package scope, pricing, and contact information.
+
+## Agency
+
+- [Home](https://www.kelp.agency/): Overview of Kelp, our services, recent work, and approach.
+- [About Kelp](https://www.kelp.agency/about/): Mission, founding story, culture, and team.
+- [Our work](https://www.kelp.agency/work/): Client projects and case studies.
+- [Clients](https://www.kelp.agency/work/clients/): Businesses and organizations we have worked with.
+- [Contact](https://www.kelp.agency/contact/): Contact details and project inquiries.
+
+## Design and development
+
+- [Services overview](https://www.kelp.agency/services/): Full range of creative, technical, marketing, and support services.
+- [Branding](https://www.kelp.agency/services/branding/): Brand clarity, identity, and visual design.
+- [Digital design](https://www.kelp.agency/services/digital-design/): Digital experiences, landing pages, emails, product screens, and marketing assets.
+- [Print design](https://www.kelp.agency/services/print-design/): Printed materials that communicate clearly and stay on brand.
+- [Apparel design](https://www.kelp.agency/services/apparel-design/): Branded apparel design.
+- [Website design and development](https://www.kelp.agency/services/website-development/): Websites built to turn visitors into customers.
+- [Applications](https://www.kelp.agency/services/applications/): Custom web applications built around business workflows.
+- [Ecommerce](https://www.kelp.agency/services/ecommerce/): Shopify and WooCommerce stores designed to reduce friction and improve conversions.
+
+## Marketing and content
+
+- [Digital marketing](https://www.kelp.agency/services/digital-marketing/): Digital marketing strategy and execution.
+- [Audience targeting](https://www.kelp.agency/services/audience-targeting/): Identifying audiences for relevant, effective campaigns.
+- [Campaign management](https://www.kelp.agency/services/campaign-management/): Coordinating campaign messaging, timelines, assets, and budgets.
+- [Social and PPC](https://www.kelp.agency/services/social-ppc/): Paid social and pay-per-click advertising campaigns.
+- [Copywriting](https://www.kelp.agency/services/copywriting/): Clear messaging that explains offers and builds trust.
+- [Social media content](https://www.kelp.agency/services/social-media-content/): Content tailored to social platforms and consistent publishing.
+- [Reporting and analytics](https://www.kelp.agency/services/reporting/): Reporting that connects metrics to business decisions.
+- [Photography](https://www.kelp.agency/services/photography/): Photo libraries for businesses and brands.
+- [Video](https://www.kelp.agency/services/video/): Video production for education, testimonials, commercials, and brand storytelling.
+- [Motion graphics](https://www.kelp.agency/services/motion-graphics/): Animated visuals that explain complex ideas.
+- [Infographics](https://www.kelp.agency/services/infographics/): Visual explanations of information, processes, and data.
+
+## Platforms and ongoing support
+
+- [Platforms overview](https://www.kelp.agency/platforms/): Our approach to choosing and working with web platforms.
+- [WordPress and WooCommerce](https://www.kelp.agency/platforms/wordpress/): Custom WordPress and WooCommerce development.
+- [Shopify](https://www.kelp.agency/platforms/shopify/): Liquid themes and headless storefronts with Hydrogen.
+- [HubSpot](https://www.kelp.agency/platforms/hubspot/): HubSpot website themes and development.
+- [Headless](https://www.kelp.agency/platforms/headless/): Flexible frontends connected to API-backed content and commerce systems.
+- [Ongoing retainers](https://www.kelp.agency/services/ongoing-retainers/): Recurring creative and digital support.
+- [Website support](https://www.kelp.agency/services/website-support/): Website maintenance and support after launch.
+- [Web hosting](https://www.kelp.agency/services/web-hosting/): Managed hosting for WordPress, Node, and static sites.
+
+## Packages and tools
+
+- [Local business website package](https://www.kelp.agency/local-website-package/): A focused website package for Florida businesses; see the page for current scope and pricing.
+- [SRAE grant services](https://www.kelp.agency/srae-grant-services/): Websites, outreach campaigns, branding, content, advertising, and reporting for Sexual Risk Avoidance Education organizations in Florida.
+- [Website Checker](https://www.kelp.agency/website-checker/): Tool for checking website issues.
+
+## Optional
+
+- [Blog](https://www.kelp.agency/blog/): Articles and insights from Kelp.
+- [Resources](https://www.kelp.agency/resources/): Digital assets, HubSpot themes, fonts, brushes, and other resources created by Kelp.
+- [Privacy policy](https://www.kelp.agency/privacy-policy/): Information about privacy and data handling.
