@@ -45,6 +45,7 @@ const {
 } = Astro.props;
 
 const rawTitle = toPlainText(title);
+const seoTitle = `${rawTitle} | Kelp`;
 const titleWords = rawTitle.split(/\s+/);
 
 const formattedTitle =
@@ -129,7 +130,7 @@ const safeContent = sanitizeHtml(content);
 ---
 
 <Layout
-  title={rawTitle}
+  title={seoTitle}
   description={cleanDescription}
   image={image?.[0]}
   darkHeader={true}

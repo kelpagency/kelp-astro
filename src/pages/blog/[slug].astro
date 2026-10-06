@@ -75,6 +75,7 @@ const category = categoryMatch
     }
   : undefined;
 const cleanTitle = toPlainText(title);
+const seoTitle = `${cleanTitle} | Kelp`;
 const cleanDescription = toPlainText(description);
 const now = new Date();
 const modifiedDate = dateModified ? new Date(dateModified) : null;
@@ -112,7 +113,7 @@ const safeContent = sanitizeHtml(content);
 ---
 
 <Layout
-  title={cleanTitle}
+  title={seoTitle}
   description={cleanDescription}
   image={ogImage}
   bodyClass="blog-post"
