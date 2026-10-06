@@ -18,7 +18,10 @@ export async function getStaticPaths() {
   });
 }
 
-const { title, id } = Astro.props;
+const { title, slug, id } = Astro.props;
+const description = slug === "photography"
+  ? "See how Kelp brings businesses into focus through photography. Explore client projects and get inspiration for photos that tell your brand's story."
+  : `Explore Kelp's ${toPlainText(title).toLowerCase()} portfolio. See real client projects and discover how our creative team turns ideas into work that makes an impact.`;
 
 const posts = await fetchWpJsonRequired(
   `/work?per_page=100&tags=${id}&orderby=date&order=desc`,
@@ -27,7 +30,7 @@ const posts = await fetchWpJsonRequired(
 const tags = (await getWpTags()) as Record<string, any>[];
 ---
 
-<Layout title={title} bodyClass="work-archive">
+<Layout title={title} description={description} bodyClass="work-archive">
   <article class="archive">
     <div class="wrapper wrapper--narrow">
       <h1

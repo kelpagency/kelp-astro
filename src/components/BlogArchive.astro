@@ -3,7 +3,7 @@ import Layout from "../Base.astro";
 import Tease, { type BlogTeasePost } from "./Tease.astro";
 import BlogArchiveSidebar from "./BlogArchiveSidebar.astro";
 import Pagination from "./Pagination.astro";
-import { BLOG_PAGE_SIZE } from "../lib/blog";
+import { BLOG_PAGE_SIZE, getBlogPageUrl } from "../lib/blog";
 import { buildCollectionPageSchema, buildItemList } from "../lib/schema";
 import { toPlainText } from "../lib/sanitize";
 
@@ -24,10 +24,14 @@ const archiveTitle = category
   : "The Kelp Blog";
 const title =
   currentPage > 1 ? `${archiveTitle} — Page ${currentPage}` : archiveTitle;
-const description = category
+const archiveDescription = category
   ? `Helpful resources about ${category.name}`
   : "Helpful resources. Creative insight. Join us on a journey where creativity meets problem-solving and success. Be inspired, educated, and harness the power of creativity to reach your goals.";
+const description = currentPage > 1
+  ? `Page ${currentPage}: ${archiveDescription}`
+  : archiveDescription;
 const baseUrl = category ? `/blog/${category.slug}/` : "/blog/";
+const canonicalUrl = getBlogPageUrl(baseUrl, currentPage);
 const schema = buildCollectionPageSchema(
   title,
   description,
@@ -43,6 +47,7 @@ const schema = buildCollectionPageSchema(
 <Layout
   title={title}
   description={description}
+  canonicalUrl={canonicalUrl}
   darkHeader={true}
   bodyClass="blog-archive"
   schema={schema}
