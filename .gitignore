@@ -21,6 +21,7 @@ pnpm-debug.log*
 .unlighthouse*
 
 /kelp-website-checker
+/qr-code-maker
 
 # Local Netlify folder
 .netlify

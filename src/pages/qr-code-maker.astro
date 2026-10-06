@@ -1,0 +1,267 @@
+---
+import Layout from "../layouts/QRCodeMaker.astro";
+import Icon from "../components/QRIcon.astro";
+
+const schema = {
+  "@type": "WebApplication",
+  name: "Kelp QR Code Maker",
+  url: "https://www.kelp.agency/qr-code-maker/",
+  applicationCategory: "DesignApplication",
+  operatingSystem: "Any",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+};
+---
+
+<Layout
+  title="Free QR Code Maker | Kelp"
+  description="Create a free QR code for a link or message. Customize its colors and download a PNG or SVG, entirely in your browser."
+  schema={schema}
+>
+  <header class="qr-maker-header">
+    <div class="wrapper">
+      <div class="qr-maker-header__brand">
+        <a href="/" aria-label="Kelp home">
+          <img
+            loading="eager"
+            src="/images/qr-maker-kelp-logo.svg"
+            srcset="/images/qr-maker-kelp-logo.svg 113w"
+            sizes="96px"
+            width="113"
+            height="44"
+            alt="Kelp"
+          />
+        </a>
+        <span>QR maker</span>
+      </div>
+      <p>
+        <Icon name="shield" />
+        Made privately in your browser
+      </p>
+    </div>
+  </header>
+  <main id="main">
+    <section class="wrapper qr-maker" data-qr-maker>
+      <div class="qr-maker__intro">
+        <div>
+          <p class="qr-maker__eyebrow">
+            <Icon name="sparkles" />
+            Free QR code maker
+          </p>
+          <h1>
+            QR Code <span>Maker</span>
+          </h1>
+        </div>
+        <p>
+          Add your link or message, tune the look, then download a crisp QR code
+          for print or screen.
+        </p>
+      </div>
+      <noscript>
+        <p>Please enable JavaScript to create and download QR codes.</p>
+      </noscript>
+      <div class="qr-maker__workspace">
+        <form class="qr-maker__controls">
+          <div class="qr-maker__heading">
+            <div>
+              <p class="qr-maker__eyebrow">01 / Content</p>
+              <h2 class="h4">What should it open?</h2>
+            </div>
+            <button type="reset" class="qr-maker__reset">
+              <Icon name="reset" />
+              Reset
+            </button>
+          </div>
+          <label for="qr-content">Link or text</label>
+          <textarea
+            id="qr-content"
+            name="content"
+            rows="4"
+            placeholder="https://yourwebsite.com"
+            aria-describedby="qr-content-help qr-error"
+          >https://www.kelp.agency</textarea>
+          <div id="qr-content-help" class="qr-maker__help">
+            <span>Your QR updates as you type.</span>
+            <span data-qr-count>23 characters</span>
+          </div>
+          <p id="qr-error" class="qr-maker__error" role="status" hidden></p>
+
+          <fieldset class="qr-maker__color-settings">
+            <legend>Colors</legend>
+            <div class="qr-maker__colors">
+              <label class="qr-maker__color" for="qr-foreground">
+                <input
+                  id="qr-foreground"
+                  name="foreground"
+                  type="color"
+                  value="#0d1726"
+                />
+                <span>
+                  Dots <output for="qr-foreground">#0D1726</output>
+                </span>
+              </label>
+              <label class="qr-maker__color" for="qr-background">
+                <input
+                  id="qr-background"
+                  name="background"
+                  type="color"
+                  value="#ffffff"
+                />
+                <span>
+                  Background <output for="qr-background">#FFFFFF</output>
+                </span>
+              </label>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend class="screen-reader-text">Export size</legend>
+            <div class="qr-maker__field-heading">
+              <span>Export size</span>
+              <span class="qr-maker__help">Downloads and copied PNGs</span>
+            </div>
+            <div class="qr-maker__choices">
+              {[540, 720, 1080, 1920].map((size) => (
+                <label>
+                  <input
+                    type="radio"
+                    name="size"
+                    value={size}
+                    checked={size === 720}
+                  />
+                  <span>
+                    {size}
+                    <span class="screen-reader-text"> pixels</span>
+                  </span>
+                </label>
+              ))}
+            </div>
+          </fieldset>
+          <details class="qr-maker__advanced">
+            <summary>
+              <span class="qr-maker__settings-icon">
+                <Icon name="settings" />
+              </span>
+              <span>
+                Advanced settings
+                <small>Scan recovery for tougher conditions</small>
+              </span>
+              <Icon name="chevron" />
+            </summary>
+            <fieldset>
+              <legend>Error correction</legend>
+              <p class="qr-maker__help">
+                Controls how much damage or obstruction the code can tolerate. M
+                works for most uses; H is the most resilient.
+              </p>
+              <div class="qr-maker__choices">
+                {["L", "M", "Q", "H"].map((level) => (
+                  <label>
+                    <input
+                      type="radio"
+                      name="correction"
+                      value={level}
+                      checked={level === "M"}
+                    />
+                    <span>{level}</span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+          </details>
+        </form>
+        <aside
+          class="qr-maker__preview"
+          aria-label="QR code preview and exports"
+        >
+          <div class="qr-maker__preview-inner">
+            <div class="qr-maker__preview-heading">
+              <p class="qr-maker__eyebrow">02 / Preview</p>
+              <span class="qr-maker__live">Live</span>
+            </div>
+            <div class="qr-maker__canvas">
+              <canvas
+                width="420"
+                height="420"
+                role="img"
+                aria-label="Generated QR code preview"
+                hidden
+              ></canvas>
+              <p data-qr-placeholder>Loading your QR code…</p>
+            </div>
+            <div class="qr-maker__downloads">
+              <button
+                type="button"
+                class="button"
+                data-qr-export="png"
+                disabled
+              >
+                <Icon name="download" />
+                PNG
+              </button>
+              <button
+                type="button"
+                class="button qr-maker__svg"
+                data-qr-export="svg"
+                disabled
+              >
+                <Icon name="download" />
+                SVG
+              </button>
+            </div>
+            <button
+              type="button"
+              class="qr-maker__copy"
+              data-qr-export="copy"
+              disabled
+            >
+              <Icon name="clipboard" />
+              Copy PNG to clipboard
+            </button>
+            <p
+              class="qr-maker__help"
+              data-qr-status
+              role="status"
+              aria-live="polite"
+            ></p>
+            <p class="qr-maker__help">
+              Tip: test your code with a phone before printing.
+            </p>
+          </div>
+        </aside>
+      </div>
+      <section class="qr-maker__related" aria-labelledby="more-tools-title">
+        <div class="qr-maker__related-heading">
+          <div>
+            <p class="qr-maker__eyebrow">One more handy thing</p>
+            <h2 id="more-tools-title">Give your website a quick once-over.</h2>
+          </div>
+          <p>
+            A quick check can catch the little problems that are easy to miss.
+          </p>
+        </div>
+        <article class="qr-maker__related-card">
+          <span class="qr-maker__related-icon">
+            <Icon name="search" />
+          </span>
+          <div>
+            <p class="qr-maker__eyebrow">Website quality</p>
+            <h3>Website Checker</h3>
+            <p>
+              Drop in your URL and we’ll look for broken links, technical
+              hiccups, and how clearly your site speaks to AI-powered search.
+            </p>
+          </div>
+          <a href="/website-checker/" class="button">
+            Check my website
+          </a>
+        </article>
+      </section>
+      <p>
+        <a href="/resources/">Explore all Kelp resources</a>
+      </p>
+    </section>
+  </main>
+</Layout>
+
+<script>
+  import "../scripts/qr-code-maker";
+</script>

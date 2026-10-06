@@ -1,17 +1,15 @@
 ---
 import "../styles/global.scss";
-import checkerImage from "../assets/Kelp-Website-Checker.png";
+import "../styles/pages/qr-code-maker.scss";
+import qrImage from "../assets/images/resources/qr-code-maker.png";
+
 interface Props {
-  title?: string;
-  description?: string;
-  robots?: string;
+  title: string;
+  description: string;
+  schema: Record<string, unknown>;
 }
-const {
-  title = "Free Website Checker | Kelp Creative Agency",
-  description = "Find broken links and check your website’s AI search readiness, SEO, conversion signals, and schema.",
-  robots,
-} = Astro.props;
-const canonical = new URL(Astro.url.pathname, "https://www.kelp.agency");
+const { title, description, schema } = Astro.props;
+const canonical = new URL("/qr-code-maker/", "https://www.kelp.agency");
 ---
 
 <!doctype html>
@@ -21,16 +19,12 @@ const canonical = new URL(Astro.url.pathname, "https://www.kelp.agency");
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    {robots && <meta name="robots" content={robots} />}
     <link rel="canonical" href={canonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
-    <meta
-      property="og:image"
-      content={new URL(checkerImage.src, canonical).href}
-    />
+    <meta property="og:image" content={new URL(qrImage.src, canonical).href} />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link
@@ -39,6 +33,14 @@ const canonical = new URL(Astro.url.pathname, "https://www.kelp.agency");
       as="font"
       type="font/woff2"
       crossorigin
+    />
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        ...schema,
+      }).replace(/</g, "\\u003c")}
     />
     <script
       is:inline
@@ -59,7 +61,7 @@ const canonical = new URL(Astro.url.pathname, "https://www.kelp.agency");
       }
     </script>
   </head>
-  <body class="checker-standalone">
+  <body class="qr-maker-page">
     <a href="#main" class="screen-reader-text">
       Skip to content
     </a>

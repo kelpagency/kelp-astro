@@ -1,4 +1,4 @@
 {
   "extends": "astro/tsconfigs/strict",
-  "exclude": ["kelp-website-checker", "dist", "node_modules"]
+  "exclude": ["kelp-website-checker", "qr-code-maker", "dist", "node_modules"]
 }

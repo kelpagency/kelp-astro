@@ -12,7 +12,8 @@ import blackFlagFont from '../assets/images/resources/black-flag-font.jpg';
 import seaweedBrush from '../assets/images/resources/seaweed-brush.png';
 import ropeBrush from '../assets/images/resources/rope-brush.jpg';
 import websiteChecker from '../assets/images/resources/website-checker.png';
-import pressableConnect from '../assets/images/resources/pressable-connect.png';
+import qrCodeMaker from '../assets/images/resources/qr-code-maker.png';
+import pressableConnect from '../assets/images/resources/pressable-connect-resource.png';
 import { buildCollectionPageSchema, buildItemList } from '../lib/schema';
 
 const schema = buildCollectionPageSchema(
@@ -20,6 +21,7 @@ const schema = buildCollectionPageSchema(
   "A collection of digital assets, downloadable resources, and creative tools from Kelp Creative Agency.",
   buildItemList([
     { name: 'Kelp Website Checker', url: '/website-checker/' },
+    { name: 'Kelp QR Code Maker', url: '/qr-code-maker/' },
     { name: 'Pressable Connect for Local', url: 'https://github.com/kelpagency/local-pressable-connect/releases/latest' },
     { name: 'Modern Pro', url: 'https://ecosystem.hubspot.com/marketplace/website/modern-pro-theme-by-kelp-creative-agency' },
     { name: 'Restaurant Pro', url: 'https://ecosystem.hubspot.com/marketplace/website/restaurant-pro-theme-by-kelp-creative-agency' },
@@ -66,16 +68,25 @@ const schema = buildCollectionPageSchema(
       </div>
     </article>
     <article class="archive-tease" data-lg-reveal="layer-to-right" data-lg-reveal-stagger="0.15">
-      <a href="https://github.com/kelpagency/local-pressable-connect/releases/latest" class="media" style="background: var(--purple);">
+      <a href="/qr-code-maker/" class="media">
+        <Picture src={qrCodeMaker} alt="QR code on a purple background with a green shadow" loading="eager" width={1200} height={900} widths={[360, 720, 1200]} sizes="(max-width: 890px) 90vw, (max-width: 1300px) 45vw, 30vw" />
+      </a>
+      <div class="text">
+        <p class="text-meta">Free Website Tool</p>
+        <h2 class="h5"><a href="/qr-code-maker/">Kelp QR Code Maker</a></h2>
+        <p>Turn a link or message into a QR code, customize its colors, and download a PNG or SVG for print or screen. Free to use, with everything generated privately in your browser.</p>
+      </div>
+    </article>
+    <article class="archive-tease" data-lg-reveal="layer-to-right" data-lg-reveal-stagger="0.15">
+      <a href="https://github.com/kelpagency/local-pressable-connect/releases/latest" class="media">
         <Picture
           src={pressableConnect}
-          alt="Pressable Connect illustration showing a laptop and cloud server connected by push and pull arrows"
+          alt="Pressable Connect by Kelp: Local and Pressable connected through WordPress, with a laptop and cloud servers"
           loading="eager"
-          width={1672}
-          height={941}
-          widths={[360, 720, 1254, 1672]}
+          width={1448}
+          height={1086}
+          widths={[360, 720, 1086, 1448]}
           sizes="(max-width: 890px) 90vw, (max-width: 1300px) 45vw, 30vw"
-          style="object-fit: contain !important;"
         />
       </a>
       <div class="text">

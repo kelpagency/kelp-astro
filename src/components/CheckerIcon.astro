@@ -1,0 +1,36 @@
+---
+interface Props {
+  name: "link" | "robot" | "layers";
+}
+const { name } = Astro.props;
+const paths = {
+  link: [
+    "M10 13a5 5 0 0 0 7 .1l3-3a5 5 0 0 0-7.1-7.1l-1.7 1.7",
+    "M14 11a5 5 0 0 0-7-.1l-3 3a5 5 0 0 0 7.1 7.1l1.7-1.7",
+  ],
+  robot: ["M12 3v3M8 3h4", "M4 8h16v12H4Z", "M1 12v4M23 12v4M8 16h8"],
+  layers: ["m12 3 10 5-10 5L2 8l10-5Z", "m2 12 10 5 10-5", "m2 16 10 5 10-5"],
+};
+---
+
+<svg
+  width="16"
+  height="16"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2.5"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+>
+  {paths[name].map((d) => (
+    <path d={d} />
+  ))}
+  {name === "robot" && (
+    <>
+      <circle cx="8" cy="12" r="1" fill="currentColor" stroke="none" />
+      <circle cx="16" cy="12" r="1" fill="currentColor" stroke="none" />
+    </>
+  )}
+</svg>
