@@ -12,7 +12,7 @@ export async function GET(context) {
     items: posts.map((post) => ({
       title: toPlainText(post.title.rendered),
       description: sanitizeHtml(post.excerpt.rendered),
-      link: `/blog/${post.slug}`,
+      link: `/blog/${post.slug}/`,
       pubDate: post.date,
     })),
     customData: `<language>en-us</language>`,

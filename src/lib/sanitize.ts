@@ -29,6 +29,26 @@ const cssColorValues = [
   /^(?:transparent|currentcolor|[a-z]+)$/i,
 ];
 
+/** Use the canonical host and trailing slash for internal page links. */
+export function normalizeSiteLink(href: string) {
+  const isRootRelative = href.startsWith("/") && !href.startsWith("//");
+  const isSiteUrl = /^(?:https?:)?\/\/(?:www\.)?kelp\.agency(?=[/?#]|$)/i.test(href);
+  if (!isRootRelative && !isSiteUrl) return href;
+
+  try {
+    const url = new URL(href, "https://www.kelp.agency");
+    url.protocol = "https:";
+    url.hostname = "www.kelp.agency";
+    // Downloads and other file URLs must keep their existing paths.
+    if (!url.pathname.endsWith("/") && !/\/[^/]*\.[^/]+$/.test(url.pathname)) {
+      url.pathname += "/";
+    }
+    return isRootRelative ? `${url.pathname}${url.search}${url.hash}` : url.href;
+  } catch {
+    return href;
+  }
+}
+
 /** Sanitize rich HTML received from WordPress before passing it to set:html. */
 export function sanitizeHtml(input = "") {
   return sanitize(input, {
@@ -100,6 +120,9 @@ export function sanitizeHtml(input = "") {
     ],
     transformTags: {
       a: (_tagName, attributes) => {
+        if (attributes.href) {
+          attributes.href = normalizeSiteLink(attributes.href);
+        }
         if (attributes.target === "_blank") {
           const rel = new Set(
             (attributes.rel ?? "").split(/\s+/).filter(Boolean),
