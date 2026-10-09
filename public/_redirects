@@ -8,3 +8,7 @@
 /videos/squid.mov		/videos/squid.037531b0.mov	301
 /videos/squid.webm		/videos/squid.2dd95d08.webm	301
 /images/squiggle.svg	/images/squiggle.25832e5b.svg	301
+
+# Retired AI category overview
+/services/ai/  /services/#ai  301
+/services/ai   /services/#ai  301
