@@ -1,34 +1,94 @@
 ---
-import Layout from '../../Base.astro';
-import SimpleHero from '../../components/SimpleHero.astro';
+import Layout from "../../Base.astro";
+import SimpleHero from "../../components/SimpleHero.astro";
 import FeaturedArticles from "../../components/FeaturedArticles.astro";
 import ServicesRelatedWork from "../../components/ServicesRelatedWork.astro";
 import "../../styles/pages/_services-list.scss";
 ---
 
 <Layout
-	title='Apparel Design | Florida T-Shirt Design Company'
-	description={`When your brand has fans but nothing wearable they actually want to keep, apparel becomes wasted spend. We design merch people want to wear and businesses can confidently produce.`}
+  title="Branded Apparel Design | Kelp Agency"
+  description={`When your brand has fans but nothing wearable they actually want to keep, apparel becomes wasted spend. We design merch people want to wear and businesses can confidently produce.`}
 >
-	<SimpleHero tagline='Branding & Design Services' title='Apparel Design' description="When your brand has fans but nothing wearable they actually want to keep, apparel becomes wasted spend. We design merch people want to wear and businesses can confidently produce." lottieFile="apparel-design.json"/>
-	<div class='service-body'>
-		<div class='wrapper wrapper--narrow'>
-			<h2>Where teams get stuck</h2>
-			<p>Apparel usually gets treated like an easy add-on: print a shirt, hand out a hat, make a patch. But when the design is generic or disconnected from the brand, the pieces do not get worn, shared, or remembered.</p>
-			<p>That turns merchandise into extra inventory instead of a useful brand touchpoint.</p>
-			<h2>How we fix it</h2>
-			<p>We design apparel around the real use case, the audience, and the production method so the concept holds up on the actual garment, not just on a screen.</p>
-			<ul>
-				<li>Patches</li>
-				<li>Hats</li>
-				<li>T-Shirts</li>
-				<li>Outerwear</li>
-			</ul>
-			<h2>What moving forward looks like</h2>
-			<p>If you need merch for staff, events, retail, or a product drop, we can help define the concept, build the artwork, and prepare production-ready files so you know exactly what should happen next.</p>
-			<p><a href='/contact/' class='button button--green'>Talk Through Your Apparel Project</a></p>
-		</div>
-		<ServicesRelatedWork tag={67} />
-	</div>
-	<FeaturedArticles />
+  <SimpleHero
+    tagline="Branding & Design Services"
+    title="Apparel Design"
+    description="When your brand has fans but nothing wearable they actually want to keep, apparel becomes wasted spend. We design merch people want to wear and businesses can confidently produce."
+    lottieFile="apparel-design.json"
+  />
+  <div class="service-body">
+    <div class="wrapper wrapper--narrow">
+      <h2>Where teams get stuck</h2>
+      <p>
+        Apparel usually gets treated like an easy add-on: print a shirt, hand
+        out a hat, make a patch. But when the design is generic or disconnected
+        from the brand, the pieces do not get worn, shared, or remembered.
+      </p>
+      <p>
+        That turns merchandise into extra inventory instead of a useful brand
+        touchpoint.
+      </p>
+      <h2>How we fix it</h2>
+      <p>
+        We design apparel around the real use case, the audience, and the
+        production method so the concept holds up on the actual garment, not
+        just on a screen.
+      </p>
+      <ul>
+        <li>Patches</li>
+        <li>Hats</li>
+        <li>T-Shirts</li>
+        <li>Outerwear</li>
+      </ul>
+      <h2>Design for the Garment and the Wearer</h2>
+      <p>
+        We consider placement, scale, color, decoration method, and how the
+        design reads on the actual garment. A team uniform, retail item, event
+        shirt, and promotional piece each need a different balance of brand
+        presence and wearability.
+      </p>
+      <h2>Keep the System Consistent</h2>
+      <p>
+        Apparel can connect to packaging, ecommerce, campaigns, and events. Our
+        goal is to make those pieces feel related without repeating the same
+        artwork everywhere. See apparel and brand work in Hart's Meat Market and
+        Marker 48 Brewing. Tell us what the apparel needs to do.
+      </p>
+      <h2>How This Works in Practice</h2>
+      <p>
+        Apparel must work as an object someone wants to wear, not only as a logo
+        placement. We consider audience, garment, print area, color, production
+        method, and how the design reads from a distance. A strong apparel
+        system can support an event, team, or retail line while still feeling
+        connected to the broader brand. Production-ready files and clear
+        specifications make the concept usable.
+      </p>
+      <h2>What the Work Includes</h2>
+      <ul>
+        <li>Concepts for merch, uniforms, or events</li>
+        <li>Placement and color variations</li>
+        <li>Production-aware art files</li>
+        <li>A consistent set of designs across garments</li>
+      </ul>
+      <h2>What Moving Forward Looks Like</h2>
+      <p>
+        Tell us who will wear the apparel, how it will be distributed, and what
+        production method is planned. We can then develop the concept and
+        technical artwork together.
+      </p>
+      <h2>Frequently Asked Questions</h2>
+      <h3>Can you adapt an existing identity?</h3>
+      <p>
+        Yes. We can work with current brand assets and design apparel that feels
+        like a natural extension of them.
+      </p>
+      <p>
+        <a href="/contact/" class="button button--green">
+          Talk Through Your Apparel Project
+        </a>
+      </p>
+    </div>
+    <ServicesRelatedWork tag={67} />
+  </div>
+  <FeaturedArticles />
 </Layout>

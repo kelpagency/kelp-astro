@@ -1,0 +1,96 @@
+---
+import Layout from "../../Base.astro";
+import SimpleHero from "../../components/SimpleHero.astro";
+import FeaturedArticles from "../../components/FeaturedArticles.astro";
+import "../../styles/pages/_services-list.scss";
+---
+
+<Layout
+  title="AI Integrations for Business Systems | Kelp Agency"
+  description="Connect AI tools to the data and systems your team already uses, with practical workflows, permissions, and human oversight."
+>
+  <SimpleHero
+    tagline="AI Services"
+    title="AI Integrations That Fit the Systems You Already Use"
+    description="An AI tool is only helpful when it has the right information and a clear job. Kelp connects AI capabilities to the websites, stores, CRMs, catalogs, support tools, and internal systems your business already relies on. The goal is a workflow your team can trust, not another isolated dashboard."
+    lottieFile="ai-integrations.json"
+  />
+  <section class="service-body">
+    <div class="wrapper wrapper--narrow">
+      <h2>Where Teams Get Stuck</h2>
+      <p>
+        Teams often try an AI tool and then end up copying information in and
+        out by hand. Customer details live in one system, product rules in
+        another, and the AI response may be based on outdated or incomplete
+        data. A promising demo turns into extra work when nobody has decided
+        what the tool can read, what it can change, or what happens when a
+        connection fails.
+      </p>
+      <h2>How We Fix It</h2>
+      <p>
+        We start with one useful task and map the systems behind it. Which
+        source owns the information? How current does it need to be? Who can see
+        it? What should happen when the tool is unsure? Those answers shape the
+        integration, the interface, and the review process before we choose a
+        model or build a connector.
+      </p>
+      <h2>Connect the Right Information</h2>
+      <p>
+        An integration might bring approved knowledge into a customer-facing
+        assistant, use catalog data to help a shopper compare products,
+        summarize a support issue for a team member, or route a qualified lead
+        into a CRM. We can work with APIs, existing connectors, and custom
+        middleware when the standard options cannot handle the workflow. The
+        architecture depends on the data, permissions, and systems involved.
+      </p>
+      <h2>Plan for Real-World Exceptions</h2>
+      <p>
+        Data changes. Products are retired, customer records are incomplete, and
+        external services occasionally fail. We plan how information is
+        refreshed, how errors are surfaced, and when a person needs to take
+        over. We also set boundaries around sensitive data and actions so the AI
+        tool does not quietly make a decision it should only recommend.
+      </p>
+      <h2>Build Something Your Team Can Maintain</h2>
+      <p>
+        The integration should come with clear ownership: where content is
+        updated, how access is managed, what is logged, and how the team checks
+        quality over time. Kelp's broader{" "}
+        <a href="/services/website-development/">
+          website and application development work
+        </a>{" "}
+        helps connect the AI experience to the customer journey and the systems
+        behind it.
+      </p>
+      <h2>What the Work Includes</h2>
+      <ul>
+        <li>Use-case and system discovery</li>
+        <li>Data flow, access, and permission planning</li>
+        <li>API, connector, or middleware implementation</li>
+        <li>Human review, error handling, and quality checks</li>
+        <li>Documentation and an improvement plan after launch</li>
+      </ul>
+      <h2>What Moving Forward Looks Like</h2>
+      <p>
+        Bring us one task that takes too much manual effort or one customer
+        interaction that breaks down because information is scattered. We can
+        map the systems involved and recommend a focused first integration. Talk
+        with Kelp about your workflow.
+      </p>
+      <h2>Frequently Asked Questions</h2>
+      <h3 class="h4">Do we need to replace our current software to add AI?</h3>
+      <p>
+        Usually the first step is to assess what your existing tools can provide
+        through their APIs, exports, or approved connectors. We recommend a
+        replacement only when the current system cannot support the job
+        reliably.
+      </p>
+      <p>
+        <a href="/contact/" class="button button--green">
+          Talk Through Your Project
+        </a>
+      </p>
+    </div>
+  </section>
+  <FeaturedArticles />
+</Layout>

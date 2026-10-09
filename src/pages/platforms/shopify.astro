@@ -1,13 +1,18 @@
 ---
-import Layout from '../../Base.astro';
-import SimpleHero from '../../components/SimpleHero.astro';
-import FeaturedArticles from '../../components/FeaturedArticles.astro';
-import RecentWork from '../../components/RecentWork.astro';
+import Layout from "../../Base.astro";
+import SimpleHero from "../../components/SimpleHero.astro";
+import FeaturedArticles from "../../components/FeaturedArticles.astro";
+import RecentWork from "../../components/RecentWork.astro";
 
-import ShopifyPartner from '../../assets/shopify.svg';
+import ShopifyPartner from "../../assets/shopify.svg";
+import "../../styles/pages/_services-list.scss";
 ---
 
-<Layout title="Kelp ❤️'s Shopify" description="Build a Shopify store designed to sell. Explore Kelp's Liquid themes, Hydrogen storefronts, and performance improvements for a smoother shopping experience." darkHeader={true}>
+<Layout
+  title="Shopify Development, Design &amp; Integrations | Kelp"
+  description="Custom Shopify themes, storefronts, and integrations for brands with complex catalogs, POS and inventory needs, and ambitious ecommerce goals."
+  darkHeader={true}
+>
   <article>
     <SimpleHero
       title="Shopify"
@@ -23,16 +28,93 @@ import ShopifyPartner from '../../assets/shopify.svg';
 
         <div class="platform-text">
           <p>
-            We design and build Shopify storefronts that are fast, scalable, and designed to convert. Whether you’re
-            selling a single product or managing an enterprise-level catalog, Shopify is one of the most flexible
-            commerce platforms available.
+            We design and build Shopify storefronts that are fast, scalable, and
+            designed to convert. Whether you’re selling a single product or
+            managing an enterprise-level catalog, Shopify is one of the most
+            flexible commerce platforms available.
           </p>
           <p>
-            Our team is experienced in building both traditional Liquid themes and advanced headless storefronts powered
-            by Hydrogen. We've helped clients update their Shopify themes while maintaining custom features, building
-            out brand new custom themes, or just general help with performance improvements.
+            Our team is experienced in building both traditional Liquid themes
+            and advanced headless storefronts powered by Hydrogen. We've helped
+            clients update their Shopify themes while maintaining custom
+            features, building out brand new custom themes, or just general help
+            with performance improvements.
           </p>
         </div>
+      </div>
+    </section>
+    <section class="service-body">
+      <div class="wrapper wrapper--narrow">
+        <h2>Where Teams Get Stuck</h2>
+        <p>
+          A growing Shopify store can become difficult to manage when catalog
+          rules, theme changes, apps, and outside systems are added without a
+          plan. The store may look polished while product data, inventory, and
+          customer-specific terms are maintained through manual workarounds.
+        </p>
+        <h2>How We Fix It</h2>
+        <p>
+          We audit the storefront and operating workflow together. The solution
+          may be a focused theme improvement, a custom Liquid build, an
+          integration, or a Hydrogen storefront. We choose based on the shopper
+          experience, internal ownership, performance, and long-term
+          maintenance.
+        </p>
+        <h2>From Theme Work to Custom Storefronts</h2>
+        <p>
+          We can refine an existing theme, build a custom Liquid theme, or plan
+          a Hydrogen storefront when the experience calls for it. The right
+          approach depends on catalog complexity, content needs, integrations,
+          and the cost of maintaining the build. We do not recommend headless
+          commerce simply because it sounds advanced.
+        </p>
+        <h2>Integrations Deserve Their Own Plan</h2>
+        <p>
+          A store may need to exchange information with a POS, ERP, warehouse,
+          shipping provider, CRM, or product information system. Before
+          development, we map which system owns each record, how often data
+          changes, and how exceptions appear to staff. For B2B or custom
+          products, that plan may also cover customer-specific pricing,
+          approvals, quotes, variants, and production details.
+        </p>
+        <h2>Design for Discovery and Conversion</h2>
+        <p>
+          Customers need accurate product details, useful categories, clear
+          shipping and return information, and a smooth route to purchase.
+          Search and AI shopping experiences also depend on the quality and
+          consistency of that information. We build pages that help buyers make
+          a decision and make the data behind those pages easier to maintain.
+        </p>
+        <p>
+          See Kelp's published Shopify work and ecommerce development approach.
+          If your Shopify store has grown more complex than its current setup
+          can handle, tell us where the buying or operations flow breaks.
+        </p>
+        <h2>What the Work Includes</h2>
+        <ul>
+          <li>Shopify experience and theme review</li>
+          <li>Custom Liquid or Hydrogen development when justified</li>
+          <li>Catalog, B2B, POS, ERP, and inventory integration scoping</li>
+          <li>Conversion and content improvements</li>
+        </ul>
+        <h2>What Moving Forward Looks Like</h2>
+        <p>
+          Show us the tasks shoppers cannot complete and the updates your team
+          repeats by hand. We can use those examples to identify the right
+          development path.
+        </p>
+        <h2>Frequently Asked Questions</h2>
+        <h3>Is Hydrogen right for every Shopify store?</h3>
+        <p>
+          No. It can be useful for a distinct experience or technical
+          requirement, but a well-built Liquid theme is often easier to maintain
+          and fully sufficient.
+        </p>
+        <p>
+          <a href="/contact/" class="button button--green">
+            Talk Through Your Project
+          </a>
+        </p>
       </div>
     </section>
     <RecentWork
@@ -41,7 +123,11 @@ import ShopifyPartner from '../../assets/shopify.svg';
       heading="Shopify Stores"
       description="<p>Here are a few of the Shopify builds we’ve launched — all optimized for performance, scalability, and sales.</p>"
     />
-    <FeaturedArticles category="93" heading="Our Articles about Shopify" limit={3} />
+    <FeaturedArticles
+      category="93"
+      heading="Our Articles about Shopify"
+      limit={3}
+    />
   </article>
   <style lang="scss">
     .platform {
@@ -70,5 +156,5 @@ import ShopifyPartner from '../../assets/shopify.svg';
         flex: 1 1 500px;
       }
     }
-  </style></Layout
->
+  </style>
+</Layout>

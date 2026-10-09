@@ -1,38 +1,97 @@
 ---
-import Layout from '../../Base.astro';
-import SimpleHero from '../../components/SimpleHero.astro';
+import Layout from "../../Base.astro";
+import SimpleHero from "../../components/SimpleHero.astro";
 import FeaturedArticles from "../../components/FeaturedArticles.astro";
 import ServicesRelatedWork from "../../components/ServicesRelatedWork.astro";
 import "../../styles/pages/_services-list.scss";
-
 ---
 
 <Layout
-	title='Print Design | Florida Design Agency'
-	description='Print still matters when people need something they can hold, reference, or take with them. We design print pieces that stay on brand, communicate fast, and hold up in production.'
+  title="Print Design &amp; Marketing Collateral | Kelp"
+  description="Print materials designed with your brand, audience, production requirements, and the next customer action in mind."
 >
-	<SimpleHero tagline='Branding & Design Services' title='Print Design' description="Print still matters when people need something they can hold, reference, or take with them. We design print pieces that stay on brand, communicate fast, and hold up in production." lottieFile='print-design.json'/>
-	<div class='service-body'>
-		<div class='wrapper wrapper--narrow'>
-			<h2>Where teams get stuck</h2>
-			<p>
-				Print pieces often get rushed from digital assets without thinking about format, hierarchy, or production. The result is material that feels off-brand, reads poorly, or creates extra problems when it reaches the printer.
-			</p>
-			<p>When someone picks up a brochure, poster, or sales piece, the message has to land quickly and still look intentional in the real world.</p>
-			<h2>How we fix it</h2>
-			<ul>
-				<li>Magazine / newspaper Design</li>
-				<li>Book Cover Design</li>
-				<li>Brochures and Pamphlet Design</li>
-				<li>Poster Design</li>
-				<li>Event Collateral</li>
-			</ul>
-			<p>We design for the physical piece itself, considering readability, layout, sizing, and production details so the final result feels polished before it ever goes to print.</p>
-			<h2>What moving forward looks like</h2>
-			<p>If you need print materials for a launch, event, campaign, or sales team, we can shape the message, design the piece, and prepare files your printer can actually use without cleanup.</p>
-			<p><a href='/contact/' class='button button--green'>Plan Your Print Piece</a></p>
-		</div>
-		<ServicesRelatedWork tag={71} />
-	</div>
-	<FeaturedArticles />
+  <SimpleHero
+    tagline="Branding & Design Services"
+    title="Print Design"
+    description="Print still matters when people need something they can hold, reference, or take with them. We design print pieces that stay on brand, communicate fast, and hold up in production."
+    lottieFile="print-design.json"
+  />
+  <div class="service-body">
+    <div class="wrapper wrapper--narrow">
+      <h2>Where teams get stuck</h2>
+      <p>
+        Print pieces often get rushed from digital assets without thinking about
+        format, hierarchy, or production. The result is material that feels
+        off-brand, reads poorly, or creates extra problems when it reaches the
+        printer.
+      </p>
+      <p>
+        When someone picks up a brochure, poster, or sales piece, the message
+        has to land quickly and still look intentional in the real world.
+      </p>
+      <h2>How we fix it</h2>
+      <ul>
+        <li>Magazine / newspaper Design</li>
+        <li>Book Cover Design</li>
+        <li>Brochures and Pamphlet Design</li>
+        <li>Poster Design</li>
+        <li>Event Collateral</li>
+      </ul>
+      <p>
+        We design for the physical piece itself, considering readability,
+        layout, sizing, and production details so the final result feels
+        polished before it ever goes to print.
+      </p>
+      <h2>Make the Message and Format Work Together</h2>
+      <p>
+        We define where the piece will be seen, what the audience should
+        understand, and what happens next. From there we plan copy, hierarchy,
+        size, material, and production files. A small handout needs a different
+        message from a detailed brochure; a sign must work at a distance.
+      </p>
+      <h2>Keep the Experience Connected</h2>
+      <p>
+        Print often points to a website, booking page, store, or campaign. We
+        make those handoffs clear and consistent. Kelp's <a href="/work/elev8-fun/">Elev8 Fun</a> project
+        brought digital and physical creative together for the same brand. Plan
+        your next print project.
+      </p>
+      <h2>How This Works in Practice</h2>
+      <p>
+        Print decisions affect what the finished piece can actually communicate.
+        Size, stock, folds, production method, and where the item is encountered
+        all shape the design. Kelp can connect print work with the website and
+        campaign so the message feels familiar at every touchpoint. Before
+        production, we review the copy, specifications, and handoff requirements
+        that keep a good design intact.
+      </p>
+      <h2>What the Work Includes</h2>
+      <ul>
+        <li>Campaign and sales collateral</li>
+        <li>Event and environmental graphics</li>
+        <li>Packaging or product-support materials</li>
+        <li>Print-ready files and production coordination</li>
+      </ul>
+      <h2>What Moving Forward Looks Like</h2>
+      <p>
+        Bring the audience, quantity, deadline, distribution plan, and any
+        printer requirements. Those details help us recommend the format and
+        design scope early.
+      </p>
+      <h2>Frequently Asked Questions</h2>
+      <h3>Can one design work for print and digital?</h3>
+      <p>
+        The message and identity can carry across both, but each format needs
+        its own layout, resolution, and interaction or production
+        considerations.
+      </p>
+      <p>
+        <a href="/contact/" class="button button--green">
+          Plan Your Print Piece
+        </a>
+      </p>
+    </div>
+    <ServicesRelatedWork tag={71} />
+  </div>
+  <FeaturedArticles />
 </Layout>

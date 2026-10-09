@@ -1,9 +1,14 @@
 ---
-import Layout from '../../Base.astro';
-import SimpleHero from '../../components/SimpleHero.astro';
+import Layout from "../../Base.astro";
+import SimpleHero from "../../components/SimpleHero.astro";
+import "../../styles/pages/_services-list.scss";
 ---
 
-<Layout title="Kelp ❤️'s Headless" description="Keep your CMS. Gain more freedom. Kelp builds fast, flexible headless websites with WordPress, Shopify, and custom APIs. Explore what's possible for your site." darkHeader={true}>
+<Layout
+  title="Headless Website &amp; API-First Development | Kelp"
+  description="Headless WordPress, Shopify Hydrogen, and API-First website development for organizations whose content and customer experience need more flexibility."
+  darkHeader={true}
+>
   <article>
     <SimpleHero
       title="Headless"
@@ -20,23 +25,101 @@ import SimpleHero from '../../components/SimpleHero.astro';
 
         <div class="platform-text">
           <p>
-            Headless works with any platform or CMS that exposes APIs. That can mean WordPress, Shopify, a Google
-            Spreadsheet, or a custom backend built around the tools your team already uses. The point is not to replace
-            the system behind the site, but to give the frontend complete freedom to shape the experience.
+            Headless works with any platform or CMS that exposes APIs. That can
+            mean WordPress, Shopify, a Google Spreadsheet, or a custom backend
+            built around the tools your team already uses. The point is not to
+            replace the system behind the site, but to give the frontend
+            complete freedom to shape the experience.
           </p>
           <p>
-            The primary reason to go headless is control. You get to design the interface without CMS constraints, and
-            you get a faster site because the frontend only ships what it needs. That usually means better performance,
-            cleaner interactions, and a system that can grow without becoming tangled.
+            The primary reason to go headless is control. You get to design the
+            interface without CMS constraints, and you get a faster site because
+            the frontend only ships what it needs. That usually means better
+            performance, cleaner interactions, and a system that can grow
+            without becoming tangled.
           </p>
           <p>
-            We keep the implementation practical. If you already have a CMS, commerce stack, spreadsheet workflow, or
-            other API-backed system in place, we can help turn it into a cleaner, more flexible frontend experience.
+            We keep the implementation practical. If you already have a CMS,
+            commerce stack, spreadsheet workflow, or other API-backed system in
+            place, we can help turn it into a cleaner, more flexible frontend
+            experience.
           </p>
           <p>
-            <a href="/contact/" class="button">Talk to us about a headless build</a>
+            <a href="/contact/" class="button">
+              Talk to us about a headless build
+            </a>
           </p>
         </div>
+      </div>
+    </section>
+    <section class="service-body">
+      <div class="wrapper wrapper--narrow">
+        <h2>Where Teams Get Stuck</h2>
+        <p>
+          Headless projects can fail when architecture is chosen before the
+          editor, customer, and integration requirements are understood. A
+          custom front end may be fast and flexible yet leave the marketing team
+          unable to publish or the developer team responsible for too many
+          moving parts.
+        </p>
+        <h2>How We Fix It</h2>
+        <p>
+          We compare conventional and headless approaches against content
+          workflow, integrations, performance, search access, hosting, and
+          support. When headless is justified, we model the data and delivery
+          path before building the interface. We also plan how failures and
+          updates will be handled after launch.
+        </p>
+        <h2>Choose Architecture for the Work</h2>
+        <p>
+          We map the content model, customer journeys, integrations, editor
+          workflow, performance needs, and ongoing ownership before choosing a
+          framework. The site still has to be maintainable, accessible, and
+          clear to search systems. A technically impressive front end is not
+          useful if the team cannot update it or important content cannot be
+          discovered.
+        </p>
+        <h2>Connect the Right Systems</h2>
+        <p>
+          Headless projects may join a CMS, storefront, search service, CRM,
+          product data source, or custom application through APIs. We define
+          which system owns the information, how it is delivered, and what
+          happens when a service fails. Kelp's own site is described on its
+          WordPress platform page as a headless WordPress instance. Kelp has
+          also published headless Astro work and Shopify Hydrogen capabilities.
+        </p>
+        <h2>Use the Simplest Architecture That Meets the Goal</h2>
+        <p>
+          Many businesses can achieve what they need with a well-built theme and
+          thoughtful integrations. We compare the tradeoffs before proposing a
+          headless approach. Talk with Kelp about the experience and systems you
+          need to connect.
+        </p>
+        <h2>What the Work Includes</h2>
+        <ul>
+          <li>Architecture and platform decision</li>
+          <li>API and content-model planning</li>
+          <li>Custom front-end development</li>
+          <li>Search, editor, deployment, and support review</li>
+        </ul>
+        <h2>What Moving Forward Looks Like</h2>
+        <p>
+          Bring the experience you want to create and the systems it must draw
+          from. We can recommend whether the added flexibility of headless
+          development is worth its maintenance cost.
+        </p>
+        <h2>Frequently Asked Questions</h2>
+        <h3>Will a headless site be better for SEO?</h3>
+        <p>
+          Architecture alone does not make a page useful or discoverable.
+          Content access, rendering, links, performance, and page quality still
+          need to be planned and checked.
+        </p>
+        <p>
+          <a href="/contact/" class="button button--green">
+            Talk Through Your Project
+          </a>
+        </p>
       </div>
     </section>
   </article>

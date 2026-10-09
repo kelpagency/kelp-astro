@@ -1,21 +1,21 @@
 ---
-import Layout from '../../Base.astro';
-import SimpleHero from '../../components/SimpleHero.astro';
-import { Picture } from 'astro:assets';
-import batteryInfographic from '../../assets/images/infographics/battery-upkeep-infographic.png';
-import boostInfographic from '../../assets/images/infographics/boost-infographic.jpg';
-import flashlightSafetyInfographic from '../../assets/images/infographics/flashlight-safety-infographic.jpg';
-import flashlightsInfographic from '../../assets/images/infographics/flashlights-infographic.jpg';
-import labelPrinterInfographic from '../../assets/images/infographics/label-printer-infographic.gif';
-import safetyTipsInfographic from '../../assets/images/infographics/safety-tips-infographic.jpg';
-import FeaturedArticles from '../../components/FeaturedArticles.astro';
-import ServicesRelatedWork from '../../components/ServicesRelatedWork.astro';
-import '../../styles/pages/_services-list.scss';
+import Layout from "../../Base.astro";
+import SimpleHero from "../../components/SimpleHero.astro";
+import { Picture } from "astro:assets";
+import batteryInfographic from "../../assets/images/infographics/battery-upkeep-infographic.png";
+import boostInfographic from "../../assets/images/infographics/boost-infographic.jpg";
+import flashlightSafetyInfographic from "../../assets/images/infographics/flashlight-safety-infographic.jpg";
+import flashlightsInfographic from "../../assets/images/infographics/flashlights-infographic.jpg";
+import labelPrinterInfographic from "../../assets/images/infographics/label-printer-infographic.gif";
+import safetyTipsInfographic from "../../assets/images/infographics/safety-tips-infographic.jpg";
+import FeaturedArticles from "../../components/FeaturedArticles.astro";
+import ServicesRelatedWork from "../../components/ServicesRelatedWork.astro";
+import "../../styles/pages/_services-list.scss";
 ---
 
 <Layout
-  title="Infographics | Florida Graphic Design Agency"
-  description="When the information is valuable but hard to absorb, people tune out. We turn dense ideas, processes, and data into infographics that are easier to follow and easier to share."
+  title="Infographic &amp; Information Design | Kelp"
+  description="Turn complex processes, research, and data into clear infographics for websites, campaigns, presentations, and social channels."
 >
   <SimpleHero
     tagline="Content Creation Services"
@@ -24,8 +24,15 @@ import '../../styles/pages/_services-list.scss';
     lottieFile="infographics.json"
   />
   <div class="wrapper infographics">
-    <div class="infographics-grid" data-lg-reveal="layer-to-right" data-lg-reveal-stagger="0.1">
-      <h2>We Make<br /> Infographics Like...</h2>
+    <div
+      class="infographics-grid"
+      data-lg-reveal="layer-to-right"
+      data-lg-reveal-stagger="0.1"
+    >
+      <h2>
+        We Make
+        <br /> Infographics Like...
+      </h2>
       <Picture
         src={batteryInfographic}
         loading="lazy"
@@ -92,12 +99,21 @@ import '../../styles/pages/_services-list.scss';
     <div class="wrapper wrapper--narrow">
       <h2>Where teams get stuck</h2>
       <p>
-        Sometimes the information is strong, but the format is doing it no favors. Research, process explanations,
-        educational content, and campaign messaging can become too dense for people to finish or remember.
+        Sometimes the information is strong, but the format is doing it no
+        favors. Research, process explanations, educational content, and
+        campaign messaging can become too dense for people to finish or
+        remember.
       </p>
-      <p>When the audience has to work too hard to understand the story, the message gets lost before the value lands.</p>
+      <p>
+        When the audience has to work too hard to understand the story, the
+        message gets lost before the value lands.
+      </p>
       <h2>How we fix it</h2>
-      <p>We turn complex information into a clearer visual sequence, balancing copy, hierarchy, and design so people can understand the main point quickly and keep following the story.</p>
+      <p>
+        We turn complex information into a clearer visual sequence, balancing
+        copy, hierarchy, and design so people can understand the main point
+        quickly and keep following the story.
+      </p>
       <ul>
         <li>Informational design</li>
         <li>Process visualization</li>
@@ -107,12 +123,54 @@ import '../../styles/pages/_services-list.scss';
         <li>Microcontent</li>
         <li>Social</li>
       </ul>
-      <h2>What moving forward looks like</h2>
+      <h2>Find the Point Before Drawing the Chart</h2>
       <p>
-        If you have research, internal knowledge, or campaign material that needs to become clearer fast, we can help
-        shape it into a visual story people are far more likely to finish and share.
+        We identify the audience, the decision, and the one idea they should
+        remember. Then we choose the right form: process diagram, comparison,
+        timeline, map, data visualization, or step-by-step explainer. Accuracy
+        matters as much as appearance, so we check labels, sources, and context
+        before production.
       </p>
-      <p><a href="/contact/" class="button button--green">Turn Your Info Into a Visual Story</a></p>
+      <h2>Create Assets That Work Where People See Them</h2>
+      <p>
+        An infographic may need a full web version, a slide, a print piece, and
+        smaller social excerpts. We plan the hierarchy for each setting so the
+        information stays legible. Talk with Kelp about the story your data
+        needs to tell.
+      </p>
+      <h2>How This Works in Practice</h2>
+      <p>
+        An infographic is useful when it makes a real relationship easier to
+        understand: a process, comparison, timeline, or set of numbers. We start
+        with the underlying information and the question the audience needs
+        answered. The visual hierarchy follows that logic. For online use, we
+        plan supporting text and accessible alternatives so the information can
+        be understood beyond the image itself.
+      </p>
+      <h2>What the Work Includes</h2>
+      <ul>
+        <li>Process and workflow diagrams</li>
+        <li>Data and comparison graphics</li>
+        <li>Educational explainers</li>
+        <li>Web, presentation, print, and social versions</li>
+      </ul>
+      <h2>What Moving Forward Looks Like</h2>
+      <p>
+        Share the underlying information and the decision the audience needs to
+        make. We can recommend what should become a graphic and what should stay
+        as text.
+      </p>
+      <h2>Frequently Asked Questions</h2>
+      <h3>Can you work with incomplete data?</h3>
+      <p>
+        We can help organize it, but we will mark gaps and avoid implying
+        precision the source does not support.
+      </p>
+      <p>
+        <a href="/contact/" class="button button--green">
+          Turn Your Info Into a Visual Story
+        </a>
+      </p>
     </div>
     <ServicesRelatedWork tag={85} />
   </div>

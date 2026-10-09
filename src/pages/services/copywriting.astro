@@ -1,41 +1,109 @@
 ---
-import Layout from '../../Base.astro';
-import SimpleHero from '../../components/SimpleHero.astro';
+import Layout from "../../Base.astro";
+import SimpleHero from "../../components/SimpleHero.astro";
 import FeaturedArticles from "../../components/FeaturedArticles.astro";
 import ServicesRelatedWork from "../../components/ServicesRelatedWork.astro";
 import "../../styles/pages/_services-list.scss";
-
 ---
 
 <Layout
-	title='Copywriting services | Florida Marketing Agency'
-	description='When your business knows what it does but customers still do not get it, the problem is usually the words. We write copy that makes the offer clear, builds trust, and gives people a reason to move.'
+  title="Website &amp; Marketing Copywriting | Kelp Agency"
+  description="Clear website, ecommerce, and campaign copy that explains your offer, answers buyer questions, and supports the next step."
 >
-	<SimpleHero tagline='Marketing & Messaging Services' title='Copywriting' description="When your business knows what it does but customers still do not get it, the problem is usually the words. We write copy that makes the offer clear, builds trust, and gives people a reason to move." lottieFile='copywriting.json' />
-	<div class='service-body'>
-		<div class='wrapper wrapper--narrow'>
-			<h2>Where teams get stuck</h2>
-			<p>
-				Many businesses know their offer inside and out, but that clarity never makes it onto the page. Website copy gets vague, ads sound interchangeable, and sales material asks the customer to do too much work.
-			</p>
-			<p>When the message is unclear, the audience leaves with questions instead of confidence.</p>
-			<h2>How we fix it</h2>
-			<p>We start by understanding the audience, the offer, and the context the copy needs to support. Then we turn subject-matter expertise into writing that is easier to follow and easier to act on.</p>
-			<ul>
-				<li>Website pages and hero sections</li>
-				<li>Product and service descriptions</li>
-				<li>Case studies and about pages</li>
-				<li>Blog Articles</li>
-				<li>Ad headlines and campaign copy</li>
-				<li>Social Media Posts</li>
-				<li>Brochures, postcards, posters, and other marketing collateral</li>
-			</ul>
-			<p>For website projects, that usually means starting with a sitemap and content plan so we know what each page needs to say, in what order, and for whom. For campaigns or collateral, we focus on the goal of the piece and the response it needs to generate.</p>
-			<h2>What moving forward looks like</h2>
-			<p>If you are launching a site, tightening campaign messaging, or rewriting material that no longer reflects the business, we can help identify the pages and messages that matter most and write them in the right order.</p>
-			<p><a href='/contact/' class='button button--green'>Talk Through Your Messaging</a></p>
-		</div>
-		<ServicesRelatedWork tag={70} />
-	</div>
-	<FeaturedArticles />
+  <SimpleHero
+    tagline="Marketing & Messaging Services"
+    title="Copywriting"
+    description="When your business knows what it does but customers still do not get it, the problem is usually the words. We write copy that makes the offer clear, builds trust, and gives people a reason to move."
+    lottieFile="copywriting.json"
+  />
+  <div class="service-body">
+    <div class="wrapper wrapper--narrow">
+      <h2>Where teams get stuck</h2>
+      <p>
+        Many businesses know their offer inside and out, but that clarity never
+        makes it onto the page. Website copy gets vague, ads sound
+        interchangeable, and sales material asks the customer to do too much
+        work.
+      </p>
+      <p>
+        When the message is unclear, the audience leaves with questions instead
+        of confidence.
+      </p>
+      <h2>How we fix it</h2>
+      <p>
+        We start by understanding the audience, the offer, and the context the
+        copy needs to support. Then we turn subject-matter expertise into
+        writing that is easier to follow and easier to act on.
+      </p>
+      <ul>
+        <li>Website pages and hero sections</li>
+        <li>Product and service descriptions</li>
+        <li>Case studies and about pages</li>
+        <li>Blog Articles</li>
+        <li>Ad headlines and campaign copy</li>
+        <li>Social Media Posts</li>
+        <li>Brochures, postcards, posters, and other marketing collateral</li>
+      </ul>
+      <p>
+        For website projects, that usually means starting with a sitemap and
+        content plan so we know what each page needs to say, in what order, and
+        for whom. For campaigns or collateral, we focus on the goal of the piece
+        and the response it needs to generate.
+      </p>
+      <h2>Research Before the First Headline</h2>
+      <p>
+        We gather input from the people closest to the customer: sales
+        conversations, support questions, product details, existing content, and
+        real examples of the work. Then we organize the message into pages and
+        sections that match how people research a decision. That can include
+        service pages, product descriptions, landing pages, email, campaign
+        copy, and case studies.
+      </p>
+      <h2>Write for People and Discovery</h2>
+      <p>
+        Search and AI tools work best with specific, accurate information. We
+        use descriptive headings, clear answers, and internal links while
+        keeping the copy useful to a human reader. We do not promise that a
+        phrase or schema field will force an AI recommendation. In <a href="/work/hsr/">HS&amp;R</a>,
+        Kelp combined content strategy and copy with a HubSpot website migration
+        and development project. Discuss the pages your customers need.
+      </p>
+      <h2>How This Works in Practice</h2>
+      <p>
+        The strongest copy usually comes from specifics that already exist
+        inside the business: customer questions, sales objections, product
+        details, service boundaries, and examples of work. We turn that
+        information into a page hierarchy people can scan, then write the fuller
+        explanations they need before acting. Search phrases are considered in
+        that structure without making every paragraph sound like a keyword list.
+      </p>
+      <h2>What the Work Includes</h2>
+      <ul>
+        <li>Message and page-outline development</li>
+        <li>Website and landing-page copy</li>
+        <li>Product, campaign, and email copy where needed</li>
+        <li>Editing for clarity, consistency, and search intent</li>
+      </ul>
+      <h2>What Moving Forward Looks Like</h2>
+      <p>
+        Start with a page or campaign that customers routinely misunderstand. We
+        can use that work to establish a voice and page structure before
+        extending it across the site.
+      </p>
+      <h2>Frequently Asked Questions</h2>
+      <h3>Can AI write the first draft?</h3>
+      <p>
+        It can help explore options, but the published copy still needs verified
+        details, real examples, editorial judgment, and a voice that belongs to
+        your business.
+      </p>
+      <p>
+        <a href="/contact/" class="button button--green">
+          Talk Through Your Messaging
+        </a>
+      </p>
+    </div>
+    <ServicesRelatedWork tag={70} />
+  </div>
+  <FeaturedArticles />
 </Layout>

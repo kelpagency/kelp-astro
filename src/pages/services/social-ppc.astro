@@ -1,37 +1,105 @@
 ---
-import Layout from '../../Base.astro';
-import SimpleHero from '../../components/SimpleHero.astro';
+import Layout from "../../Base.astro";
+import SimpleHero from "../../components/SimpleHero.astro";
 import FeaturedArticles from "../../components/FeaturedArticles.astro";
 import ServicesRelatedWork from "../../components/ServicesRelatedWork.astro";
 import "../../styles/pages/_services-list.scss";
-
 ---
 
 <Layout
-	title='Social & PPC Campaigns - Florida Marketing Agency'
-	description='Paid campaigns only work when the targeting, creative, and landing experience support the same goal. We manage social and PPC campaigns that put the right message in front of the right people at the right time.'
+  title="Paid Search &amp; Social Campaign Management | Kelp"
+  description="Paid search and social campaigns built around qualified results, strong creative, useful landing pages, and clear measurement."
 >
-	<SimpleHero tagline='Digital Marketing Services' title='Social & PPC' description="Paid campaigns only work when the targeting, creative, and landing experience support the same goal. We manage social and PPC campaigns that put the right message in front of the right people at the right time." lottieFile='social-media-content.json' />
-	<div class='service-body'>
-		<div class='wrapper wrapper--narrow'>
-			<h2>Where teams get stuck</h2>
-			<p>Paid media gets expensive fast when clicks are arriving but the campaigns are not producing meaningful movement. In most cases, the problem is not the platform alone. It is the mismatch between targeting, creative, offer, and landing experience.</p>
-			<p>That is why some businesses keep spending more while learning very little.</p>
-			<h2>How we fix it</h2>
-			<p>We treat paid media like a system. Audience strategy, campaign structure, creative direction, testing, and reporting all need to support the same outcome so the spend has a real chance to perform.</p>
-			<h2>Platforms we work with</h2>
-			<ul>
-				<li>Facebook</li>
-				<li>Twitter</li>
-				<li>Instagram</li>
-				<li>LinkedIn</li>
-				<li>Google Ads</li>
-			</ul>
-			<h2>What moving forward looks like</h2>
-			<p>If you want paid media to become a more predictable growth channel instead of an ongoing experiment, we can review the current setup, identify where spend is leaking, and recommend the first places to tighten the strategy.</p>
-			<p><a href='/contact/' class='button button--green'>Review Your Paid Strategy</a></p>
-		</div>
-		<ServicesRelatedWork tag={86} />
-	</div>
-	<FeaturedArticles />
+  <SimpleHero
+    tagline="Digital Marketing Services"
+    title="Social & PPC"
+    description="Paid campaigns only work when the targeting, creative, and landing experience support the same goal. We manage social and PPC campaigns that put the right message in front of the right people at the right time."
+    lottieFile="social-media-content.json"
+  />
+  <div class="service-body">
+    <div class="wrapper wrapper--narrow">
+      <h2>Where teams get stuck</h2>
+      <p>
+        Paid media gets expensive fast when clicks are arriving but the
+        campaigns are not producing meaningful movement. In most cases, the
+        problem is not the platform alone. It is the mismatch between targeting,
+        creative, offer, and landing experience.
+      </p>
+      <p>
+        That is why some businesses keep spending more while learning very
+        little.
+      </p>
+      <h2>How we fix it</h2>
+      <p>
+        We treat paid media like a system. Audience strategy, campaign
+        structure, creative direction, testing, and reporting all need to
+        support the same outcome so the spend has a real chance to perform.
+      </p>
+      <h2>Platforms we work with</h2>
+      <ul>
+        <li>Facebook</li>
+        <li>Twitter</li>
+        <li>Instagram</li>
+        <li>LinkedIn</li>
+        <li>Google Ads</li>
+      </ul>
+      <h2>Start with the Buying Question</h2>
+      <p>
+        Search ads can reach people already looking for a solution. Social
+        campaigns can introduce an offer or bring previous visitors back. We
+        choose the channel based on the audience and the decision, then align
+        the ad with a page that continues the same conversation.
+      </p>
+      <h2>Measure What Matters After the Click</h2>
+      <p>
+        We review search terms or audience signals, spend, conversion paths, and
+        lead quality. If traffic is relevant but actions are weak, the landing
+        page may need work. If leads arrive but do not fit, the offer or
+        targeting may be wrong. Our <a href="/work/elev8-fun/">Elev8 Fun</a> work combined paid social with
+        design, campaigns, web development, and ongoing support.
+      </p>
+      <p>
+        Before increasing spend, scan your landing site with Kelp's free{" "}
+        <a href="/website-checker/">Website Checker</a> and test the actual
+        enquiry or checkout path. Plan a campaign with Kelp.
+      </p>
+      <h2>How This Works in Practice</h2>
+      <p>
+        Search and social play different roles. Search captures an expressed
+        need, while social can introduce a useful idea before a customer starts
+        looking. The mix depends on the offer, buying cycle, and quality of
+        available creative. We also plan exclusions, location settings, and
+        destination pages so budget is not spent bringing the wrong visitor to
+        an unclear next step.
+      </p>
+      <h2>What the Work Includes</h2>
+      <ul>
+        <li>Campaign structure and audience or query plan</li>
+        <li>Ad copy and creative direction matched to landing pages</li>
+        <li>Conversion tracking and lead-quality review</li>
+        <li>Ongoing adjustments informed by real results</li>
+      </ul>
+      <h2>What Moving Forward Looks Like</h2>
+      <p>
+        A useful first conversation includes the current campaigns, landing
+        pages, budget, and a few examples of good and poor leads. We can
+        identify the most likely source of waste and agree on what to change
+        first.
+      </p>
+      <h2>Frequently Asked Questions</h2>
+      <h3>How do we know whether a campaign is working?</h3>
+      <p>
+        We compare spend with qualified enquiries or sales, then inspect the
+        path between the ad and that outcome. Click-through rate alone cannot
+        answer the business question.
+      </p>
+      <p>
+        <a href="/contact/" class="button button--green">
+          Review Your Paid Strategy
+        </a>
+      </p>
+    </div>
+    <ServicesRelatedWork tag={86} />
+  </div>
+  <FeaturedArticles />
 </Layout>

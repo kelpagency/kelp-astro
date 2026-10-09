@@ -1,29 +1,93 @@
 ---
-import Layout from '../../Base.astro';
-import SimpleHero from '../../components/SimpleHero.astro';
+import Layout from "../../Base.astro";
+import SimpleHero from "../../components/SimpleHero.astro";
 import FeaturedArticles from "../../components/FeaturedArticles.astro";
 import ServicesRelatedWork from "../../components/ServicesRelatedWork.astro";
 import "../../styles/pages/_services-list.scss";
-
 ---
 
 <Layout
-	title='Website Support & Maintenance'
-	description='A website that never gets attention eventually turns into a liability. We provide ongoing support that keeps sites updated, stable, and usable after launch.'
+  title="Website Support &amp; Maintenance | Kelp Agency"
+  description="Keep your website stable and useful with updates, fixes, broken-link cleanup, content support, and ongoing improvements."
 >
-	<SimpleHero tagline='Ongoing Support Services' title='Website Support' description="A website that never gets attention eventually turns into a liability. We provide ongoing support that keeps sites updated, stable, and usable after launch." lottieFile='website-support.json' />
-	<div class='service-body'>
-		<div class='wrapper wrapper--narrow'>
-			<h2>Where teams get stuck</h2>
-			<p>Most websites do not break all at once. They slowly drift. Plugins fall behind, forms stop working, content gets stale, links break, and no one has a clear plan for keeping the site healthy.</p>
-			<p>By the time someone notices, the site is already creating friction for visitors and extra stress for the team.</p>
-			<h2>How we fix it</h2>
-			<p>We handle the ongoing maintenance that keeps a website usable and trustworthy: updates, backups, bug fixes, broken-link cleanup, and monitoring for issues that should be caught before they become bigger problems.</p>
-			<h2>What moving forward looks like</h2>
-			<p>If your site already feels neglected or your team needs a reliable partner to keep it stable after launch, we can help define a support rhythm that fits the platform and the level of urgency.</p>
-			<p><a href='/contact/' class='button button--green'>Talk Through Support Needs</a></p>
-		</div>
-		<ServicesRelatedWork tag={82} />
-	</div>
-	<FeaturedArticles />
+  <SimpleHero
+    tagline="Ongoing Support Services"
+    title="Website Support"
+    description="A website that never gets attention eventually turns into a liability. We provide ongoing support that keeps sites updated, stable, and usable after launch."
+    lottieFile="website-support.json"
+  />
+  <div class="service-body">
+    <div class="wrapper wrapper--narrow">
+      <h2>Where teams get stuck</h2>
+      <p>
+        Most websites do not break all at once. They slowly drift. Plugins fall
+        behind, forms stop working, content gets stale, links break, and no one
+        has a clear plan for keeping the site healthy.
+      </p>
+      <p>
+        By the time someone notices, the site is already creating friction for
+        visitors and extra stress for the team.
+      </p>
+      <h2>How we fix it</h2>
+      <p>
+        We handle the ongoing maintenance that keeps a website usable and
+        trustworthy: updates, backups, bug fixes, broken-link cleanup, and
+        monitoring for issues that should be caught before they become bigger
+        problems.
+      </p>
+      <h2>Catch the Small Failures Before They Compound</h2>
+      <p>
+        Support can include platform updates, backups, bug fixes, broken links,
+        form checks, content changes, and performance or usability improvements.
+        We prioritize by business impact: a broken booking path matters more
+        than a minor visual inconsistency on a rarely visited page.
+      </p>
+      <h2>Improve, Not Just Maintain</h2>
+      <p>
+        The best support rhythm makes room for new evidence. We can review
+        customer questions, search visibility, and conversion paths alongside
+        technical health. Kelp's free{" "}
+        <a href="/website-checker/">Website Checker</a> offers a quick first
+        report on broken links, AI search readiness, technical and local SEO,
+        schema, and conversion opportunities. Talk with Kelp about a support
+        plan.
+      </p>
+      <h2>How This Works in Practice</h2>
+      <p>
+        Support includes more than applying updates. A form failure can stop
+        enquiries, a broken product rule can disrupt orders, and a content
+        change can create an unclear customer path. We prioritize issues by
+        their effect on visitors and staff, document the fix, and look for the
+        pattern behind repeat problems. That gives the site a practical path
+        from repair to improvement.
+      </p>
+      <h2>What the Work Includes</h2>
+      <ul>
+        <li>Maintenance and update schedule</li>
+        <li>Bug and broken-path triage</li>
+        <li>Content and usability improvements</li>
+        <li>Regular review of site health and priorities</li>
+      </ul>
+      <h2>What Moving Forward Looks Like</h2>
+      <p>
+        We begin with the platform, access, current issue list, and the paths
+        customers use most. A quick{" "}
+        <a href="/website-checker/">Website Checker</a> report can help surface
+        issues, then we define the support level the site needs.
+      </p>
+      <h2>Frequently Asked Questions</h2>
+      <h3>Can Kelp support a site it did not build?</h3>
+      <p>
+        Potentially. We first review the platform, codebase, hosting, and access
+        so the scope and responsibilities are clear.
+      </p>
+      <p>
+        <a href="/contact/" class="button button--green">
+          Talk Through Support Needs
+        </a>
+      </p>
+    </div>
+    <ServicesRelatedWork tag={82} />
+  </div>
+  <FeaturedArticles />
 </Layout>

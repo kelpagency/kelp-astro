@@ -56,7 +56,8 @@ const imageUrl = new URL(image, Astro.url).href;
 const breadcrumbSchema = buildBreadcrumbSchema(Astro.url.pathname, cleanTitle);
 const isServiceDetailPage =
   Astro.url.pathname.startsWith("/services/") &&
-  Astro.url.pathname !== "/services/";
+  Astro.url.pathname !== "/services/" &&
+  Astro.url.pathname !== "/services/ai/";
 const inferredPageSchema =
   Astro.url.pathname === "/about/"
     ? {
@@ -80,6 +81,7 @@ const inferredPageSchema =
               "/blog/",
               "/work/",
               "/services/",
+              "/services/ai/",
               "/platforms/",
               "/resources/",
               "/calendar/",

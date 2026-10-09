@@ -1,44 +1,153 @@
 ---
-import Layout from '../../Base.astro';
-import SimpleHero from '../../components/SimpleHero.astro';
-import Services from '../../components/Services.astro';
-import { buildCollectionPageSchema, buildItemList } from '../../lib/schema';
+import Layout from "../../Base.astro";
+import SimpleHero from "../../components/SimpleHero.astro";
+import Services from "../../components/Services.astro";
+import { buildCollectionPageSchema, buildItemList } from "../../lib/schema";
 
 const schema = buildCollectionPageSchema(
   "Kelp's Services",
-  'Digital services from branding and design to development, marketing, media, and ongoing support.',
+  "Digital services from branding and design to development, marketing, media, and ongoing support.",
   buildItemList([
-    { name: 'Apparel Design', url: '/services/apparel-design/' },
-    { name: 'Branding', url: '/services/branding/' },
-    { name: 'Digital Design', url: '/services/digital-design/' },
-    { name: 'Print Design', url: '/services/print-design/' },
-    { name: 'Applications', url: '/services/applications/' },
-    { name: 'Website Development', url: '/services/website-development/' },
-    { name: 'Ecommerce', url: '/services/ecommerce/' },
-    { name: 'Audience Targeting', url: '/services/audience-targeting/' },
-    { name: 'Campaign Management', url: '/services/campaign-management/' },
-    { name: 'Copywriting', url: '/services/copywriting/' },
-    { name: 'Digital Marketing', url: '/services/digital-marketing/' },
-    { name: 'Social PPC', url: '/services/social-ppc/' },
-    { name: 'Social Media Content', url: '/services/social-media-content/' },
-    { name: 'Reporting', url: '/services/reporting/' },
-    { name: 'Motion Graphics', url: '/services/motion-graphics/' },
-    { name: 'Photography', url: '/services/photography/' },
-    { name: 'Video', url: '/services/video/' },
-    { name: 'Ongoing Retainers', url: '/services/ongoing-retainers/' },
-    { name: 'Web Hosting', url: '/services/web-hosting/' },
-    { name: 'Website Support', url: '/services/website-support/' },
+    { name: "AI Services", url: "/services/ai/" },
+    { name: "AI Integrations", url: "/services/ai-integrations/" },
+    { name: "AI Chatbots & Agents", url: "/services/ai-chatbots-agents/" },
+    { name: "AI Automation", url: "/services/ai-automation/" },
+    { name: "AI Ecommerce", url: "/services/ai-ecommerce/" },
+    {
+      name: "AI Search Optimization",
+      url: "/services/ai-search-optimization/",
+    },
+    { name: "Apparel Design", url: "/services/apparel-design/" },
+    { name: "Branding", url: "/services/branding/" },
+    { name: "Digital Design", url: "/services/digital-design/" },
+    { name: "Print Design", url: "/services/print-design/" },
+    { name: "Applications", url: "/services/applications/" },
+    { name: "Website Development", url: "/services/website-development/" },
+    { name: "Ecommerce", url: "/services/ecommerce/" },
+    { name: "Audience Targeting", url: "/services/audience-targeting/" },
+    { name: "Campaign Management", url: "/services/campaign-management/" },
+    { name: "Copywriting", url: "/services/copywriting/" },
+    { name: "Digital Marketing", url: "/services/digital-marketing/" },
+    { name: "Social PPC", url: "/services/social-ppc/" },
+    { name: "Social Media Content", url: "/services/social-media-content/" },
+    { name: "Reporting", url: "/services/reporting/" },
+    { name: "Motion Graphics", url: "/services/motion-graphics/" },
+    { name: "Photography", url: "/services/photography/" },
+    { name: "Video", url: "/services/video/" },
+    { name: "Ongoing Retainers", url: "/services/ongoing-retainers/" },
+    { name: "Web Hosting", url: "/services/web-hosting/" },
+    { name: "Website Support", url: "/services/website-support/" },
   ]),
 );
+import "../../styles/pages/_services-list.scss";
 ---
 
-<Layout title="Kelp's Services" description="Unclear brand? Underperforming website? Explore Kelp's design, development, marketing, and support services to find a clear path forward for your business." darkHeader={true} schema={schema}>
-	<article>
-		<SimpleHero
-			title="What <br><span style='margin-left: 1em;'>We Do</span>"
-			description='Businesses usually come to us when something is not connecting: the brand feels unclear, the website is underperforming, the marketing lacks direction, or the team needs ongoing support. We help identify the problem, fix the system around it, and give you a clear way forward.'
-			dark={true}
-		/>
-		<Services />
-	</article>
+<Layout
+  title="Website, Ecommerce &amp; Marketing Services | Kelp Agency"
+  description="Explore Kelp&#x27;s website development, ecommerce, branding, digital marketing, and ongoing support services. Built around your business, not a template."
+  darkHeader={true}
+  schema={schema}
+>
+  <article>
+    <SimpleHero
+      title="What <br><span style='margin-left: 1em;'>We Do</span>"
+      description="Businesses usually come to us when something is not connecting: the brand feels unclear, the website is underperforming, the marketing lacks direction, or the team needs ongoing support. We help identify the problem, fix the system around it, and give you a clear way forward."
+      dark={true}
+    />
+    <Services />
+    <section class="service-body">
+      <div class="wrapper wrapper--narrow">
+        <p>
+          We work with organizations that need more than a new look. You may
+          need a storefront connected to inventory, a website that explains a
+          complex service, a campaign that turns qualified traffic into
+          enquiries, or a partner who can keep the system improving after
+          launch. We start by understanding the customer journey and the tools
+          behind it, then recommend the work that will make the biggest
+          difference.
+        </p>
+        <h2>Where Teams Get Stuck</h2>
+        <p>
+          A business may have a recognizable brand, a working website, and
+          active campaigns while customers still experience them as separate
+          pieces. The page that earns attention does not explain the offer, the
+          store cannot reflect real inventory, and the sales team cannot tell
+          which channel produced a useful enquiry.
+        </p>
+        <h2>How We Fix It</h2>
+        <p>
+          We begin with the decision the customer is trying to make and the
+          systems that support it. Strategy, content, design, development,
+          media, and measurement are then scoped together where they affect the
+          same outcome. Some clients need one focused service; others need the
+          disciplines to work as one team.
+        </p>
+        <h2>Websites and Applications</h2>
+        <p>
+          Website design and development for businesses that need clearer
+          messaging, easier navigation, stronger conversion paths, and reliable
+          technology. When a standard site cannot support the workflow, custom
+          applications can connect data, people, and processes.
+        </p>
+        <h2>Ecommerce and Integrations</h2>
+        <p>
+          Ecommerce development that considers the full path from product
+          discovery to fulfillment. We work across Shopify and WooCommerce and
+          can scope connections to POS, inventory, ERP, shipping, pricing, and
+          production systems. In <a href="/work/us-labels/">US Labels</a>, Kelp rebuilt a custom label designer
+          and connected WooCommerce to Windows printing software through a
+          purpose-built API service.
+        </p>
+        <h2>Brand, Marketing, and Content</h2>
+        <p>
+          Branding makes the offer recognizable and consistent. Digital
+          marketing brings that message to the right audience and measures what
+          happens next. Photography, video, copy, and design give people
+          evidence they can use to make a decision.
+        </p>
+        <h2>Ongoing Improvement</h2>
+        <p>
+          Launch is a milestone, not the end of the work. Website support and
+          ongoing retainers help teams maintain, measure, and improve the
+          experience as their business changes.
+        </p>
+        <p>
+          The internet is changing again. Search and AI systems increasingly
+          shape how people discover and compare businesses. The useful response
+          is to make your site clear, accessible, accurate, and genuinely
+          helpful. Start with Kelp's free{" "}
+          <a href="/website-checker/">Website Checker</a> for a quick report on
+          broken links, AI search readiness, technical and local SEO, conversion
+          opportunities, and schema. Then talk with Kelp about the work behind
+          the findings.
+        </p>
+        <h2>What the Work Includes</h2>
+        <ul>
+          <li>Discovery of customer and staff workflows</li>
+          <li>A prioritized website, commerce, brand, or marketing plan</li>
+          <li>
+            Specialists who can carry the work from concept through launch
+          </li>
+          <li>Ongoing support as the business and channels change</li>
+        </ul>
+        <h2>What Moving Forward Looks Like</h2>
+        <p>
+          Tell us what feels disconnected today and what a better customer or
+          staff experience would look like. We can recommend the smallest useful
+          starting project and the capabilities it needs.
+        </p>
+        <h2>Frequently Asked Questions</h2>
+        <h3>Do we need to hire Kelp for every service?</h3>
+        <p>
+          No. We can solve a focused problem, support your internal team, or
+          take on connected work when several disciplines need to move together.
+        </p>
+        <p>
+          <a href="/contact/" class="button button--green">
+            Talk Through Your Project
+          </a>
+        </p>
+      </div>
+    </section>
+  </article>
 </Layout>

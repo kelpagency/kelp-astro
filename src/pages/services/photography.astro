@@ -1,74 +1,202 @@
 ---
-import Layout from '../../Base.astro';
-import SimpleHero from '../../components/SimpleHero.astro';
-import { Picture } from 'astro:assets';
-import photoAirplane from '../../assets/images/photography/airplane-photography.jpg';
-import photoApparel from '../../assets/images/photography/apparal-photography.jpg';
-import photoExterior from '../../assets/images/photography/exterior-building-photography.jpg';
-import photoFood from '../../assets/images/photography/food-business-photography.jpg';
-import photoLaw from '../../assets/images/photography/law-firm-photography.jpg';
-import photoTraining from '../../assets/images/photography/training-photography.jpg';
-import photoWell from '../../assets/images/photography/well-drilling-photography.jpg';
+import Layout from "../../Base.astro";
+import SimpleHero from "../../components/SimpleHero.astro";
+import { Picture } from "astro:assets";
+import photoAirplane from "../../assets/images/photography/airplane-photography.jpg";
+import photoApparel from "../../assets/images/photography/apparal-photography.jpg";
+import photoExterior from "../../assets/images/photography/exterior-building-photography.jpg";
+import photoFood from "../../assets/images/photography/food-business-photography.jpg";
+import photoLaw from "../../assets/images/photography/law-firm-photography.jpg";
+import photoTraining from "../../assets/images/photography/training-photography.jpg";
+import photoWell from "../../assets/images/photography/well-drilling-photography.jpg";
 import FeaturedArticles from "../../components/FeaturedArticles.astro";
 import ServicesRelatedWork from "../../components/ServicesRelatedWork.astro";
 import "../../styles/pages/_services-list.scss";
-
 ---
 
 <Layout
-	title='Photography and Video services in Central Florida'
-	description='When people meet your brand online first, weak photography creates doubt before you get a chance to speak. We create photo libraries that make your business look credible, current, and worth engaging.'
+  title="Brand, Product &amp; Website Photography | Kelp"
+  description="Photography planned for the pages and campaigns where customers make decisions, from products and people to places and events."
 >
-	<SimpleHero tagline='Content Creation Services' title='Photography' description="When people meet your brand online first, weak photography creates doubt before you get a chance to speak. We create photo libraries that make your business look credible, current, and worth engaging." lottieFile='photography.json'/>
-	<div class="wrapper our-photos" data-lg-reveal="layer-to-right" data-lg-reveal-stagger="0.1">
-		<h2>We Take<br />Photos Like...</h2>
-		<Picture width={1140} height={722} src={photoAirplane} loading="lazy" alt='airplane photography' widths={[480, 800, 1140]} sizes="(max-width: 900px) 100vw, 50vw" inferSize />
-		<Picture width={1140} height={722} src={photoApparel} loading="lazy" alt='apparel photography' widths={[480, 800, 1140]} sizes="(max-width: 900px) 100vw, 50vw" inferSize />
-		<Picture width={1140} height={722} src={photoExterior} loading="lazy" alt='exterior buildings photography' widths={[480, 800, 1140]} sizes="(max-width: 900px) 100vw, 50vw" inferSize />
-		<Picture width={1140} height={722} src={photoFood} loading="lazy" alt='food photography' widths={[480, 800, 1140]} sizes="(max-width: 900px) 100vw, 50vw" inferSize />
-		<Picture width={1140} height={722} src={photoLaw} loading="lazy" alt='law firm photography' widths={[480, 800, 1140]} sizes="(max-width: 900px) 100vw, 50vw" inferSize />
-		<Picture width={1140} height={722} src={photoTraining} loading="lazy" alt='school training photography' widths={[480, 800, 1140]} sizes="(max-width: 900px) 100vw, 50vw" inferSize />
-		<Picture width={1140} height={724} src={photoWell} loading="lazy" alt='well drilling photography' widths={[480, 800, 1140]} sizes="(max-width: 900px) 100vw, 50vw" inferSize />
-	</div>
-	<div class='service-body'>
-		<div class='wrapper wrapper--narrow' data-lg-reveal>
-			<h2>Where teams get stuck</h2>
-			<p>
-				A lot of brands rely on old images, inconsistent phone photos, or stock photography that does not reflect the
-				actual business. That gap shows up fast on websites, social content, sales material, and product pages.
-			</p>
-			<p>When the visuals feel generic or outdated, trust drops before the message even has a chance to work.</p>
-			<h2>How we fix it</h2>
-			<p>We plan photography around the real places the images need to perform: your website, campaigns, product pages, social channels, or internal marketing library. That gives the shoot direction before cameras ever come out.</p>
-			<ul>
-				<li>Product photography</li>
-				<li>Events</li>
-				<li>Website</li>
-				<li>Social Media</li>
-			</ul>
-			<h2>What moving forward looks like</h2>
-			<p>If you need brand photos, product imagery, or a reusable library for future campaigns, we can define the shot list, schedule the production, and deliver visuals that are built for the channels you actually use.</p>
-			<p><a href='/contact/' class='button button--green'>Plan Your Photo Shoot</a></p>
-		</div>
-		<ServicesRelatedWork tag={68} />
-	</div>
-	<FeaturedArticles />
+  <SimpleHero
+    tagline="Content Creation Services"
+    title="Photography"
+    description="When people meet your brand online first, weak photography creates doubt before you get a chance to speak. We create photo libraries that make your business look credible, current, and worth engaging."
+    lottieFile="photography.json"
+  />
+  <div
+    class="wrapper our-photos"
+    data-lg-reveal="layer-to-right"
+    data-lg-reveal-stagger="0.1"
+  >
+    <h2>
+      We Take
+      <br />
+      Photos Like...
+    </h2>
+    <Picture
+      width={1140}
+      height={722}
+      src={photoAirplane}
+      loading="lazy"
+      alt="airplane photography"
+      widths={[480, 800, 1140]}
+      sizes="(max-width: 900px) 100vw, 50vw"
+      inferSize
+    />
+    <Picture
+      width={1140}
+      height={722}
+      src={photoApparel}
+      loading="lazy"
+      alt="apparel photography"
+      widths={[480, 800, 1140]}
+      sizes="(max-width: 900px) 100vw, 50vw"
+      inferSize
+    />
+    <Picture
+      width={1140}
+      height={722}
+      src={photoExterior}
+      loading="lazy"
+      alt="exterior buildings photography"
+      widths={[480, 800, 1140]}
+      sizes="(max-width: 900px) 100vw, 50vw"
+      inferSize
+    />
+    <Picture
+      width={1140}
+      height={722}
+      src={photoFood}
+      loading="lazy"
+      alt="food photography"
+      widths={[480, 800, 1140]}
+      sizes="(max-width: 900px) 100vw, 50vw"
+      inferSize
+    />
+    <Picture
+      width={1140}
+      height={722}
+      src={photoLaw}
+      loading="lazy"
+      alt="law firm photography"
+      widths={[480, 800, 1140]}
+      sizes="(max-width: 900px) 100vw, 50vw"
+      inferSize
+    />
+    <Picture
+      width={1140}
+      height={722}
+      src={photoTraining}
+      loading="lazy"
+      alt="school training photography"
+      widths={[480, 800, 1140]}
+      sizes="(max-width: 900px) 100vw, 50vw"
+      inferSize
+    />
+    <Picture
+      width={1140}
+      height={724}
+      src={photoWell}
+      loading="lazy"
+      alt="well drilling photography"
+      widths={[480, 800, 1140]}
+      sizes="(max-width: 900px) 100vw, 50vw"
+      inferSize
+    />
+  </div>
+  <div class="service-body">
+    <div class="wrapper wrapper--narrow" data-lg-reveal>
+      <h2>Where teams get stuck</h2>
+      <p>
+        A lot of brands rely on old images, inconsistent phone photos, or stock
+        photography that does not reflect the actual business. That gap shows up
+        fast on websites, social content, sales material, and product pages.
+      </p>
+      <p>
+        When the visuals feel generic or outdated, trust drops before the
+        message even has a chance to work.
+      </p>
+      <h2>How we fix it</h2>
+      <p>
+        We plan photography around the real places the images need to perform:
+        your website, campaigns, product pages, social channels, or internal
+        marketing library. That gives the shoot direction before cameras ever
+        come out.
+      </p>
+      <ul>
+        <li>Product photography</li>
+        <li>Events</li>
+        <li>Website</li>
+        <li>Social Media</li>
+      </ul>
+      <h2>Build a Useful Shot List</h2>
+      <p>
+        We identify the questions the imagery should answer, the formats each
+        channel needs, and the moments worth capturing. That may mean products
+        in use, staff at work, a location, a process, or details that make the
+        offer credible. The goal is a reusable library, not a folder of images
+        without a plan.
+      </p>
+      <h2>Make the Site More Specific</h2>
+      <p>
+        Original imagery can help a custom site reflect the real business. It
+        should support accurate product and service information, especially when
+        customers may arrive through search or AI answers and need to confirm
+        what they found. Plan a shoot with Kelp.
+      </p>
+      <h2>How This Works in Practice</h2>
+      <p>
+        The shot list should come from the questions the site and campaign need
+        to answer. That may include the people behind a service, the details of
+        a product, the environment where work happens, and images that show
+        scale or use. Planning locations, permissions, formats, and cropping
+        needs ahead of time makes the resulting library more useful across page
+        templates and channels.
+      </p>
+      <h2>What the Work Includes</h2>
+      <ul>
+        <li>Brand and team photography</li>
+        <li>Product and detail imagery</li>
+        <li>Location, event, and process coverage</li>
+        <li>Channel-ready selects and usage guidance</li>
+      </ul>
+      <h2>What Moving Forward Looks Like</h2>
+      <p>
+        Show us the pages and campaigns the images must support. We can turn
+        those requirements into a shot plan and a practical production schedule.
+      </p>
+      <h2>Frequently Asked Questions</h2>
+      <h3>Can you create images for an ecommerce catalog?</h3>
+      <p>
+        Yes, when the product, volume, styling, and output needs are clear. We
+        would scope the shoot around the catalog and its maintenance plan.
+      </p>
+      <p>
+        <a href="/contact/" class="button button--green">
+          Plan Your Photo Shoot
+        </a>
+      </p>
+    </div>
+    <ServicesRelatedWork tag={68} />
+  </div>
+  <FeaturedArticles />
 </Layout>
 
 <style lang="scss" is:global>
-.our-photos {
-	margin-bottom: 6rem;
-	column-count: 2;
-	column-gap: 3rem;
-	@media (max-width: 767px) {
-		column-count: 1;
-	}
-	h2 {
-		margin-bottom: 4rem;
-	}
-	picture {
-		display: block;
-		margin-bottom: 2rem;
-	}
-}
+  .our-photos {
+    margin-bottom: 6rem;
+    column-count: 2;
+    column-gap: 3rem;
+    @media (max-width: 767px) {
+      column-count: 1;
+    }
+    h2 {
+      margin-bottom: 4rem;
+    }
+    picture {
+      display: block;
+      margin-bottom: 2rem;
+    }
+  }
 </style>

@@ -1,0 +1,81 @@
+---
+export interface Props {
+  current?: string;
+}
+
+const { current } = Astro.props;
+const services = [
+  {
+    slug: "ai-integrations",
+    title: "AI Integrations",
+    description:
+      "Connect AI tools to the data and systems your team already uses.",
+  },
+  {
+    slug: "ai-chatbots-agents",
+    title: "AI Chatbots & Agents",
+    description:
+      "Answer real questions with approved information and a clear handoff to people.",
+  },
+  {
+    slug: "ai-automation",
+    title: "AI Automation",
+    description:
+      "Reduce repetitive work with connected workflows and human review points.",
+  },
+  {
+    slug: "ai-ecommerce",
+    title: "AI Ecommerce",
+    description:
+      "Improve product discovery, catalog work, and the operations behind each order.",
+  },
+  {
+    slug: "ai-search-optimization",
+    title: "AI Search Optimization",
+    description:
+      "Prepare your website for AI discovery with clearer content and better technical access.",
+  },
+].filter(({ slug }) => slug !== current);
+---
+
+<section
+  class="wrapper wrapper--narrow"
+  aria-label={current ? "Explore more AI services" : "Explore AI services"}
+>
+  <h2>{current ? "Explore More AI Services" : "Our AI Services"}</h2>
+  <ul>
+    {services.map(({ slug, title, description }) => (
+      <li>
+        <h3 class="h5">
+          <a href={`/services/${slug}/`}>{title}</a>
+        </h3>
+        <p>{description}</p>
+      </li>
+    ))}
+  </ul>
+  {current && (
+    <p>
+      <a href="/services/ai/">View All AI Services</a>
+    </p>
+  )}
+</section>
+
+<style lang="scss">
+  section {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  ul {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem 3rem;
+    list-style: none;
+    padding: 0;
+    @media (max-width: 767px) {
+      grid-template-columns: 1fr;
+    }
+  }
+  h3 {
+    margin-bottom: 0.75rem;
+  }
+</style>

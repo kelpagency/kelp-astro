@@ -1,0 +1,94 @@
+---
+import Layout from "../../Base.astro";
+import SimpleHero from "../../components/SimpleHero.astro";
+import FeaturedArticles from "../../components/FeaturedArticles.astro";
+import "../../styles/pages/_services-list.scss";
+---
+
+<Layout
+  title="AI Automation for Business Workflows | Kelp Agency"
+  description="Reduce repetitive work with AI automation designed around your processes, connected systems, review points, and exceptions."
+>
+  <SimpleHero
+    tagline="AI Services"
+    title="AI Automation for the Work Your Team Keeps Repeating"
+    description="If your team keeps copying data, sorting requests, or rebuilding the same draft from scratch, there may be a better way to handle the work. Kelp designs AI automation around the actual process, including the messy parts that a quick demo tends to skip."
+    lottieFile="ai-automation.json"
+  />
+  <section class="service-body">
+    <div class="wrapper wrapper--narrow">
+      <h2>Where Teams Get Stuck</h2>
+      <p>
+        Automation projects often begin with a tool instead of a workflow. The
+        happy path looks fast, but unusual requests still pile up in someone's
+        inbox. Staff may not know which step ran, why an item was flagged, or
+        whether the output is safe to use. When an automation makes a mistake,
+        the cleanup can take longer than the original task.
+      </p>
+      <h2>How We Fix It</h2>
+      <p>
+        We map the process from the first input to the final decision. Then we
+        separate steps that should follow fixed rules from steps where AI can
+        help interpret information, prepare a draft, or suggest a next action.
+        We build in review points, logs, and a fallback path so the team stays
+        in control.
+      </p>
+      <h2>Choose a Task Worth Automating</h2>
+      <p>
+        Good starting points may include classifying inbound requests, preparing
+        a lead summary, organizing product information, drafting a first
+        response, or flagging an order that needs attention. The right task has
+        a clear owner, enough reliable data, and a way to judge whether the
+        output is useful. We define that measure before building.
+      </p>
+      <h2>Connect the Workflow End to End</h2>
+      <p>
+        An automation is most helpful when it reaches the tools where people
+        already work: a form, CRM, ecommerce platform, support queue, or
+        internal application. We plan what triggers the process, what
+        information moves between systems, what a person reviews, and how to
+        recover if a step fails. For complicated business processes, our{" "}
+        <a href="/services/applications/">
+          custom application development work
+        </a>{" "}
+        can support the interface and connections around the AI step.
+      </p>
+      <h2>Roll Out with Clear Ownership</h2>
+      <p>
+        We begin with a narrow workflow, check the output against real examples,
+        and expand only when the team understands its limits. Documentation
+        covers who updates the rules or source content, how exceptions are
+        handled, and which outcomes to watch. Saving time matters; so does
+        reducing errors and making the process easier to run.
+      </p>
+      <h2>What the Work Includes</h2>
+      <ul>
+        <li>Workflow mapping and opportunity review</li>
+        <li>Rules, AI steps, and human checkpoints</li>
+        <li>Connections to the systems involved</li>
+        <li>Exception handling and activity visibility</li>
+        <li>A measured rollout and handoff plan</li>
+      </ul>
+      <h2>What Moving Forward Looks Like</h2>
+      <p>
+        Show us a repeated task, including one example that goes smoothly and
+        one that does not. We can identify what should be automated, what should
+        stay with a person, and the smallest useful first version. Talk with
+        Kelp about the process.
+      </p>
+      <h2>Frequently Asked Questions</h2>
+      <h3 class="h4">Does every automation need AI?</h3>
+      <p>
+        No. Fixed rules are often faster and more dependable for predictable
+        steps. We use AI where interpreting or drafting information adds value,
+        and keep the rest of the workflow as simple as it can be.
+      </p>
+      <p>
+        <a href="/contact/" class="button button--green">
+          Talk Through Your Project
+        </a>
+      </p>
+    </div>
+  </section>
+  <FeaturedArticles />
+</Layout>

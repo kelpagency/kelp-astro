@@ -1,13 +1,18 @@
 ---
-import Layout from '../../Base.astro';
-import SimpleHero from '../../components/SimpleHero.astro';
-import FeaturedArticles from '../../components/FeaturedArticles.astro';
-import RecentWork from '../../components/RecentWork.astro';
+import Layout from "../../Base.astro";
+import SimpleHero from "../../components/SimpleHero.astro";
+import FeaturedArticles from "../../components/FeaturedArticles.astro";
+import RecentWork from "../../components/RecentWork.astro";
 
-import HubspotPartner from '../../assets/hubspot.svg';
+import HubspotPartner from "../../assets/hubspot.svg";
+import "../../styles/pages/_services-list.scss";
 ---
 
-<Layout title="Kelp ❤️'s HubSpot" description="Give your marketing team a HubSpot site that's easy to use. Explore Kelp's award-winning themes, custom modules, and flexible landing page development." darkHeader={true}>
+<Layout
+  title="HubSpot Website Design &amp; Development | Kelp"
+  description="HubSpot website design, migration, content modules, and connected experiences built around your sales and marketing workflows."
+  darkHeader={true}
+>
   <article>
     <SimpleHero
       title="HubSpot"
@@ -23,17 +28,93 @@ import HubspotPartner from '../../assets/hubspot.svg';
 
         <div class="platform-text">
           <p>
-            HubSpot CMS is powerful&thinsp;—&thinsp;but only when it’s built the right way. We focus on creating
-            flexible, marketer-friendly themes, modules, and landing pages that empower your team instead of slowing
+            HubSpot CMS is powerful&thinsp;—&thinsp;but only when it’s built the
+            right way. We focus on creating flexible, marketer-friendly themes,
+            modules, and landing pages that empower your team instead of slowing
             them down.
           </p>
           <p>
-            Our award-winning HubSpot themes and modules are used by hundreds of companies and were recognized in
-            HubSpot’s official CMS Themes Challenge. On top of HubSpot CMS Themes we've done extensive work in HubSpot's
-            HubDB tables, custom serverless functions to sync data, and custom workflow webhooks to trigger said
-            serveless functions based on specific events.
+            Our award-winning HubSpot themes and modules are used by hundreds of
+            companies and were recognized in HubSpot’s official CMS Themes
+            Challenge. On top of HubSpot CMS Themes we've done extensive work in
+            HubSpot's HubDB tables, custom serverless functions to sync data,
+            and custom workflow webhooks to trigger said serveless functions
+            based on specific events.
           </p>
         </div>
+      </div>
+    </section>
+    <section class="service-body">
+      <div class="wrapper wrapper--narrow">
+        <h2>Where Teams Get Stuck</h2>
+        <p>
+          Marketing teams can outgrow a HubSpot site when every page requires
+          developer help or when forms and workflows are hard to connect to the
+          real sales process. A migration can also preserve old content problems
+          if the new structure is not planned.
+        </p>
+        <h2>How We Fix It</h2>
+        <p>
+          We map the content model, editor workflow, forms, automation, and data
+          handoffs before building themes or modules. Where the process requires
+          more, Kelp's published HubSpot capabilities include HubDB, serverless
+          functions, and workflow webhooks. We keep the editor experience usable
+          for the team that will own it.
+        </p>
+        <h2>Plan the Migration and the Content</h2>
+        <p>
+          We review existing pages, define the structure, and design reusable
+          templates and modules that a team can maintain. Forms, calls to
+          action, and handoffs should support a clear next step for the visitor
+          and a useful record for the team.
+        </p>
+        <h2>Make Complex Experiences Feel Connected</h2>
+        <p>
+          Kelp's <a href="/work/hsr/">HS&amp;R</a> project combined content strategy, copy, design, and
+          HubSpot website migration. For <a href="/work/artisan-talent/">Artisan Talent</a>, Kelp worked across
+          HubSpot, WordPress, and a custom jobs application so applicants
+          encountered a consistent experience. Discuss your HubSpot site.
+        </p>
+        <p>
+          Kelp's current HubSpot platform work also covers custom themes and
+          modules, HubDB, serverless functions, and workflow webhooks when a
+          standard page or form cannot support the process. We scope those
+          connections around the team's data and approval needs.
+        </p>
+        <h2>How This Works in Practice</h2>
+        <p>
+          A HubSpot website can support more than publishing pages. Forms, CRM
+          data, segmentation, and marketing workflows can connect the visitor
+          experience to the follow-up that happens after a lead arrives. We map
+          that handoff before building templates or migrating content. Editors
+          also need reusable modules and clear governance so the website remains
+          consistent as campaigns and teams grow.
+        </p>
+        <h2>What the Work Includes</h2>
+        <ul>
+          <li>HubSpot site strategy and migration</li>
+          <li>Custom themes, modules, and landing pages</li>
+          <li>Forms, HubDB, and workflow connections</li>
+          <li>Editor documentation and launch support</li>
+        </ul>
+        <h2>What Moving Forward Looks Like</h2>
+        <p>
+          Bring the current portal, page inventory, sales process, and the tasks
+          marketers cannot complete easily today. We can define the content and
+          technical migration together.
+        </p>
+        <h2>Frequently Asked Questions</h2>
+        <h3>Can HubSpot connect to other platforms?</h3>
+        <p>
+          Often, yes. The approach depends on the APIs, data ownership, and
+          workflow. We scope the connection before choosing a native feature or
+          custom integration.
+        </p>
+        <p>
+          <a href="/contact/" class="button button--green">
+            Talk Through Your Project
+          </a>
+        </p>
       </div>
     </section>
   </article>
@@ -45,7 +126,11 @@ import HubspotPartner from '../../assets/hubspot.svg';
     description="<p>Here’s a look at some of the HubSpot builds we’ve launched — crafted to make content management and campaign execution seamless.</p>"
   />
 
-  <FeaturedArticles category="12" heading="Our Articles about HubSpot" limit={3} />
+  <FeaturedArticles
+    category="12"
+    heading="Our Articles about HubSpot"
+    limit={3}
+  />
 </Layout>
 
 <style lang="scss">

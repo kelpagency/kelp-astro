@@ -1,36 +1,97 @@
 ---
-import Layout from '../../Base.astro';
-import SimpleHero from '../../components/SimpleHero.astro';
+import Layout from "../../Base.astro";
+import SimpleHero from "../../components/SimpleHero.astro";
 import FeaturedArticles from "../../components/FeaturedArticles.astro";
 import ServicesRelatedWork from "../../components/ServicesRelatedWork.astro";
 import "../../styles/pages/_services-list.scss";
-
 ---
 
 <Layout
-	title='Digital Design | Graphic Design Agency from Brooksville Florida'
-	description={`When your digital touchpoints feel disconnected, attention drops and conversions follow. We design digital experiences that are clear, useful, and built around the action you need people to take.`}
+  title="Digital Design for Websites &amp; Campaigns | Kelp"
+  description={`When your digital touchpoints feel disconnected, attention drops and conversions follow. We design digital experiences that are clear, useful, and built around the action you need people to take.`}
 >
-	<SimpleHero tagline='Branding & Design Services' title='Digital Design' description="When your digital touchpoints feel disconnected, attention drops and conversions follow. We design digital experiences that are clear, useful, and built around the action you need people to take." lottieFile="digital-design.json"/>
-	<div class='service-body'>
-		<div class='wrapper wrapper--narrow'>
-			<h2>Where teams get stuck</h2>
-			<p>Businesses often end up with landing pages, emails, product screens, and marketing assets that all feel like they came from different places. That inconsistency makes the experience harder to trust and harder to use.</p>
-			<p>When visitors have to work too hard to understand what they are looking at, attention fades before action happens.</p>
-			<h2>How we fix it</h2>
-			<p>We design digital experiences with hierarchy, usability, and brand consistency in mind so people can quickly understand what matters and what to do next.</p>
-			<ul>
-				<li>Web design</li>
-				<li>Landing page design</li>
-				<li>App design</li>
-				<li>Infographic design</li>
-				<li>Email design</li>
-			</ul>
-			<h2>What moving forward looks like</h2>
-			<p>If you need a new digital touchpoint or an existing one cleaned up, we can map the user flow, prioritize the content, and design something your team can confidently build and maintain.</p>
-			<p><a href='/contact/' class='button button--green'>Talk Through Your Design Project</a></p>
-		</div>
-		<ServicesRelatedWork tag={74} />
-	</div>
-	<FeaturedArticles />
+  <SimpleHero
+    tagline="Branding & Design Services"
+    title="Digital Design"
+    description="When your digital touchpoints feel disconnected, attention drops and conversions follow. We design digital experiences that are clear, useful, and built around the action you need people to take."
+    lottieFile="digital-design.json"
+  />
+  <div class="service-body">
+    <div class="wrapper wrapper--narrow">
+      <h2>Where teams get stuck</h2>
+      <p>
+        Businesses often end up with landing pages, emails, product screens, and
+        marketing assets that all feel like they came from different places.
+        That inconsistency makes the experience harder to trust and harder to
+        use.
+      </p>
+      <p>
+        When visitors have to work too hard to understand what they are looking
+        at, attention fades before action happens.
+      </p>
+      <h2>How we fix it</h2>
+      <p>
+        We design digital experiences with hierarchy, usability, and brand
+        consistency in mind so people can quickly understand what matters and
+        what to do next.
+      </p>
+      <ul>
+        <li>Web design</li>
+        <li>Landing page design</li>
+        <li>App design</li>
+        <li>Infographic design</li>
+        <li>Email design</li>
+      </ul>
+      <h2>Design for Context</h2>
+      <p>
+        A homepage, product page, paid ad, email, and social post do different
+        jobs. We use hierarchy, imagery, motion, and clear calls to action to
+        fit each context while keeping the brand recognizable. We also consider
+        accessibility, content length, and how the design will adapt when the
+        message changes.
+      </p>
+      <h2>Connect Concept to Production</h2>
+      <p>
+        Our designers work alongside developers and marketers so a promising
+        concept can become a usable page or campaign asset. <a href="/work/elev8-fun/">Elev8 Fun</a> shows
+        digital design working with web, paid social, motion, and campaign
+        management. Bring us the experience you need to improve.
+      </p>
+      <h2>How This Works in Practice</h2>
+      <p>
+        Digital design has to work at the moment someone uses it. A campaign
+        asset must lead into a matching landing page; a product graphic must
+        clarify a decision; an interface element must remain understandable on a
+        small screen. We design the component and its context together, with a
+        practical plan for responsive use, accessibility, and future updates by
+        the team.
+      </p>
+      <h2>What the Work Includes</h2>
+      <ul>
+        <li>Website and landing-page interface design</li>
+        <li>Campaign and social asset systems</li>
+        <li>Responsive layouts and accessibility review</li>
+        <li>Developer-ready files and usage guidance</li>
+      </ul>
+      <h2>What Moving Forward Looks Like</h2>
+      <p>
+        Show us the channels where the design is failing and the assets your
+        team has to produce repeatedly. We can improve a single experience or
+        build a broader system for future work.
+      </p>
+      <h2>Frequently Asked Questions</h2>
+      <h3>Can Kelp work within our current brand?</h3>
+      <p>
+        Yes. We can apply existing guidelines, extend them for new digital uses,
+        or identify where the system needs refinement.
+      </p>
+      <p>
+        <a href="/contact/" class="button button--green">
+          Talk Through Your Design Project
+        </a>
+      </p>
+    </div>
+    <ServicesRelatedWork tag={74} />
+  </div>
+  <FeaturedArticles />
 </Layout>

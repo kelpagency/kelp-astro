@@ -1,38 +1,105 @@
 ---
-import Layout from '../../Base.astro';
-import SimpleHero from '../../components/SimpleHero.astro';
+import Layout from "../../Base.astro";
+import SimpleHero from "../../components/SimpleHero.astro";
 import FeaturedArticles from "../../components/FeaturedArticles.astro";
 import ServicesRelatedWork from "../../components/ServicesRelatedWork.astro";
 import "../../styles/pages/_services-list.scss";
-
 ---
 
 <Layout
-	title='Social Media Content - Florida Marketing Agency'
-	description='Showing up on social is not the same as being remembered. We create platform-aware content that gives your brand a consistent story and a realistic publishing rhythm.'
+  title="Social Media Content Strategy &amp; Production | Kelp"
+  description="Kelp plans and creates social content that reflects your brand, explains your offer, and supports your wider marketing goals."
 >
-	<SimpleHero tagline='Content Creation Services' title='Social Media Content' description="Showing up on social is not the same as being remembered. We create platform-aware content that gives your brand a consistent story and a realistic publishing rhythm." lottieFile='social-media-content.json' />
-	<div class='service-body'>
-		<div class='wrapper wrapper--narrow'>
-			<h2>Where teams get stuck</h2>
-			<p>Most social channels do not stall because a business has nothing to say. They stall because production is inconsistent, the content is not built for the platform, or the team is constantly scrambling for the next post.</p>
-			<p>That leads to a presence that feels reactive instead of intentional.</p>
-			<h2>How we fix it</h2>
-			<p>We build social content around the brand story, the platform, and the publishing rhythm your team can actually sustain. That usually means creating a healthy mix of formats instead of forcing every idea into the same template.</p>
-			<ul>
-				<li>Infographics</li>
-				<li>Data visualizations</li>
-				<li>Microcontent</li>
-				<li>Motion graphics</li>
-				<li>Photography</li>
-				<li>Video</li>
-			</ul>
-			<p>We also help identify which platforms deserve the effort so the work supports business goals rather than just filling a calendar.</p>
-			<h2>What moving forward looks like</h2>
-			<p>If your team is tired of posting without momentum or scrambling to stay consistent, we can help build a content system that matches your bandwidth and gives the audience a clearer reason to keep paying attention.</p>
-			<p><a href='/contact/' class='button button--green'>Plan Social Content</a></p>
-		</div>
-		<ServicesRelatedWork tag={72} />
-	</div>
-	<FeaturedArticles />
+  <SimpleHero
+    tagline="Content Creation Services"
+    title="Social Media Content"
+    description="Showing up on social is not the same as being remembered. We create platform-aware content that gives your brand a consistent story and a realistic publishing rhythm."
+    lottieFile="social-media-content.json"
+  />
+  <div class="service-body">
+    <div class="wrapper wrapper--narrow">
+      <h2>Where teams get stuck</h2>
+      <p>
+        Most social channels do not stall because a business has nothing to say.
+        They stall because production is inconsistent, the content is not built
+        for the platform, or the team is constantly scrambling for the next
+        post.
+      </p>
+      <p>
+        That leads to a presence that feels reactive instead of intentional.
+      </p>
+      <h2>How we fix it</h2>
+      <p>
+        We build social content around the brand story, the platform, and the
+        publishing rhythm your team can actually sustain. That usually means
+        creating a healthy mix of formats instead of forcing every idea into the
+        same template.
+      </p>
+      <ul>
+        <li>Infographics</li>
+        <li>Data visualizations</li>
+        <li>Microcontent</li>
+        <li>Motion graphics</li>
+        <li>Photography</li>
+        <li>Video</li>
+      </ul>
+      <p>
+        We also help identify which platforms deserve the effort so the work
+        supports business goals rather than just filling a calendar.
+      </p>
+      <h2>A Content System Your Team Can Sustain</h2>
+      <p>
+        We define themes, formats, production needs, review roles, and a
+        publishing rhythm. Depending on the goal, the mix may include project
+        examples, product demonstrations, educational posts, photography, video,
+        motion graphics, and campaign assets. We adapt the idea to the channel
+        without letting the channel dictate the brand.
+      </p>
+      <h2>Connect Content to the Next Step</h2>
+      <p>
+        Each series should support a measurable purpose: awareness with the
+        right audience, qualified site visits, event interest, enquiries, or
+        customer education. Social reporting should inform the next production
+        cycle rather than reward output alone. See Kelp's multi-channel work for
+        <a href="/work/elev8-fun/">Elev8 Fun</a> or plan your content with us.
+      </p>
+      <h2>How This Works in Practice</h2>
+      <p>
+        A sustainable content plan makes room for the people and work that
+        distinguish the business. We can build recurring themes from real
+        customer questions, product education, behind-the-scenes process, and
+        proof of completed work. Each format has a job: invite discovery,
+        explain a point, answer an objection, or send someone to a relevant
+        page. We review response and business relevance rather than posting
+        volume alone.
+      </p>
+      <h2>What the Work Includes</h2>
+      <ul>
+        <li>Content themes and editorial calendar</li>
+        <li>Copy, design, photography, or video production</li>
+        <li>Channel-specific versions and review workflow</li>
+        <li>Performance review for the next content cycle</li>
+      </ul>
+      <h2>What Moving Forward Looks Like</h2>
+      <p>
+        Share recent posts, common customer questions, available footage or
+        photography, and the people who can approve claims. We can build a
+        sustainable series around what the business can genuinely show.
+      </p>
+      <h2>Frequently Asked Questions</h2>
+      <h3>How often should we post?</h3>
+      <p>
+        The right rhythm depends on production capacity and audience response.
+        We would rather plan a repeatable series than set a frequency the team
+        cannot maintain.
+      </p>
+      <p>
+        <a href="/contact/" class="button button--green">
+          Plan Social Content
+        </a>
+      </p>
+    </div>
+    <ServicesRelatedWork tag={72} />
+  </div>
+  <FeaturedArticles />
 </Layout>

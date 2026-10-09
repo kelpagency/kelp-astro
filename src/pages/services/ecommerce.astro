@@ -1,14 +1,14 @@
 ---
-import Layout from '../../Base.astro';
-import SimpleHero from '../../components/SimpleHero.astro';
-import FeaturedArticles from '../../components/FeaturedArticles.astro';
-import ServicesRelatedWork from '../../components/ServicesRelatedWork.astro';
-import '../../styles/pages/_services-list.scss';
+import Layout from "../../Base.astro";
+import SimpleHero from "../../components/SimpleHero.astro";
+import FeaturedArticles from "../../components/FeaturedArticles.astro";
+import ServicesRelatedWork from "../../components/ServicesRelatedWork.astro";
+import "../../styles/pages/_services-list.scss";
 ---
 
 <Layout
-  title="Ecommerce Development | Florida Digital Agency"
-  description="We design and build ecommerce systems that reduce friction, improve conversions, and support long-term growth across Shopify and WooCommerce."
+  title="Ecommerce Website Development &amp; Integrations | Kelp"
+  description="Kelp builds Shopify and WooCommerce stores for complex catalogs, custom products, conversion, and connections to the systems behind every order."
 >
   <SimpleHero
     tagline="Ecommerce Development"
@@ -17,9 +17,14 @@ import '../../styles/pages/_services-list.scss';
     lottieFile="ecommerce.json"
   />
 
-  <div class="wrapper wrapper--narrow" style="padding-bottom: 100px; text-align: center;">
+  <div
+    class="wrapper wrapper--narrow"
+    style="padding-bottom: 100px; text-align: center;"
+  >
     We are certified partners with both
-    <a href="https://woocommerce.com/development-services/kelp-creative-agency/232621912/">WooCommerce</a>
+    <a href="https://woocommerce.com/development-services/kelp-creative-agency/232621912/">
+      WooCommerce
+    </a>
     and Shopify.
   </div>
 
@@ -27,58 +32,136 @@ import '../../styles/pages/_services-list.scss';
     <div class="wrapper wrapper--narrow">
       <h2>Where most ecommerce sites fall short</h2>
       <p>
-        Most ecommerce sites don’t fail because of their products—they fail because of friction. Slow load times,
-        confusing navigation, broken checkout flows, and disconnected systems all contribute to lost revenue.
+        Most ecommerce sites don’t fail because of their products—they fail
+        because of friction. Slow load times, confusing navigation, broken
+        checkout flows, and disconnected systems all contribute to lost revenue.
       </p>
       <p>
-        A customer who is ready to buy should never have to think about how your site works. When the experience is
-        unclear or inefficient, they leave.
+        A customer who is ready to buy should never have to think about how your
+        site works. When the experience is unclear or inefficient, they leave.
       </p>
 
       <h2>What we focus on</h2>
       <p>
-        We treat ecommerce as a system, not just a storefront. Every part of the experience—from product discovery to
-        checkout—should work together to support a single goal: conversion.
+        We treat ecommerce as a system, not just a storefront. Every part of the
+        experience—from product discovery to checkout—should work together to
+        support a single goal: conversion.
       </p>
 
       <ul>
         <li>Clear product structure and navigation</li>
         <li>Fast, performance-focused builds</li>
         <li>Optimized cart and checkout experiences</li>
-        <li>Seamless integrations with payment, shipping, and inventory systems</li>
+        <li>
+          Seamless integrations with payment, shipping, and inventory systems
+        </li>
         <li>Scalable platforms that grow with your business</li>
       </ul>
 
       <h2>How we approach it</h2>
-      <p>We start by understanding how your business sells—then build the system to support it.</p>
+      <p>
+        We start by understanding how your business sells—then build the system
+        to support it.
+      </p>
 
       <ol>
         <li>
-          <strong>Define the buying journey:</strong> Identify how customers discover, evaluate, and purchase your products.
+          <strong>Define the buying journey:</strong> Identify how customers
+          discover, evaluate, and purchase your products.
         </li>
         <li>
-          <strong>Structure the store:</strong> Organize products, categories, and content to reduce friction and improve
-          clarity.
+          <strong>Structure the store:</strong> Organize products, categories,
+          and content to reduce friction and improve clarity.
         </li>
         <li>
-          <strong>Design for conversion:</strong> Create layouts and interactions that guide users toward purchase.
+          <strong>Design for conversion:</strong> Create layouts and
+          interactions that guide users toward purchase.
         </li>
         <li>
-          <strong>Build and integrate:</strong> Develop the store and connect it to the tools that power your operations.
+          <strong>Build and integrate:</strong> Develop the store and connect it
+          to the tools that power your operations.
         </li>
         <li>
-          <strong>Refine and optimize:</strong> Continuously improve performance, usability, and conversion rates over time.
+          <strong>Refine and optimize:</strong> Continuously improve
+          performance, usability, and conversion rates over time.
         </li>
       </ol>
 
       <h2>The outcome</h2>
       <p>
-        A well-built ecommerce system removes friction, increases conversion rates, and gives your business a foundation
-        that can scale without constant rework.
+        A well-built ecommerce system removes friction, increases conversion
+        rates, and gives your business a foundation that can scale without
+        constant rework.
       </p>
 
+      <h2>Make Complex Products Easier to Buy</h2>
       <p>
-        <a href="/contact/" class="button button--green">Start a Project</a>
+        We organize catalogs so customers can find the right product, compare
+        options, understand specifications, and complete the purchase. That can
+        mean better categories and filters, clearer product pages, a custom
+        configurator, a B2B quote path, or a checkout that removes avoidable
+        steps. The design should fit the way the business actually sells.
+      </p>
+      <h2>Connect the Systems Behind Each Order</h2>
+      <p>
+        We can scope integrations for POS, inventory, ERP, shipping and
+        fulfillment, customer records, B2B pricing, product information, and
+        custom production software. The first question is where each piece of
+        data should live. The next is how updates, exceptions, and failures
+        should be handled. A good integration plan covers what happens when a
+        SKU changes, an order is edited, stock is unavailable, or one system is
+        temporarily down.
+      </p>
+      <h2>Choose the Platform That Fits the Workflow</h2>
+      <p>
+        Kelp works with Shopify and WooCommerce. A conventional Shopify
+        storefront may be the right fit; a custom theme or Hydrogen build may
+        serve a more demanding experience. WooCommerce can offer flexibility for
+        workflows that need deeper customization. We evaluate product rules,
+        staff processes, and integration requirements before committing to a
+        platform.
+      </p>
+      <h2>Proven Work for a Nonstandard Order Flow</h2>
+      <p>
+        <a href="/work/us-labels/">US Labels</a> needed a responsive custom label designer and a way to send
+        orders to Windows printing software. Kelp selected WooCommerce for the
+        use case and built a Node.js and Express API service to connect the
+        store with production. The result is a useful example of why a store
+        should be designed around the full order path, not only the product
+        grid.
+      </p>
+      <p>
+        A better store helps shoppers choose with confidence and gives staff an
+        order they can actually fulfill. Clear catalog information, dependable
+        data flow, and a considered checkout reduce confusion on both sides. The
+        right implementation also leaves the team able to manage products and
+        respond when requirements change.
+      </p>
+      <p>
+        AI-driven shopping will make accurate product information and clear
+        pages more important. We help clients prepare the catalog, storefront,
+        and systems that support that information; no agency can guarantee
+        placement in an AI shopping response. If your store is losing sales or
+        creating manual work, show us the workflow and we will help identify
+        what needs design, development, or integration. For a first website
+        snapshot, use the free <a href="/website-checker/">Website Checker</a>.
+      </p>
+      <p>
+        Show us a typical order and one order that causes problems. Those
+        examples reveal more about the build than a feature list and help us
+        scope the storefront and integrations accurately.
+      </p>
+      <h2>Frequently Asked Questions</h2>
+      <h3>Can Kelp work with our current ecommerce platform?</h3>
+      <p>
+        Often. We review what the platform can support, what can be improved
+        through configuration or development, and where a change of platform may
+        be justified.
+      </p>
+      <p>
+        <a href="/contact/" class="button button--green">
+          Start a Project
+        </a>
       </p>
     </div>
 

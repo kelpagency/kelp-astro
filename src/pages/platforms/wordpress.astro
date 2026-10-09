@@ -1,16 +1,21 @@
 ---
-import Layout from '../../Base.astro';
-import SimpleHero from '../../components/SimpleHero.astro';
-import { Image } from 'astro:assets';
-import FeaturedArticles from '../../components/FeaturedArticles.astro';
-import RecentWork from '../../components/RecentWork.astro';
+import Layout from "../../Base.astro";
+import SimpleHero from "../../components/SimpleHero.astro";
+import { Image } from "astro:assets";
+import FeaturedArticles from "../../components/FeaturedArticles.astro";
+import RecentWork from "../../components/RecentWork.astro";
 
-import jetpackPartner from '../../assets/jetpack-partner.png';
-import pressablePartner from '../../assets/pressable-partner.png';
-import wooPartner from '../../assets/woo-partner.png';
+import jetpackPartner from "../../assets/jetpack-partner.png";
+import pressablePartner from "../../assets/pressable-partner.png";
+import wooPartner from "../../assets/woo-partner.png";
+import "../../styles/pages/_services-list.scss";
 ---
 
-<Layout title="Kelp ❤️'s WordPress" description="Put WordPress to work for your business. Explore Kelp's custom themes, plugins, and WooCommerce builds, backed by our 2023 WooExpert Innovator Award." darkHeader={true}>
+<Layout
+  title="Custom WordPress Design &amp; Development | Kelp"
+  description="Custom WordPress websites, content systems, integrations, migrations, and ongoing support designed around your team&#x27;s workflow."
+  darkHeader={true}
+>
   <article>
     <SimpleHero
       title="WordPress"
@@ -21,28 +26,122 @@ import wooPartner from '../../assets/woo-partner.png';
     <section class="wrapper wrapper--narrow">
       <div class="platform">
         <div class="platform-logo">
-          <Image src={jetpackPartner} alt="Jetpack Pro Partner" height={133} loading="lazy" decoding="async" />
-          <Image src={pressablePartner} alt="Pressable Pro Partner" height={133} loading="lazy" decoding="async" />
-          <Image src={wooPartner} alt="WooCommerce Pro Partner" height={133} loading="lazy" decoding="async" />
+          <Image
+            src={jetpackPartner}
+            alt="Jetpack Pro Partner"
+            height={133}
+            loading="lazy"
+            decoding="async"
+          />
+          <Image
+            src={pressablePartner}
+            alt="Pressable Pro Partner"
+            height={133}
+            loading="lazy"
+            decoding="async"
+          />
+          <Image
+            src={wooPartner}
+            alt="WooCommerce Pro Partner"
+            height={133}
+            loading="lazy"
+            decoding="async"
+          />
         </div>
 
         <div class="platform-text">
           <p>
-            We love building custom WordPress themes and plugins with a clear purpose. WordPress can be an incredibly
-            powerful platform&thinsp;—&thinsp;as long as you respect its ecosystem and use it the way it was designed.
-            We’ve embraced the Gutenberg editor and gone all-in on block-based themes.
-            <a href="https://woocommerce.com/posts/the-wooexpert-awards-americas-2023/"
-              >Automattic recognized our work</a
-            > with <strong>The Innovator Award in 2023</strong>.
+            We love building custom WordPress themes and plugins with a clear
+            purpose. WordPress can be an incredibly powerful
+            platform&thinsp;—&thinsp;as long as you respect its ecosystem and
+            use it the way it was designed. We’ve embraced the Gutenberg editor
+            and gone all-in on block-based themes.
+            <a href="https://woocommerce.com/posts/the-wooexpert-awards-americas-2023/">
+              Automattic recognized our work
+            </a>{" "}
+            with <strong>The Innovator Award in 2023</strong>.
           </p>
           <p>
-            We believe that your website's underlying technology can either hold you back, or give you momentum to hit
-            new records. Our preferred method to build custom WordPress themes is with <a
-              href="https://upstatement.com/timber">Timber</a
-            > as it provides a powerful templating engine with a clean syntax. However, we don't mind working in existing
-            themes built with good ol' vanilla PHP. Headless WordPress sounds scary, but it can also be quite nice.
+            We believe that your website's underlying technology can either hold
+            you back, or give you momentum to hit new records. Our preferred
+            method to build custom WordPress themes is with{" "}
+            <a href="https://upstatement.com/timber">Timber</a> as it provides a
+            powerful templating engine with a clean syntax. However, we don't
+            mind working in existing themes built with good ol' vanilla PHP.
+            Headless WordPress sounds scary, but it can also be quite nice.
           </p>
         </div>
+      </div>
+    </section>
+    <section class="service-body">
+      <div class="wrapper wrapper--narrow">
+        <h2>Where Teams Get Stuck</h2>
+        <p>
+          WordPress becomes difficult when editing is inconsistent, plugins
+          accumulate without a plan, or custom code is undocumented. A site may
+          look fine to visitors while the team avoids making needed updates.
+        </p>
+        <h2>How We Fix It</h2>
+        <p>
+          We organize the content and block system around what editors actually
+          publish. Custom themes, plugins, integrations, or a headless front end
+          are considered when they solve a defined problem. We also plan
+          performance, accessibility, updates, and support from the outset.
+        </p>
+        <h2>Build for the Content You Really Manage</h2>
+        <p>
+          We organize pages, custom content, navigation, and reusable components
+          so the site can grow without becoming difficult to update. The build
+          can include custom interfaces, application connections, forms, and
+          migrations where the workflow requires them.
+        </p>
+        <h2>Keep the Experience Consistent</h2>
+        <p>
+          In <a href="/work/artisan-talent/">Artisan Talent</a>, Kelp worked with a custom WordPress setup, an
+          Angular jobs application, and HubSpot pages to maintain a unified
+          experience. Ongoing updates and support are part of keeping a
+          WordPress site reliable. Talk with Kelp about your WordPress project.
+        </p>
+        <p>
+          Kelp's own website is a headless WordPress build. The team also works
+          with block-based editing, custom themes, and plugins. The architecture
+          depends on how editors work, what the site must connect to, and the
+          long-term cost of maintaining it.
+        </p>
+        <h2>How This Works in Practice</h2>
+        <p>
+          WordPress is flexible, but that flexibility needs an editing model. We
+          decide which content should be structured, which layouts should be
+          reusable, and where custom development is justified. Performance,
+          accessibility, search access, and maintenance are part of the build
+          plan. Integrations with applications or marketing systems are scoped
+          around ownership of data and the workflow people actually use.
+        </p>
+        <h2>What the Work Includes</h2>
+        <ul>
+          <li>Content architecture and editor experience</li>
+          <li>Custom theme or block development</li>
+          <li>Integrations and migration</li>
+          <li>Maintenance and performance plan</li>
+        </ul>
+        <h2>What Moving Forward Looks Like</h2>
+        <p>
+          Show us the current editing process and the changes the team cannot
+          make confidently. We can decide whether targeted improvements or a
+          broader rebuild will serve you better.
+        </p>
+        <h2>Frequently Asked Questions</h2>
+        <h3>Do we need headless WordPress?</h3>
+        <p>
+          Only when its flexibility justifies the added complexity. Kelp's own
+          site uses headless WordPress, but a conventional build may be a better
+          fit for many teams.
+        </p>
+        <p>
+          <a href="/contact/" class="button button--green">
+            Talk Through Your Project
+          </a>
+        </p>
       </div>
     </section>
     <RecentWork
@@ -51,7 +150,11 @@ import wooPartner from '../../assets/woo-partner.png';
       heading="WordPress Sites"
       description="<p>Don't just take our word for it, check out some of our real projects in the carousel below.</p>"
     />
-    <FeaturedArticles category="11" heading="Our Articles about WordPress" limit={3} />
+    <FeaturedArticles
+      category="11"
+      heading="Our Articles about WordPress"
+      limit={3}
+    />
   </article>
   <style lang="scss">
     .platform {
@@ -80,5 +183,5 @@ import wooPartner from '../../assets/woo-partner.png';
         flex: 1 1 500px;
       }
     }
-  </style></Layout
->
+  </style>
+</Layout>

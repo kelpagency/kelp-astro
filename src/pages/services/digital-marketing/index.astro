@@ -1,14 +1,18 @@
 ---
-import Layout from '../../../Base.astro';
-import SimpleHero from '../../../components/SimpleHero.astro';
-import { Picture } from 'astro:assets';
-import digitalMarketingFront from '../../../assets/images/services/digital-marketing-front.png';
-import digitalMarketingMiddle from '../../../assets/images/services/digital-marketing-middle.png';
-import digitalMarketingBack from '../../../assets/images/services/digital-marketing-back.jpg';
-import digitalMarketingOffice from '../../../assets/images/services/digital-marketing-office-photo.jpg';
+import Layout from "../../../Base.astro";
+import SimpleHero from "../../../components/SimpleHero.astro";
+import { Picture } from "astro:assets";
+import digitalMarketingFront from "../../../assets/images/services/digital-marketing-front.png";
+import digitalMarketingMiddle from "../../../assets/images/services/digital-marketing-middle.png";
+import digitalMarketingBack from "../../../assets/images/services/digital-marketing-back.jpg";
+import digitalMarketingOffice from "../../../assets/images/services/digital-marketing-office-photo.jpg";
+import "../../../styles/pages/_services-list.scss";
 ---
 
-<Layout title="Digital Marketing Strategy & Campaign Services | Kelp" description="Make your next marketing move count. Kelp aligns audience targeting, paid campaigns, and reporting around your business goals. Explore our approach.">
+<Layout
+  title="Digital Marketing Strategy &amp; Campaigns | Kelp Agency"
+  description="Kelp connects audience research, paid campaigns, content, landing pages, and reporting so your marketing drives qualified enquiries and sales."
+>
   <SimpleHero
     tagline="Services"
     title="Digital Marketing"
@@ -26,8 +30,9 @@ import digitalMarketingOffice from '../../../assets/images/services/digital-mark
   <div class="service-intro service-intro--marketing">
     <div class="wrapper">
       <p class="h4">
-        Most marketing problems are really diagnosis problems. If the audience is off, the message is vague, or the
-        reporting does not lead to action, more activity will not fix it.
+        Most marketing problems are really diagnosis problems. If the audience
+        is off, the message is vague, or the reporting does not lead to action,
+        more activity will not fix it.
       </p>
       <div class="service-intro-media" data-lg-parallax="child">
         <div>
@@ -45,12 +50,15 @@ import digitalMarketingOffice from '../../../assets/images/services/digital-mark
       </div>
       <div class="service-intro-text">
         <p>
-          We start by identifying what is actually broken, then shape the strategy, execution, and reporting around a
-          clearer goal. That is how campaigns become easier to improve over time instead of harder to explain.
+          We start by identifying what is actually broken, then shape the
+          strategy, execution, and reporting around a clearer goal. That is how
+          campaigns become easier to improve over time instead of harder to
+          explain.
         </p>
         <p>
-          We can support your in-house team, take ownership of specific channels, or manage the full campaign rhythm for
-          you depending on where the bottleneck really is.
+          We can support your in-house team, take ownership of specific
+          channels, or manage the full campaign rhythm for you depending on
+          where the bottleneck really is.
         </p>
       </div>
     </div>
@@ -63,8 +71,7 @@ import digitalMarketingOffice from '../../../assets/images/services/digital-mark
           class="service-list-item-square"
           style="background-color: var(--light-green)"
           data-lg-reveal="layer-to-right"
-        >
-        </div>
+        ></div>
       </div>
       <div
         data-lg-parallax
@@ -74,12 +81,14 @@ import digitalMarketingOffice from '../../../assets/images/services/digital-mark
         data-lg-lottie-loop="true"
         data-lg-lottie-lazy="true"
         class="service-list-item-icon"
-      >
-      </div>
-      <h3 class="h4"><a href="/services/audience-targeting/">Audience Targeting</a></h3>
+      ></div>
+      <h3 class="h4">
+        <a href="/services/audience-targeting/">Audience Targeting</a>
+      </h3>
       <p>
-        Marketing gets expensive fast when you are talking to everyone. Audience targeting helps narrow the message to
-        the people most likely to care and convert.
+        Marketing gets expensive fast when you are talking to everyone. Audience
+        targeting helps narrow the message to the people most likely to care and
+        convert.
       </p>
     </div>
     <div class="service-list-item">
@@ -88,8 +97,7 @@ import digitalMarketingOffice from '../../../assets/images/services/digital-mark
           class="service-list-item-square"
           style="background-color: var(--light-green)"
           data-lg-reveal="layer-to-right"
-        >
-        </div>
+        ></div>
       </div>
       <div
         data-lg-parallax
@@ -99,12 +107,13 @@ import digitalMarketingOffice from '../../../assets/images/services/digital-mark
         data-lg-lottie-loop="true"
         data-lg-lottie-lazy="true"
         class="service-list-item-icon"
-      >
-      </div>
-      <h3 class="h4"><a href="/services/campaign-management/">Campaign Management</a></h3>
+      ></div>
+      <h3 class="h4">
+        <a href="/services/campaign-management/">Campaign Management</a>
+      </h3>
       <p>
-        Campaigns work better when the timeline, message, assets, and budget move in the same direction instead of
-        fighting each other.
+        Campaigns work better when the timeline, message, assets, and budget
+        move in the same direction instead of fighting each other.
       </p>
     </div>
     <div class="service-list-item">
@@ -113,8 +122,7 @@ import digitalMarketingOffice from '../../../assets/images/services/digital-mark
           class="service-list-item-square"
           style="background-color: var(--light-green)"
           data-lg-reveal="layer-to-right"
-        >
-        </div>
+        ></div>
       </div>
       <div
         data-lg-parallax
@@ -124,11 +132,13 @@ import digitalMarketingOffice from '../../../assets/images/services/digital-mark
         data-lg-lottie-loop="true"
         data-lg-lottie-lazy="true"
         class="service-list-item-icon"
-      >
-      </div>
-      <h3 class="h4"><a href="/services/social-ppc/">Social & PPC</a></h3>
+      ></div>
+      <h3 class="h4">
+        <a href="/services/social-ppc/">Social & PPC</a>
+      </h3>
       <p>
-        Paid media only works when the targeting, creative, and landing experience support the same goal.
+        Paid media only works when the targeting, creative, and landing
+        experience support the same goal.
       </p>
     </div>
     <div class="service-list-item">
@@ -137,8 +147,7 @@ import digitalMarketingOffice from '../../../assets/images/services/digital-mark
           class="service-list-item-square"
           style="background-color: var(--light-green)"
           data-lg-reveal="layer-to-right"
-        >
-        </div>
+        ></div>
       </div>
       <div
         data-lg-parallax
@@ -148,12 +157,91 @@ import digitalMarketingOffice from '../../../assets/images/services/digital-mark
         data-lg-lottie-loop="true"
         data-lg-lottie-lazy="true"
         class="service-list-item-icon"
-      >
-      </div>
-      <h3 class="h4"><a href="/services/reporting/">Reporting</a></h3>
-      <p>Reporting should make the next decision clearer, not just give you more charts to stare at.</p>
+      ></div>
+      <h3 class="h4">
+        <a href="/services/reporting/">Reporting</a>
+      </h3>
+      <p>
+        Reporting should make the next decision clearer, not just give you more
+        charts to stare at.
+      </p>
     </div>
   </div>
+  <section class="service-body">
+    <div class="wrapper wrapper--narrow">
+      <h2>Where Teams Get Stuck</h2>
+      <p>
+        Marketing can be active without being coordinated. A paid campaign
+        targets one audience, the website speaks to another, content answers
+        questions nobody is asking, and reports stop at clicks. Leaders then
+        face a choice of spending more or stopping work without knowing what is
+        actually limiting results.
+      </p>
+      <h2>How We Fix It</h2>
+      <p>
+        We start with a business outcome and trace the path back through the
+        website, message, channel, and audience. Then we set priorities for
+        campaigns, content, landing pages, and measurement. Kelp can lead the
+        full program or work with an internal team, with regular reviews of lead
+        quality and customer behavior.
+      </p>
+      <h2>Find the Actual Constraint</h2>
+      <p>
+        We look at where qualified prospects are lost. The problem may be
+        targeting, an unclear offer, weak creative, a landing page that does not
+        match the ad, or tracking that cannot distinguish a good lead from a
+        form submission. Fixing that constraint is usually more valuable than
+        adding another channel.
+      </p>
+      <h2>Build a Plan the Team Can Improve</h2>
+      <p>
+        Our work can include audience targeting, campaign management, paid
+        search and social, copy, creative, and reporting. We review qualified
+        enquiries or sales alongside spend and traffic, then use what we learn
+        to refine the campaign and site together. <a href="/work/elev8-fun/">Elev8 Fun</a> shows how Kelp
+        brought digital design, campaigns, paid social, website work, and
+        support into one engagement.
+      </p>
+      <p>
+        If marketing performance has become difficult to explain, talk through
+        the customer journey with Kelp.
+      </p>
+      <h2>How We Measure Progress</h2>
+      <p>
+        We agree on a useful business outcome before choosing campaign metrics.
+        Depending on the work, that may mean qualified enquiries, booked
+        conversations, purchases, or repeat orders. We look at those outcomes
+        alongside cost, traffic quality, and the steps between first visit and
+        conversion. The result is a practical review of what improved and what
+        still needs attention.
+      </p>
+      <h2>What the Work Includes</h2>
+      <ul>
+        <li>Audience and offer research</li>
+        <li>Paid search, paid social, and campaign planning</li>
+        <li>Landing-page, copy, and creative coordination</li>
+        <li>Reporting tied to qualified enquiries or sales</li>
+      </ul>
+      <h2>What Moving Forward Looks Like</h2>
+      <p>
+        Bring the channels you use, the leads or sales you want more of, and the
+        reports you currently trust. We can identify a focused first improvement
+        before building a wider marketing plan.
+      </p>
+      <h2>Frequently Asked Questions</h2>
+      <h3>Do we need to use every channel?</h3>
+      <p>
+        No. We recommend channels that fit how your customers discover and
+        evaluate the offer, then expand only when the current path is working
+        and measurable.
+      </p>
+      <p>
+        <a href="/contact/" class="button button--green">
+          Talk Through Your Project
+        </a>
+      </p>
+    </div>
+  </section>
 </Layout>
 <style lang="scss">
   .service-list {
