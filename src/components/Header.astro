@@ -689,6 +689,7 @@ const contactActive = pathname === "/contact/";
         !wrapper
       )
         return;
+      const opening = !activeItem;
       const switching = activeItem && activeItem !== item;
       const direction =
         activeItem &&
@@ -726,9 +727,16 @@ const contactActive = pathname === "/contact/";
       activeItem = item;
       item.classList.add("is-open");
       link.setAttribute("aria-expanded", "true");
+      // Place a newly opened backdrop while hidden; only animate its position
+      // when moving between dropdowns that are already visible.
+      if (opening) backdrop?.classList.add("is-positioning");
       backdrop?.style.setProperty("--panel-left", `${left}px`);
       backdrop?.style.setProperty("--panel-width", `${panel.offsetWidth}px`);
       backdrop?.style.setProperty("--panel-height", `${panel.offsetHeight}px`);
+      if (opening && backdrop) {
+        void backdrop.offsetWidth;
+        backdrop.classList.remove("is-positioning");
+      }
       nav?.classList.add("has-open-panel");
     };
     topLevelItems.forEach((item) => {
