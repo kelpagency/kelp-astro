@@ -1,0 +1,77 @@
+---
+import DesignIcon from "../assets/images/services/menu-design.svg";
+import WebsitesIcon from "../assets/images/services/menu-websites.svg";
+import MarketingIcon from "../assets/images/services/menu-marketing.svg";
+import AIIcon from "../assets/images/services/menu-ai.svg";
+import MediaIcon from "../assets/images/services/menu-media.svg";
+import SupportIcon from "../assets/images/services/menu-support.svg";
+const groups = [
+  {
+    title: "Branding & Design",
+    icon: DesignIcon,
+    href: "/services/#branding-design",
+    description: "Build a brand that stands out.",
+  },
+  {
+    title: "Websites",
+    icon: WebsitesIcon,
+    href: "/services/#websites",
+    description: "Turn visitors into customers.",
+  },
+  {
+    title: "Marketing & Strategy",
+    icon: MarketingIcon,
+    href: "/services/#marketing-strategy",
+    description: "Reach the right people and grow.",
+  },
+  {
+    title: "AI Services",
+    icon: AIIcon,
+    href: "/services/ai/",
+    description: "Make AI work for your business.",
+  },
+  {
+    title: "Video & Photo",
+    icon: MediaIcon,
+    href: "/services/#media",
+    description: "Tell your story through imagery.",
+  },
+  {
+    title: "Ongoing Support",
+    icon: SupportIcon,
+    href: "/services/#support",
+    description: "Keep your business moving forward.",
+  },
+];
+---
+
+<ul class="nav-panel services-mega" id="services-mega-menu">
+  {groups.map(({ title, icon: Icon, href, description }) => (
+    <li>
+      <a class="nav-card" href={href} data-astro-prefetch>
+        <Icon
+          class="nav-card-icon"
+          width="44"
+          height="44"
+          aria-hidden="true"
+          focusable="false"
+        />
+        <span>
+          <strong>
+            {title}
+            <span class="nav-card-arrow" aria-hidden="true">
+              {" "}
+              →
+            </span>
+          </strong>
+          <small>{description}</small>
+        </span>
+      </a>
+    </li>
+  ))}
+  <li class="nav-panel-footer">
+    <a href="/services/" data-astro-prefetch>
+      View All Services <span aria-hidden="true">→</span>
+    </a>
+  </li>
+</ul>

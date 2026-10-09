@@ -1,0 +1,71 @@
+---
+import HubSpot from "../assets/hubspot.svg";
+import Shopify from "../assets/shopify.svg";
+import wordpress from "../assets/wordpress.png";
+import { Image } from "astro:assets";
+const platforms = [
+  {
+    title: "HubSpot",
+    href: "/platforms/hubspot/",
+    description: "Connect your website and CRM.",
+    icon: HubSpot,
+  },
+  {
+    title: "Shopify",
+    href: "/platforms/shopify/",
+    description: "Build a store made to sell.",
+    icon: Shopify,
+  },
+  {
+    title: "WordPress",
+    href: "/platforms/wordpress/",
+    description: "A flexible home for your content.",
+  },
+  {
+    title: "Headless",
+    href: "/platforms/headless/",
+    description: "Fast sites with a modern stack.",
+  },
+];
+---
+
+<ul class="nav-panel platforms-panel">
+  {platforms.map(({ title, href, description, icon: Icon }) => (
+    <li>
+      <a class="nav-card" href={href} data-astro-prefetch>
+        <span class="nav-platform-logo" aria-hidden="true">
+          {Icon ? (
+            <Icon width="80" height="36" focusable="false" />
+          ) : title === "WordPress" ? (
+            <Image
+              src={wordpress}
+              loading="lazy"
+              widths={[80, 160]}
+              sizes="auto"
+              width={80}
+              height={16}
+              alt=""
+            />
+          ) : (
+            <span class="nav-headless-icon">&lt;/&gt;</span>
+          )}
+        </span>
+        <span>
+          <strong>
+            {title}
+            <span class="nav-card-arrow" aria-hidden="true">
+              {" "}
+              →
+            </span>
+          </strong>
+          <small>{description}</small>
+        </span>
+      </a>
+    </li>
+  ))}
+  <li class="nav-panel-footer">
+    <a href="/platforms/" data-astro-prefetch>
+      Explore All Platforms <span aria-hidden="true">→</span>
+    </a>
+  </li>
+</ul>

@@ -1,0 +1,103 @@
+---
+import { fetchWpJsonCached } from "../lib/wp";
+import { toPlainText } from "../lib/sanitize";
+interface Props {
+  kind: "work" | "resources";
+}
+const { kind } = Astro.props;
+const work = kind === "work";
+const links = work
+  ? [
+      ["Case Studies", "/work/", "See what we’ve built together."],
+      ["Clients", "/work/clients/", "Meet the businesses we work with."],
+    ]
+  : [
+      ["The Kelp Blog", "/blog/", "Ideas and insights for your business."],
+      [
+        "Downloads & Tools",
+        "/resources/",
+        "Helpful resources to get you started.",
+      ],
+      [
+        "Website Checker",
+        "/website-checker/",
+        "Find opportunities to improve your site.",
+      ],
+    ];
+const posts = await fetchWpJsonCached<Record<string, any>[]>(
+  `/${work ? "work" : "posts"}?per_page=1&orderby=date&order=desc&_embed`,
+  [],
+);
+const post = posts[0];
+let media = post?._embedded?.["wp:featuredmedia"]?.[0];
+if (work && post?.acf?.hero?.image) {
+  media =
+    (await fetchWpJsonCached<Record<string, any> | null>(
+      `/media/${post.acf.hero.image}`,
+      null,
+    )) ?? media;
+}
+const src = media?.source_url || post?.fimg_url;
+const width = media?.media_details?.width ?? 980;
+const height = media?.media_details?.height ?? 552;
+const sources = Object.values(media?.media_details?.sizes ?? {}) as {
+  source_url?: string;
+  width?: number;
+}[];
+const srcset =
+  sources
+    .filter((image) => image.source_url && image.width)
+    .map((image) => `${image.source_url} ${image.width}w`)
+    .join(", ") || `${src} ${width}w`;
+---
+
+<ul
+  class:list={[
+    "nav-panel",
+    "nav-panel-content",
+    { "has-feature": Boolean(post) },
+  ]}
+>
+  <li class="nav-panel-links">
+    <ul>
+      {links.map(([title, href, description]) => (
+        <li>
+          <a class="nav-card" href={href} data-astro-prefetch>
+            <span>
+              <strong>
+                {title}
+                <span class="nav-card-arrow" aria-hidden="true">
+                  {" "}
+                  →
+                </span>
+              </strong>
+              <small>{description}</small>
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </li>
+  {post && (
+    <li class="nav-feature">
+      <a href={`/${work ? "work" : "blog"}/${post.slug}/`} data-astro-prefetch>
+        <small>{work ? "Latest Case Study" : "Latest from the Blog"}</small>
+        {src && (
+          <img
+            loading="lazy"
+            src={src}
+            srcset={srcset}
+            sizes="auto"
+            width={width}
+            height={height}
+            alt={toPlainText(post.title?.rendered ?? "")}
+          />
+        )}
+        <strong>
+          {toPlainText(post.title?.rendered ?? "")}{" "}
+          <span aria-hidden="true">→</span>
+        </strong>
+      </a>
+    </li>
+  )}
+</ul>

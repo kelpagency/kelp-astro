@@ -1,4 +1,9 @@
 ---
+import ServicesMegaMenu from "./ServicesMegaMenu.astro";
+import HeaderContentMenu from "./HeaderContentMenu.astro";
+import PlatformsMenu from "./PlatformsMenu.astro";
+import "../styles/components/_services-mega-menu.scss";
+
 const pathname = Astro.url.pathname;
 
 const isActivePath = (paths: string[]) =>
@@ -7,7 +12,11 @@ const isActivePath = (paths: string[]) =>
 const servicesActive = isActivePath(["/services/"]);
 const workActive = isActivePath(["/work/"]);
 const platformsActive = isActivePath(["/platforms/"]);
-const resourcesActive = isActivePath(["/resources/", "/blog/", "/website-checker/"]);
+const resourcesActive = isActivePath([
+  "/resources/",
+  "/blog/",
+  "/website-checker/",
+]);
 const aboutActive = isActivePath(["/about/"]);
 const contactActive = pathname === "/contact/";
 ---
@@ -32,7 +41,8 @@ const contactActive = pathname === "/contact/";
         ></path>
         <path
           d="M20.8 26.78c-.13-.73-1.28-1.48-2.21-2.08l-.58-.38a2.98 2.98 0 0 1-1.47-2.22 2.6 2.6 0 0 1 1.1-2.2l1.56-.95c1.34-.81 1.84-1.99 1.32-3.07-.27-.74-1.53-1.49-2.55-2.09l-.76-.46a2.62 2.62 0 0 1-.08-4.8 4.88 4.88 0 0 0 1.78-1.51c.62-1.07.12-2.42-1.22-3.29l-1.75-1.18A2.71 2.71 0 0 1 14.66 0L13.4.87c-.87.6-1.86 1.28-2.08 1.5a2.52 2.52 0 0 0-.92 2.07 2.27 2.27 0 0 0 1.1 1.67q.86.6 1.78 1.2a2.95 2.95 0 0 1 1.48 2.23 2.63 2.63 0 0 1-1.13 2.2l-1.52.94c-1.48.92-1.94 2.27-1.15 3.36a7.42 7.42 0 0 0 2.36 1.78l.78.48a2.62 2.62 0 0 1 .06 4.8l-.78.5a2.4 2.4 0 0 0-1.26 2 2.8 2.8 0 0 0 1.46 2.3l.49.32a8.56 8.56 0 0 1 2.02 1.6 2.43 2.43 0 0 1 .5 1.82c.82-.6 1.7-1.21 2.71-1.87 1.24-.81 1.82-1.95 1.5-2.98ZM31.3 22.46a2.31 2.31 0 0 0-1-1.3l-1.82-1.23a2.84 2.84 0 0 1-1.45-2.38 3.04 3.04 0 0 1 1.64-2.44l.83-.52a2.35 2.35 0 0 0 1.34-2.03 2.92 2.92 0 0 0-1.73-2.34c-.29-.15-1.76-.97-2.12-1.23h-.01a3.49 3.49 0 0 1-1.96-2.7l-1.12.8a24.4 24.4 0 0 0-2.3 1.72 2.13 2.13 0 0 0-.64 1.88 2.96 2.96 0 0 0 1.54 1.96l2.05 1.23a2.97 2.97 0 0 1 1.64 2.28 2.65 2.65 0 0 1-1.26 2.27 7.43 7.43 0 0 1-.85.54l-.43.25a2.88 2.88 0 0 0-1.6 2.26 2.46 2.46 0 0 0 1.22 2.1l.5.35a7.22 7.22 0 0 1 1.93 1.63 2.06 2.06 0 0 1 .19 1.88c1.02-.6 2.15-1.23 3.44-1.94 1.49-.82 2.24-1.98 1.97-3.03ZM8.51 17.73 6.48 16.5a2.8 2.8 0 0 1-1.59-2.37 3 3 0 0 1 1.72-2.46l.87-.52a2.88 2.88 0 0 0 1.6-2.23A2.42 2.42 0 0 0 7.94 6.8l.01-.01c-.33-.2-1.4-1.02-1.64-1.2A2.16 2.16 0 0 1 5.49 3l-1.07.6c-1.17.66-2.79 1.56-3.1 1.83A2.79 2.79 0 0 0 0 7.64a1.98 1.98 0 0 0 .95 1.6l1.76 1.21A2.6 2.6 0 0 1 2.8 15a7.37 7.37 0 0 1-.83.53l-.43.26A2.48 2.48 0 0 0 .12 17.9a2.81 2.81 0 0 0 1.67 2.27l.76.44a11.7 11.7 0 0 1 2.34 1.53 2.83 2.83 0 0 1 .93 1.99 79 79 0 0 1 2.93-2.02 2.32 2.32 0 0 0 1.08-3.06 3.45 3.45 0 0 0-1.32-1.32Z"
-          fill="var(--green)"></path>
+          fill="var(--green)"
+        ></path>
       </svg>
     </a>
     <button
@@ -57,7 +67,7 @@ const contactActive = pathname === "/contact/";
     </button>
     <nav class="header-nav" id="site-nav">
       <ul class="header-nav-list">
-        <li class="has-submenu">
+        <li class="has-submenu has-mega-menu">
           <a
             href="/services/"
             data-astro-prefetch
@@ -70,30 +80,13 @@ const contactActive = pathname === "/contact/";
               <title>dropdown</title>
               <path
                 d="M4.08 5.67.33 1.92a1.13 1.13 0 0 1 0-1.59 1.12 1.12 0 0 1 .8-.33 1.12 1.12 0 0 1 .8.33l2.95 2.96L7.84.33a1.12 1.12 0 0 1 .8-.33 1.12 1.12 0 0 1 .8.33 1.13 1.13 0 0 1 0 1.6L5.69 5.66a1.12 1.12 0 0 1-.8.33 1.11 1.11 0 0 1-.81-.33Z"
-                fill="currentColor"></path>
+                fill="currentColor"
+              ></path>
             </svg>
           </a>
-          <ul>
-            <li><a href="/services/#branding-design">Branding & Design</a></li>
-            <li>
-              <a href="/services/#websites" aria-label="Websites">Websites</a>
-            </li>
-            <li>
-              <a
-                href="/services/#marketing-strategy"
-                aria-label="Marketing & Strategy">Marketing & Strategy</a>
-            </li>
-            <li><a href="/services/#ai">AI Services</a></li>
-            <li>
-              <a href="/services/#media" aria-label="Media">Video & Photo</a>
-            </li>
-            <li>
-              <a href="/services/#support" aria-label="Ongoing Support"
-                >Ongoing Support</a>
-            </li>
-          </ul>
+          <ServicesMegaMenu />
         </li>
-        <li class="has-submenu">
+        <li class="has-submenu has-mega-menu">
           <a
             data-astro-prefetch
             href="/work/"
@@ -106,21 +99,13 @@ const contactActive = pathname === "/contact/";
               <title>dropdown</title>
               <path
                 d="M4.08 5.67.33 1.92a1.13 1.13 0 0 1 0-1.59 1.12 1.12 0 0 1 .8-.33 1.12 1.12 0 0 1 .8.33l2.95 2.96L7.84.33a1.12 1.12 0 0 1 .8-.33 1.12 1.12 0 0 1 .8.33 1.13 1.13 0 0 1 0 1.6L5.69 5.66a1.12 1.12 0 0 1-.8.33 1.11 1.11 0 0 1-.81-.33Z"
-                fill="currentColor"></path>
+                fill="currentColor"
+              ></path>
             </svg>
           </a>
-          <ul>
-            <li>
-              <a data-astro-prefetch href="/work/" aria-label="Case Studies"
-                >Case Studies</a>
-            </li>
-            <li>
-              <a data-astro-prefetch href="/work/clients/" aria-label="Clients"
-                >Clients</a>
-            </li>
-          </ul>
+          <HeaderContentMenu kind="work" />
         </li>
-        <li class="has-submenu">
+        <li class="has-submenu has-mega-menu">
           <a
             data-astro-prefetch
             href="/platforms/"
@@ -133,41 +118,13 @@ const contactActive = pathname === "/contact/";
               <title>dropdown</title>
               <path
                 d="M4.08 5.67.33 1.92a1.13 1.13 0 0 1 0-1.59 1.12 1.12 0 0 1 .8-.33 1.12 1.12 0 0 1 .8.33l2.95 2.96L7.84.33a1.12 1.12 0 0 1 .8-.33 1.12 1.12 0 0 1 .8.33 1.13 1.13 0 0 1 0 1.6L5.69 5.66a1.12 1.12 0 0 1-.8.33 1.11 1.11 0 0 1-.81-.33Z"
-                fill="currentColor"></path>
+                fill="currentColor"
+              ></path>
             </svg>
           </a>
-          <ul>
-            <li>
-              <a
-                data-astro-prefetch
-                href="/platforms/hubspot/"
-                aria-label="HubSpot">HubSpot</a>
-            </li>
-            <li>
-              <a
-                data-astro-prefetch
-                href="/platforms/shopify/"
-                aria-label="Shopify">Shopify</a>
-            </li>
-            <li>
-              <a
-                data-astro-prefetch
-                href="/platforms/wordpress/"
-                aria-label="WordPress">WordPress</a>
-            </li>
-            <li class="platforms-menu-headless">
-              <a
-                data-astro-prefetch
-                href="/platforms/headless/"
-                aria-label="Headless"
-              >
-                <span>Headless</span>
-                <span class="platforms-menu-headless-badge">API-first</span>
-              </a>
-            </li>
-          </ul>
+          <PlatformsMenu />
         </li>
-        <li class="has-submenu">
+        <li class="has-submenu has-mega-menu">
           <a
             data-astro-prefetch
             href="/resources/"
@@ -180,22 +137,11 @@ const contactActive = pathname === "/contact/";
               <title>dropdown</title>
               <path
                 d="M4.08 5.67.33 1.92a1.13 1.13 0 0 1 0-1.59 1.12 1.12 0 0 1 .8-.33 1.12 1.12 0 0 1 .8.33l2.95 2.96L7.84.33a1.12 1.12 0 0 1 .8-.33 1.12 1.12 0 0 1 .8.33 1.13 1.13 0 0 1 0 1.6L5.69 5.66a1.12 1.12 0 0 1-.8.33 1.11 1.11 0 0 1-.81-.33Z"
-                fill="currentColor"></path>
+                fill="currentColor"
+              ></path>
             </svg>
           </a>
-          <ul>
-            <li>
-              <a data-astro-prefetch href="/blog/" aria-label="The Kelp Blog">The Kelp Blog</a>
-            </li>
-            <li>
-              <a data-astro-prefetch href="/resources/" aria-label="Downloads & Tools"
-                >Downloads &amp; Tools</a>
-            </li>
-            <li>
-              <a data-astro-prefetch href="/website-checker/" aria-label="Website Checker"
-                >Website Checker</a>
-            </li>
-          </ul>
+          <HeaderContentMenu kind="resources" />
         </li>
         <li>
           <a
@@ -222,6 +168,7 @@ const contactActive = pathname === "/contact/";
         </li>
       </ul>
       <span class="header-nav-indicator" aria-hidden="true"></span>
+      <div class="nav-panel-backdrop" aria-hidden="true"></div>
     </nav>
   </div>
 </header>
@@ -719,6 +666,109 @@ const contactActive = pathname === "/contact/";
       topLevelItems.forEach((item) => closeSubmenu(item));
     };
 
+    let closeTimer: ReturnType<typeof setTimeout> | undefined;
+    let activeItem: Element | null = null;
+    const backdrop = nav?.querySelector<HTMLElement>(".nav-panel-backdrop");
+    nav?.classList.add("menus-ready");
+
+    const closeDesktopMenu = () => {
+      clearTimeout(closeTimer);
+      closeAllSubmenus();
+      activeItem = null;
+      nav?.classList.remove("has-open-panel");
+    };
+    const showDesktopMenu = (item: Element) => {
+      if (mobileQuery.matches) return;
+      clearTimeout(closeTimer);
+      const panel = getSubmenu(item);
+      const link = item.firstElementChild;
+      const wrapper = header?.querySelector<HTMLElement>(".wrapper");
+      if (
+        !(panel instanceof HTMLElement) ||
+        !(link instanceof HTMLAnchorElement) ||
+        !wrapper
+      )
+        return;
+      const switching = activeItem && activeItem !== item;
+      const direction =
+        activeItem &&
+        topLevelItems.indexOf(item) < topLevelItems.indexOf(activeItem)
+          ? -1
+          : 1;
+      const bounds = wrapper.getBoundingClientRect();
+      const trigger = link.getBoundingClientRect();
+      const left = Math.max(
+        0,
+        Math.min(
+          trigger.left -
+            bounds.left +
+            trigger.width / 2 -
+            panel.offsetWidth / 2,
+          bounds.width - panel.offsetWidth,
+        ),
+      );
+      panel.style.left = `${left}px`;
+      if (
+        switching &&
+        !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      ) {
+        panel.animate(
+          [
+            { opacity: 0, transform: `translateX(${direction * 16}px)` },
+            { opacity: 1, transform: "translateX(0)" },
+          ],
+          { duration: 240, easing: "cubic-bezier(.25,1,.5,1)" },
+        );
+      }
+      topLevelItems.forEach((menu) => {
+        if (menu !== item) closeSubmenu(menu);
+      });
+      activeItem = item;
+      item.classList.add("is-open");
+      link.setAttribute("aria-expanded", "true");
+      backdrop?.style.setProperty("--panel-left", `${left}px`);
+      backdrop?.style.setProperty("--panel-width", `${panel.offsetWidth}px`);
+      backdrop?.style.setProperty("--panel-height", `${panel.offsetHeight}px`);
+      nav?.classList.add("has-open-panel");
+    };
+    topLevelItems.forEach((item) => {
+      item.addEventListener("pointerenter", () => showDesktopMenu(item), {
+        signal,
+      });
+      item.addEventListener(
+        "pointerleave",
+        () => {
+          if (!mobileQuery.matches && !item.contains(document.activeElement)) {
+            closeTimer = setTimeout(closeDesktopMenu, 140);
+          }
+        },
+        { signal },
+      );
+      item.addEventListener("focusin", () => showDesktopMenu(item), { signal });
+      item.addEventListener(
+        "focusout",
+        (event) => {
+          const next = (event as FocusEvent).relatedTarget as Node | null;
+          if (
+            !mobileQuery.matches &&
+            !topLevelItems.some((menu) => menu.contains(next))
+          )
+            closeDesktopMenu();
+        },
+        { signal },
+      );
+    });
+    window.addEventListener(
+      "resize",
+      () => {
+        if (activeItem) showDesktopMenu(activeItem);
+      },
+      { signal },
+    );
+    signal.addEventListener("abort", () => clearTimeout(closeTimer), {
+      once: true,
+    });
+
     const closeMobileMenu = () => {
       document.body.classList.remove("mobile-menu-active");
       burger?.classList.remove("active");
@@ -731,6 +781,7 @@ const contactActive = pathname === "/contact/";
     };
 
     const syncSubmenusForViewport = () => {
+      closeDesktopMenu();
       topLevelItems.forEach((item) => {
         const link = item.firstElementChild;
         const submenu = getSubmenu(item);
@@ -746,7 +797,7 @@ const contactActive = pathname === "/contact/";
       });
     };
 
-    if (nav && !nav.dataset.submenuInit) {
+    if (nav) {
       topLevelItems.forEach((item, index) => {
         const link = item.firstElementChild;
         const submenu = getSubmenu(item);
@@ -764,6 +815,18 @@ const contactActive = pathname === "/contact/";
         link.setAttribute("aria-expanded", "false");
         link.setAttribute("aria-controls", submenu.id);
         submenu.style.maxHeight = mobileQuery.matches ? "0px" : "";
+
+        link.addEventListener(
+          "keydown",
+          (event) => {
+            if (event.key === "ArrowDown" && !mobileQuery.matches) {
+              event.preventDefault();
+              showDesktopMenu(item);
+              submenu.querySelector<HTMLAnchorElement>("a")?.focus();
+            }
+          },
+          { signal },
+        );
 
         link.addEventListener(
           "click",
@@ -784,15 +847,12 @@ const contactActive = pathname === "/contact/";
           { signal },
         );
       });
-
-      nav.dataset.submenuInit = "true";
     }
 
-    if (nav && !nav.dataset.submenuViewportInit) {
+    if (nav) {
       mobileQuery.addEventListener("change", syncSubmenusForViewport, {
         signal,
       });
-      nav.dataset.submenuViewportInit = "true";
     }
 
     syncSubmenusForViewport();
@@ -804,37 +864,52 @@ const contactActive = pathname === "/contact/";
         "aria-expanded",
         String(document.body.classList.contains("mobile-menu-active")),
       );
-      if (!burger.dataset.menuInit) {
-        burger.addEventListener(
-          "click",
-          () => {
-            const isOpen = document.body.classList.toggle("mobile-menu-active");
-            burger.classList.toggle("active");
-            burger.setAttribute("aria-expanded", String(isOpen));
-            if (!isOpen) {
-              closeAllSubmenus();
-              unlockDocumentScroll();
-              document
-                .querySelectorAll<HTMLElement>("main, footer")
-                .forEach((element) => element.removeAttribute("inert"));
-            } else {
-              document.documentElement.style.overflow = "hidden";
-              document.body.style.overflow = "hidden";
-              document
-                .querySelectorAll<HTMLElement>("main, footer")
-                .forEach((element) => element.setAttribute("inert", ""));
-              nav?.querySelector<HTMLElement>("a")?.focus();
-            }
-          },
-          { signal },
-        );
-        burger.dataset.menuInit = "true";
-      }
+      burger.addEventListener(
+        "click",
+        () => {
+          const isOpen = document.body.classList.toggle("mobile-menu-active");
+          burger.classList.toggle("active");
+          burger.setAttribute("aria-expanded", String(isOpen));
+          if (!isOpen) {
+            closeAllSubmenus();
+            unlockDocumentScroll();
+            document
+              .querySelectorAll<HTMLElement>("main, footer")
+              .forEach((element) => element.removeAttribute("inert"));
+          } else {
+            document.documentElement.style.overflow = "hidden";
+            document.body.style.overflow = "hidden";
+            document
+              .querySelectorAll<HTMLElement>("main, footer")
+              .forEach((element) => element.setAttribute("inert", ""));
+            nav?.querySelector<HTMLElement>("a")?.focus();
+          }
+        },
+        { signal },
+      );
     }
+
+    document.addEventListener(
+      "pointerdown",
+      (event) => {
+        if (
+          !mobileQuery.matches &&
+          activeItem &&
+          !activeItem.contains(event.target as Node)
+        )
+          closeDesktopMenu();
+      },
+      { signal },
+    );
 
     document.addEventListener(
       "keydown",
       (event) => {
+        if (event.key === "Escape" && !mobileQuery.matches && activeItem) {
+          const trigger = activeItem.firstElementChild;
+          if (trigger instanceof HTMLAnchorElement) trigger.focus();
+          closeDesktopMenu();
+        }
         if (
           event.key === "Escape" &&
           document.body.classList.contains("mobile-menu-active")
