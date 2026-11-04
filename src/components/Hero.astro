@@ -4,6 +4,7 @@ import heroSquid from "../assets/hero-squid.png";
 import elev8Logo from "../assets/elev8-fun-logo-white.png";
 import marker48Logo from "../assets/m48-logo-white.png";
 import beverlinHillsLogo from "../assets/beverlin-hills-logo-white.png";
+import aNewGenerationLogo from "../assets/a-new-generation-logo-white.png";
 
 const posterWidths = [350, 500, 640, 750, 1018];
 const heroPosters = await Promise.all(
@@ -176,6 +177,19 @@ const posterSrcSet = heroPosters
           />
         </a>
       </li>
+      <li>
+        <a href="/work/a-new-generation/" aria-label="View our work for A New Generation">
+          <img
+            loading="lazy"
+            src={aNewGenerationLogo.src}
+            srcset={`${aNewGenerationLogo.src} ${aNewGenerationLogo.width}w`}
+            sizes="auto"
+            width={aNewGenerationLogo.width}
+            height={aNewGenerationLogo.height}
+            alt="A New Generation"
+          />
+        </a>
+      </li>
     </ul>
   </div>
 </section>
@@ -219,7 +233,7 @@ const posterSrcSet = heroPosters
       position: absolute;
       right: 0;
       bottom: -2rem;
-      z-index: 1;
+      z-index: 3;
       width: 1018px;
       pointer-events: none;
       > img {
@@ -250,7 +264,7 @@ const posterSrcSet = heroPosters
         width: min(350px, 100%);
       }
       @media (max-width: 430px) {
-        bottom: 8rem;
+        bottom: -1rem;
       }
     }
     &-content {
@@ -324,21 +338,19 @@ const posterSrcSet = heroPosters
     background: var(--teal);
     color: white;
     .wrapper {
-      display: grid;
-      grid-template-columns: minmax(180px, 0.65fr) minmax(0, 2fr);
-      align-items: center;
-      gap: 2rem 4rem;
+      display: block;
     }
     p {
-      margin: 0;
+      margin: 0 0 2rem;
       font-family: var(--sans-serif);
       font-size: var(--step-1);
+      text-align: left;
     }
     ul {
       display: grid;
-      grid-template-columns: 1.35fr 0.65fr 1.35fr;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       align-items: center;
-      gap: clamp(2rem, 5vw, 5rem);
+      gap: clamp(1.5rem, 3vw, 3.5rem);
       margin: 0;
       padding: 0;
       list-style: none;
@@ -347,7 +359,7 @@ const posterSrcSet = heroPosters
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 72px;
+      height: 64px;
       transition: transform 200ms ease;
       &:hover,
       &:focus {
@@ -360,18 +372,24 @@ const posterSrcSet = heroPosters
       height: 100%;
       object-fit: contain;
     }
+    li:nth-child(2) img {
+      transform: scale(1.55);
+    }
     @media (max-width: 700px) {
       padding: 2.25rem 0;
       text-align: center;
       .wrapper {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
+        display: block;
       }
       ul {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 1rem;
       }
       a {
         height: 54px;
+      }
+      li:nth-child(2) img {
+        transform: scale(1.35);
       }
     }
   }
