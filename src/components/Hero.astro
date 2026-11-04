@@ -1,6 +1,6 @@
 ---
 import { getImage } from "astro:assets";
-import heroSquid from "../assets/hero-squid.png";
+import heroSquid from "../assets/hero-squid-poster.png";
 import elev8Logo from "../assets/elev8-fun-logo-white.png";
 import marker48Logo from "../assets/m48-logo-white.png";
 import beverlinHillsLogo from "../assets/beverlin-hills-logo-white.png";
@@ -68,7 +68,7 @@ const posterSrcSet = heroPosters
       srcset={posterSrcSet}
       sizes="(max-width: 600px) 350px, (max-width: 1100px) 500px, (max-width: 1400px) 750px, 1018px"
       width="1018"
-      height="720"
+      height="764"
       alt=""
     />
     <video autoplay muted loop playsinline preload="auto" aria-hidden="true">
@@ -235,11 +235,13 @@ const posterSrcSet = heroPosters
       bottom: -2rem;
       z-index: 3;
       width: 1018px;
+      aspect-ratio: 4 / 3;
       pointer-events: none;
       > img {
         display: block;
         width: 100%;
-        height: auto;
+        height: 100%;
+        object-fit: fill;
         &.is-hidden {
           opacity: 0;
         }
@@ -248,7 +250,8 @@ const posterSrcSet = heroPosters
         position: absolute;
         inset: 0;
         width: 100%;
-        height: auto;
+        height: 100%;
+        object-fit: fill;
         opacity: 0;
         &.is-ready {
           opacity: 1;
