@@ -45,26 +45,36 @@ const contactActive = pathname === "/contact/";
         ></path>
       </svg>
     </a>
-    <button
-      class="hamburger"
-      type="button"
-      aria-label="Toggle menu"
-      aria-expanded="false"
-      aria-controls="site-nav"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 448 512"
-        width="28"
-        height="32"
+    <div class="header-mobile-actions">
+      <a
+        data-astro-prefetch
+        href="/contact/"
+        class="header-mobile-cta"
+        aria-label="Schedule a Meeting"
       >
-        <title>Toggle Mobile Menu</title>
-        <path
-          fill="var(--text-color)"
-          d="M0 80C0 71.16 7.164 64 16 64H432C440.8 64 448 71.16 448 80C448 88.84 440.8 96 432 96H16C7.164 96 0 88.84 0 80zM0 240C0 231.2 7.164 224 16 224H432C440.8 224 448 231.2 448 240C448 248.8 440.8 256 432 256H16C7.164 256 0 248.8 0 240zM432 416H16C7.164 416 0 408.8 0 400C0 391.2 7.164 384 16 384H432C440.8 384 448 391.2 448 400C448 408.8 440.8 416 432 416z"
-        ></path>
-      </svg>
-    </button>
+        Schedule a Meeting
+      </a>
+      <button
+        class="hamburger"
+        type="button"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+        aria-controls="site-nav"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+          width="28"
+          height="32"
+        >
+          <title>Toggle Mobile Menu</title>
+          <path
+            fill="var(--text-color)"
+            d="M0 80C0 71.16 7.164 64 16 64H432C440.8 64 448 71.16 448 80C448 88.84 440.8 96 432 96H16C7.164 96 0 88.84 0 80zM0 240C0 231.2 7.164 224 16 224H432C440.8 224 448 231.2 448 240C448 248.8 440.8 256 432 256H16C7.164 256 0 248.8 0 240zM432 416H16C7.164 416 0 408.8 0 400C0 391.2 7.164 384 16 384H432C440.8 384 448 391.2 448 400C448 408.8 440.8 416 432 416z"
+          ></path>
+        </svg>
+      </button>
+    </div>
     <nav class="header-nav" id="site-nav">
       <ul class="header-nav-list">
         <li class="has-submenu has-mega-menu">
@@ -163,7 +173,7 @@ const contactActive = pathname === "/contact/";
             aria-current={contactActive ? "page" : undefined}
             data-nav-route="contact"
           >
-            Hire Us
+            Schedule a Meeting
           </a>
         </li>
       </ul>
@@ -226,6 +236,9 @@ const contactActive = pathname === "/contact/";
       display: flex;
       gap: 1.5rem;
       align-items: center;
+      @media (max-width: 1079px) {
+        gap: 0.75rem;
+      }
     }
     &-logo {
       position: relative;
@@ -233,10 +246,48 @@ const contactActive = pathname === "/contact/";
       display: block;
       svg {
         display: block;
+        @media (max-width: 479px) {
+          width: 96px;
+          height: auto;
+        }
         .header-logo-text {
           fill: var(--text-color);
           transition: 200ms ease;
         }
+      }
+    }
+    &-mobile-actions {
+      display: none;
+      @media (max-width: 1079px) {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-left: auto;
+        position: relative;
+        z-index: 10;
+      }
+    }
+    &-mobile-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.7rem 0.85rem 0.65rem;
+      background: var(--text-color);
+      color: var(--bg-color);
+      font-family: var(--serif);
+      font-size: 0.8rem;
+      font-weight: 600;
+      line-height: 1;
+      text-decoration: none;
+      white-space: nowrap;
+      &:hover,
+      &:focus {
+        background: var(--purple);
+        color: white;
+      }
+      @media (max-width: 359px) {
+        padding-inline: 0.65rem;
+        font-size: 0.72rem;
       }
     }
     .hamburger {
@@ -246,7 +297,6 @@ const contactActive = pathname === "/contact/";
         border: 0 none;
         background: none;
         appearance: none;
-        margin-left: auto;
         position: relative;
         z-index: 10;
       }
