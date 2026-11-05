@@ -139,7 +139,7 @@ const safeContent = sanitizeHtml(content);
   articlePublished={datePublished}
   articleModified={safeDateModified}
 >
-  <article class="work-post" style={`--accent: ${accent};`}>
+  <article class:list={["work-post", { "work-post--lowman": Astro.params.slug === "lowman-law-firm" }]} style={`--accent: ${accent};`}>
     <div class={`work-post-hero ${isDarkHero ? "is-dark" : ""}`}>
       {
         bgUrl && (
@@ -172,6 +172,94 @@ const safeContent = sanitizeHtml(content);
   <FeaturedArticles tag={tagIds} heading="Related Articles" />
 
   <style lang="scss" is:global>
+    .work-post--lowman .work-post-body {
+      --section-space: clamp(3.5rem, 7vw, 7rem);
+
+      > .wp-block-columns {
+        display: grid;
+        grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+        gap: clamp(2rem, 6vw, 6rem);
+        margin: var(--section-space) 0;
+        align-items: start;
+
+        > .wp-block-column:last-child {
+          padding-left: 2rem;
+          border-left: 2px solid var(--teal);
+
+          h2 {
+            font-family: var(--sans-serif);
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin: 0 0 0.75rem;
+          }
+
+          p { font-size: 1rem; line-height: 1.8; }
+          p + h2 { margin-top: 2rem; }
+        }
+      }
+
+      > .wp-block-group {
+        margin: var(--section-space) 0 0;
+        padding-top: clamp(2rem, 4vw, 4rem);
+        border-top: 1px solid rgba(15, 23, 34, 0.16);
+      }
+
+      .wp-block-spacer { display: none; }
+      .wp-block-heading { text-wrap: balance; }
+      h2:not(.h3) { max-width: 28ch; line-height: 1.1; margin: 0 0 2rem; }
+      h3 { margin: 3rem 0 1.5rem; }
+      p { line-height: 1.75; }
+      .wp-block-group__inner-container > .wp-block-paragraph {
+        max-width: 85ch;
+        margin: 2rem auto;
+        &:has(+ .wp-block-image) { margin-bottom: 5rem; }
+      }
+      .wp-block-group__inner-container > .wp-block-image + .wp-block-paragraph {
+        margin-top: 5rem;
+      }
+      .wp-block-image { margin: 1.5rem 0; }
+      .wp-block-image img { display: block; width: 100%; height: auto; }
+
+      .wp-block-columns.has-background {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 2rem;
+        padding: clamp(2rem, 4vw, 4rem);
+        margin: 3rem 0 2rem;
+        border-radius: 1rem;
+        background: var(--black) !important;
+        color: white;
+
+        .wp-block-column { min-width: 0; }
+        h1 { font-family: var(--sans-serif); font-size: clamp(2.5rem, 5vw, 5rem); line-height: 1; color: var(--teal); margin: 0 0 1rem; }
+        p { font-size: 0.95rem; line-height: 1.5; margin: 0; }
+      }
+
+      .wp-block-group.is-layout-flex {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.5rem;
+        margin: 1.5rem 0;
+        > * { min-width: 0; margin: 0; }
+      }
+      .wp-block-embed { margin: 1.5rem 0; }
+      .wp-block-embed__wrapper { aspect-ratio: 16 / 9; overflow: hidden; border-radius: 0.5rem; background: var(--black); }
+      .wp-block-embed iframe { display: block; width: 100%; height: 100%; }
+      .wp-block-audio { padding: 1.5rem; background: #f4f4f4; border-radius: 0.75rem; }
+      audio { display: block; width: 100%; }
+      .wp-block-media-text { margin: 3rem 0; background: #f4f4f4; }
+      .wp-block-media-text__media { padding: 0; }
+      .wp-block-media-text__content { padding: clamp(1.5rem, 4vw, 4rem); }
+
+      @media (max-width: 767px) {
+        > .wp-block-columns { grid-template-columns: 1fr; }
+        .wp-block-columns.has-background { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .wp-block-group.is-layout-flex { grid-template-columns: 1fr; }
+      }
+    }
+
     .work-post {
       margin-bottom: 6rem;
 
@@ -233,6 +321,19 @@ const safeContent = sanitizeHtml(content);
       }
 
       &-body {
+        > .wp-block-image + .wp-block-paragraph {
+          margin-top: 5rem;
+        }
+
+        > .wp-block-paragraph {
+          max-width: 85ch;
+          margin-inline: auto;
+
+          &:has(+ .wp-block-image) {
+            margin-bottom: 5rem;
+          }
+        }
+
         h2 {
           font-size: var(--step-3);
         }
