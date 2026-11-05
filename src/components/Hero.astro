@@ -134,15 +134,15 @@ const posterSrcSet = heroPosters
     </p>
     <ul>
       <li>
-        <a href="/work/elev8-fun/" aria-label="View our work for Elev8 Fun">
+        <a href="/work/monin/" aria-label="View our work for MONIN">
           <img
             loading="lazy"
-            src={elev8Logo.src}
-            srcset={`${elev8Logo.src} ${elev8Logo.width}w`}
+            src={moninLogo.src}
+            srcset={`${moninLogo.src} ${moninLogo.width}w`}
             sizes="auto"
-            width={elev8Logo.width}
-            height={elev8Logo.height}
-            alt="Elev8 Fun"
+            width={moninLogo.width}
+            height={moninLogo.height}
+            alt="MONIN"
           />
         </a>
       </li>
@@ -163,6 +163,19 @@ const posterSrcSet = heroPosters
         </a>
       </li>
       <li>
+        <a href="/work/lowman-law-firm/" aria-label="View our work for Lowman Law Firm">
+          <img
+            loading="lazy"
+            src={lowmanLawFirmLogo.src}
+            srcset={`${lowmanLawFirmLogo.src} ${lowmanLawFirmLogo.width}w`}
+            sizes="auto"
+            width={lowmanLawFirmLogo.width}
+            height={lowmanLawFirmLogo.height}
+            alt="Lowman Law Firm"
+          />
+        </a>
+      </li>
+      <li>
         <a
           href="/work/beverlin-hills-quality-goods/"
           aria-label="View our work for Beverlin Hills Quality Goods"
@@ -179,28 +192,15 @@ const posterSrcSet = heroPosters
         </a>
       </li>
       <li>
-        <a href="/work/lowman-law-firm/" aria-label="View our work for Lowman Law Firm">
+        <a href="/work/elev8-fun/" aria-label="View our work for Elev8 Fun">
           <img
             loading="lazy"
-            src={lowmanLawFirmLogo.src}
-            srcset={`${lowmanLawFirmLogo.src} ${lowmanLawFirmLogo.width}w`}
+            src={elev8Logo.src}
+            srcset={`${elev8Logo.src} ${elev8Logo.width}w`}
             sizes="auto"
-            width={lowmanLawFirmLogo.width}
-            height={lowmanLawFirmLogo.height}
-            alt="Lowman Law Firm"
-          />
-        </a>
-      </li>
-      <li>
-        <a href="/work/monin/" aria-label="View our work for MONIN">
-          <img
-            loading="lazy"
-            src={moninLogo.src}
-            srcset={`${moninLogo.src} ${moninLogo.width}w`}
-            sizes="auto"
-            width={moninLogo.width}
-            height={moninLogo.height}
-            alt="MONIN"
+            width={elev8Logo.width}
+            height={elev8Logo.height}
+            alt="Elev8 Fun"
           />
         </a>
       </li>
@@ -229,6 +229,70 @@ const posterSrcSet = heroPosters
 
   initHeroVideo();
   document.addEventListener("astro:page-load", initHeroVideo);
+
+  const initClientScroll = () => {
+    const strip = document.querySelector<HTMLUListElement>(".client-strip ul");
+    if (!strip || strip.dataset.scrollInit) return;
+    strip.dataset.scrollInit = "true";
+    const mobile = window.matchMedia("(max-width: 700px)");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const originals = Array.from(strip.children);
+    let frame = 0;
+    let previous = 0;
+    let position = 0;
+    let pausedUntil = 0;
+    let interacting = false;
+    const pause = () => { pausedUntil = performance.now() + 3000; };
+    strip.addEventListener("pointerdown", () => { interacting = true; pause(); });
+    const release = () => { interacting = false; pause(); };
+    window.addEventListener("pointerup", release);
+    window.addEventListener("pointercancel", release);
+    strip.addEventListener("wheel", pause, { passive: true });
+    strip.addEventListener("focusin", pause);
+
+    const update = () => {
+      cancelAnimationFrame(frame);
+      strip.querySelectorAll("[data-scroll-copy]").forEach((node) => node.remove());
+      strip.scrollLeft = 0;
+      position = 0;
+      previous = 0;
+      if (!mobile.matches || reducedMotion.matches) return;
+      originals.forEach((node) => {
+        const copy = node.cloneNode(true) as HTMLElement;
+        copy.dataset.scrollCopy = "true";
+        copy.setAttribute("aria-hidden", "true");
+        copy.inert = true;
+        strip.append(copy);
+      });
+      const tick = (now: number) => {
+        const elapsed = previous ? Math.min(now - previous, 50) : 0;
+        previous = now;
+        if (!interacting && now > pausedUntil && !strip.matches(":focus-within")) {
+          const first = strip.children[0] as HTMLElement;
+          const copy = strip.children[originals.length] as HTMLElement;
+          const loopWidth = copy.offsetLeft - first.offsetLeft;
+          position = loopWidth > 0 ? (position + elapsed * 0.025) % loopWidth : 0;
+          strip.scrollLeft = position;
+        } else {
+          position = strip.scrollLeft;
+        }
+        frame = requestAnimationFrame(tick);
+      };
+      frame = requestAnimationFrame(tick);
+    };
+    mobile.addEventListener("change", update);
+    reducedMotion.addEventListener("change", update);
+    update();
+    document.addEventListener("astro:before-swap", () => {
+      cancelAnimationFrame(frame);
+      mobile.removeEventListener("change", update);
+      reducedMotion.removeEventListener("change", update);
+      window.removeEventListener("pointerup", release);
+      window.removeEventListener("pointercancel", release);
+    }, { once: true });
+  };
+  initClientScroll();
+  document.addEventListener("astro:page-load", initClientScroll);
 </script>
 
 <style lang="scss">
@@ -323,7 +387,16 @@ const posterSrcSet = heroPosters
         }
       }
       &-scroll {
+        position: relative;
+        top: 5rem;
+        z-index: 1;
         margin: 2rem 0;
+        @media (width < 405px) {
+          display: none;
+        }
+        @media (max-width: 700px) {
+          top: 0;
+        }
         @media (max-width: 1100px) {
           width: 141.19px;
           height: 140.85px;
@@ -365,7 +438,7 @@ const posterSrcSet = heroPosters
     }
     ul {
       display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
+      grid-template-columns: minmax(0, 1fr) minmax(0, 0.6fr) repeat(3, minmax(0, 1fr));
       align-items: center;
       gap: clamp(1.5rem, 3vw, 3.5rem);
       margin: 0;
@@ -399,13 +472,27 @@ const posterSrcSet = heroPosters
         display: block;
       }
       ul {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 1rem;
+        grid-template-columns: none;
+        grid-auto-flow: column;
+        grid-auto-columns: 140px;
+        justify-content: start;
+        gap: 1.5rem;
+        overflow-x: auto;
+        padding: 0.5rem 0 1rem;
+      }
+      li {
+        scroll-snap-align: start;
+      }
+      li:nth-child(2),
+      li[data-scroll-copy]:nth-child(7) {
+        width: 90px;
+        justify-self: center;
       }
       a {
         height: 54px;
       }
-      li:nth-child(2) img {
+      li:nth-child(2) img,
+      li[data-scroll-copy]:nth-child(7) img {
         transform: scale(1.35);
       }
     }
