@@ -7,6 +7,7 @@ import {
   sanitizeTitleHtml,
   toPlainText,
 } from "../../lib/sanitize";
+import { workFilters } from "../../lib/workFilters";
 
 export async function getStaticPaths() {
   const tags = (await getWpTags()) as Record<string, any>[];
@@ -27,7 +28,6 @@ const posts = await fetchWpJsonRequired(
   `/work?per_page=100&tags=${id}&orderby=date&order=desc`,
   [] as Record<string, any>[],
 );
-const tags = (await getWpTags()) as Record<string, any>[];
 ---
 
 <Layout title={title} description={description} bodyClass="work-archive">
@@ -62,19 +62,13 @@ const tags = (await getWpTags()) as Record<string, any>[];
 			display: block; margin-left: auto; margin-bottom: 4rem;"
         ><b>Filter by</b><br />
         <select class="work-post-filter">
-          <option value="">— Type of work done —</option>
+          <option value="/work/">All work</option>
           {
-            tags.map(
-              (tag) =>
-                tag.count > 0 && (
-                  <option
-                    value={`/work/${tag.slug}/`}
-                    selected={tag.id == id ? "selected" : null}
-                  >
-                    {tag.name}
-                  </option>
-                ),
-            )
+            workFilters.map((filter) => (
+              <option value={`/work/?service=${filter.value}`}>
+                {filter.label}
+              </option>
+            ))
           }
         </select>
       </label>
@@ -157,9 +151,7 @@ const tags = (await getWpTags()) as Record<string, any>[];
       workPostFilter.dataset.initialized = "true";
       workPostFilter?.addEventListener("change", function (event) {
         const target = event.target as HTMLSelectElement | null;
-        if (target?.value) {
-          window.location.href = target.value;
-        }
+        if (target?.value) window.location.href = target.value;
       });
     };
 

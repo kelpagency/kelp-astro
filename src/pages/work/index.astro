@@ -4,6 +4,7 @@ import { Picture } from "astro:assets";
 import { fetchWpJsonRequired, getWpTags } from "../../lib/wp";
 import { buildCollectionPageSchema, buildItemList } from "../../lib/schema";
 import { sanitizeTitleHtml, toPlainText } from "../../lib/sanitize";
+import { workFilters } from "../../lib/workFilters";
 
 type WorkPost = Record<string, any> & {
   id: number;
@@ -24,6 +25,12 @@ const posts = await fetchWpJsonRequired(
   [] as WorkPost[],
 );
 const tags = (await getWpTags()) as Record<string, any>[];
+const filters = workFilters.map((filter) => ({
+  ...filter,
+  tagIds: tags
+    .filter((tag) => (filter.tagSlugs as readonly string[]).includes(tag.slug))
+    .map((tag) => tag.id),
+}));
 
 const withOrientation: Array<WorkPost & { isLandscape: boolean }> = posts
   .filter((post) => Boolean(post.fimg_url))
@@ -46,17 +53,20 @@ const schema = buildCollectionPageSchema(
   "Our Work",
   "Recent case studies and client work from Kelp Creative Agency.",
   buildItemList(
-    withOrientation
-      .slice(0, 24)
-      .map((post) => ({
-        name: toPlainText(post.title.rendered),
-        url: `/work/${post.slug}/`,
-      })),
+    withOrientation.slice(0, 24).map((post) => ({
+      name: toPlainText(post.title.rendered),
+      url: `/work/${post.slug}/`,
+    })),
   ),
 );
 ---
 
-<Layout title="Branding, Web Design & Marketing Portfolio | Kelp" description="See what thoughtful design and strong development look like in practice. Explore Kelp's branding, website, ecommerce, and marketing projects." bodyClass="work-archive" schema={schema}>
+<Layout
+  title="Branding, Web Design & Marketing Portfolio | Kelp"
+  description="See what thoughtful design and strong development look like in practice. Explore Kelp's branding, website, ecommerce, and marketing projects."
+  bodyClass="work-archive"
+  schema={schema}
+>
   <section class="archive">
     <div class="wrapper wrapper--narrow">
       <h1
@@ -83,54 +93,54 @@ const schema = buildCollectionPageSchema(
     </div>
     <div class="wrapper archive-list">
       <h2 class="screen-reader-text">Case studies</h2>
-      <!-- <label data-lg-reveal="fade" style="max-width: 260px;
-			display: block; margin-left: auto; margin-bottom: 4rem;"><b>Filter by</b><br>
-				<select class="work-post-filter">
-					<option value="">— Type of work done —</option>
-					{tags.map(
-						(tag) => 
-							tag.count > 0 && (
-								<option value={`/work/${tag.slug}/`}>{tag.name}</option>
-							)
-						)
-					}
-				</select>
-			</label> -->
-      {
-        withOrientation.map((post) => (
-          <article
-            class={`tease ${post.isLandscape ? "tease--wide" : ""}`}
-            data-tags={post.tags.join(",")}
-            data-lg-reveal="fade"
-          >
-            <Picture
-              src={post.fimg_url as string}
-              alt={toPlainText(post.title.rendered)}
-              width={1200}
-              height={900}
-              widths={[480, 720, 960, 1200, 1600]}
-              sizes={
-                post.isLandscape
-                  ? "(max-width: 900px) 100vw, 66vw"
-                  : "(max-width: 900px) 100vw, 33vw"
-              }
-              loading="lazy"
-              inferSize
+      <div class="work-filter" data-lg-reveal="fade">
+        <label class="work-filter-select">
+          <b>Filter by service</b>
+          <select class="work-post-filter">
+            <option value="">All work</option>
+            {filters.map((filter) => (
+              <option value={filter.value} data-tags={filter.tagIds.join(",")}>
+                {filter.label}
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
+      {withOrientation.map((post) => (
+        <article
+          class={`tease ${post.isLandscape ? "tease--wide" : ""}`}
+          data-tags={post.tags.join(",")}
+        >
+          <Picture
+            src={post.fimg_url as string}
+            alt={toPlainText(post.title.rendered)}
+            width={1200}
+            height={900}
+            widths={[480, 720, 960, 1200, 1600]}
+            sizes={
+              post.isLandscape
+                ? "(max-width: 900px) 100vw, 66vw"
+                : "(max-width: 900px) 100vw, 33vw"
+            }
+            loading="lazy"
+            inferSize
+          />
+          <ul class="tease-tags">
+            {post.tagNames?.map((tagName) => (
+              <li class="tease-tags-item">{tagName}</li>
+            ))}
+          </ul>
+          <h2 class="h5" transition:name={`heading-${post.id}`}>
+            <a
+              href={`/work/${post.slug}/`}
+              set:html={sanitizeTitleHtml(post.title.rendered)}
             />
-            <ul class="tease-tags">
-              {post.tagNames?.map((tagName) => (
-                <li class="tease-tags-item">{tagName}</li>
-              ))}
-            </ul>
-            <h2 class="h5" transition:name={`heading-${post.id}`}>
-              <a
-                href={`/work/${post.slug}/`}
-                set:html={sanitizeTitleHtml(post.title.rendered)}
-              />
-            </h2>
-          </article>
-        ))
-      }
+          </h2>
+        </article>
+      ))}
+      <p class="work-filter-empty" hidden>
+        No work is currently available for this service.
+      </p>
     </div>
   </section>
 </Layout>
@@ -138,6 +148,7 @@ const schema = buildCollectionPageSchema(
 <style lang="scss">
   .archive-list {
     display: grid;
+    grid-auto-flow: dense;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 4rem;
     margin-bottom: 5rem;
@@ -146,6 +157,21 @@ const schema = buildCollectionPageSchema(
       display: flex;
       flex-direction: column;
     }
+  }
+  .work-filter {
+    grid-column: 1 / -1;
+    width: 100%;
+    &-select {
+      display: block;
+      max-width: 260px;
+      b {
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+  .work-filter-empty {
+    grid-column: 1 / -1;
   }
   .tease {
     position: relative;
@@ -176,3 +202,68 @@ const schema = buildCollectionPageSchema(
     }
   }
 </style>
+
+<script>
+  const initWorkTagFilter = () => {
+    const workPostFilter =
+      document.querySelector<HTMLSelectElement>(".work-post-filter");
+    if (!workPostFilter || workPostFilter.dataset.initialized === "true")
+      return;
+
+    workPostFilter.dataset.initialized = "true";
+    const posts = Array.from(
+      document.querySelectorAll<HTMLElement>(".archive-list .tease"),
+    );
+    const emptyMessage =
+      document.querySelector<HTMLElement>(".work-filter-empty");
+
+    const filterPosts = (selectedTags: string[], hasActiveFilters: boolean) => {
+      let visiblePosts = 0;
+
+      posts.forEach((post) => {
+        const postTags = (post.dataset.tags ?? "").split(",");
+        const isVisible =
+          !hasActiveFilters ||
+          selectedTags.some((tag) => postTags.includes(tag));
+        post.hidden = !isVisible;
+        if (isVisible) visiblePosts += 1;
+      });
+
+      if (emptyMessage) emptyMessage.hidden = visiblePosts > 0;
+      requestAnimationFrame(() => {
+        window.luge?.lifecycle?.refresh();
+        window.luge?.emitter?.emit("resize");
+      });
+    };
+
+    const applyFilter = (value: string) => {
+      const selectedOption = workPostFilter.selectedOptions[0];
+      const selectedTags = (selectedOption?.dataset.tags ?? "")
+        .split(",")
+        .filter(Boolean);
+
+      const url = new URL(window.location.href);
+      if (value) {
+        url.searchParams.set("service", value);
+      } else {
+        url.searchParams.delete("service");
+      }
+      window.history.replaceState({}, "", url);
+      filterPosts(selectedTags, Boolean(value));
+    };
+
+    workPostFilter.addEventListener("change", () => {
+      applyFilter(workPostFilter.value);
+    });
+
+    const selectedService =
+      new URL(window.location.href).searchParams.get("service") ?? "";
+    const hasSelectedService = Array.from(workPostFilter.options).some(
+      (option) => option.value === selectedService,
+    );
+    workPostFilter.value = hasSelectedService ? selectedService : "";
+    applyFilter(workPostFilter.value);
+  };
+
+  document.addEventListener("astro:page-load", initWorkTagFilter);
+</script>
