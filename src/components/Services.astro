@@ -258,6 +258,22 @@
 
 <style lang="scss">
   .service {
+    --service-accent: var(--light-purple);
+    &--websites {
+      --service-accent: var(--light-teal);
+    }
+    &--marketing {
+      --service-accent: var(--light-green);
+    }
+    &--ai {
+      --service-accent: var(--light-teal);
+    }
+    &--media {
+      --service-accent: var(--light-purple);
+    }
+    &--ongoing {
+      --service-accent: var(--light-teal);
+    }
     margin: 10rem auto 8rem;
     display: flex;
     gap: 1rem 5rem;
@@ -282,13 +298,9 @@
       right: 0;
       z-index: -1;
       top: 2rem;
-      background: var(--light-teal);
+      background: var(--service-accent);
       .service--marketing & {
-        background: var(--light-green);
         right: 1rem;
-      }
-      .service--ongoing & {
-        background: var(--light-red);
       }
     }
     &-icon {
@@ -311,17 +323,7 @@
     &-right {
       flex: 1 1 400px;
       .lg-reveal--layer-to-right:after {
-        background-color: var(--light-teal);
-      }
-      .service--marketing & {
-        .lg-reveal--layer-to-right:after {
-          background-color: var(--light-green);
-        }
-      }
-      .service--ongoing & {
-        .lg-reveal--layer-to-right:after {
-          background-color: var(--light-red);
-        }
+        background-color: var(--service-accent);
       }
       ul {
         display: grid;
