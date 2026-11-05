@@ -4,6 +4,7 @@ import { Picture } from "astro:assets";
 import { fetchWpJsonRequired, getWpTags } from "../../lib/wp";
 import { buildCollectionPageSchema, buildItemList } from "../../lib/schema";
 import { sanitizeTitleHtml, toPlainText } from "../../lib/sanitize";
+import { getWorkIndustries } from "../../lib/workIndustries";
 import { workFilters } from "../../lib/workFilters";
 
 type WorkPost = Record<string, any> & {
@@ -25,6 +26,7 @@ const posts = await fetchWpJsonRequired(
   [] as WorkPost[],
 );
 const tags = (await getWpTags()) as Record<string, any>[];
+const industries = getWorkIndustries(tags as Array<{ id: number; slug: string; name: string }>, posts);
 const filters = workFilters.map((filter) => ({
   ...filter,
   tagIds: tags
@@ -42,6 +44,7 @@ const withOrientation: Array<WorkPost & { isLandscape: boolean }> = posts
         details?.width && details?.height && details.width > details.height,
       ),
       tagNames: post.tags
+        .filter((id) => !tags.find((tag) => tag.id === id)?.slug.startsWith("industry-"))
         .slice(0, 3)
         .map(
           (id) => tags.find((tag: Record<string, any>) => tag.id === id)?.name,
@@ -105,6 +108,15 @@ const schema = buildCollectionPageSchema(
             ))}
           </select>
         </label>
+        <label class="work-filter-select">
+          <b>Filter by industry</b>
+          <select class="work-industry-filter">
+            <option value="">All industries</option>
+            {industries.map((industry) => (
+              <option value={industry.value} data-tag={industry.id}>{industry.label}</option>
+            ))}
+          </select>
+        </label>
       </div>
       {withOrientation.map((post) => (
         <article
@@ -139,7 +151,7 @@ const schema = buildCollectionPageSchema(
         </article>
       ))}
       <p class="work-filter-empty" hidden>
-        No work is currently available for this service.
+        No work matches the selected filters.
       </p>
     </div>
   </section>
@@ -159,11 +171,21 @@ const schema = buildCollectionPageSchema(
     }
   }
   .work-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
     grid-column: 1 / -1;
     width: 100%;
     &-select {
       display: block;
-      max-width: 260px;
+      flex: 1 1 240px;
+      max-width: 300px;
+      &:last-child { margin-left: auto; }
+      @media (max-width: 600px) {
+        max-width: none;
+        flex-basis: 100%;
+      }
+      select { width: 100%; }
       b {
         display: block;
         margin-bottom: 0.5rem;
@@ -180,6 +202,7 @@ const schema = buildCollectionPageSchema(
     }
     &-tags {
       display: flex;
+      flex-wrap: wrap;
       gap: 0.5rem;
       list-style: none;
       margin: 1rem 0;
@@ -217,52 +240,41 @@ const schema = buildCollectionPageSchema(
     const emptyMessage =
       document.querySelector<HTMLElement>(".work-filter-empty");
 
-    const filterPosts = (selectedTags: string[], hasActiveFilters: boolean) => {
-      let visiblePosts = 0;
+    const industryFilter = document.querySelector<HTMLSelectElement>(".work-industry-filter");
+    if (!industryFilter) return;
 
+    const applyFilters = () => {
+      const selectedTags = (workPostFilter.selectedOptions[0]?.dataset.tags ?? "")
+        .split(",").filter(Boolean);
+      const industryTag = industryFilter.selectedOptions[0]?.dataset.tag;
+      let visiblePosts = 0;
       posts.forEach((post) => {
         const postTags = (post.dataset.tags ?? "").split(",");
-        const isVisible =
-          !hasActiveFilters ||
-          selectedTags.some((tag) => postTags.includes(tag));
-        post.hidden = !isVisible;
-        if (isVisible) visiblePosts += 1;
+        const matchesService = !workPostFilter.value || selectedTags.some((tag) => postTags.includes(tag));
+        const matchesIndustry = !industryFilter.value || Boolean(industryTag && postTags.includes(industryTag));
+        post.hidden = !(matchesService && matchesIndustry);
+        if (!post.hidden) visiblePosts += 1;
       });
-
       if (emptyMessage) emptyMessage.hidden = visiblePosts > 0;
+      const url = new URL(window.location.href);
+      for (const [key, value] of [["service", workPostFilter.value], ["industry", industryFilter.value]]) {
+        if (value) url.searchParams.set(key, value);
+        else url.searchParams.delete(key);
+      }
+      window.history.replaceState({}, "", url);
       requestAnimationFrame(() => {
         window.luge?.lifecycle?.refresh();
         window.luge?.emitter?.emit("resize");
       });
     };
 
-    const applyFilter = (value: string) => {
-      const selectedOption = workPostFilter.selectedOptions[0];
-      const selectedTags = (selectedOption?.dataset.tags ?? "")
-        .split(",")
-        .filter(Boolean);
-
-      const url = new URL(window.location.href);
-      if (value) {
-        url.searchParams.set("service", value);
-      } else {
-        url.searchParams.delete("service");
-      }
-      window.history.replaceState({}, "", url);
-      filterPosts(selectedTags, Boolean(value));
-    };
-
-    workPostFilter.addEventListener("change", () => {
-      applyFilter(workPostFilter.value);
-    });
-
-    const selectedService =
-      new URL(window.location.href).searchParams.get("service") ?? "";
-    const hasSelectedService = Array.from(workPostFilter.options).some(
-      (option) => option.value === selectedService,
-    );
-    workPostFilter.value = hasSelectedService ? selectedService : "";
-    applyFilter(workPostFilter.value);
+    const params = new URL(window.location.href).searchParams;
+    for (const [select, key] of [[workPostFilter, "service"], [industryFilter, "industry"]] as const) {
+      const value = params.get(key) ?? "";
+      select.value = Array.from(select.options).some((option) => option.value === value) ? value : "";
+      select.addEventListener("change", applyFilters);
+    }
+    applyFilters();
   };
 
   document.addEventListener("astro:page-load", initWorkTagFilter);

@@ -5,6 +5,17 @@ import clientsFront from '../../assets/squid-trident.png';
 import clientsBack from '../../assets/images/clients/back.png';
 import { buildCollectionPageSchema, buildItemList } from '../../lib/schema';
 
+import { fetchWpJsonRequired, getWpTags } from '../../lib/wp';
+import { getWorkIndustries } from '../../lib/workIndustries';
+
+const [workPosts, tags] = await Promise.all([
+  fetchWpJsonRequired('/work?per_page=100&_fields=tags,fimg_url', [] as Array<{ tags: number[]; fimg_url?: string }>),
+  getWpTags(),
+]);
+const linkedIndustries = new Set(getWorkIndustries(
+  tags as Array<{ id: number; slug: string; name: string }>, workPosts,
+).map((industry) => industry.value));
+
 const schema = buildCollectionPageSchema(
   'Kelp Client List',
   'A sample of organizations Kelp Creative Agency has worked with across multiple industries.',
@@ -47,7 +58,7 @@ const schema = buildCollectionPageSchema(
   />
   <div class="clients wrapper wrapper--narrow">
     <div class="clients-group">
-      <h2 class="h5">Ecommerce</h2>
+      <h2 class="h5">{linkedIndustries.has("ecommerce") ? <a href="/work/?industry=ecommerce">Ecommerce</a> : <>Ecommerce</>}</h2>
       <ul data-lg-reveal="fade" data-lg-reveal-stagger="0.15">
         <li>US Labels</li>
         <li>Tilt Audio</li>
@@ -56,14 +67,14 @@ const schema = buildCollectionPageSchema(
       </ul>
     </div>
     <div class="clients-group">
-      <h2 class="h5">Financial</h2>
+      <h2 class="h5">{linkedIndustries.has("financial") ? <a href="/work/?industry=financial">Financial</a> : <>Financial</>}</h2>
       <ul data-lg-reveal="fade" data-lg-reveal-stagger="0.15">
         <li>Agent IQ</li>
         <li>Chargeback Gurus</li>
       </ul>
     </div>
     <div class="clients-group">
-      <h2 class="h5">Food, Beverage &amp; Health</h2>
+      <h2 class="h5">{linkedIndustries.has("food-beverage-health") ? <a href="/work/?industry=food-beverage-health">Food, Beverage &amp; Health</a> : <>Food, Beverage &amp; Health</>}</h2>
       <ul data-lg-reveal="fade" data-lg-reveal-stagger="0.15">
         <li>Spring Water Spirits</li>
         <li>Hart’s Meat Market</li>
@@ -77,14 +88,14 @@ const schema = buildCollectionPageSchema(
       </ul>
     </div>
     <div class="clients-group">
-      <h2 class="h5">Government</h2>
+      <h2 class="h5">{linkedIndustries.has("government") ? <a href="/work/?industry=government">Government</a> : <>Government</>}</h2>
       <ul data-lg-reveal="fade" data-lg-reveal-stagger="0.15">
         <li>ReliAscent</li>
         <li>Technology Applications, Inc.</li>
       </ul>
     </div>
     <div class="clients-group">
-      <h2 class="h5">Home Services</h2>
+      <h2 class="h5">{linkedIndustries.has("home-services") ? <a href="/work/?industry=home-services">Home Services</a> : <>Home Services</>}</h2>
       <ul data-lg-reveal="fade" data-lg-reveal-stagger="0.15">
         <li>Miller Tree Care</li>
         <li>JD Oates Drywall</li>
@@ -92,7 +103,7 @@ const schema = buildCollectionPageSchema(
       </ul>
     </div>
     <div class="clients-group">
-      <h2 class="h5">Industrial / Safety</h2>
+      <h2 class="h5">{linkedIndustries.has("industrial-safety") ? <a href="/work/?industry=industrial-safety">Industrial / Safety</a> : <>Industrial / Safety</>}</h2>
       <ul data-lg-reveal="fade" data-lg-reveal-stagger="0.15">
         <li>Martin Supply</li>
         <li>Radians, Inc.</li>
@@ -102,7 +113,7 @@ const schema = buildCollectionPageSchema(
       </ul>
     </div>
     <div class="clients-group">
-      <h2 class="h5">Marketing Agencies</h2>
+      <h2 class="h5">{linkedIndustries.has("marketing-agencies") ? <a href="/work/?industry=marketing-agencies">Marketing Agencies</a> : <>Marketing Agencies</>}</h2>
       <ul data-lg-reveal="fade" data-lg-reveal-stagger="0.15">
         <li>ES Tech Group</li>
         <li>Nott Shots</li>
@@ -110,7 +121,7 @@ const schema = buildCollectionPageSchema(
       </ul>
     </div>
     <div class="clients-group">
-      <h2 class="h5">Media</h2>
+      <h2 class="h5">{linkedIndustries.has("media") ? <a href="/work/?industry=media">Media</a> : <>Media</>}</h2>
       <ul data-lg-reveal="fade" data-lg-reveal-stagger="0.15">
         <li>Odd Life Studios</li>
         <li>Root & Branch Films</li>
@@ -118,7 +129,7 @@ const schema = buildCollectionPageSchema(
       </ul>
     </div>
     <div class="clients-group">
-      <h2 class="h5">Medical</h2>
+      <h2 class="h5">{linkedIndustries.has("medical") ? <a href="/work/?industry=medical">Medical</a> : <>Medical</>}</h2>
       <ul data-lg-reveal="fade" data-lg-reveal-stagger="0.15">
         <li>Suncoast Obstetrics & Gynecology</li>
         <li>Citrus Gynecology</li>
@@ -126,7 +137,7 @@ const schema = buildCollectionPageSchema(
       </ul>
     </div>
     <div class="clients-group">
-      <h2 class="h5">Non-profit</h2>
+      <h2 class="h5">{linkedIndustries.has("non-profit") ? <a href="/work/?industry=non-profit">Non-profit</a> : <>Non-profit</>}</h2>
       <ul data-lg-reveal="fade" data-lg-reveal-stagger="0.15">
         <li>Murray Family Foundation</li>
         <li>Seven Rivers Church</li>
@@ -138,7 +149,7 @@ const schema = buildCollectionPageSchema(
       </ul>
     </div>
     <div class="clients-group">
-      <h2 class="h5">Real Estate / Construction</h2>
+      <h2 class="h5">{linkedIndustries.has("real-estate-construction") ? <a href="/work/?industry=real-estate-construction">Real Estate / Construction</a> : <>Real Estate / Construction</>}</h2>
       <ul data-lg-reveal="fade" data-lg-reveal-stagger="0.15">
         <li>Deals In Dirt</li>
         <li>Bluestone Construction</li>
@@ -149,7 +160,7 @@ const schema = buildCollectionPageSchema(
       </ul>
     </div>
     <div class="clients-group">
-      <h2 class="h5">Retail</h2>
+      <h2 class="h5">{linkedIndustries.has("retail") ? <a href="/work/?industry=retail">Retail</a> : <>Retail</>}</h2>
       <ul data-lg-reveal="fade" data-lg-reveal-stagger="0.15">
         <li>Beverlin Hills Quality Goods</li>
         <li>Mountaineer Coffee</li>
@@ -159,7 +170,7 @@ const schema = buildCollectionPageSchema(
       </ul>
     </div>
     <div class="clients-group">
-      <h2 class="h5">Security</h2>
+      <h2 class="h5">{linkedIndustries.has("security") ? <a href="/work/?industry=security">Security</a> : <>Security</>}</h2>
       <ul data-lg-reveal="fade" data-lg-reveal-stagger="0.15">
         <li>CDS Security</li>
         <li>Chas D West</li>
@@ -167,7 +178,7 @@ const schema = buildCollectionPageSchema(
       </ul>
     </div>
     <div class="clients-group">
-      <h2 class="h5">Software / Technology</h2>
+      <h2 class="h5">{linkedIndustries.has("software-technology") ? <a href="/work/?industry=software-technology">Software / Technology</a> : <>Software / Technology</>}</h2>
       <ul data-lg-reveal="fade" data-lg-reveal-stagger="0.15">
         <li>Appointedd</li>
         <li>Artisan Talent</li>
@@ -177,7 +188,7 @@ const schema = buildCollectionPageSchema(
       </ul>
     </div>
     <div class="clients-group">
-      <h2 class="h5">Venues &amp; Attractions</h2>
+      <h2 class="h5">{linkedIndustries.has("venues-attractions") ? <a href="/work/?industry=venues-attractions">Venues &amp; Attractions</a> : <>Venues &amp; Attractions</>}</h2>
       <ul data-lg-reveal="fade" data-lg-reveal-stagger="0.15">
         <li>Elev8 Fun</li>
         <li>Whitehead Farms</li>
