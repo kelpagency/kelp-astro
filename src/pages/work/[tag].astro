@@ -28,6 +28,10 @@ const posts = await fetchWpJsonRequired(
   `/work?per_page=100&tags=${id}&orderby=date&order=desc`,
   [] as Record<string, any>[],
 );
+const postsWithFeaturedImages = posts.filter(
+  (post): post is Record<string, any> & { fimg_url: string } =>
+    typeof post.fimg_url === "string" && post.fimg_url.length > 0,
+);
 ---
 
 <Layout title={title} description={description} bodyClass="work-archive">
@@ -73,7 +77,7 @@ const posts = await fetchWpJsonRequired(
         </select>
       </label>
       {
-        posts.map((post) => (
+        postsWithFeaturedImages.map((post) => (
           <article
             class="tease"
             data-tags={post.tags.join(",")}
