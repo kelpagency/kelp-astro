@@ -4,7 +4,8 @@ import heroSquid from "../assets/hero-squid-poster.png";
 import elev8Logo from "../assets/elev8-fun-logo-white.png";
 import marker48Logo from "../assets/m48-logo-white.png";
 import beverlinHillsLogo from "../assets/beverlin-hills-logo-white.png";
-import aNewGenerationLogo from "../assets/a-new-generation-logo-white.png";
+import lowmanLawFirmLogo from "../assets/lowman-law-firm-logo-white.png";
+import moninLogo from "../assets/monin-logo-white.png";
 
 const posterWidths = [350, 500, 640, 750, 1018];
 const heroPosters = await Promise.all(
@@ -178,15 +179,28 @@ const posterSrcSet = heroPosters
         </a>
       </li>
       <li>
-        <a href="/work/a-new-generation/" aria-label="View our work for A New Generation">
+        <a href="/work/lowman-law-firm/" aria-label="View our work for Lowman Law Firm">
           <img
             loading="lazy"
-            src={aNewGenerationLogo.src}
-            srcset={`${aNewGenerationLogo.src} ${aNewGenerationLogo.width}w`}
+            src={lowmanLawFirmLogo.src}
+            srcset={`${lowmanLawFirmLogo.src} ${lowmanLawFirmLogo.width}w`}
             sizes="auto"
-            width={aNewGenerationLogo.width}
-            height={aNewGenerationLogo.height}
-            alt="A New Generation"
+            width={lowmanLawFirmLogo.width}
+            height={lowmanLawFirmLogo.height}
+            alt="Lowman Law Firm"
+          />
+        </a>
+      </li>
+      <li>
+        <a href="/work/monin/" aria-label="View our work for MONIN">
+          <img
+            loading="lazy"
+            src={moninLogo.src}
+            srcset={`${moninLogo.src} ${moninLogo.width}w`}
+            sizes="auto"
+            width={moninLogo.width}
+            height={moninLogo.height}
+            alt="MONIN"
           />
         </a>
       </li>
@@ -351,7 +365,7 @@ const posterSrcSet = heroPosters
     }
     ul {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(5, minmax(0, 1fr));
       align-items: center;
       gap: clamp(1.5rem, 3vw, 3.5rem);
       margin: 0;
