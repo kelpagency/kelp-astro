@@ -194,6 +194,8 @@ const hasPosts = postsWithImages.length > 0;
       }
     }
     &-slider {
+      position: relative;
+      container-type: inline-size;
       max-width: 980px;
       margin: 4rem auto;
       > .recent-work-slider-item {
@@ -218,7 +220,7 @@ const hasPosts = postsWithImages.length > 0;
           align-items: flex-start;
           margin: 2rem 0;
           gap: 1rem 3rem;
-          @media (min-width: 767px) {
+          @media (min-width: 768px) {
             padding-right: 240px;
           }
           &-heading {
@@ -246,11 +248,11 @@ const hasPosts = postsWithImages.length > 0;
         display: flex;
         margin: 0 auto;
         position: absolute;
-        top: 0;
+        top: 0.75rem;
         right: 0;
         z-index: 1;
-        @media (min-width: 767px) {
-          top: 70%;
+        @media (min-width: 768px) {
+          top: calc(100cqw * 788 / 1400 + 2rem);
         }
         @media (max-width: 767px) {
           .button {
