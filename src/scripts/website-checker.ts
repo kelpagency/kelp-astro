@@ -104,7 +104,14 @@ function initChecker() {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(Object.fromEntries(['url', 'name', 'email'].map((key) => [key, values.get(key)]))),
         });
-        const data = await response.json();
+        if (!(response.headers.get('content-type') || '').includes('application/json')) {
+          throw new Error(['localhost', '127.0.0.1', '[::1]'].includes(window.location.hostname)
+            ? 'The local checker API is not running. Start npx netlify dev and open the URL it prints (usually port 8888).'
+            : 'The checker returned an unexpected response. Please try again shortly.');
+        }
+        const data = await response.json().catch(() => {
+          throw new Error('The checker returned an unreadable response. Please try again shortly.');
+        });
         if (!response.ok) {
           if (response.status === 429 && data.usage) showUsage(data.usage.used, data.usage.limit);
           throw new Error(data.error || 'The scan could not start. Please try again.');

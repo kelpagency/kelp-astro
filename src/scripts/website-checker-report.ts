@@ -9,7 +9,8 @@ function link(url: string, label = url) {
   } catch { return escape(label); }
 }
 function checks(items: Check[]) {
-  return `<ul class="checker-findings">${items.map((item) => `<li><small>${escape(item.status)}</small><strong>${escape(item.label)}</strong>${escape(item.detail)}${item.evidence?.length ? `<ul>${item.evidence.map((text) => `<li>${escape(text)}</li>`).join('')}</ul>` : ''}</li>`).join('')}</ul>`;
+  const symbols = { pass: '✓', warning: '!', fail: '×', info: 'i' };
+  return `<ul class="checker-findings">${items.map((item) => `<li><span class="checker-status" data-status="${escape(item.status)}" aria-label="${escape(item.status)}">${symbols[item.status]}</span><div><strong>${escape(item.label)}</strong><p>${escape(item.detail)}</p>${item.evidence?.length ? `<ul>${item.evidence.map((text) => `<li>${escape(text)}</li>`).join('')}</ul>` : ''}</div></li>`).join('')}</ul>`;
 }
 function scoreTone(score: number) {
   return score >= 80 ? 'good' : score >= 60 ? 'watch' : 'poor';
@@ -17,13 +18,25 @@ function scoreTone(score: number) {
 function scoreLabel(score: number) {
   return `<span class="checker-score-label" data-score-tone="${scoreTone(score)}">${score}/100</span>`;
 }
+function ring(score: number) {
+  return `<div class="checker-ring" data-score-tone="${scoreTone(score)}" style="--score:${score}"><div><strong>${score}</strong><small>/100</small></div></div>`;
+}
 function category(item: CategoryResult) {
-  return `<details><summary>${escape(item.label)} · ${scoreLabel(item.score)}</summary><p>${escape(item.summary)}</p><p class="checker-small">${item.source === 'ai' ? 'AI interpretation' : 'Objective / heuristic checks'}</p><ul>${item.evidence.map((text) => `<li>${escape(text)}</li>`).join('')}</ul>${checks(item.checks)}</details>`;
+  return `<details><summary>${escape(item.label)} · ${scoreLabel(item.score)}</summary><p>${escape(item.summary)}</p><p class="checker-small">${item.source === 'ai' ? 'AI interpretation' : 'Objective / heuristic checks'}</p><h4>Evidence</h4><ul>${item.evidence.map((text) => `<li>${escape(text)}</li>`).join('')}</ul><h4>Measured checks</h4>${checks(item.checks)}</details>`;
 }
-function links(title: string, items: LinkResult[]) {
-  return `<details><summary>${escape(title)} · ${items.length}</summary>${items.length ? `<ul class="checker-findings">${items.map((item) => `<li><strong>${link(item.url)}</strong><small>${escape(item.kind)} · HTTP ${item.status ?? 'Unavailable'}</small>${item.redirects.length ? `<p>${item.redirects.length} redirect hop(s) → ${link(item.finalUrl)}</p>` : ''}${item.error ? `<p>${escape(item.error)}</p>` : ''}<p>Found on:</p><ul>${item.sourceUrls.map((url) => `<li>${link(url)}</li>`).join('')}</ul></li>`).join('')}</ul>` : '<p>No destinations in this group were found in the links checked.</p>'}</details>`;
+function links(title: string, items: LinkResult[], tone: string) {
+  function row(item: LinkResult) {
+    const sources = item.sourceUrls;
+    return `<article class="checker-link-row"><span class="checker-http" data-link-tone="${tone}">${item.redirects.length ? `${item.redirects[0].status} → ` : ''}${item.status ?? 'ERR'}</span><div><strong>${link(item.url)}</strong><small>${escape(item.kind)} link</small>${item.redirects.length ? `<p>${item.redirects.length} redirect hop(s) → ${link(item.finalUrl)}</p>` : ''}${item.error ? `<p>${escape(item.error)}</p>` : ''}<p class="checker-small">Found on</p><ul>${sources.slice(0, 3).map((url) => `<li>${link(url)}</li>`).join('')}</ul>${sources.length > 3 ? `<details><summary>See all ${sources.length} source pages</summary><ul>${sources.slice(3).map((url) => `<li>${link(url)}</li>`).join('')}</ul></details>` : ''}</div></article>`;
+  }
+  return `<section class="checker-link-section"><h3>${escape(title)} <span>${items.length}</span></h3>${items.length ? items.slice(0, 8).map(row).join('') + (items.length > 8 ? `<details><summary>See all ${items.length} links</summary>${items.slice(8).map(row).join('')}</details>` : '') : '<p class="checker-empty">✓ Nothing in this group needs attention from the URLs checked.</p>'}</section>`;
 }
-
+function panel(id: string, title: string, intro: string, score: number, summary: string, items: Check[], facts: string[]) {
+  return section(id, `<div class="checker-panel-heading"><div><p class="checker-eyebrow">${escape(title)}</p><h2>${escape(intro)}</h2><p>${escape(summary)}</p></div>${ring(score)}</div><div class="checker-panel-body"><div><h3>What we checked</h3>${checks(items)}</div><aside><h3>At a glance</h3>${facts.map((fact) => `<p>${escape(fact)}</p>`).join('')}</aside></div>`);
+}
+function section(id: string, content: string) {
+  return `<section id="checker-panel-${id}" class="checker-tab-panel" role="tabpanel" aria-labelledby="checker-tab-${id}" tabindex="0" ${id === 'findings' ? '' : 'hidden'}>${content}</section>`;
+}
 function renderReport(audit: PublicAuditRecord) {
   const analysis = audit.analysis!;
   const crawl = audit.crawl!;
@@ -42,36 +55,48 @@ function renderReport(audit: PublicAuditRecord) {
   const forms = pages.filter((page) => page.signals.hasForm).length;
   const contacts = pages.filter((page) => page.signals.emails.length || page.signals.phones.length).length;
   const trust = pages.filter((page) => page.signals.trustTerms.length).length;
+  const jsonLd = pages.filter((page) => page.schemaTypes.length).length;
+  const schemaTypes = [...new Set(pages.flatMap((page) => page.schemaTypes))];
   const conversion = Math.min(100, (ctas ? 25 : 0) + (forms || contacts ? 25 : 0) + (service.score >= 66 ? 20 : service.score >= 33 ? 10 : 0) + (trust ? 15 : 0) + (contacts ? 15 : 0));
   const health = Math.max(0, Math.round(100 - (broken.length / Math.max(crawl.links.length, 1)) * 100 - (review.length / Math.max(crawl.links.length, 1)) * 50 - (redirected.length / Math.max(crawl.links.length, 1)) * 20));
+  const titles = pages.filter((page) => page.title).length;
+  const h1s = pages.filter((page) => page.h1.length === 1).length;
+  const conversionSummary = conversion >= 80 ? 'The next step is easy to spot.' : conversion >= 60 ? 'The path is there, but it could be clearer.' : 'Visitors may struggle to know what to do next.';
   const cards = [
-    ['Link health', health, `${broken.length} confirmed 404s · ${redirected.length} redirects · ${review.length} need review`],
-    ['AI search', aiScore, analysis.ai.enabled ? 'AI content interpretation with objective checks.' : 'Content clarity based on objective and heuristic checks.'],
-    ['Technical SEO', technical.score, technical.summary], ['Local SEO', local.score, local.summary],
-    ['Conversion', conversion, `${ctas} pages with calls to action · ${forms} with forms · ${trust} with trust signals`],
-    ['Schema', schema.score, schema.summary],
+    { id: 'links', title: 'Link health', icon: '↗', score: health, summary: broken.length ? `${broken.length} confirmed 404s.` : 'No broken links found.', detail: `${redirected.length} redirects · ${review.length} need review` },
+    { id: 'ai', title: 'AI Search', icon: '◎', score: aiScore, summary: aiScore >= 80 ? 'The business is mostly easy to understand.' : aiScore >= 60 ? 'The basics are there, with some gaps.' : 'Important business details are hard to pin down.', detail: `${find('businessClarity').score} business clarity · ${service.score} service clarity` },
+    { id: 'technical', title: 'Technical SEO', icon: '⚙', score: technical.score, summary: technical.summary, detail: `${titles}/${pages.length} titles · ${h1s}/${pages.length} pages with one H1` },
+    { id: 'local', title: 'Local SEO', icon: '⌖', score: local.score, summary: local.summary, detail: `${contacts} pages with contact details` },
+    { id: 'conversion', title: 'Conversion', icon: '➚', score: conversion, summary: conversionSummary, detail: `${ctas} pages with a clear CTA · ${forms} with a form` },
+    { id: 'schema', title: 'Schema', icon: '⌘', score: schema.score, summary: schema.summary, detail: `${jsonLd}/${pages.length} pages include JSON-LD` },
   ];
-  const overall = Math.round((health + aiScore + technical.score + local.score + conversion + schema.score) / 6);
+  const overall = Math.round(cards.reduce((sum, card) => sum + card.score, 0) / cards.length);
   const conversionChecks: Check[] = [
     { id: 'cta', label: 'Clear calls to action', status: ctas ? 'pass' : 'fail', detail: `${ctas} pages contain a booking, contact, quote, call, or purchase link.` },
     { id: 'contact', label: 'Forms or direct contact', status: forms || contacts ? 'pass' : 'fail', detail: `${forms} pages contain forms; ${contacts} contain phone or email details.` },
-    { id: 'services', label: 'Service explanation', status: service.score >= 66 ? 'pass' : 'warning', detail: service.summary },
-    { id: 'trust', label: 'Trust signals', status: trust ? 'pass' : 'warning', detail: `${trust} pages contain proof or trust language.` },
+    { id: 'services', label: 'Service explanation', status: service.score >= 66 ? 'pass' : service.score >= 33 ? 'warning' : 'fail', detail: service.summary },
+    { id: 'trust', label: 'Trust signals', status: trust ? 'pass' : 'warning', detail: `${trust} pages contain testimonials, reviews, credentials, guarantees, or other trust language.` },
   ];
-  return `<div class="checker-report-header"><div><p class="checker-eyebrow">Your website / The findings</p><h1>${escape(audit.lead.company || new URL(crawl.finalRootUrl).hostname)}</h1><p>${link(crawl.finalRootUrl)}</p><button class="button checker-save" data-save-report>Save report as PDF</button></div><div class="checker-overall" data-score-tone="${scoreTone(overall)}"><strong class="checker-score">${overall}<small>/100</small></strong><p>Overall readiness</p></div></div>
-    <div class="checker-stats">${[[analysis.summary.pagesCrawled, 'Pages crawled'], [analysis.summary.linksChecked, 'Links checked'], [broken.length, 'Confirmed 404s'], [redirected.length, 'Redirects'], [review.length, 'Need review']].map(([value, label]) => `<div><strong>${value}</strong>${label}</div>`).join('')}</div>
-    <h2>Our findings.</h2><div class="checker-report-grid">${cards.map(([title, score, detail]) => `<article data-score-tone="${scoreTone(Number(score))}"><h3 class="h5">${title}</h3><strong class="checker-score">${score}</strong><p>${escape(detail)}</p></article>`).join('')}</div>
-    <h2 class="h4">Where to focus first</h2>${analysis.recommendations.length ? `<ol>${analysis.recommendations.map((item) => `<li><strong>${escape(item.title)}</strong> <small>(${escape(item.priority)} priority · ${escape(item.source)})</small><p>${escape(item.detail)}</p></li>`).join('')}</ol>` : '<p>No additional recommendations from the pages checked.</p>'}
-    <section class="checker-cta"><div><p class="checker-eyebrow">Your next step</p><h2>Let’s turn the findings<br /><em>into a plan.</em></h2><p>We’ll walk through your report together and help you decide what to tackle first.</p></div><div><button class="button button--green" data-share-report>Schedule a meeting with Kelp</button><p class="checker-small">Bring your findings. We’ll help you prioritize the next steps.</p><p data-share-message role="status"></p></div></section>
-    <h2 class="h4">The evidence behind the checks</h2>
-    ${links('Confirmed 404s', broken)}${links('Redirected links', redirected)}${links('Links needing manual review', review)}
-    <details><summary>AI search · ${scoreLabel(aiScore)}</summary><p>${escape(analysis.ai.note)}</p>${ai.map(category).join('')}</details>
-    ${category({ ...technical, checks: [...technical.checks, ...[
-      ['Page titles', pages.filter((page) => page.title).length], ['Meta descriptions', pages.filter((page) => page.description).length], ['One clear H1', pages.filter((page) => page.h1.length === 1).length],
-    ].map(([label, count]) => ({ id: String(label), label: String(label), status: (count === pages.length ? 'pass' : 'warning') as Check['status'], detail: `${count} of ${pages.length} pages.` }))] })}
-    ${category(local)}<details><summary>Conversion · ${scoreLabel(conversion)}</summary>${checks(conversionChecks)}</details>${category(schema)}
-    <details><summary>Crawl details · ${crawl.pages.length} pages</summary><p>robots.txt: ${crawl.robots.found ? 'found' : 'not found'} · sitemap: ${crawl.sitemap.found ? 'found' : 'not found'} · 50-page limit: ${crawl.limitReached ? 'reached' : 'not reached'}</p><div class="checker-table-wrap"><table><thead><tr><th>Page</th><th>Status</th><th>Title</th><th>Words</th><th>Schema</th></tr></thead><tbody>${crawl.pages.map((page) => `<tr><td>${link(page.url)}</td><td>${page.status}</td><td>${escape(page.title)}</td><td>${page.wordCount}</td><td>${escape(page.schemaTypes.join(', ') || 'None found')}</td></tr>`).join('')}</tbody></table></div>${crawl.errors.length ? `<ul>${crawl.errors.map((error) => `<li>${escape(error)}</li>`).join('')}</ul>` : ''}</details>
-    <p class="checker-small">Scores are a starting point based on the public pages we reached. Objective checks and AI interpretation are labeled separately. ${escape(analysis.ai.note)}</p>`;
+  const tabs = [['findings', 'Findings'], ['ai', 'AI Search'], ['links', `Link health (${broken.length})`], ['technical', 'Technical SEO'], ['local', 'Local SEO'], ['conversion', 'Conversion'], ['schema', 'Schema'], ['pages', 'Crawl details']];
+  return `<div class="checker-report-header"><div><p class="checker-eyebrow">Website audit / ${escape(audit.id.slice(0, 8))}</p><h1>${escape(audit.lead.company || new URL(crawl.finalRootUrl).hostname)}</h1><p>${link(crawl.finalRootUrl)}</p></div><div class="checker-overview">${ring(overall)}<div><p class="checker-eyebrow">Overall readiness</p><strong>${overall >= 80 ? 'Strong foundation' : overall >= 60 ? 'Clear opportunities' : 'Needs attention'}</strong><p>A blended view of all six website checks.</p><details class="checker-score-help"><summary>How is this calculated?</summary><p>The overall score is the average of Link Health, AI Search, Technical SEO, Local SEO, Conversion, and Schema. Green: 80–100; amber: 60–79; red: below 60.</p></details></div></div></div>
+    <div class="checker-report-actions"><a class="button checker-save" href="/website-checker/">Check another site <span data-report-usage></span></a><button class="button button--green" data-share-report>Share with Kelp + schedule a meeting ↗</button><button class="button checker-save" data-save-report>Save report as PDF</button></div>
+    <div class="checker-stats">${[[analysis.summary.pagesCrawled, 'Pages crawled'], [analysis.summary.linksChecked, 'Unique links checked'], [broken.length, 'Confirmed 404s'], [redirected.length, 'Redirected links'], [review.length, 'Need review'], [jsonLd, 'Pages with JSON-LD']].map(([value, label]) => `<div><strong>${value}</strong>${label}</div>`).join('')}</div>
+    <nav class="checker-tabs" role="tablist" aria-label="Audit report sections">${tabs.map(([id, label]) => `<button type="button" role="tab" id="checker-tab-${id}" aria-controls="checker-panel-${id}" aria-selected="${id === 'findings'}" tabindex="${id === 'findings' ? 0 : -1}" data-report-tab="${id}">${escape(label)}</button>`).join('')}</nav>
+    ${section('findings', `<div class="checker-findings-heading"><div><p class="checker-eyebrow">The full website read</p><h2>Our findings.</h2></div><p>Start with the big picture, then open any checker for the evidence behind its score.</p></div><div class="checker-report-grid">${cards.map((card) => `<button type="button" class="checker-finding-card" data-open-report="${card.id}" data-score-tone="${scoreTone(card.score)}"><span class="checker-finding-icon" aria-hidden="true">${card.icon}</span><span class="checker-finding-label">${card.title}</span><strong class="checker-score">${card.score}<small>/100</small></strong><strong>${escape(card.summary)}</strong><p>${escape(card.detail)}</p><span class="checker-finding-link">See the full check →</span></button>`).join('')}</div><h3>Where to focus first</h3>${analysis.recommendations.length ? `<ol>${analysis.recommendations.map((item) => `<li><strong>${escape(item.title)}</strong><small>${escape(item.priority)} priority · ${escape(item.source)}</small><p>${escape(item.detail)}</p></li>`).join('')}</ol>` : '<p>No additional recommendations from the pages checked.</p>'}`)}
+    ${section('ai', `<p class="checker-eyebrow">Checker 02 / AI Search</p><h2>What machines can confidently understand.</h2><p>Scores surface gaps. Open each category to see the evidence behind it.</p><p class="checker-small">${escape(analysis.ai.note)}</p>${analysis.categories.map(category).join('')}`)}
+    ${section('links', `<p class="checker-eyebrow">Checker 01 / Link Health</p><h2>Dead ends & detours.</h2><p>A link is labeled broken only when its destination returns HTTP 404. Redirects and responses needing manual review are shown separately.</p><div class="checker-link-stats">${[[broken.length, 'Broken links', 'Confirmed not-found destinations.'], [redirected.length, 'Redirected links', 'Destinations reached through one or more 3xx hops.'], [review.length, 'Needs review', 'Non-404 errors, timeouts, or blocked requests.']].map(([count, label, detail]) => `<article><h3>${label}</h3><strong>${count}</strong><p>${detail}</p></article>`).join('')}</div>${links('Confirmed 404s', broken, 'broken')}${links('Redirected links', redirected, 'redirect')}${links('Needs manual review', review, 'review')}`)}
+    ${panel('technical', 'Checker 03 / Technical SEO', 'Can search engines read the site cleanly?', technical.score, technical.summary, [...technical.checks, ...[
+      ['Page titles', titles], ['Meta descriptions', pages.filter((page) => page.description).length], ['One clear H1', h1s],
+    ].map(([label, count]) => ({ id: String(label), label: String(label), status: (count === pages.length ? 'pass' : Number(count) / Math.max(pages.length, 1) >= .66 ? 'warning' : 'fail') as Check['status'], detail: `${count} of ${pages.length} crawled pages.` }))], [`${pages.length} pages reviewed`, `${broken.filter((item) => item.kind === 'internal').length} internal 404s`, `${redirected.filter((item) => item.kind === 'internal').length} internal redirects`])}
+    ${panel('local', 'Checker 04 / Local SEO', 'Is it clear where you work?', local.score, local.summary, [...local.checks,
+      { id: 'contact', label: 'Phone or email', status: contacts ? 'pass' : 'fail', detail: `${contacts} pages include phone or email details.` },
+      { id: 'business-schema', label: 'Local business details', status: schemaTypes.some((type) => /LocalBusiness|Organization/i.test(type)) ? 'pass' : 'warning', detail: schemaTypes.some((type) => /LocalBusiness|Organization/i.test(type)) ? 'Organization or LocalBusiness schema was found.' : 'No Organization or LocalBusiness schema was found.' },
+    ], [`${pages.filter((page) => page.signals.hasLocationLanguage).length} pages mention a location or service area`, `${pages.filter((page) => page.signals.hasAddress).length} pages include an address`, `${contacts} pages include contact details`])}
+    ${panel('conversion', 'Checker 05 / Conversion', 'Does the site make the next step obvious?', conversion, conversionSummary, conversionChecks, [`${ctas} pages with a clear CTA`, `${forms} pages with a form`, `${trust} pages with trust signals`])}
+    ${panel('schema', 'Checker 06 / Schema', 'Are the important facts machine-readable?', schema.score, schema.summary, schema.checks, [`${jsonLd} pages include JSON-LD`, schemaTypes.length ? `Types found: ${schemaTypes.join(', ')}` : 'No schema types found', `${pages.filter((page) => page.schemaTypes.includes('Invalid JSON-LD')).length} pages contain invalid JSON-LD`])}
+    ${section('pages', `<p class="checker-eyebrow">Shared crawl record</p><h2>One crawl, six useful checks.</h2><p>These are the pages and crawl signals behind your report.</p><div class="checker-link-stats"><article><h3>robots.txt</h3><strong>${crawl.robots.found ? 'Found' : 'Not found'}</strong><p>OAI-SearchBot: ${crawl.robots.oaiSearchBotAllowed ? 'allowed' : 'blocked'}<br>Googlebot: ${crawl.robots.googlebotAllowed ? 'allowed' : 'blocked'}</p></article><article><h3>sitemap.xml</h3><strong>${crawl.sitemap.found ? 'Found' : 'Not found'}</strong><p>${crawl.sitemap.urlsFound} URLs discovered</p></article><article><h3>Crawl limit</h3><strong>${crawl.limitReached ? 'Reached' : 'Not reached'}</strong><p>Maximum 50 pages per check</p></article></div><div class="checker-table-wrap"><table><thead><tr><th>Page</th><th>Status</th><th>Title / H1</th><th>Words</th><th>Schema</th></tr></thead><tbody>${crawl.pages.map((page) => `<tr><td>${link(page.url)}</td><td>${page.status}</td><td>${escape(page.title || page.h1[0] || 'Untitled')}</td><td>${page.wordCount}</td><td>${escape(page.schemaTypes.join(', ') || 'None found')}</td></tr>`).join('')}</tbody></table></div>${crawl.errors.length ? `<details><summary>${crawl.errors.length} non-fatal crawl notes</summary><ul>${crawl.errors.map((error) => `<li>${escape(error)}</li>`).join('')}</ul></details>` : ''}`)}
+    <section class="checker-cta"><div><p class="checker-eyebrow">Your next step</p><h2>Let’s turn the findings<br /><em>into a plan.</em></h2><p>Share your report with Kelp and grab a time that works. We’ll help you decide what to tackle first.</p></div><div><button class="button button--green" data-share-report>Share with Kelp + schedule a meeting ↗</button><p class="checker-small">Bring your findings. We’ll help you prioritize the next steps.</p></div></section><p data-share-message role="status"></p>
+    <p class="checker-small">Think of these scores as a useful starting point based on the public pages we reached. Objective checks and AI interpretation are labeled separately. ${escape(analysis.ai.note)}</p>`;
 }
 
 function initReport() {
@@ -115,26 +140,86 @@ function initReport() {
       }
       message.textContent = audit.progressMessage;
       progress.value = Math.max(0, Math.min(100, audit.progress));
+      const progressNumber = root.querySelector<HTMLElement>('[data-progress-number]');
+      if (progressNumber) progressNumber.textContent = `${Math.round(progress.value)}%`;
+      const stages = ['queued', 'crawling', 'analyzing', 'complete'];
+      root.querySelectorAll<HTMLElement>('[data-stage]').forEach((stage) => {
+        const index = stages.indexOf(stage.dataset.stage!);
+        const current = stages.indexOf(audit.status);
+        stage.dataset.state = index < current ? 'done' : index === current ? 'active' : 'waiting';
+        if (index === current) stage.setAttribute('aria-current', 'step');
+        else stage.removeAttribute('aria-current');
+      });
       if (audit.status === 'failed') { message.textContent = audit.error || 'The scan stopped before it finished. Please try another website.'; progress.hidden = true; return; }
       if (audit.status === 'complete' && audit.crawl && audit.analysis) {
         results.innerHTML = renderReport(audit);
         status.hidden = true;
-        root.querySelector<HTMLButtonElement>('[data-save-report]')!.addEventListener('click', () => {
-          const closed = [...root.querySelectorAll('details')].filter((item) => !item.open);
-          closed.forEach((item) => { item.open = true; });
-          window.addEventListener('afterprint', () => closed.forEach((item) => { item.open = false; }), { once: true });
-          window.print();
+        const tabs = [...root.querySelectorAll<HTMLButtonElement>('[data-report-tab]')];
+        function selectTab(id: string, focus = false) {
+          tabs.forEach((tab) => {
+            const active = tab.dataset.reportTab === id;
+            tab.setAttribute('aria-selected', String(active));
+            tab.tabIndex = active ? 0 : -1;
+            if (active && focus) tab.focus();
+          });
+          root.querySelectorAll<HTMLElement>('[role="tabpanel"]').forEach((panel) => {
+            panel.hidden = panel.id !== `checker-panel-${id}`;
+          });
+        }
+        tabs.forEach((tab, index) => {
+          tab.addEventListener('click', () => selectTab(tab.dataset.reportTab!));
+          tab.addEventListener('keydown', (event) => {
+            const next = event.key === 'ArrowRight' ? (index + 1) % tabs.length
+              : event.key === 'ArrowLeft' ? (index + tabs.length - 1) % tabs.length
+              : event.key === 'Home' ? 0 : event.key === 'End' ? tabs.length - 1 : -1;
+            if (next < 0) return;
+            event.preventDefault();
+            selectTab(tabs[next].dataset.reportTab!, true);
+          });
         });
-        root.querySelector<HTMLButtonElement>('[data-share-report]')!.addEventListener('click', async (event) => {
-          const button = event.currentTarget as HTMLButtonElement;
+        root.querySelectorAll<HTMLButtonElement>('[data-open-report]').forEach((button) => {
+          button.addEventListener('click', () => {
+            selectTab(button.dataset.openReport!, true);
+            root.querySelector('.checker-tabs')?.scrollIntoView({ block: 'start', behavior: 'smooth' });
+          });
+        });
+        let closedForPrint: HTMLDetailsElement[] = [];
+        const beforePrint = () => {
+          closedForPrint = [...root.querySelectorAll('details')].filter((item) => !item.open);
+          closedForPrint.forEach((item) => { item.open = true; });
+        };
+        const afterPrint = () => {
+          closedForPrint.forEach((item) => { item.open = false; });
+          closedForPrint = [];
+        };
+        window.addEventListener('beforeprint', beforePrint);
+        window.addEventListener('afterprint', afterPrint);
+        document.addEventListener('astro:before-swap', () => {
+          window.removeEventListener('beforeprint', beforePrint);
+          window.removeEventListener('afterprint', afterPrint);
+        }, { once: true });
+        root.querySelector<HTMLButtonElement>('[data-save-report]')!.addEventListener('click', () => window.print());
+        const shareButtons = [...root.querySelectorAll<HTMLButtonElement>('[data-share-report]')];
+        shareButtons.forEach((button) => button.addEventListener('click', async () => {
           const feedback = root.querySelector<HTMLElement>('[data-share-message]')!;
-          button.disabled = true;
+          shareButtons.forEach((item) => { item.disabled = true; });
+          feedback.textContent = 'Sharing your report with Kelp…';
           try {
             const response = await fetch(`/api/website-checker/${id}/share`, { method: 'POST', signal: controller.signal });
             if (!response.ok) throw new Error('Your report could not be shared. Please try again.');
             window.location.assign('https://store.kelp.agency/meetings/andrew1417');
-          } catch (error) { feedback.textContent = error instanceof Error ? error.message : 'Could not share your report.'; button.disabled = false; }
-        });
+          } catch (error) {
+            feedback.textContent = error instanceof Error ? error.message : 'Could not share your report.';
+            shareButtons.forEach((item) => { item.disabled = false; });
+          }
+        }));
+        void fetch('/api/website-checker', { cache: 'no-store', signal: controller.signal })
+          .then(async (response) => response.ok ? response.json() : null)
+          .then((data) => {
+            if (Number.isFinite(data?.usage?.used) && Number.isFinite(data?.usage?.limit)) {
+              root.querySelector<HTMLElement>('[data-report-usage]')!.textContent = `· ${data.usage.used}/${data.usage.limit} used`;
+            }
+          }).catch(() => undefined);
         return;
       }
       errors = 0;

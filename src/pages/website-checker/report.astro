@@ -12,6 +12,13 @@ import '../../styles/pages/website-checker.scss';
       <h1>We’re reading<br /><em>your website.</em></h1>
       <p data-report-message>Loading your report…</p>
       <progress max="100" value="0" data-report-progress aria-label="Website scan progress"></progress>
+      <p class="checker-progress-number" data-progress-number>0%</p>
+      <ol class="checker-progress-steps" data-progress-steps aria-label="Scan stages">
+        <li data-stage="queued">Create your website check</li>
+        <li data-stage="crawling">Crawl pages and links</li>
+        <li data-stage="analyzing">Run the six website checks</li>
+        <li data-stage="complete">Build your report</li>
+      </ol>
       <p class="checker-small">You can leave this page and return to this link when your report is ready.</p>
     </div>
     <div data-report-results></div>
