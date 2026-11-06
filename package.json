@@ -18,6 +18,7 @@
   "dependencies": {
     "@astrojs/rss": "^4.0.19",
     "@astrojs/sitemap": "^3.7.4",
+    "@fortawesome/free-solid-svg-icons": "^7.3.1",
     "@waaark/luge": "0.6.20-beta",
     "astro": "^7.4.5",
     "autoprefixer": "^10.6.2",

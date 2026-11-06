@@ -180,3 +180,9 @@
   .checker-progress-steps li[data-state="active"] { color: var(--purple); font-weight: 700; }
   .checker-progress-steps li[data-state="done"] { color: #218018; }
 }
+.checker-report {
+  .checker-finding-icon svg { width: 20px; height: 20px; }
+  .checker-status svg { width: 13px; height: 13px; }
+  .checker-empty svg, .checker-finding-link svg, [data-share-report] svg { display: inline-block; width: 1em; height: 1em; vertical-align: -.125em; }
+  .checker-finding-link svg, [data-share-report] svg { margin-left: .35em; }
+}
