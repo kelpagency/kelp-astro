@@ -3,7 +3,7 @@
 import FeaturedArticles from "../../components/FeaturedArticles.astro";
 import Layout from "../../Base.astro";
 import BlogSingleSidebar from "../../components/BlogSingleSidebar.astro";
-import { Picture } from "astro:assets";
+import WpImage from "../../components/WpImage.astro";
 import readingTime from "reading-time";
 import {
   sanitizeHtml,
@@ -138,7 +138,7 @@ const safeContent = sanitizeHtml(content);
         <span>{readingTime(content).text}</span>
       </p>
       <div transition:name={`hero-${id}`}>
-        <Picture
+        <WpImage
           src={image}
           alt={cleanTitle}
           width={1600}
@@ -146,7 +146,6 @@ const safeContent = sanitizeHtml(content);
           widths={[720, 1080, 1440, 1600]}
           sizes="(max-width: 960px) 100vw, 900px"
           priority
-          inferSize
         />
       </div>
       <div class="single-article-content" set:html={safeContent} />

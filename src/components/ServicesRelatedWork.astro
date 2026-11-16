@@ -1,5 +1,5 @@
 ---
-import { Picture } from "astro:assets";
+import WpImage from "./WpImage.astro";
 import { fetchWpJson } from "../lib/wp";
 import { sanitizeTitleHtml, toPlainText } from "../lib/sanitize";
 
@@ -81,7 +81,7 @@ const postsWithImages = resolvedPosts.filter((post) =>
         </svg>
         {postsWithImages.map((post) => (
           <article>
-            <Picture
+            <WpImage
               src={(post.heroImageUrl || post.fimg_url) as string}
               loading="lazy"
               alt={toPlainText(post.title.rendered)}
@@ -89,7 +89,6 @@ const postsWithImages = resolvedPosts.filter((post) =>
               height={720}
               widths={[480, 720, 960, 1280]}
               sizes="(max-width: 767px) 100vw, (max-width: 1200px) 50vw, 640px"
-              inferSize
             />
             <h3
               class="h5"

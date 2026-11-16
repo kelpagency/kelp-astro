@@ -1,6 +1,6 @@
 ---
 import Layout from "../../Base.astro";
-import { Picture } from "astro:assets";
+import WpImage from "../../components/WpImage.astro";
 import { fetchWpJsonRequired, getWpTags } from "../../lib/wp";
 import {
   sanitizeHtml,
@@ -86,7 +86,7 @@ const postsWithFeaturedImages = posts.filter(
             data-lg-reveal-stagger="0.2"
           >
             <a href={`/work/${post.slug}/`} class="media">
-              <Picture
+              <WpImage
                 src={post.fimg_url}
                 alt={toPlainText(post.title.rendered)}
                 width={1200}
@@ -94,7 +94,6 @@ const postsWithFeaturedImages = posts.filter(
                 widths={[480, 720, 960, 1200]}
                 sizes="(max-width: 900px) 100vw, 50vw"
                 loading="lazy"
-                inferSize
               />
             </a>
             <div class="text">

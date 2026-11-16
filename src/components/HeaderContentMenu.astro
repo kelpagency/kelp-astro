@@ -1,4 +1,5 @@
 ---
+import { toJetpackImageUrl } from "../lib/jetpack";
 import { fetchWpJsonCached } from "../lib/wp";
 import { toPlainText } from "../lib/sanitize";
 interface Props {
@@ -47,8 +48,8 @@ const sources = Object.values(media?.media_details?.sizes ?? {}) as {
 const srcset =
   sources
     .filter((image) => image.source_url && image.width)
-    .map((image) => `${image.source_url} ${image.width}w`)
-    .join(", ") || `${src} ${width}w`;
+    .map((image) => `${toJetpackImageUrl(image.source_url)} ${image.width}w`)
+    .join(", ") || `${toJetpackImageUrl(src)} ${width}w`;
 ---
 
 <ul
@@ -85,7 +86,7 @@ const srcset =
         {src && (
           <img
             loading="lazy"
-            src={src}
+            src={toJetpackImageUrl(src)}
             srcset={srcset}
             sizes="auto"
             width={width}

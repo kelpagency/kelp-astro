@@ -1,6 +1,6 @@
 ---
 import Layout from "../../Base.astro";
-import { Picture } from "astro:assets";
+import WpImage from "../../components/WpImage.astro";
 import { fetchWpJsonRequired, getWpTags } from "../../lib/wp";
 import { buildCollectionPageSchema, buildItemList } from "../../lib/schema";
 import { sanitizeTitleHtml, toPlainText } from "../../lib/sanitize";
@@ -123,7 +123,7 @@ const schema = buildCollectionPageSchema(
           class={`tease ${post.isLandscape ? "tease--wide" : ""}`}
           data-tags={post.tags.join(",")}
         >
-          <Picture
+          <WpImage
             src={post.fimg_url as string}
             alt={toPlainText(post.title.rendered)}
             width={1200}
@@ -135,7 +135,6 @@ const schema = buildCollectionPageSchema(
                 : "(max-width: 900px) 100vw, 33vw"
             }
             loading="lazy"
-            inferSize
           />
           <ul class="tease-tags">
             {post.tagNames?.map((tagName) => (

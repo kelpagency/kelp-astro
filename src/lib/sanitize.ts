@@ -1,4 +1,5 @@
 import sanitize from "sanitize-html";
+import { toJetpackImageUrl, toJetpackSrcset } from "./jetpack";
 
 const richContentTags = [
   ...sanitize.defaults.allowedTags,
@@ -119,6 +120,21 @@ export function sanitizeHtml(input = "") {
       "docs.google.com",
     ],
     transformTags: {
+      img: (_tagName, attributes) => ({
+        tagName: "img",
+        attribs: {
+          ...attributes,
+          ...(attributes.src ? { src: toJetpackImageUrl(attributes.src)! } : {}),
+          ...(attributes.srcset ? { srcset: toJetpackSrcset(attributes.srcset) } : {}),
+        },
+      }),
+      source: (_tagName, attributes) => ({
+        tagName: "source",
+        attribs: {
+          ...attributes,
+          ...(attributes.srcset ? { srcset: toJetpackSrcset(attributes.srcset) } : {}),
+        },
+      }),
       a: (_tagName, attributes) => {
         if (attributes.href) {
           attributes.href = normalizeSiteLink(attributes.href);

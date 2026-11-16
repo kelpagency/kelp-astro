@@ -1,0 +1,46 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { toJetpackImageUrl } from "../lib/jetpack";
+
+interface Props extends Omit<
+  HTMLAttributes<"img">,
+  "src" | "width" | "height"
+> {
+  src: string;
+  width: number | string;
+  height: number | string;
+  widths?: number[];
+  priority?: boolean;
+}
+
+const {
+  src,
+  width,
+  height,
+  widths = [],
+  priority,
+  ...attributes
+} = Astro.props;
+const imageUrl = (size: number | string) =>
+  toJetpackImageUrl(
+    src,
+    `resize=${size},${Math.round((Number(size) * Number(height)) / Number(width))}&quality=80&ssl=1`,
+  )!;
+---
+
+<picture>
+  <img
+    {...attributes}
+    src={imageUrl(width)}
+    srcset={
+      widths.length
+        ? widths.map((size) => `${imageUrl(size)} ${size}w`).join(", ")
+        : undefined
+    }
+    width={width}
+    height={height}
+    loading={priority ? "eager" : (attributes.loading ?? "lazy")}
+    fetchpriority={priority ? "high" : attributes.fetchpriority}
+    decoding="async"
+  />
+</picture>

@@ -1,5 +1,5 @@
 ---
-import { Picture } from "astro:assets";
+import WpImage from "./WpImage.astro";
 import BlogPostMeta from "./BlogPostMeta.astro";
 import { getWpCategories } from "../lib/wp";
 import { isVisibleBlogCategory } from "../lib/blog";
@@ -33,7 +33,7 @@ const categoryName = post.categories
     class="media"
     transition:name={`hero-${post.id}`}
   >
-    <Picture
+    <WpImage
       src={post.fimg_url}
       alt={toPlainText(post.title.rendered)}
       width={1200}
@@ -41,7 +41,6 @@ const categoryName = post.categories
       widths={[480, 720, 960, 1200]}
       sizes="(max-width: 890px) 100vw, (max-width: 1300px) 50vw, 33vw"
       loading="lazy"
-      inferSize
     />
   </a>
   <div class="text">

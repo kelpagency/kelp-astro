@@ -3,7 +3,7 @@ import Layout from "../../Base.astro";
 import FeaturedArticles from "../../components/FeaturedArticles.astro";
 import "../../styles/pages/_wordpress.scss";
 import sharp from "sharp";
-import { Picture } from "astro:assets";
+import WpImage from "../../components/WpImage.astro";
 import { sanitizeHtml, toPlainText } from "../../lib/sanitize";
 import { toJetpackImageUrl } from "../../lib/jetpack";
 import { fetchWpJson, fetchWpJsonRequired } from "../../lib/wp";
@@ -143,7 +143,7 @@ const safeContent = sanitizeHtml(content);
     <div class={`work-post-hero ${isDarkHero ? "is-dark" : ""}`}>
       {
         bgUrl && (
-          <Picture
+          <WpImage
             src={bgOriginalUrl || bgUrl}
             alt={rawTitle}
             width="1920"
@@ -152,7 +152,6 @@ const safeContent = sanitizeHtml(content);
             sizes="100vw"
             priority
             class="work-post-hero-img"
-            inferSize
           />
         )
       }

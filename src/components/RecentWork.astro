@@ -1,5 +1,5 @@
 ---
-import { Picture } from "astro:assets";
+import WpImage from "./WpImage.astro";
 import "flickity/css/flickity.css";
 import "flickity-fade/flickity-fade.css";
 import { fetchWpJson } from "../lib/wp";
@@ -99,7 +99,7 @@ const hasPosts = postsWithImages.length > 0;
           {postsWithImages.map((post) => (
             <div class="recent-work-slider-item">
               <div class="recent-work-slider-item-media">
-                <Picture
+                <WpImage
                   src={(post.heroImageUrl || post.fimg_url) as string}
                   alt={toPlainText(post.title.rendered)}
                   width={980}
@@ -108,7 +108,6 @@ const hasPosts = postsWithImages.length > 0;
                   sizes="(max-width: 767px) 100vw, (max-width: 1200px) 85vw, 980px"
                   loading="lazy"
                   class="recent-work-slider-item-media-img"
-                  inferSize
                 />
               </div>
               <div class="recent-work-slider-item-text">
