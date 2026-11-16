@@ -293,11 +293,27 @@ const schemaJson = JSON.stringify({
       <div data-lg-cursor-pointer></div>
     </div>
     <script>
-      import luge from "@waaark/luge";
+      import {
+        Luge,
+        Reveal,
+        ScrollAnimation,
+        Cursor,
+        LottiePlayer,
+        Parallax,
+        Browser,
+      } from "@waaark/luge";
       import lottie from "lottie-web/build/player/lottie_light";
       import { annotate } from "rough-notation";
 
       window.lottie = lottie;
+      // Luge 1.x uses explicit plugin registration and initialization.
+      const luge = new Luge();
+      luge.addPlugin("browser", Browser);
+      luge.addPlugin("reveal", Reveal);
+      luge.addPlugin("scroll", ScrollAnimation);
+      luge.addPlugin("cursor", Cursor);
+      luge.addPlugin("lottie", LottiePlayer);
+      luge.addPlugin("parallax", Parallax);
       window.luge = luge;
 
       const applyReducedMotionPreference = () => {
@@ -320,6 +336,7 @@ const schemaJson = JSON.stringify({
           show: false,
         },
       });
+      luge.init();
 
       const restoreScrollState = () => {
         document.documentElement.style.removeProperty("overflow");
