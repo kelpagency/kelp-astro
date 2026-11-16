@@ -7,6 +7,48 @@ import beverlinHillsLogo from "../assets/beverlin-hills-logo-white.png";
 import lowmanLawFirmLogo from "../assets/lowman-law-firm-logo-white.png";
 import moninLogo from "../assets/monin-logo-white.png";
 
+// Small AVIF and WebP variants cover the logo strip at standard and high pixel densities.
+const logoSources = {
+  moninLogo,
+  marker48Logo,
+  lowmanLawFirmLogo,
+  beverlinHillsLogo,
+  elev8Logo,
+};
+const optimizedLogos = Object.fromEntries(
+  await Promise.all(
+    Object.entries(logoSources).map(async ([name, source]) => {
+      const widths = [
+        ...new Set([96, 140, 192, 280, 384, 560, Math.min(640, source.width)]),
+      ]
+        .filter((width) => width <= source.width && width <= 640)
+        .sort((a, b) => a - b);
+      const images = await Promise.all(
+        widths.map((width) =>
+          getImage({ src: source, width, format: "webp", quality: 80 }),
+        ),
+      );
+      const avifImages = await Promise.all(
+        widths.map((width) =>
+          getImage({ src: source, width, format: "avif", quality: 65 }),
+        ),
+      );
+      return [
+        name,
+        {
+          avifSrcset: avifImages
+            .map((image, index) => `${image.src} ${widths[index]}w`)
+            .join(", "),
+          src: images[widths.indexOf(140)].src,
+          srcset: images
+            .map((image, index) => `${image.src} ${widths[index]}w`)
+            .join(", "),
+        },
+      ];
+    }),
+  ),
+);
+
 const posterWidths = [350, 500, 640, 750, 1018];
 const heroPosters = await Promise.all(
   posterWidths.map((width) =>
@@ -135,15 +177,23 @@ const posterSrcSet = heroPosters
     <ul>
       <li>
         <a href="/work/monin/" aria-label="View our work for MONIN">
-          <img
-            loading="lazy"
-            src={moninLogo.src}
-            srcset={`${moninLogo.src} ${moninLogo.width}w`}
-            sizes="auto"
-            width={moninLogo.width}
-            height={moninLogo.height}
-            alt="MONIN"
-          />
+          <picture style="display: contents">
+            <source
+              type="image/avif"
+              srcset={optimizedLogos.moninLogo.avifSrcset}
+              sizes="auto, (max-width: 700px) 140px, (max-width: 1400px) 18vw, 256px"
+            />
+            <img
+              loading="lazy"
+              src={optimizedLogos.moninLogo.src}
+              srcset={optimizedLogos.moninLogo.srcset}
+              sizes="auto, (max-width: 700px) 140px, (max-width: 1400px) 18vw, 256px"
+              decoding="async"
+              width={moninLogo.width}
+              height={moninLogo.height}
+              alt="MONIN"
+            />
+          </picture>
         </a>
       </li>
       <li>
@@ -151,28 +201,47 @@ const posterSrcSet = heroPosters
           href="/work/marker-48/"
           aria-label="View our work for Marker 48 Brewing"
         >
-          <img
-            loading="lazy"
-            src={marker48Logo.src}
-            srcset={`${marker48Logo.src} ${marker48Logo.width}w`}
-            sizes="auto"
-            width={marker48Logo.width}
-            height={marker48Logo.height}
-            alt="Marker 48 Brewing"
-          />
+          <picture style="display: contents">
+            <source
+              type="image/avif"
+              srcset={optimizedLogos.marker48Logo.avifSrcset}
+              sizes="auto, (max-width: 700px) 140px, (max-width: 1400px) 18vw, 256px"
+            />
+            <img
+              loading="lazy"
+              src={optimizedLogos.marker48Logo.src}
+              srcset={optimizedLogos.marker48Logo.srcset}
+              sizes="auto, (max-width: 700px) 140px, (max-width: 1400px) 18vw, 256px"
+              decoding="async"
+              width={marker48Logo.width}
+              height={marker48Logo.height}
+              alt="Marker 48 Brewing"
+            />
+          </picture>
         </a>
       </li>
       <li>
-        <a href="/work/lowman-law-firm/" aria-label="View our work for Lowman Law Firm">
-          <img
-            loading="lazy"
-            src={lowmanLawFirmLogo.src}
-            srcset={`${lowmanLawFirmLogo.src} ${lowmanLawFirmLogo.width}w`}
-            sizes="auto"
-            width={lowmanLawFirmLogo.width}
-            height={lowmanLawFirmLogo.height}
-            alt="Lowman Law Firm"
-          />
+        <a
+          href="/work/lowman-law-firm/"
+          aria-label="View our work for Lowman Law Firm"
+        >
+          <picture style="display: contents">
+            <source
+              type="image/avif"
+              srcset={optimizedLogos.lowmanLawFirmLogo.avifSrcset}
+              sizes="auto, (max-width: 700px) 140px, (max-width: 1400px) 18vw, 256px"
+            />
+            <img
+              loading="lazy"
+              src={optimizedLogos.lowmanLawFirmLogo.src}
+              srcset={optimizedLogos.lowmanLawFirmLogo.srcset}
+              sizes="auto, (max-width: 700px) 140px, (max-width: 1400px) 18vw, 256px"
+              decoding="async"
+              width={lowmanLawFirmLogo.width}
+              height={lowmanLawFirmLogo.height}
+              alt="Lowman Law Firm"
+            />
+          </picture>
         </a>
       </li>
       <li>
@@ -180,28 +249,44 @@ const posterSrcSet = heroPosters
           href="/work/beverlin-hills-quality-goods/"
           aria-label="View our work for Beverlin Hills Quality Goods"
         >
-          <img
-            loading="lazy"
-            src={beverlinHillsLogo.src}
-            srcset={`${beverlinHillsLogo.src} ${beverlinHillsLogo.width}w`}
-            sizes="auto"
-            width={beverlinHillsLogo.width}
-            height={beverlinHillsLogo.height}
-            alt="Beverlin Hills Quality Goods"
-          />
+          <picture style="display: contents">
+            <source
+              type="image/avif"
+              srcset={optimizedLogos.beverlinHillsLogo.avifSrcset}
+              sizes="auto, (max-width: 700px) 140px, (max-width: 1400px) 18vw, 256px"
+            />
+            <img
+              loading="lazy"
+              src={optimizedLogos.beverlinHillsLogo.src}
+              srcset={optimizedLogos.beverlinHillsLogo.srcset}
+              sizes="auto, (max-width: 700px) 140px, (max-width: 1400px) 18vw, 256px"
+              decoding="async"
+              width={beverlinHillsLogo.width}
+              height={beverlinHillsLogo.height}
+              alt="Beverlin Hills Quality Goods"
+            />
+          </picture>
         </a>
       </li>
       <li>
         <a href="/work/elev8-fun/" aria-label="View our work for Elev8 Fun">
-          <img
-            loading="lazy"
-            src={elev8Logo.src}
-            srcset={`${elev8Logo.src} ${elev8Logo.width}w`}
-            sizes="auto"
-            width={elev8Logo.width}
-            height={elev8Logo.height}
-            alt="Elev8 Fun"
-          />
+          <picture style="display: contents">
+            <source
+              type="image/avif"
+              srcset={optimizedLogos.elev8Logo.avifSrcset}
+              sizes="auto, (max-width: 700px) 140px, (max-width: 1400px) 18vw, 256px"
+            />
+            <img
+              loading="lazy"
+              src={optimizedLogos.elev8Logo.src}
+              srcset={optimizedLogos.elev8Logo.srcset}
+              sizes="auto, (max-width: 700px) 140px, (max-width: 1400px) 18vw, 256px"
+              decoding="async"
+              width={elev8Logo.width}
+              height={elev8Logo.height}
+              alt="Elev8 Fun"
+            />
+          </picture>
         </a>
       </li>
     </ul>
